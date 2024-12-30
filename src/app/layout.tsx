@@ -6,7 +6,7 @@ import { Analytics } from "@vercel/analytics/react";
 export const metadata: Metadata = {
   title: "Autobuses de Colombia",
   description:
-    "Portal de fotografia, noticias, información y opinión sobre el transporte en Colombia",
+    "Descubre la mayor comunidad de aficionados a los autobuses en Colombia. POrtal de fotografia, noticias, historias y eventos sobre el apasionante mundo del transporte público. Únete a nuestra comunidad y comparte tu pasión por los autobuses y el transporte en Colombia.",
 };
 
 export default function RootLayout({
