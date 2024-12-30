@@ -1,0 +1,52 @@
+.card-container {
+}
+
+.card-image-container {
+    border-radius: 10px;
+    width: 180px;
+    height: 112.50px;
+    object-fit: fill;
+    overflow: hidden;
+    cursor: pointer;
+
+    @media(min-width: 768px){
+        width: 300px;
+        height: 168.75px;
+    }
+
+}
+.card-image {
+    width: 100%;
+    height: 100%;   
+}
+
+.card-details {
+    margin-top: 8px;
+
+}
+
+.card-item p {
+    font-size: .9rem;
+    font-weight: 700;
+}
+
+.preview-image {
+    overflow: hidden;
+    border-radius: 10px;
+}
+
+.preview-title {
+    margin: 16px 0;
+    font-size: 1.2rem;
+    font-weight: 700;
+}
+
+.preview-details {
+    padding: 16px;
+    background-color: #141414;
+    border-radius: 10px;
+}
+
+.text-preview {
+    font-size: 1rem;
+}

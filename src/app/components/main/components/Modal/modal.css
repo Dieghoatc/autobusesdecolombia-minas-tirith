@@ -1,0 +1,37 @@
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10;
+}
+
+.modal {
+    padding: 16px;
+    box-shadow: 0 0 0 0.5px #585858;
+    border-radius: 8px;
+    background-color: #000;
+    width: 375px;
+
+    @media(min-width: 768px){
+       width: auto;
+    }
+}
+
+.close-button-container {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+}
+
+.close-button {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    border: 1px solid #fff;
+}
