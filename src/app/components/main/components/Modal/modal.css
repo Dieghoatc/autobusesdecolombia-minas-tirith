@@ -19,8 +19,13 @@
     width: 375px;
 
     @media(min-width: 768px){
-       width: auto;
+       width: 512px;
     }
+    @meida(min-width: 1024px){
+        width: 1440px;
+        height: auto;
+    }
+   
 }
 
 .close-button-container {
