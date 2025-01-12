@@ -3,7 +3,7 @@
 import {useState, useEffect} from "react"
 
 import { autobusesApiAdapter } from "../../api/autobusesApi.adapter"
-import { PhotoResponse } from "../../api/autobusesApi.adapter"
+import { PhotoApiResponse } from "../../api/autobusesApi.adapter"
 
 import Card from "./components/Card/Card"
 import "./main.css"
@@ -20,10 +20,10 @@ export default function Main() {
     return (
         <div className="main-container">
            {
-            data.map((photo: PhotoResponse ) => {
+            data.map((photo: PhotoApiResponse ) => {
                 return (
-                    <div key={photo.id} >
-                         <Card url={photo.url} company={photo.company} bodywork={photo.bodywork} engine={photo.engine} serial={photo.serial} />
+                    <div key={photo.photo_id} >
+                         <Card photo={photo} />
                     </div>
                 )
             })

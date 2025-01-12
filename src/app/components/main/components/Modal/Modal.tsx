@@ -8,11 +8,13 @@ interface ModalProps {
 }
 
 export default function Modal({ children, onClose, isOpen }: ModalProps) {
+
   useEffect(() => {
+
     if (isOpen) {
       document.body.style.overflow = "hidden";
     } else {
-      document.body.style.overflow = "";
+     document.body.style.overflow = "";
     }
 
     return () => {
