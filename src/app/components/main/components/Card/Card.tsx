@@ -26,7 +26,7 @@ export default function Card({ photo }: { photo: PhotoApiResponse }) {
       </div>
       <div className="card-details">
         <div className="card-item">
-          <p>{company} - {serial}</p>
+          <p>{capitalizeFirstLetter(company)} - {serial}</p>
         </div>
       </div>
       <Modal onClose={closeModal} isOpen={isModalOpen}>
