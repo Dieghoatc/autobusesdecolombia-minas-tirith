@@ -20,13 +20,12 @@
 }
 
 .card-details {
-  margin-top: 8px;
+  margin: 8px;
 }
 
 .card-item p {
   font-size: 0.9rem;
   font-weight: 700;
-  margin-bottom: 0.5rem;
 }
 
 .preview-image {
