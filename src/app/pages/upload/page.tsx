@@ -23,7 +23,7 @@ export default function Upload() {
   const [author, setAuthor] = useState<string>("Alberto Tejedor")
   const [company, setCompany] = useState<string>("")
   const [bodywork, setBodywork] = useState<string>("")
-  const [engine, setEngine] = useState<string>("")
+  const [chassis, setChassis] = useState<string>("")
   const [serial, setSerial] = useState<string>("")
   const [description, setDescription] = useState<string>("")
   const [ctx, setCtx] = useState<CanvasRenderingContext2D>()
@@ -140,12 +140,12 @@ export default function Upload() {
 
     const formData = new FormData()
     formData.append("image", dataURL)
-    formData.append("author", author)
-    formData.append("company", company)
-    formData.append("bodywork", bodywork)
-    formData.append("engine", engine)
-    formData.append("serial", serial)
-    formData.append("description", description)
+    formData.append("author", author.toLowerCase())
+    formData.append("company", company.toLowerCase())
+    formData.append("bodywork", bodywork.toLowerCase())
+    formData.append("engine", chassis.toLowerCase())
+    formData.append("serial", serial.toLowerCase())
+    formData.append("description", description.toLowerCase())
     
 
     try {
@@ -171,7 +171,7 @@ export default function Upload() {
         <input type="text" placeholder="Empresa" maxLength={20} onChange={(event => setCompany(event.target.value))} />
         <input type="text" placeholder="Serial" maxLength={20} onChange={(event => setSerial(event.target.value))} />
         <input type="text" placeholder="Carroceria" maxLength={20} onChange={(event => setBodywork(event.target.value))} />
-        <input type="text" placeholder="Motor" maxLength={20} onChange={(event => setEngine(event.target.value))} />
+        <input type="text" placeholder="Chasis" maxLength={20} onChange={(event => setChassis(event.target.value))} />
         <Button variant="secondary" onClick={() => uploadDrawCanvas(image, logo, author, description, ctx, canvas)}>Agregar autor</Button>
         <Button variant="secondary" onClick={() => handleDownLoadImage(canvas)}>Descargar imagen</Button>
         <Button variant="secondary" onClick={() => handleUploadImage(canvas)}>Subir imagen</Button>
