@@ -145,6 +145,11 @@ export default function Upload() {
     ctx.fillText(description, canvas.width - 22, canvas.height - 5, 400);
   }
 
+  function clearCanvas(canvas: HTMLCanvasElement | undefined, ctx: CanvasRenderingContext2D | undefined) {
+    if (!canvas || !ctx) return;
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+  }
+
   function handleDownLoadImage(canvas: HTMLCanvasElement | undefined) {
     if (!canvas) return;
     const dataURL = canvas.toDataURL("image/webp");
@@ -243,6 +248,7 @@ export default function Upload() {
         <Button variant="secondary" onClick={() => handleUploadImage(canvas)}>
           Subir imagen
         </Button>
+        <Button variant="secondary" onClick={() => clearCanvas(canvas, ctx)}>Limpiar</Button>
       </div>
       <div className="canvas-container">
         <canvas id="canvas" ref={canvasRef} width="300" height="200"></canvas>
