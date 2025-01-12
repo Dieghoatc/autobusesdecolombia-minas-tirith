@@ -10,7 +10,7 @@ export default function Header() {
 
   return (
     <div className={"header-container"}>
-      <div>
+      <div className="header-logo">
         <img src={logo.src} alt="logo" className="logo" />
       </div>
       <div className="image-user-container">
