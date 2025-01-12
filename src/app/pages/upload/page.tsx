@@ -29,8 +29,10 @@ export default function Upload() {
   const [category, setCategory] = useState<string>("");
   const [ctx, setCtx] = useState<CanvasRenderingContext2D>();
   const [canvas, setCanvas] = useState<HTMLCanvasElement>();
+  
 
   function handelUploadImage(event: React.ChangeEvent<HTMLInputElement>) {
+
     if (!event.target.files) return;
     const file = event.target.files[0];
 
@@ -104,7 +106,7 @@ export default function Upload() {
     if (!image || !logo || !author || !description || !ctx || !canvas) return;
 
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-
+  
     ctx.drawImage(
       image.img,
       image.offsetX,

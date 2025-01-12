@@ -20,7 +20,7 @@ export default function Card({ photo }: { photo: PhotoApiResponse }) {
 
   return (
     <div className="card-container">
-      <div className="card-image-container" onClick={openModal}>
+      <div className="card-image" onClick={openModal}>
         <img src={url} alt={company + " - " + serial} />
       </div>
       <div className="card-details">
@@ -30,6 +30,7 @@ export default function Card({ photo }: { photo: PhotoApiResponse }) {
           </p>
         </div>
       </div>
+      
       <Modal onClose={closeModal} isOpen={isModalOpen}>
         <div>
           <div className="preview-image">
