@@ -7,7 +7,7 @@ export interface PhotoApiResponse {
     company: string
     created_at: string
     description: string
-    engine: string
+    chassis: string
     photo_id: number
     serial: string
     url: string

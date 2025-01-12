@@ -8,7 +8,7 @@ import { PhotoApiResponse } from "@/app/api/autobusesApi.adapter";
 
 export default function Card({ photo }: { photo: PhotoApiResponse }) {
 
-  const {author,bodywork,company, description, engine , serial, url } = photo;
+  const {author,bodywork,company, description, chassis , serial, url } = photo;
 
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -42,7 +42,7 @@ export default function Card({ photo }: { photo: PhotoApiResponse }) {
               <span className="text-preview">Carroceria :</span> {capitalizeFirstLetter(bodywork)}
             </p>
             <p>
-              <span className="text-preview">Motor :</span> {capitalizeFirstLetter(engine)}
+              <span className="text-preview">Motor :</span> {capitalizeFirstLetter(chassis)}
             </p>
             <p>
               <span className="text-preview">Fotógrafo/a :</span> {capitalizeFirstLetter(author)}
