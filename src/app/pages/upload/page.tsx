@@ -144,14 +144,14 @@ export default function Upload() {
     formData.append("author", author.toLowerCase())
     formData.append("company", company.toLowerCase())
     formData.append("bodywork", bodywork.toLowerCase())
-    formData.append("engine", chassis.toLowerCase())
+    formData.append("chassis", chassis.toLowerCase())
     formData.append("serial", serial.toLowerCase())
     formData.append("description", description.toLowerCase())
     formData.append("category", category.toLowerCase())
     
 
     try {
-      const response = await fetch( URL_ABC_API || "http://localhost:3001/photos/image", {
+      const response = await fetch( "http://localhost:3001/photos/image" || URL_ABC_API, {
         method: "POST",
         body: formData
       })
