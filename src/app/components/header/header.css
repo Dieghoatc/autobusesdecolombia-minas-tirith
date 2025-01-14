@@ -8,19 +8,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-}
-
-.header-sticky {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    padding: 8px 24px;
-    background-color: #000;
-    z-index: 100;
+    z-index: 10;
 }
 
 .header-logo img{

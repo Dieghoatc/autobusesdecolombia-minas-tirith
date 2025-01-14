@@ -1,7 +1,5 @@
-.home-container {
-}
-
 .main {
-    padding-top: 56px;
-    background-color: #000;   
+    padding-top: 74px;
+    background-color: #000;  
+    height: 100vh;
 }

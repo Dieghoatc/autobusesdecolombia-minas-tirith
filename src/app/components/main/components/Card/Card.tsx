@@ -3,20 +3,30 @@
 import "./card.css";
 import Modal from "../Modal/Modal";
 import { useState } from "react";
-import { PhotoApiResponse } from "@/app/api/autobusesApi.adapter";
+import { ApiResponse } from "@/app/api/autobusesApi.adapter";
+import { capitalizeFirstLetter, capitalizeWords } from "@/app/utils";
 
-export default function Card({ photo }: { photo: PhotoApiResponse }) {
-  const { author, bodywork, company, description, chassis, serial, url } =
-    photo;
+interface CardProps {
+  photo: ApiResponse;
+}
+
+export default function Card({ photo }: CardProps) {
+  const {
+    author,
+    bodywork,
+    company,
+    description,
+    chassis,
+    serial,
+    url,
+    plate,
+  } = photo;
+
 
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => setIsModalOpen(false);
-
-  function capitalizeFirstLetter(text: string) {
-    return text.charAt(0).toUpperCase() + text.slice(1).toLowerCase();
-  }
 
   return (
     <div className="card-container">
@@ -26,11 +36,11 @@ export default function Card({ photo }: { photo: PhotoApiResponse }) {
       <div className="card-details">
         <div className="card-item">
           <p>
-            {capitalizeFirstLetter(company)} - {serial}
+            {capitalizeWords(company)} - {serial}
           </p>
         </div>
       </div>
-      
+
       <Modal onClose={closeModal} isOpen={isModalOpen}>
         <div>
           <div className="preview-image">
@@ -44,20 +54,26 @@ export default function Card({ photo }: { photo: PhotoApiResponse }) {
           <div className="preview-details">
             <p>
               <span className="text-preview">Carroceria :</span>{" "}
-              {capitalizeFirstLetter(bodywork)}
+              {capitalizeWords(bodywork)}
             </p>
-            {chassis === "n/a" ? null : (
+            {chassis === "n/a" || null ? null : (
               <p>
                 <span className="text-preview">Chasis :</span>{" "}
                 {capitalizeFirstLetter(chassis)}
               </p>
             )}
+            {plate === "n/a" || null ? null : (
+              <p>
+                <span className="text-preview">Placa :</span>{" "}
+                {plate}
+              </p>
+            )}
             <p>
               <span className="text-preview">Fotógrafo/a :</span>{" "}
-              {capitalizeFirstLetter(author)}
+              {capitalizeWords(author)}
             </p>
             <p>
-              <span className="text-preview">Descripcion :</span> {description}
+              <span className="text-preview">Descripcion :</span> {capitalizeWords(description) }
             </p>
           </div>
         </div>
