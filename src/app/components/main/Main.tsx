@@ -15,10 +15,12 @@ import { useHookFetch } from "../../hooks/useHookFetch";
 export default function Main() {
   const { data, loading } = useHookFetch(autobusesApiAdapter);
 
+
   const itemsSkeleton = 30;
   const array = generateArray(itemsSkeleton);
   
- console.log(loading)
+  console.log(loading, data)
+  
   if (loading) {
     return (
       <div className="sketelon-container">
