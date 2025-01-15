@@ -18,7 +18,7 @@ export default function Main() {
   const itemsSkeleton = 30;
   const array = generateArray(itemsSkeleton);
   
-
+ console.log(loading)
   if (loading) {
     return (
       <div className="sketelon-container">
