@@ -1,4 +1,5 @@
-const URL = "https://autobusesdeecolombiaapi.onrender.com/photos";
+//const URL = "https://autobusesdeecolombiaapi.onrender.com/photos";
+const URL = "http://localhost:3001/photos";
 
 export interface ApiResponse {
   author: string;
@@ -13,7 +14,6 @@ export interface ApiResponse {
   serial: string;
   url: string;
 }
-
 
 
 export async function autobusesApiAdapter() {

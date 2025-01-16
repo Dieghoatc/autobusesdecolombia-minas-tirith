@@ -17,7 +17,7 @@ export default function Main() {
 
   const itemsSkeleton = 30;
   const array = generateArray(itemsSkeleton);
-  
+
 
   if (loading && !data) {
     return (
