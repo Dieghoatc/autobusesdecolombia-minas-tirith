@@ -4,7 +4,7 @@ import "./card.css";
 import Modal from "../Modal/Modal";
 import { useState } from "react";
 import { ApiResponse } from "@/app/api/autobusesApi.adapter";
-import { capitalizeFirstLetter, capitalizeWords } from "@/app/utils";
+import { capitalizeFirstLetter, capitalizeWords, capitalizeFirstLetterWithoutAccents } from "@/app/utils";
 
 interface CardProps {
   photo: ApiResponse;
@@ -21,6 +21,8 @@ export default function Card({ photo }: CardProps) {
     url,
     plate,
   } = photo;
+
+  const plateUpperCase = plate.toUpperCase();
 
 
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -65,15 +67,15 @@ export default function Card({ photo }: CardProps) {
             {plate === "n/a" || null ? null : (
               <p>
                 <span className="text-preview">Placa :</span>{" "}
-                {plate}
+                {plateUpperCase}
               </p>
             )}
             <p>
               <span className="text-preview">Fotógrafo/a :</span>{" "}
-              {capitalizeWords(author)}
+              {capitalizeFirstLetterWithoutAccents(author)}
             </p>
             <p>
-              <span className="text-preview">Descripcion :</span> {capitalizeWords(description) }
+              <span className="text-preview">Descripcion :</span> {capitalizeFirstLetterWithoutAccents(description) }
             </p>
           </div>
         </div>
