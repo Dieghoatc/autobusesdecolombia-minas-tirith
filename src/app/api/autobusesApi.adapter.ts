@@ -15,8 +15,8 @@ export interface ApiResponse {
 const URL = process.env.NEXT_PUBLIC_ABC_API;
 
 export async function autobusesApiAdapter() {
-
   if (!URL) return [];
+
   try {
     const response = await fetch(URL);
     const result: ApiResponse[] = await response.json();

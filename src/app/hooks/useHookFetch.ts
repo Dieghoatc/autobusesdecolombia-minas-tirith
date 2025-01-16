@@ -1,28 +1,42 @@
 import { useState, useEffect } from "react";
 import { ApiResponse } from "../api/autobusesApi.adapter";
 
-export function useHookFetch( fetchFunction: () => Promise<ApiResponse[]> ) {
+export function useHookFetch(fetchFunction: () => Promise<ApiResponse[]>) {
+  const [data, setData] = useState<ApiResponse[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(false);
 
-    const [data, setData] = useState<ApiResponse[]>();
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(false)
+  useEffect(() => {
+    let isMounted = true;
 
-    useEffect(() => {
-        try {
-            fetchFunction().then((data: ApiResponse[]) => {
-                setData(data);
-                setLoading(false);
-            });
+    const fetchData = async () => {
+      setLoading(true);
+      setError(false);
+
+      try {
+        const result = await fetchFunction();
+        if (isMounted) {
+          setData(result || []);
         }
-        catch (error) {
-            console.log(error);
-            setError(true);
-        } finally {
-            setLoading(false);
+      } catch (error) {
+        console.log("Error al obtener los datos", error);
+        if (isMounted) {
+          setData([]);
+          setError(true);
         }
-        
-    }, [fetchFunction]);
+      } finally {
+        if (isMounted) {
+          setLoading(false);
+        }
+      }
+    };
+    
+    fetchData();
 
-    return { data, loading, error };
+    return () => {
+      isMounted = false;
+    };
+  }, [fetchFunction]);
 
+  return { data, loading, error };
 }

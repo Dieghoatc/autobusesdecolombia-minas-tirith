@@ -12,17 +12,19 @@ import "./main.css";
 
 import { useHookFetch } from "../../hooks/useHookFetch";
 
+const SKELETON_ITEM_COUNT = 30;
+
 export default function Main() {
   const { data, loading } = useHookFetch(autobusesApiAdapter);
 
-  const itemsSkeleton = 30;
-  const array = generateArray(itemsSkeleton);
+  console.log(data, loading);
 
+  const skeletonItems = generateArray(SKELETON_ITEM_COUNT);
 
-  if (loading && !data) {
+  if (loading) {
     return (
       <div className="sketelon-container">
-        {array.map((item) => (
+        {skeletonItems.map((item) => (
           <div key={item}>
             <Skeleton className="skeleton-image" />
             <Skeleton className="skeleton-detail" />
@@ -31,8 +33,9 @@ export default function Main() {
       </div>
     );
   }
-  if (!data) {
-    return <div>No data</div>;
+
+  if (!data || data.length === 0) {
+    return <div>No hay datos disponibles.</div>;
   }
 
   return (
