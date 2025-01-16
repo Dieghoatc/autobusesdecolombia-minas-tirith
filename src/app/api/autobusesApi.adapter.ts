@@ -1,5 +1,3 @@
-//const URL = "http://localhost:3001/photos";
-
 export interface ApiResponse {
   author: string;
   bodywork: string;
@@ -14,10 +12,11 @@ export interface ApiResponse {
   url: string;
 }
 
-const URL = "https://autobusesdeecolombiaapi.onrender.com/photos/image";
+const URL = process.env.NEXT_PUBLIC_ABC_API;
 
 export async function autobusesApiAdapter() {
 
+  if (!URL) return [];
   try {
     const response = await fetch(URL);
     const result: ApiResponse[] = await response.json();
