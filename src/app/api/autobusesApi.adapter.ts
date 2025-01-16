@@ -17,8 +17,6 @@ export interface ApiResponse {
 const URL = "https://autobusesdeecolombiaapi.onrender.com/photos/image";
 
 export async function autobusesApiAdapter() {
-    
-  if (!URL) return [];
 
   try {
     const response = await fetch(URL);
