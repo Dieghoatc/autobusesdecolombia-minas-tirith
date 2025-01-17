@@ -1,11 +1,22 @@
 import Card from "../main/components/Card/Card";
-import { ApiResponse } from "../../api/autobusesApi.adapter";
+import {
+  ApiResponse,
+  autobusesApiAdapter,
+} from "../../api/autobusesApi.adapter";
+import { useHookFetch } from "@/app/hooks/useHookFetch";
+import SkeletonComponent from "../skeleton/Skeleton";
+import "./gallery.css";
 
-interface GalleryProps {
-  data: ApiResponse[];
-}
+export default function Gallery() {
+  const { data, loading } = useHookFetch(autobusesApiAdapter);
 
-export default function Gallery({data}: GalleryProps) {
+  if (loading) {
+    return <SkeletonComponent />;
+  }
+
+  if (!data || data.length === 0) {
+    return <div>No hay datos disponibles.</div>;
+  }
   return (
     <div className="cards-container">
       {data.map((photo: ApiResponse) => (
