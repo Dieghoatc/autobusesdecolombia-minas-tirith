@@ -17,8 +17,6 @@ const SKELETON_ITEM_COUNT = 30;
 export default function Main() {
   const { data, loading } = useHookFetch(autobusesApiAdapter);
 
-  console.log(data, loading);
-
   const skeletonItems = generateArray(SKELETON_ITEM_COUNT);
 
   if (loading) {

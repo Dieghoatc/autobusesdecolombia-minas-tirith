@@ -50,7 +50,7 @@ export default function Footer() {
             <a
               target="_blank"
               rel="noopener"
-              href="https://discord.gg/zkYZcjmy"
+              href="https://discord.gg/RWMBbN4KCt"
             >
               <img src={discord.src} alt="Logo de Discord" />
             </a>
