@@ -23,7 +23,7 @@ interface Canvas {
   scaleHeight: number;
 }
 
-const URL_ABC_API = process.env.NEXT_PUBLIC_ABC_API;
+const URL_ABC_API_UPLOAD_IMAGE = process.env.NEXT_PUBLIC_ABC_API_UPLOAD_IMAGE;
 
 export default function Upload() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -190,7 +190,7 @@ export default function Upload() {
 
     try {
       const response = await fetch(
-        URL_ABC_API || "http://localhost:3001/photos/image",
+        URL_ABC_API_UPLOAD_IMAGE || "http://localhost:3001/photos/image",
         {
           method: "POST",
           body: formData,
