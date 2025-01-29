@@ -1,5 +1,5 @@
 "use client";
-import { useState, useRef } from "react";
+import { useState, useEffect, useRef } from "react";
 
 import "./page.css";
 import { Button } from "@/components/ui/button";
@@ -14,6 +14,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { dataURLToBlob } from "@/app/utils";
 
 interface Canvas {
   img: HTMLImageElement;
@@ -40,6 +41,16 @@ export default function Upload() {
   const [plate, setPlate] = useState<string>("");
   const [ctx, setCtx] = useState<CanvasRenderingContext2D>();
   const [canvas, setCanvas] = useState<HTMLCanvasElement>();
+
+  const [password, setPassword] = useState<string>("");
+  const [passwordConfirm, setPasswordConfirm] = useState(false);
+
+
+  useEffect(() => {
+    if (password === process.env.NEXT_PUBLIC_PASSWORD) {
+      setPasswordConfirm(true);
+    }
+  }, [password]);
 
   function handleDrawCanvasImage(event: React.ChangeEvent<HTMLInputElement>) {
     if (!event.target.files) return;
@@ -176,9 +187,11 @@ export default function Upload() {
   async function handleUploadImage(canvas: HTMLCanvasElement | undefined) {
     if (!canvas) return;
     const dataURL = canvas.toDataURL("image/webp");
+    const imageBlob = dataURLToBlob(dataURL);
+    if (!imageBlob) return;
 
     const formData = new FormData();
-    formData.append("image", dataURL);
+    formData.append("image", imageBlob, "image.webp");
     formData.append("author", author.toLowerCase());
     formData.append("company", company.toLowerCase());
     formData.append("bodywork", bodywork.toLowerCase());
@@ -251,7 +264,10 @@ export default function Upload() {
         />
         <label htmlFor="category">Categoria</label>
         <Select onValueChange={(value) => setCategory(value)}>
-          <SelectTrigger className="w-[300px]" aria-label="Selecciona una categoria">
+          <SelectTrigger
+            className="w-[300px]"
+            aria-label="Selecciona una categoria"
+          >
             <SelectValue placeholder="Selecciona una categoria" />
           </SelectTrigger>
           <SelectContent>
@@ -263,7 +279,7 @@ export default function Upload() {
               <SelectItem value="interdepartamentales">
                 Interdepartamentales
               </SelectItem>
-              <SelectItem value="intermunicipal">Intermunicipal</SelectItem>
+              <SelectItem value="intermunicipal">Intermunicipales</SelectItem>
               <SelectItem value="internacionales">Internacionales</SelectItem>
               <SelectItem value="nuestros recuerdos">
                 Nuestros Recuerdos
@@ -281,6 +297,13 @@ export default function Upload() {
           maxLength={10}
           onChange={(event) => setPlate(event.target.value)}
         />
+        <input
+          type="text"
+          placeholder="Contraseña"
+          maxLength={35}
+          onChange={(event) => setPassword(event.target.value)}
+        />
+        <label htmlFor="category">Contraseña provisional</label>
         <Button
           variant="secondary"
           onClick={() =>
@@ -292,7 +315,21 @@ export default function Upload() {
         <Button variant="secondary" onClick={() => handleDownLoadImage(canvas)}>
           Descargar imagen
         </Button>
-        <Button variant="secondary" onClick={() => handleUploadImage(canvas)}>
+        <Button
+          variant="secondary"
+          onClick={() => handleUploadImage(canvas)}
+          disabled={
+            !author &&
+            !company &&
+            !bodywork &&
+            !chassis &&
+            !serial &&
+            !description &&
+            !category &&
+            !plate &&
+            passwordConfirm
+          }
+        >
           Subir imagen
         </Button>
         <Button variant="secondary" onClick={() => clearCanvas(canvas, ctx)}>

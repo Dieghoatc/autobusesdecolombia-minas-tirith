@@ -34,50 +34,48 @@ export default function Card({ photo }: CardProps) {
   const closeModal = () => setIsModalOpen(false);
 
   return (
-    <div className="card-container">
-      <div className="card-image" onClick={openModal}>
+    <div className="card-gallery">
+      <div className="card-gallery__image" onClick={openModal}>
         <img src={url} alt={company + " - " + serial} />
       </div>
-      <div className="card-details">
-        <div className="card-item">
-          <h2>
-            {capitalizeWords(company)} - {serial}
-          </h2>
-        </div>
+      <div className="card-gallery__title">
+        <h2>
+          {capitalizeWords(company)} - {serial}
+        </h2>
       </div>
 
       <Modal onClose={closeModal} isOpen={isModalOpen}>
         <div>
-          <div className="preview-image">
+          <div className="modal-gallery__image">
             <img src={url} alt={company + " - " + serial} />
           </div>
-          <div className="preview-title">
+          <div className="modal-gallery__title">
             <h2>
               {capitalizeFirstLetter(company)} - {capitalizeFirstLetter(serial)}
             </h2>
           </div>
-          <div className="preview-details">
+          <div className="modal-gallery__details">
             <p>
-              <span className="text-preview">Carroceria :</span>{" "}
+              <span className="modal-gallery_label">Carroceria :</span>{" "}
               {capitalizeWords(bodywork)}
             </p>
             {chassis === "n/a" || null ? null : (
               <p>
-                <span className="text-preview">Chasis :</span>{" "}
+                <span className="modal-gallery_label">Chasis :</span>{" "}
                 {capitalizeFirstLetter(chassis)}
               </p>
             )}
             {plate === "n/a" || null ? null : (
               <p>
-                <span className="text-preview">Placa :</span> {plateUpperCase}
+                <span className="modal-gallery_label">Placa :</span> {plateUpperCase}
               </p>
             )}
             <p>
-              <span className="text-preview">Fotógrafo/a :</span>{" "}
+              <span className="modal-gallery_label">Fotógrafo/a :</span>{" "}
               {capitalizeFirstLetterWithoutAccents(author)}
             </p>
             <p>
-              <span className="text-preview">Descripcion :</span>{" "}
+              <span className="modal-gallery_label">Descripción :</span>{" "}
               {capitalizeFirstLetterWithoutAccents(description)}
             </p>
           </div>
