@@ -2,6 +2,7 @@ import Footer from "@/app/components/footer/Footer";
 import { Hero } from "@/app/components/hero/Hero";
 
 import "./post.css";
+import Header from "@/app/components/header/Header";
 
 export default async function PostsIdPage({
   params,
@@ -12,12 +13,13 @@ export default async function PostsIdPage({
   console.log(id);
   return (
     <div className="post-container">
+      <Header />
       <Hero />
       <div className="article-container">
         <div className="article__content">
           <h2>Michelin X® MULTI™ ENERGY™ Z</h2>
           <br />
-          <h3>Neumatico utilizado para la fabricacion de autobuses</h3>
+          <h3>Neumatico utilizado para la fabricación de autobuses</h3>
           <br />
           <img
             src="https://brasildotrecho.com.br/wp-content/uploads/2021/07/NOVO-MICHELIN-295-80-R22.5-X-MULTI-ENERGY-Z.jpg"
