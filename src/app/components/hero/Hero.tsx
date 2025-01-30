@@ -21,7 +21,6 @@ export function Hero() {
             priority
           />
         </div>
-
         <div className="hero-title">
           <h1>Autobuses de Colombia</h1>
           <p>
