@@ -23,8 +23,8 @@ export function BentoItem({ articles }: BentoItemProps) {
       />
       <div className="bento-item__overlay">
         <div className="bento-item__content">
-          <h2>{articles.title}</h2>
-          <p>{articles.subtitle}</p>
+          <h2 className="bento-item__content__title">{articles.title}</h2>
+          <p className="bento-item__content__subtitle">{articles.subtitle}</p>
         </div>
       </div>
     </article>

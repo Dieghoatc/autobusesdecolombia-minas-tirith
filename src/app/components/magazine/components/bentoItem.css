@@ -40,7 +40,9 @@
   font-weight: bold;
 }
 
-.bento-item__content h2,
-p {
+.bento-item__content__title {
+  margin: 0 24px;
+}
+.bento-item__content__subtitle{
   margin: 0 24px;
 }

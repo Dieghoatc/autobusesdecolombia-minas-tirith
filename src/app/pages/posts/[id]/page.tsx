@@ -100,6 +100,7 @@ export default async function PostsIdPage({
               <b>Diámetro total:</b> 1,037 mm
             </li>
           </ul>
+          <br />
           <p>
             Este neumático es ideal para flotas que buscan optimizar sus costos
             operativos mediante la reducción del consumo de combustible sin
