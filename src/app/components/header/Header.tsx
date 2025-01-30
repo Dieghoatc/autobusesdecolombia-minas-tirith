@@ -4,7 +4,7 @@ import logo from "../../../assets/autobusesdecolombia_logo.png";
 import user from "../../../assets/dieghoatc.png";
 import Image from "next/image";
 import "./header.css";
-import { Link } from "lucide-react";
+import Link from "next/link";
 
 export default function Header() {
   return (
