@@ -2,11 +2,20 @@
   width: 100%;
   //max-width: 1400px;
   display: grid;
-  grid-template-columns: repeat(12, 1fr);
+  grid-template-columns: repeat(2, 1fr);
   grid-auto-rows: 15rem;
   gap: 4px;
+
+  @media (min-width: 768px) {
+    grid-template-columns: repeat(12, 1fr);
+    grid-auto-rows: 15rem;
+  }
 }
 
 .bento-primary {
-  grid-column: span 4;
+  grid-column: span 2;
+
+  @media (min-width: 768px) {
+    grid-column: span 4;
+  }
 }
