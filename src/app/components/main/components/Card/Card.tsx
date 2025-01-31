@@ -3,7 +3,7 @@
 import "./card.css";
 import Modal from "../Modal/Modal";
 import { useState } from "react";
-import { ApiResponse } from "@/app/api/autobusesApi.adapter";
+import { ApiPhotosResponse } from "@/app/api/autobusesApi.interfaces";
 import {
   capitalizeFirstLetter,
   capitalizeWords,
@@ -11,7 +11,7 @@ import {
 } from "@/app/utils";
 
 interface CardProps {
-  photo: ApiResponse;
+  photo: ApiPhotosResponse;
 }
 
 export default function Card({ photo }: CardProps) {
