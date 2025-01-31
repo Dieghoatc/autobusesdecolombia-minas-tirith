@@ -59,7 +59,7 @@ export default async function PostsIdPage({
               <b>Desempeño en todas las estaciones:</b> Cuenta con la
               certificación 3PMSF, lo que garantiza su rendimiento en
               condiciones climáticas adversas, incluyendo nieve y lluvia,
-              asegurando la movilidad durante todo el año
+              asegurando la movilidad durante todo el año.
             </li>
           </ul>
           <br />

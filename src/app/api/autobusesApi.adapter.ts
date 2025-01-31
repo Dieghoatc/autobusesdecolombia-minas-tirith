@@ -1,28 +1,31 @@
-export interface ApiResponse {
-  author: string;
-  bodywork: string;
-  category: string;
-  chassis: string;
-  company: string;
-  created_at: string;
-  description: string;
-  photo_id: number;
-  plate: string;
-  serial: string;
-  url: string;
-}
+import { ApiPhotosResponse, ApiPostsResponse } from "./autobusesApi.interfaces";
 
 const URL = process.env.NEXT_PUBLIC_ABC_API;
 
-export async function autobusesApiAdapter() {
-  if (!URL) return [];
+type ApiEndpoints = "photos" | "posts";
+type ApiResponseMap = Record<
+  ApiEndpoints,
+  ApiPhotosResponse[] | ApiPostsResponse[]
+>;
+
+async function fetchData<T>(endpoint: string): Promise<T> {
+  if (!URL) return [] as T;
 
   try {
-    const response = await fetch(URL);
-    const result: ApiResponse[] = await response.json();
-    return result;
+    const response = await fetch(`${URL}/${endpoint}`);
+
+    if (!response.ok) {
+      throw new Error(`Failed to fetch data: ${response.statusText}`);
+    }
+    return await response.json();
   } catch (error) {
-    console.log(error);
-    return [];
+    console.error(`Failed to fetch data: ${error}`);
+    return [] as T;
   }
+}
+
+export async function apiAdapter<T extends ApiEndpoints>(
+  endpoint: T
+): Promise<ApiResponseMap[T]> {
+  return fetchData<ApiResponseMap[T]>(endpoint);
 }

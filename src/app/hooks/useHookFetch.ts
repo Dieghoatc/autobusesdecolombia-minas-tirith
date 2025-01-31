@@ -1,42 +1,35 @@
 import { useState, useEffect } from "react";
-import { ApiResponse } from "../api/autobusesApi.adapter";
+import { apiAdapter } from "../api/autobusesApi.adapter";
+import {
+  ApiPhotosResponse,
+  ApiPostsResponse,
+} from "../api/autobusesApi.interfaces";
 
-export function useHookFetch(fetchFunction: () => Promise<ApiResponse[]>) {
-  const [data, setData] = useState<ApiResponse[]>([]);
+type ApiResponseType = ApiPhotosResponse[] | ApiPostsResponse[];
+
+export function useHookFetch<T extends ApiResponseType>(
+  endpoint: "photos" | "posts"
+) {
+  const [data, setData] = useState<T | []>([]);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(false);
+  const [error, setError] = useState("");
 
   useEffect(() => {
-    let isMounted = true;
-
-    const fetchData = async () => {
+    async function fetchData() {
       setLoading(true);
-      setError(false);
+      setError("");
 
       try {
-        const result = await fetchFunction();
-        if (isMounted) {
-          setData(result || []);
-        }
+        const result = await apiAdapter(endpoint);
+        setData(result as T);
       } catch (error) {
-        console.log("Error al obtener los datos", error);
-        if (isMounted) {
-          setData([]);
-          setError(true);
-        }
+        setError(`Error to fetch data: ${error}`);
       } finally {
-        if (isMounted) {
-          setLoading(false);
-        }
+        setLoading(false);
       }
-    };
-    
+    }
     fetchData();
-
-    return () => {
-      isMounted = false;
-    };
-  }, [fetchFunction]);
+  }, [endpoint]);
 
   return { data, loading, error };
 }
