@@ -13,11 +13,11 @@ async function fetchData<T>(endpoint: string): Promise<T> {
 
   try {
     const response = await fetch(`${URL}/${endpoint}`);
+    return await response.json();
 
     if (!response.ok) {
       throw new Error(`Failed to fetch data: ${response.statusText}`);
     }
-    return await response.json();
   } catch (error) {
     console.error(`Failed to fetch data: ${error}`);
     return [] as T;
@@ -25,7 +25,7 @@ async function fetchData<T>(endpoint: string): Promise<T> {
 }
 
 export async function apiAdapter<T extends ApiEndpoints>(
-  endpoint: T
+  endpoint: T,
 ): Promise<ApiResponseMap[T]> {
   return fetchData<ApiResponseMap[T]>(endpoint);
 }

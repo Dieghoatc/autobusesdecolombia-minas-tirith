@@ -1,6 +1,5 @@
 .bento {
   width: 100%;
-  //max-width: 1400px;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   grid-auto-rows: 15rem;
@@ -12,10 +11,14 @@
   }
 }
 
-.bento-primary {
+.bento-primary:first-child {
   grid-column: span 2;
 
   @media (min-width: 768px) {
     grid-column: span 4;
   }
+}
+
+.bento-primary {
+  grid-column: span 2;
 }

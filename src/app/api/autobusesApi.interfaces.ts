@@ -20,5 +20,5 @@ export interface ApiPhotosResponse {
     author_id: number;
     created_at: string;
     category: string;
-    content: number;
+    content: string;
   }

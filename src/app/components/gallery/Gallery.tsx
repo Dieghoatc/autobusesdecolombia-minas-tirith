@@ -1,14 +1,14 @@
 import Card from "../main/components/Card/Card";
 import { ApiPhotosResponse } from "@/app/api/autobusesApi.interfaces";
 import { useHookFetch } from "@/app/hooks/useHookFetch";
-import { orderHighestToLowest } from "@/app/utils";
 
 import SkeletonComponent from "../skeleton/Skeleton";
 
 import "./gallery.css";
+import { orderById } from "@/app/utils/orderById";
 
 export default function Gallery() {
-  const { data, loading } = useHookFetch("photos");
+  const { data, loading } = useHookFetch<ApiPhotosResponse[]>("photos");
 
   if (loading) {
     return <SkeletonComponent />;
@@ -18,7 +18,11 @@ export default function Gallery() {
     return <div>No hay datos disponibles.</div>;
   }
 
-  const sortedData = orderHighestToLowest(data as ApiPhotosResponse[]);
+  function orderHighestToLowestPhotos(data: ApiPhotosResponse[]) {
+    return orderById(data, "photo_id");
+  }
+
+  const sortedData = orderHighestToLowestPhotos(data as ApiPhotosResponse[]);
 
   return (
     <div className="cards-container">

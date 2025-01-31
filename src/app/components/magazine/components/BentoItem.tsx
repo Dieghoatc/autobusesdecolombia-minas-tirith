@@ -1,30 +1,18 @@
+import { ApiPostsResponse } from "@/app/api/autobusesApi.interfaces";
 import "./bentoItem.css";
 
-interface Article {
-  id_article: string;
-  image_url: string;
-  title: string;
-  subtitle: string;
-  content: string;
-  date: string;
-}
-
 interface BentoItemProps {
-  articles: Article;
+  post: ApiPostsResponse;
 }
 
-export function BentoItem({ articles }: BentoItemProps) {
+export function BentoItem({ post }: BentoItemProps) {
+  const { title, image_url } = post;
   return (
     <article className="bento-item">
-      <img
-        src={articles.image_url}
-        alt={articles.title}
-        className="bento-item__image"
-      />
+      <img src={image_url} alt={title} className="bento-item__image" />
       <div className="bento-item__overlay">
         <div className="bento-item__content">
-          <h2 className="bento-item__content__title">{articles.title}</h2>
-          <p className="bento-item__content__subtitle">{articles.subtitle}</p>
+          <h2 className="bento-item__content__title">{title}</h2>
         </div>
       </div>
     </article>
