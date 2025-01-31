@@ -1,5 +1,5 @@
-import { ApiResponse } from "../api/autobusesApi.adapter";
+import { ApiPhotosResponse } from "../api/autobusesApi.interfaces";
 
-export function orderHighestToLowest(data: ApiResponse[]) {
+export function orderHighestToLowest(data: ApiPhotosResponse[]) {
   return data.sort((a, b) => b.photo_id - a.photo_id);
 }
