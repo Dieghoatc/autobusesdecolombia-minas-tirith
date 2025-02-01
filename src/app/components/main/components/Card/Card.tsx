@@ -42,6 +42,7 @@ export default function Card({ photo }: CardProps) {
         <h2>
           {capitalizeWords(company)} - {serial}
         </h2>
+        <p>{capitalizeFirstLetterWithoutAccents(author)}</p>
       </div>
 
       <Modal onClose={closeModal} isOpen={isModalOpen}>
@@ -55,10 +56,12 @@ export default function Card({ photo }: CardProps) {
             </h2>
           </div>
           <div className="modal-gallery__details">
-            <p>
-              <span className="modal-gallery_label">Carroceria :</span>{" "}
-              {capitalizeWords(bodywork)}
-            </p>
+            {bodywork === "n/a" || null ? null : (
+              <p>
+                <span className="modal-gallery_label">Carroceria :</span>{" "}
+                {capitalizeWords(bodywork)}
+              </p>
+            )}
             {chassis === "n/a" || null ? null : (
               <p>
                 <span className="modal-gallery_label">Chasis :</span>{" "}
@@ -67,7 +70,8 @@ export default function Card({ photo }: CardProps) {
             )}
             {plate === "n/a" || null ? null : (
               <p>
-                <span className="modal-gallery_label">Placa :</span> {plateUpperCase}
+                <span className="modal-gallery_label">Placa :</span>{" "}
+                {plateUpperCase}
               </p>
             )}
             <p>
