@@ -23,7 +23,6 @@ interface Canvas {
   scaleWidth: number;
   scaleHeight: number;
 }
-import { useToast } from "@/hooks/use-toast";
 
 const URL_ABC_API_UPLOAD_IMAGE = process.env.NEXT_PUBLIC_ABC_API_UPLOAD_IMAGE;
 
@@ -48,9 +47,6 @@ export default function Upload() {
   const [passwordConfirm, setPasswordConfirm] = useState(false);
 
   const [loading, setLoading] = useState(false);
-  const { toast } = useToast();
-
-  console.log("passwordConfirm", passwordConfirm);
 
   useEffect(() => {
     if (password === process.env.NEXT_PUBLIC_PASSWORD) {
@@ -234,11 +230,6 @@ export default function Upload() {
 
       const result = await response.json();
       console.log("Respuesta del Servidor", result);
-      if (loading) {
-        toast({
-          title: "Imagen enviada con éxito",
-        });
-      }
     } catch (error) {
       console.error("Error al enviar la imagen", error);
     } finally {
