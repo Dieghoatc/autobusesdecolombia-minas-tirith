@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import "@fontsource/mitr";
 import "./globals.css";
 import { Analytics } from "@vercel/analytics/react";
-import { Toaster } from "@/components/ui/toaster"
 
 export const metadata: Metadata = {
   title: "Autobuses de Colombia - ¡Mucho más para ver!",
@@ -21,7 +20,6 @@ export default function RootLayout({
       <body>
         {children}
         <Analytics />
-        <Toaster />
       </body>
     </html>
   );
