@@ -28,7 +28,13 @@ export function useHookFetch<T extends ApiResponseType>(
         setLoading(false);
       }
     }
-    fetchData();
+
+    const intervalo = setInterval(() => {
+      fetchData();
+    }, 2400000); // 60,000 milisegundos = 1 minuto
+
+    // Limpiar el intervalo cuando el componente se desmonta
+    return () => clearInterval(intervalo);
   }, [endpoint]);
 
   return { data, loading, error };
