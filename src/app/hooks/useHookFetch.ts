@@ -30,8 +30,7 @@ export function useHookFetch<T extends ApiResponseType>(
     }
     fetchData();
 
-    const intervalo = setInterval(fetchData, 2400000);
-
+    const intervalo = setInterval(fetchData, 1400000);
     return () => clearInterval(intervalo);
   }, [endpoint]);
 

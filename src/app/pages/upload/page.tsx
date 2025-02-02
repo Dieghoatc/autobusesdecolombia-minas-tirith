@@ -23,6 +23,7 @@ interface Canvas {
   scaleWidth: number;
   scaleHeight: number;
 }
+import { useToast } from "@/hooks/use-toast";
 
 const URL_ABC_API_UPLOAD_IMAGE = process.env.NEXT_PUBLIC_ABC_API_UPLOAD_IMAGE;
 
@@ -39,18 +40,37 @@ export default function Upload() {
   const [description, setDescription] = useState<string>("");
   const [category, setCategory] = useState<string>("");
   const [plate, setPlate] = useState<string>("");
+
   const [ctx, setCtx] = useState<CanvasRenderingContext2D>();
   const [canvas, setCanvas] = useState<HTMLCanvasElement>();
 
   const [password, setPassword] = useState<string>("");
   const [passwordConfirm, setPasswordConfirm] = useState(false);
 
+  const [loading, setLoading] = useState(false);
+  const { toast } = useToast();
+
+  console.log("passwordConfirm", passwordConfirm);
 
   useEffect(() => {
     if (password === process.env.NEXT_PUBLIC_PASSWORD) {
       setPasswordConfirm(true);
+    } else {
+      setPasswordConfirm(false);
     }
   }, [password]);
+
+  useEffect(() => {
+    function clearCanvas1(
+      canvas: HTMLCanvasElement | undefined,
+      ctx: CanvasRenderingContext2D | undefined
+    ) {
+      if (!canvas || !ctx) return;
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+    }
+
+    clearCanvas1(canvas, ctx);
+  }, [canvas, ctx, loading]);
 
   function handleDrawCanvasImage(event: React.ChangeEvent<HTMLInputElement>) {
     if (!event.target.files) return;
@@ -189,6 +209,7 @@ export default function Upload() {
     const dataURL = canvas.toDataURL("image/webp");
     const imageBlob = dataURLToBlob(dataURL);
     if (!imageBlob) return;
+    if (!passwordConfirm) return
 
     const formData = new FormData();
     formData.append("image", imageBlob, "image.webp");
@@ -202,6 +223,7 @@ export default function Upload() {
     formData.append("plate", plate.toLowerCase());
 
     try {
+      setLoading(true);
       const response = await fetch(
         URL_ABC_API_UPLOAD_IMAGE || "http://localhost:3001/photos/image",
         {
@@ -212,8 +234,16 @@ export default function Upload() {
 
       const result = await response.json();
       console.log("Respuesta del Servidor", result);
+      if (loading) {
+        toast({
+          title: "Imagen enviada con éxito",
+        });
+      }
     } catch (error) {
       console.error("Error al enviar la imagen", error);
+    } finally {
+      setLoading(false);
+      window.location.reload();
     }
   }
 
@@ -297,13 +327,13 @@ export default function Upload() {
           maxLength={10}
           onChange={(event) => setPlate(event.target.value)}
         />
+        <label htmlFor="category">Contraseña provisional</label>
         <input
           type="text"
           placeholder="Contraseña"
           maxLength={35}
           onChange={(event) => setPassword(event.target.value)}
         />
-        <label htmlFor="category">Contraseña provisional</label>
         <Button
           variant="secondary"
           onClick={() =>
@@ -318,17 +348,7 @@ export default function Upload() {
         <Button
           variant="secondary"
           onClick={() => handleUploadImage(canvas)}
-          disabled={
-            !author &&
-            !company &&
-            !bodywork &&
-            !chassis &&
-            !serial &&
-            !description &&
-            !category &&
-            !plate &&
-            passwordConfirm
-          }
+          disabled={!passwordConfirm}
         >
           Subir imagen
         </Button>
