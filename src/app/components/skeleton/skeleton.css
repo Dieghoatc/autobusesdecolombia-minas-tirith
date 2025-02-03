@@ -8,7 +8,7 @@
   }
   
   .skeleton-image {
-    width: 180px;
+    width: 165px;
     height: 112.5px;
     border-radius: 10px;
     margin-bottom: 8px;
@@ -22,7 +22,6 @@
   
   .skeleton-detail {
     height: 4px;
-    width: 180px;
     background-color: #292929;
   
     @media (min-width: 768px) {
