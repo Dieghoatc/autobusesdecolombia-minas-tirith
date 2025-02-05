@@ -7,6 +7,7 @@ import "./post.css";
 import Header from "@/app/components/header/Header";
 import { useFindOne } from "../../hooks/useGetOnePost";
 import ReactMarkdown from "react-markdown";
+import { Loader } from "@/app/components/loader/Loader";
 
 export default function PostsIdPage() {
   let id_post = "1";
@@ -22,17 +23,13 @@ export default function PostsIdPage() {
     return <div>No post found</div>;
   }
 
-  if (loading) {
-    return <div>Loading...</div>;
-  }
-
   return (
     <div className="post-container">
       <Header />
       <Hero />
       <div className="article-container">
         <div className="article__content">
-          <ReactMarkdown>{post.content}</ReactMarkdown>
+          {loading ? <Loader /> : <ReactMarkdown>{post.content}</ReactMarkdown>}
         </div>
       </div>
       <Footer />
