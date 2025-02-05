@@ -1,4 +1,4 @@
-.bento {
+.magazine-bento {
   width: 100%;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -11,7 +11,7 @@
   }
 }
 
-.bento-primary:first-child {
+.magazine-bento__item:first-child {
   grid-column: span 2;
 
   @media (min-width: 768px) {
@@ -19,7 +19,18 @@
   }
 }
 
-.bento-primary {
-  background-color: #000;
+.magazine-bento__item {
   grid-column: span 2;
+}
+
+.magazine-skeleton__bento:first-child {
+  grid-column: span 2;
+  @media (min-width: 768px) {
+    grid-column: span 4;
+  }
+}
+
+.magazine-skeleton__bento {
+  grid-column: span 2;
+  background-color: #000;
 }
