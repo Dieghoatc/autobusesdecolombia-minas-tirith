@@ -6,7 +6,7 @@ import { Hero } from "@/app/components/hero/Hero";
 import "./post.css";
 import Header from "@/app/components/header/Header";
 import { useFindOne } from "../../hooks/useGetOnePost";
-import parse from "html-react-parser"
+import ReactMarkdown from "react-markdown";
 
 export default function PostsIdPage() {
   let id_post = "1";
@@ -32,7 +32,7 @@ export default function PostsIdPage() {
       <Hero />
       <div className="article-container">
         <div className="article__content">
-          {parse(post.content)}
+          <ReactMarkdown>{post.content}</ReactMarkdown>
         </div>
       </div>
       <Footer />
