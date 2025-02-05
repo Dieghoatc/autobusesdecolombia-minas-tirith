@@ -20,5 +20,6 @@
 }
 
 .bento-primary {
+  background-color: #000;
   grid-column: span 2;
 }
