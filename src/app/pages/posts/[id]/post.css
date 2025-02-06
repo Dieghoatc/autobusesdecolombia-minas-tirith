@@ -64,3 +64,11 @@
 .article__content img {
   margin: 16px 0;
 }
+
+.article-loader {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;    
+  
+}
