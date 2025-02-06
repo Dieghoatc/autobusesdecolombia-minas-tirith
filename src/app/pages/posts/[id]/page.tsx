@@ -27,7 +27,13 @@ export default function PostsIdPage() {
       <Header />
       <div className="article-container">
         <div className="article__content">
-          {loading ? <div className="article-loader"> <Loader /></div> : <ReactMarkdown>{post.content}</ReactMarkdown>}
+          {loading ? (
+            <div className="article-loader">
+              <Loader />
+            </div>
+          ) : (
+            <ReactMarkdown>{post.content}</ReactMarkdown>
+          )}
         </div>
       </div>
       <Footer />

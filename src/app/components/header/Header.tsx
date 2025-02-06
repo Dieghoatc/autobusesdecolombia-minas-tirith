@@ -1,7 +1,6 @@
 "use client";
 
 import logo from "../../../assets/autobusesdecolombia_logo.png";
-import user from "../../../assets/dieghoatc.png";
 import Image from "next/image";
 import "./header.css";
 import Link from "next/link";
@@ -17,9 +16,6 @@ export default function Header() {
             className="header__logo"
           />
         </Link>
-      </div>
-      <div className="user">
-        <img src={user.src} alt="user" className="user__image" />
       </div>
     </div>
   );
