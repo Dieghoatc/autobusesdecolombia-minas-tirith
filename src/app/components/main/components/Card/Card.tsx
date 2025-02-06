@@ -52,7 +52,7 @@ export default function Card({ photo }: CardProps) {
           </div>
           <div className="modal-gallery__title">
             <h2>
-              {capitalizeFirstLetter(company)} - {capitalizeFirstLetter(serial)}
+              {capitalizeFirstLetter(company)}{serial ==="n/a" ? "" : ` - ${serial}`}
             </h2>
           </div>
           <div className="modal-gallery__details">
