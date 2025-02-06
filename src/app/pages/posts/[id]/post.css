@@ -1,5 +1,4 @@
 .post-container {
-  margin-top: 66px;
   background: #000;
 }
 
@@ -12,6 +11,7 @@
 }
 
 .article__content {
+  margin-top: 146px;
   background-color: #242424;
   width: 100%;
   color: #dfdfdf;
@@ -68,6 +68,5 @@
   height: 100vh;
   display: flex;
   justify-content: center;
-  align-items: center;    
-  
+  align-items: center;
 }
