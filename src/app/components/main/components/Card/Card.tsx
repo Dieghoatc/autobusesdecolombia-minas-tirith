@@ -36,11 +36,11 @@ export default function Card({ photo }: CardProps) {
   return (
     <div className="card-gallery">
       <div className="card-gallery__image" onClick={openModal}>
-        <img src={url} alt={company + " - " + serial} />
+        <img src={url} alt={`autobus de la empresa ${company} con serial ${serial ==="n/a" ? "" : serial}`} />
       </div>
-      <div className="card-gallery__title">
+      <div className="card-gallery__title"> 
         <h2>
-          {capitalizeWords(company)} - {serial}
+          {capitalizeWords(company)}{serial ==="n/a" ? "" : ` - ${serial}`}
         </h2>
         <p>{capitalizeFirstLetterWithoutAccents(author)}</p>
       </div>
@@ -48,7 +48,7 @@ export default function Card({ photo }: CardProps) {
       <Modal onClose={closeModal} isOpen={isModalOpen}>
         <div>
           <div className="modal-gallery__image">
-            <img src={url} alt={company + " - " + serial} />
+            <img src={url} alt={`autobus de la empresa ${company} con serial ${serial ==="n/a" ? "" : serial}`} />
           </div>
           <div className="modal-gallery__title">
             <h2>

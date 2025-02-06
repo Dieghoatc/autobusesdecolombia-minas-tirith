@@ -43,6 +43,7 @@ export default function Upload() {
   const [ctx, setCtx] = useState<CanvasRenderingContext2D>();
   const [canvas, setCanvas] = useState<HTMLCanvasElement>();
 
+  const [authorVerify, setAuthorVerify] = useState(false);
   const [password, setPassword] = useState<string>("");
   const [passwordConfirm, setPasswordConfirm] = useState(false);
 
@@ -53,6 +54,7 @@ export default function Upload() {
       setPasswordConfirm(true);
     } else {
       setPasswordConfirm(false);
+      setAuthorVerify(false);
     }
   }, [password]);
 
@@ -141,6 +143,10 @@ export default function Upload() {
   ) {
     if (!image || !logo || !author || !description || !ctx || !canvas) return;
 
+    console.log("Author", authorVerify);
+    setAuthorVerify(true);
+    console.log("Author", authorVerify);
+
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
     ctx.drawImage(
@@ -151,7 +157,7 @@ export default function Upload() {
       image.scaleHeight
     );
 
-    ctx.globalAlpha = 1;
+    ctx.globalAlpha = 1;  
     ctx.drawImage(
       logo.img,
       logo.offsetX,
@@ -333,13 +339,14 @@ export default function Upload() {
         >
           Agregar autor
         </Button>
+        {!authorVerify && <div className="author-verify">Verificar author y descripcion en la foto</div>}
         <Button variant="secondary" onClick={() => handleDownLoadImage(canvas)}>
           Descargar imagen
         </Button>
         <Button
           variant="secondary"
           onClick={() => handleUploadImage(canvas)}
-          disabled={!passwordConfirm}
+          disabled={!authorVerify || !passwordConfirm}
         >
           Subir imagen
         </Button>
