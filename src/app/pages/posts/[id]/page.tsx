@@ -1,7 +1,6 @@
 "use client";
 import { useParams } from "next/navigation";
 import Footer from "@/app/components/footer/Footer";
-import { Hero } from "@/app/components/hero/Hero";
 
 import "./post.css";
 import Header from "@/app/components/header/Header";
@@ -26,7 +25,6 @@ export default function PostsIdPage() {
   return (
     <div className="post-container">
       <Header />
-      <Hero />
       <div className="article-container">
         <div className="article__content">
           {loading ? <Loader /> : <ReactMarkdown>{post.content}</ReactMarkdown>}
