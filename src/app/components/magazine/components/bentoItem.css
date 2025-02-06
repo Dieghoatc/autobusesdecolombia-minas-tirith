@@ -34,14 +34,16 @@
   width: 100%;
 }
 
-.bento-item__content h2 {
-  font-size: 17px;
+.bento-item__content__title {
   font-weight: bold;
+  margin: 0 8px;
+  color: #dfdfdf;
+
+  @media (min-width: 768px) {
+    margin: 0 24px;
+  }
 }
 
-.bento-item__content__title {
-  margin: 0 24px;
-}
-.bento-item__content__subtitle{
+.bento-item__content__subtitle {
   margin: 0 24px;
 }
