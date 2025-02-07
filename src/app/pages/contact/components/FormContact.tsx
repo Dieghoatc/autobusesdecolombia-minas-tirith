@@ -62,7 +62,7 @@ export function FormContact() {
     form.reset();
 
     toast({
-      description: "Your message has been sent.",
+      description: "Tu mensaje ha sido enviado.",
     });
   }
 
