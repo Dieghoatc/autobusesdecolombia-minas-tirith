@@ -17,7 +17,11 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { autobusesApiEmailMessage, PostMessage } from "@/app/api/autobusesApi.email_message";
+import {
+  autobusesApiEmailMessage,
+  PostMessage,
+} from "@/app/api/autobusesApi.email_message";
+import { useToast } from "@/hooks/use-toast";
 
 const formSchema = z.object({
   email: z.string().email({
@@ -26,10 +30,14 @@ const formSchema = z.object({
   subject: z.string().min(2, {
     message: "Ingrese un nombre",
   }),
-  message: z.string(),
+  message: z.string().min(10, {
+    message: "Ingrese un mensaje",
+  }),
 });
 
 export function FormContact() {
+  const { toast } = useToast();
+
   const [message, setMessage] = useState<PostMessage>({
     email: "",
     subject: "",
@@ -45,17 +53,22 @@ export function FormContact() {
     },
   });
 
-  function onSubmit(values: z.infer<typeof formSchema>) {      
+  function onSubmit(values: z.infer<typeof formSchema>) {
     setMessage({
       email: values.email,
       subject: values.subject,
       message: values.message,
     });
-}
+    form.reset();
 
-useEffect(() => {
-    autobusesApiEmailMessage(message)
-}, [message]);
+    toast({
+      description: "Your message has been sent.",
+    });
+  }
+
+  useEffect(() => {
+    autobusesApiEmailMessage(message);
+  }, [message]);
 
   return (
     <Form {...form}>
@@ -102,7 +115,9 @@ useEffect(() => {
             </FormItem>
           )}
         />
-        <Button type="submit">Enviar</Button>
+        <Button type="submit" disabled={!form.formState.isValid}>
+          Enviar
+        </Button>
       </form>
     </Form>
   );
