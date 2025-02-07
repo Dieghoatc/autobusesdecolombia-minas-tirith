@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-import { autobusesApiFindOnePost } from "@/app/api/autobusesApi.findOnePost";
+import { autobusesApiFindOnePost } from "@/app/api/autobusesApi.find_one_post";
 import { ApiPostsResponse } from "@/app/api/autobusesApi.interfaces";
 
 export function useFindOne(id: string) {

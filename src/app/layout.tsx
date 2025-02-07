@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import "@fontsource/mitr";
 import "./globals.css";
 import { Analytics } from "@vercel/analytics/react";
+import Header from "./components/header/Header";
+import Footer from "./components/footer/Footer";
 
 export const metadata: Metadata = {
   title: "Autobuses de Colombia - ¡Mucho más para ver!",
@@ -17,9 +19,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="es">
-      <body>
+      <body >
+        <Header />
         {children}
         <Analytics />
+        <Footer />
       </body>
     </html>
   );

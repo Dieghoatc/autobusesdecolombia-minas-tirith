@@ -17,6 +17,10 @@ export default function Header() {
           />
         </Link>
       </div>
+      <div className="header_menu">
+      <Link href="/">Inicio</Link>
+        <Link href="/pages/contact">Contacto</Link>
+      </div>
     </div>
   );
 }

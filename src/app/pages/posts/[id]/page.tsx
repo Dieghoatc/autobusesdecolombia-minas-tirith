@@ -1,9 +1,7 @@
 "use client";
 import { useParams } from "next/navigation";
-import Footer from "@/app/components/footer/Footer";
 
 import "./post.css";
-import Header from "@/app/components/header/Header";
 import { useFindOne } from "../../hooks/useGetOnePost";
 import ReactMarkdown from "react-markdown";
 import { Loader } from "@/app/components/loader/Loader";
@@ -24,7 +22,6 @@ export default function PostsIdPage() {
 
   return (
     <div className="post-container">
-      <Header />
       <div className="article-container">
         <div className="article__content">
           {loading ? (
@@ -36,7 +33,6 @@ export default function PostsIdPage() {
           )}
         </div>
       </div>
-      <Footer />
     </div>
   );
 }

@@ -4,6 +4,8 @@
 
 body {
   font-family: 'Mitr', sans-serif;
+  background-color: #000;
+
 }
 
 @layer base {
