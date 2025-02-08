@@ -1,4 +1,6 @@
 .control-container {
+    background : #fff;
+    margin-top: 60px;
     display: flex;
     flex-direction: column;
     gap: 10px;
