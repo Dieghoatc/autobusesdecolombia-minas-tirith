@@ -306,7 +306,7 @@ export default function Upload() {
               <SelectItem value="interdepartamentales">
                 Interdepartamentales
               </SelectItem>
-              <SelectItem value="intermunicipal">Intermunicipales</SelectItem>
+              <SelectItem value="intermunicipal">Van y Busetones</SelectItem>
               <SelectItem value="internacionales">Internacionales</SelectItem>
               <SelectItem value="nuestros recuerdos">
                 Nuestros Recuerdos
