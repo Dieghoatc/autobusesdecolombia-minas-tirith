@@ -1,15 +1,19 @@
 export interface ApiPhotosResponse {
-    author: string;
-    bodywork: string;
-    category: string;
-    chassis: string;
-    company: string;
-    created_at: string;
-    description: string;
     photo_id: number;
-    plate: string;
-    serial: string;
+    category_id: number;
+    type_id: number;
     url: string;
+    company: string;
+    serial: string;
+    bodywork: string;
+    chassis: string;
+    plate: string;
+    service: string;
+    author: string;
+    is_international: number;
+    country: string;
+    location: string;
+    create_at: string;
   }
   
   export interface ApiPostsResponse {
@@ -22,3 +26,4 @@ export interface ApiPhotosResponse {
     category: string;
     content: string;
   }
+ 

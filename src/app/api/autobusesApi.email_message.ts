@@ -27,7 +27,7 @@ async function fetchData( message: PostMessage): Promise<string> {
     }
   } catch (error) {
     console.error(`Failed to fetch data: ${error}`);
-    return Promise.reject(error);;
+    return Promise.reject(error);
   }
 }
 

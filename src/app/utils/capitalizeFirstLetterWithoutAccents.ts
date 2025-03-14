@@ -4,7 +4,7 @@ export function capitalizeFirstLetterWithoutAccents(str: string) {
 
   // Ahora, evitamos que haya mayúsculas después de una letra con tilde
   resultado = resultado.replace(
-    /([áéíóúÁÉÍÓÚ])([A-Z])/g,
+    /([áéíóúÁÉÍÓÚñÑ])([A-Z])/g,
     (_, tilde, siguienteLetra) => {
       return tilde + siguienteLetra.toLowerCase();
     }

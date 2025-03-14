@@ -21,7 +21,7 @@
   scrollbar-color: #585858 #000;
 
   @media (min-width: 435px) {
-    width: 100%;
+    width: auto;
     height: 100%;
     margin-top: 24px;
     margin-left: 96px;
