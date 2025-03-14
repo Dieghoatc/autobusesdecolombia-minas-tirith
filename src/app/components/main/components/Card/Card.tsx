@@ -48,7 +48,7 @@ export default function Card({ photo }: CardProps) {
           </div>
           <div className="modal-photopreview__details">
             <div>
-            {bodywork === "n/a" || null ? null : (
+            {bodywork === "n/a" || null ? null : ( 
               <p>
                 <span className="modal-photopreview_label">Carroceria: </span>{" "}
                 {capitalizeWords(bodywork)}
@@ -56,28 +56,28 @@ export default function Card({ photo }: CardProps) {
             )}
             {chassis === "n/a" || null ? null : (
               <p>
-                <span className="modal-photopreview_label">Chasis :</span>{" "}
+                <span className="modal-photopreview_label">Chasis: </span>{" "}
                 {capitalizeFirstLetter(chassis)}
               </p>
             )}
             {plate === "n/a" || null ? null : (
               <p>
-                <span className="modal-photopreview_label">Placa :</span>{" "}
+                <span className="modal-photopreview_label">Placa: </span>{" "}
                 {plateUpperCase}
               </p>
             )}
             <p>
-              <span className="modal-photopreview_label">Fotógrafo/a :</span>{" "}
+              <span className="modal-photopreview_label">Fotógrafo/a: </span>{" "}
               {capitalizeFirstLetterWithoutAccents(author)}
             </p>
             <p>
-              <span className="modal-photopreview_label">Ubicación :</span>{" "}
+              <span className="modal-photopreview_label">Ubicación: </span>{" "}
               {capitalizeFirstLetterWithoutAccents(location)} - {capitalizeWords(country)}
             </p>
             </div>
-            <div>
+            <div className="modal-photopreview_company-service">
               {service === "n/a" || null ? null :(
-                <p className="modal-photopreview_company-service">{capitalizeFirstLetter(service)}</p>
+                <p>&quot;{capitalizeFirstLetter(service)}&quot;</p>
               )}
             </div>            
           </div>
