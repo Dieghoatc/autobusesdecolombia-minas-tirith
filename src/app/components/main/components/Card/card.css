@@ -44,8 +44,14 @@
 }
 
 .modal-photopreview__image img {
-  width: auto;
-  height: 90vh;
+  width: 100%;
+  height: 100%;
+
+  @media (min-width: 768px) {
+    width: auto;
+    height: 90vh;
+  }
+
 }
 
 .modal-photopreview__title {
@@ -71,6 +77,6 @@
 }
 
 .modal-photopreview_company-service {
-  font-size: 1.2rem;
+  font-size: 0.9 rem;
   text-style: cursive;
 }
