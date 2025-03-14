@@ -15,16 +15,7 @@ interface CardProps {
 }
 
 export default function Card({ photo }: CardProps) {
-  const {
-    author,
-    bodywork,
-    company,
-    description,
-    chassis,
-    serial,
-    url,
-    plate,
-  } = photo;
+  const { url, company, serial, bodywork, chassis, plate, service, author, location, country } = photo;
 
   const plateUpperCase = plate.toUpperCase();
 
@@ -47,41 +38,48 @@ export default function Card({ photo }: CardProps) {
 
       <Modal onClose={closeModal} isOpen={isModalOpen}>
         <div>
-          <div className="modal-gallery__image">
+          <div className="modal-photopreview__image">
             <img src={url} alt={`autobus de la empresa ${company} con serial ${serial ==="n/a" ? "" : serial}`} />
           </div>
-          <div className="modal-gallery__title">
+          <div className="modal-photopreview__title">
             <h2>
               {capitalizeFirstLetter(company)}{serial ==="n/a" ? "" : ` - ${serial}`}
             </h2>
           </div>
-          <div className="modal-gallery__details">
+          <div className="modal-photopreview__details">
+            <div>
             {bodywork === "n/a" || null ? null : (
               <p>
-                <span className="modal-gallery_label">Carroceria :</span>{" "}
+                <span className="modal-photopreview_label">Carroceria: </span>{" "}
                 {capitalizeWords(bodywork)}
               </p>
             )}
             {chassis === "n/a" || null ? null : (
               <p>
-                <span className="modal-gallery_label">Chasis :</span>{" "}
+                <span className="modal-photopreview_label">Chasis :</span>{" "}
                 {capitalizeFirstLetter(chassis)}
               </p>
             )}
             {plate === "n/a" || null ? null : (
               <p>
-                <span className="modal-gallery_label">Placa :</span>{" "}
+                <span className="modal-photopreview_label">Placa :</span>{" "}
                 {plateUpperCase}
               </p>
             )}
             <p>
-              <span className="modal-gallery_label">Fotógrafo/a :</span>{" "}
+              <span className="modal-photopreview_label">Fotógrafo/a :</span>{" "}
               {capitalizeFirstLetterWithoutAccents(author)}
             </p>
             <p>
-              <span className="modal-gallery_label">Descripción :</span>{" "}
-              {capitalizeFirstLetterWithoutAccents(description)}
+              <span className="modal-photopreview_label">Ubicación :</span>{" "}
+              {capitalizeFirstLetterWithoutAccents(location)} - {capitalizeWords(country)}
             </p>
+            </div>
+            <div>
+              {service === "n/a" || null ? null :(
+                <p className="modal-photopreview_company-service">{capitalizeFirstLetter(service)}</p>
+              )}
+            </div>            
           </div>
         </div>
       </Modal>
