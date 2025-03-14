@@ -8,7 +8,7 @@
 }
 
 .card-gallery__image {
-  border-radius: 10px;
+  border-radius: 8px;
   width: 180px;
   height: 112.5px;
   overflow: hidden;
@@ -53,6 +53,14 @@
   }
 }
 
+.modal-photopreview__content {
+  margin: 8px;
+
+  @media (min-width: 768px) {
+    margin: 0;
+  }
+}
+
 .modal-photopreview__title {
   margin: 16px 0;
   font-size: 1.2rem;
@@ -69,9 +77,7 @@
   @media (min-width: 768px) {
     display: flex;
     justify-content: space-between;
-  }
-
-  
+  }  
   //clip-path: path("M 0 120 C 40 120 81 124 114 105 C 154 83 166 82 203 82 T 400 80 L 400 200 L 0 200 Z");
 }
 
