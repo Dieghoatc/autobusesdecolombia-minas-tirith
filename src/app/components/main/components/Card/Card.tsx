@@ -9,6 +9,9 @@ import {
   capitalizeWords,
   capitalizeFirstLetterWithoutAccents,
 } from "@/app/utils";
+import Link from "next/link";
+
+import { spacesForUnderscore } from "@/app/utils/spacesforunderscord";
 
 interface CardProps {
   photo: ApiPhotosResponse;
@@ -56,12 +59,14 @@ export default function Card({ photo }: CardProps) {
       <Modal onClose={closeModal} isOpen={isModalOpen}>
         <div>
           <div className="modal-photopreview__image">
-            <img
-              src={url}
-              alt={`autobus de la empresa ${company} con serial ${
-                serial === "n/a" ? "" : serial
-              }`}
-            />
+            <Link href={`/pages/image/${photo.photo_id}_${spacesForUnderscore(photo.company)}_${photo.serial}`}>
+              <img
+                src={url}
+                alt={`autobus de la empresa ${company} con serial ${
+                  serial === "n/a" ? "" : serial
+                }`}
+              />
+            </Link>
           </div>
           <div className="modal-photopreview__content">
             <div className="modal-photopreview__title">
