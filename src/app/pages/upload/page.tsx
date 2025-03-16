@@ -143,9 +143,7 @@ export default function Upload() {
   ) {
     if (!image || !logo || !author || !description || !ctx || !canvas) return;
 
-    console.log("Author", authorVerify);
     setAuthorVerify(true);
-    console.log("Author", authorVerify);
 
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
