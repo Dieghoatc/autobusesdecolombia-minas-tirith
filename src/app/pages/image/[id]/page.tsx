@@ -1,5 +1,7 @@
 "use client";
 
+import Head from "next/head";
+
 import { useParams } from "next/navigation";
 import { ImageDetails } from "./components/imagedetails";
 import "./image.css";
@@ -13,6 +15,8 @@ import plate from "@/assets/icons/plate.png";
 import camera from "@/assets/icons/camera.png";
 import location from "@/assets/icons/location.png";
 import { useGetPhoto } from "../../hooks/useGetOnePhoto";
+
+
 
 export default function Imageview() {
   
@@ -29,8 +33,24 @@ export default function Imageview() {
     return <div>Loading...</div>
   }
 
+  const title = `${photo.company} - ${photo.serial}`;
+  const description = "Autobuses de Colombia";
+  const imageUrl = `${photo.url}`;
+
 
   return (
+    <>
+    <Head>
+        <title>{title}</title>
+        <meta property="og:title" content={title} />
+        <meta property="og:description" content={description} />
+        <meta property="og:image" content={imageUrl} />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta property="og:url" content={`https://autobusesdecolombia.com/pages/image/${photo.photo_id}_${photo.company}_${photo.serial}`} />
+        <meta property="og:type" content="website" />
+      </Head>
+   
     <div className="imageview-container">
       <div>
         <img
@@ -66,5 +86,6 @@ export default function Imageview() {
         </div>
       </div>
     </div>
+    </>
   );
 }
