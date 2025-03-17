@@ -7,11 +7,6 @@ export function useGetPhoto(id: string) {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
 
-  const metadata = {
-    title: photo.company,
-    description: photo.bodywork,
-    image: photo.url
-  }
 
   useEffect(() => {
     async function fetchOnePhoto(id: string) {
@@ -30,5 +25,5 @@ export function useGetPhoto(id: string) {
     fetchOnePhoto(id);
   }, [id]);
 
-  return { photo, loading, error, metadata };
+  return { photo, loading, error };
 }
