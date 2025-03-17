@@ -3,11 +3,17 @@ import { ApiPhotosResponse } from "@/app/api/autobusesApi.interfaces";
 import { autobusesApiFindPhoto } from "@/app/api/photos_service/autobuses.Api.findphoto";
 
 export function useGetPhoto(id: string) {
-  const [photo, setPhoto] = useState<ApiPhotosResponse>(
-    {} as ApiPhotosResponse
-  );
+  const [photo, setPhoto] = useState<ApiPhotosResponse>({} as ApiPhotosResponse);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
+
+  const metadata = {
+    title: photo.company,
+    description: photo.bodywork,
+    openGraph: {
+      images: [photo.url],
+    },
+  }
 
   useEffect(() => {
     async function fetchOnePhoto(id: string) {
@@ -26,5 +32,5 @@ export function useGetPhoto(id: string) {
     fetchOnePhoto(id);
   }, [id]);
 
-  return { photo, loading, error };
+  return { photo, loading, error, metadata };
 }
