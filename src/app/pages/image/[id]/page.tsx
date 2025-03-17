@@ -1,6 +1,7 @@
 "use client";
 
 import Head from "next/head";
+import { useRouter } from "next/router";
 
 import { useParams } from "next/navigation";
 import { ImageDetails } from "./components/imagedetails";
@@ -19,37 +20,32 @@ import { useGetPhoto } from "../../hooks/useGetOnePhoto";
 
 
 export default function Imageview() {
-  
+
   const params = useParams();
-  let id_image = "1";
-  if (params.id) {
-    id_image = params.id.toString().split("_")[0];
+  let id_image = '1';
+
+  if(params?.id) {
+    id_image = params?.id.toString().split('_')[0];
   }
 
-  const { photo, loading } = useGetPhoto(id_image);
+  const { photo, loading} = useGetPhoto(id_image);
 
+  if(loading) { return <div>Loading...</div> }
 
-  if (loading){
-    return <div>Loading...</div>
-  }
+  if(!photo) { return <div>No se encontró la imagen</div> }
 
-  const title = `${photo.company} - ${photo.serial}`;
+  const title = `${photo.company || "Empresa"} - ${photo.serial || "Sin Serial"}`;
   const description = "Autobuses de Colombia";
-  const imageUrl = `${photo.url}`;
+  const imageUrl = photo.url || " ";
 
 
   return (
     <>
     <Head>
         <title>{title}</title>
-        <meta property="og:title" content={title} />
-        <meta property="og:description" content={description} />
+        <meta name="description" content={description} />
         <meta property="og:image" content={imageUrl} />
-        <meta property="og:image:width" content="1200" />
-        <meta property="og:image:height" content="630" />
-        <meta property="og:url" content={`https://autobusesdecolombia.com/pages/image/${photo.photo_id}_${photo.company}_${photo.serial}`} />
-        <meta property="og:type" content="website" />
-      </Head>
+    </Head>
    
     <div className="imageview-container">
       <div>
