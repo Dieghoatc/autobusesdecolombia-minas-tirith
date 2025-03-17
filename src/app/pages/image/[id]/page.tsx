@@ -21,28 +21,28 @@ export default function Imageview() {
     id_image = params?.id.toString().split("_")[0];
   }
 
-  const { photo, loading, metadata } = useGetPhoto(id_image);
+  const { photo, loading } = useGetPhoto(id_image);
 
   if (loading) {
     return <div>Loading...</div>;
   }
 
+  const metadata = {
+    title: `{photo.company} - {photo.serial}`,
+    description: `Fotografía de la empresa ${photo.company} con serial ${photo.serial}`,
+    image: `{photo.url}`,
+    url: `https://autobusesdecolombia.com/image/${photo.photo_id}_${photo.company}_${photo.serial}`,
+  }
+
   return (
     <>
-      <meta
-        property="og:url"
-        content={`https://autobusesdecolombia.com/pages/image/${id_image}_${photo.company}_${photo.serial}`}
-      />
+      <meta property="og:title" content={metadata.title} />
+      <meta property="og:description" content={metadata.description} />
+      <meta property="og:image" content={metadata.image} />
+      <meta property="og:image:width" content="1200" />
+      <meta property="og:image:height" content="630" />
+      <meta property="og:url" content={metadata.url} />
       <meta property="og:type" content="article" />
-      <meta property="og:title" content={metadata.title}/>
-      <meta
-        property="og:description"
-        content={metadata.description}
-      />
-      <meta
-        property="og:image"
-        content={metadata.image}
-      />
 
       <div className="imageview-container">
         <div>
