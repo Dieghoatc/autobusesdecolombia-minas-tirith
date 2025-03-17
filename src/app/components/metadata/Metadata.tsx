@@ -5,7 +5,7 @@ interface MetadataProps {
   url: string;
 }
 
-export function Metadata(data : MetadataProps) {
+export default function Metadata(data : MetadataProps) {
   return (
     <>
       <meta name="description" content={data.description} />

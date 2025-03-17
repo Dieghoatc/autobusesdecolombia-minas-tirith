@@ -2,6 +2,7 @@
 
 import { useParams } from "next/navigation";
 import { ImageDetails } from "./components/imagedetails";
+import { useGetPhoto } from "../../hooks/useGetPhoto";
 import "./image.css";
 
 import company from "@/assets/icons/company.png";
@@ -12,8 +13,8 @@ import service from "@/assets/icons/service.png";
 import plate from "@/assets/icons/plate.png";
 import camera from "@/assets/icons/camera.png";
 import location from "@/assets/icons/location.png";
-import { useGetPhoto } from "../../hooks/useGetPhoto";
-import { Metadata } from "@/app/components/metadata/metadata";
+import Metadata from "@/app/components/metadata/Metadata";
+
 
 export default function Imageview() {
   const params = useParams();
