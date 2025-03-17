@@ -2,6 +2,7 @@
 
 import { useParams } from "next/navigation";
 import { ImageDetails } from "./components/imagedetails";
+import { useGetPhoto } from "../../hooks/useGetPhoto";
 import "./image.css";
 
 import company from "@/assets/icons/company.png";
@@ -12,7 +13,8 @@ import service from "@/assets/icons/service.png";
 import plate from "@/assets/icons/plate.png";
 import camera from "@/assets/icons/camera.png";
 import location from "@/assets/icons/location.png";
-import { useGetPhoto } from "../../hooks/useGetPhoto";
+import Metadata from "@/app/components/metadata/Metadata";
+
 
 export default function Imageview() {
   const params = useParams();
@@ -32,23 +34,16 @@ export default function Imageview() {
     description: `Fotografía de la empresa ${photo.company} numero ${photo.serial}`,
     image: `${photo.url}`,
     url: `https://autobusesdecolombia.com/image/${photo.photo_id}_${photo.company}_${photo.serial}`,
-  }
+  };
 
   return (
     <>
-      <title>{metadata.title}</title> 
-      <meta name="description" content={metadata.description} />
-      <meta property="og:locale" content="es_ES"/>
-      <meta property="og:site_name" content="Autobusesdecolobmia.com"></meta>
-      <meta property="og:title" content={metadata.title} />
-      <meta property="og:description" content={metadata.description} />
-      <meta property="og:image" content={metadata.image} />
-      <meta property="og:image:width" content="1200" />
-      <meta property="og:image:height" content="630" />
-      <meta property="og:image:type" content="image/webp"></meta>
-      <meta property="og:url" content={metadata.url} />
-      <meta property="og:type" content="article" />
-
+      <Metadata 
+        title={metadata.title}
+        description={metadata.description}
+        image={metadata.image}
+        url={metadata.url}
+      />
       <div className="imageview-container">
         <div>
           <img
