@@ -9,6 +9,7 @@ export function useGetPhoto(id: string) {
 
   const metadata = {
     title: photo.company,
+    description: photo.bodywork,
     openGraph: {
       images: [photo.url],
     },

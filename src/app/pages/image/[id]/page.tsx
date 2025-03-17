@@ -29,9 +29,11 @@ export default function Imageview() {
 
   return (
     <>
-      <title>{metadata.title}</title>
-      <meta name="description" content={metadata.title} />
+      <meta property="og:title" content={metadata.title} />
+      <meta property="og:description" content={metadata.description}      />
       <meta property="og:image" content={metadata.openGraph.images[0]} />
+      <meta property="og:url" content={`https://autobusesdecolombia.com/pages/image/${id_image}_${photo.company}_${photo.serial}`}/>
+      <meta property="og:type" content="www.autobusesdecolombia.com" />
 
       <div className="imageview-container">
         <div>
