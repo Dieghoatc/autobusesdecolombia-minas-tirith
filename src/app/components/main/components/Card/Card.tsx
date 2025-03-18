@@ -11,7 +11,7 @@ import {
 } from "@/app/utils";
 import Link from "next/link";
 
-import { spacesForUnderscore } from "@/app/utils/spacesforunderscord";
+import { replaceSpaces } from "@/app/utils/spacesforunderscord";
 
 interface CardProps {
   photo: ApiPhotosResponse;
@@ -59,7 +59,7 @@ export default function Card({ photo }: CardProps) {
       <Modal onClose={closeModal} isOpen={isModalOpen}>
         <div>
           <div className="modal-photopreview__image">
-            <Link href={`/pages/image/${photo.photo_id}_${spacesForUnderscore(photo.company)}_${photo.serial}`}>
+            <Link href={`/pages/image/${photo.photo_id}/${replaceSpaces(photo.company)}-${photo.serial}`}>
               <img
                 src={url}
                 alt={`autobus de la empresa ${company} con serial ${

@@ -1,3 +1,3 @@
-export function spacesForUnderscore(text: string) {
-    return text.replace(/ /g, "_");
+export function replaceSpaces(text: string) {
+    return text.replace(/ /g, "-");
 }

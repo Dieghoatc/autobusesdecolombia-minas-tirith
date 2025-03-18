@@ -1,33 +1,29 @@
-import autobusHero from "../../../assets/bushero.jpg";
-import autobusHeroRight from "../../../assets/autobus-hero-right.jpg";
-import  Image from "next/image";
 import "./hero.css";
 
 export function Hero() {
   return (
-    <div className="hero-container">
-      <div className="hero-superposition-container">
-        <div className="hero-image-container">
-          <Image
-            src={autobusHero}
-            alt="hero-image"
-            className="hero-image"
-            priority
-          />
-          <Image
-            src={autobusHeroRight}
-            alt="hero-image-right"
-            className="hero-image-right"
-            priority
+    <div className="slider">
+      <div className="slider-container">
+        <div className="slider-image_container">
+          <img
+            className="slide"
+            src="https://res.cloudinary.com/dkj6yzrrk/image/upload/v1742279541/autobusesdecolombia/lvck6ml1zidmbryftdcf.webp"
+            alt="noticias"
           />
         </div>
-        <div className="hero-title">
-          <h1>Autobuses de Colombia</h1>
-          <p>
-            Explora nuestra extensa colección de autobuses, características y
-            empresas de transporte.
-          </p>
-          <h2>¡Mucho más para ver!</h2>
+        <div className="slider-image_container">
+          <img
+            className="slide"
+            src="https://res.cloudinary.com/dkj6yzrrk/image/upload/v1742279337/autobusesdecolombia/lvck6ml1zidmbryftdcf.jpg"
+            alt="noticias"
+          />
+        </div>
+        <div className="slider-image_container">
+          <img
+            className="slide"
+            src="https://res.cloudinary.com/dkj6yzrrk/image/upload/v1741574515/autobusesdecolombia/mjghhazxvqgnlrbkl8fa.webp"
+            alt="noticias"
+          />
         </div>
       </div>
     </div>

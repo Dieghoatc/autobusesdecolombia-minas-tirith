@@ -1,7 +1,6 @@
 .magazine {
   color: white;
   padding: 8px;
-  background-color: #242424;
 
   @media (min-width: 768px) {
     padding: 24px;
