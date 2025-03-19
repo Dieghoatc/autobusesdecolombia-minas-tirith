@@ -1,0 +1,41 @@
+.loader-intro_container {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  animation: apperar-disapear 3s ease-in-out infinite;
+
+  h1 {
+    font-size: 30px;
+    color: white;
+  }
+
+  @media (min-width: 768px) {
+    h1 {
+      font-size: 50px;
+      color: white;
+    }
+  }
+}
+
+@keyframes apperar-disapear {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+.abc-logo {
+  width: 100px;
+
+  @media (min-width: 768px) {
+    width: 200px;
+  }
+}

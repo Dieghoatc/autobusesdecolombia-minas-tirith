@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import "@fontsource/mitr";
 import "./globals.css";
 import { Analytics } from "@vercel/analytics/react";
-import Header from "./components/header/Header";
+//import Header from "./components/header/Header";
 import Footer from "./components/footer/Footer";
 import { Toaster } from "@/components/ui/toaster";
 
@@ -23,7 +23,7 @@ export default function RootLayout({
   return (
     <html lang="es">  
       <body>
-        <Header />
+        
         {children}
         <Toaster />
         <Analytics />

@@ -1,5 +1,4 @@
-import { ApiPhotosResponse } from "../autobusesApi.interfaces";
-
+import { ApiPhotosResponse } from "../../dto/photo.dto";
 const URL = process.env.NEXT_PUBLIC_ABC_API;
 
 async function fetchData<ApiPhotosResponse>(id: string): Promise<ApiPhotosResponse> {
@@ -16,6 +15,6 @@ async function fetchData<ApiPhotosResponse>(id: string): Promise<ApiPhotosRespon
   }
 }
 
-export async function autobusesApiFindPhoto(id: string): Promise<ApiPhotosResponse | undefined> {
+export async function getPhotoById(id: string): Promise<ApiPhotosResponse | undefined> {
   return fetchData<ApiPhotosResponse>(id);
 }
