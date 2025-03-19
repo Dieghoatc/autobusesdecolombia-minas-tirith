@@ -1,4 +1,4 @@
-import "./loaderIntro.css"
+import "./loader-intro.css"
 import abcLogo from "@/assets/abclogo.png"
 
 export function LoaderIntro() {
