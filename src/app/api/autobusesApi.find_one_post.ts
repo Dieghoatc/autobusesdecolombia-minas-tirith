@@ -1,4 +1,4 @@
-import { ApiPostsResponse } from "./autobusesApi.interfaces";
+import { ApiPostsResponse } from "./dto/photo.dto";
 
 const URL = process.env.NEXT_PUBLIC_ABC_API;
 

@@ -1,9 +1,7 @@
 import { useState, useEffect } from "react";
 import { apiAdapter } from "../api/autobusesApi.adapter";
-import {
-  ApiPhotosResponse,
-  ApiPostsResponse,
-} from "../api/autobusesApi.interfaces";
+import {ApiPhotosResponse} from "../api/dto/photo.dto";
+import {ApiPostsResponse} from "../api/dto/post.dto";
 
 type ApiResponseType = ApiPhotosResponse[] | ApiPostsResponse[];
 

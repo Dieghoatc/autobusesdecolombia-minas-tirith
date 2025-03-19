@@ -3,15 +3,13 @@
 import "./card.css";
 import Modal from "../Modal/Modal";
 import { useState } from "react";
-import { ApiPhotosResponse } from "@/app/api/autobusesApi.interfaces";
+import { ApiPhotosResponse } from "@/app/api/dto/photo.dto";
 import {
   capitalizeFirstLetter,
-  capitalizeWords,
-  capitalizeFirstLetterWithoutAccents,
 } from "@/app/utils";
 import Link from "next/link";
 
-import { replaceSpaces } from "@/app/utils/spacesforunderscord";
+import { replaceStringSpaces } from "@/app/utils/replaceStringSpaces";
 
 interface CardProps {
   photo: ApiPhotosResponse;
@@ -50,16 +48,16 @@ export default function Card({ photo }: CardProps) {
       </div>
       <div className="card-gallery__title">
         <h2>
-          {capitalizeWords(company)}
+          {capitalizeFirstLetter(company)}
           {serial === "n/a" ? "" : ` - ${serial}`}
         </h2>
-        <p>{capitalizeFirstLetterWithoutAccents(author)}</p>
+        <p>{capitalizeFirstLetter(author)}</p>
       </div>
 
       <Modal onClose={closeModal} isOpen={isModalOpen}>
         <div>
           <div className="modal-photopreview__image">
-            <Link href={`/pages/image/${photo.photo_id}/${replaceSpaces(photo.company)}-${photo.serial}`}>
+            <Link href={`/pages/image/${photo.photo_id}/${replaceStringSpaces(photo.company)}-${photo.serial}`}>
               <img
                 src={url}
                 alt={`autobus de la empresa ${company} con serial ${
@@ -82,7 +80,7 @@ export default function Card({ photo }: CardProps) {
                     <span className="modal-photopreview_label">
                       Carroceria:{" "}
                     </span>{" "}
-                    {capitalizeWords(bodywork)}
+                    {capitalizeFirstLetter(bodywork)}
                   </p>
                 )}
                 {chassis === "n/a" || null ? null : (
@@ -101,12 +99,12 @@ export default function Card({ photo }: CardProps) {
                   <span className="modal-photopreview_label">
                     Fotógrafo/a:{" "}
                   </span>{" "}
-                  {capitalizeFirstLetterWithoutAccents(author)}
+                  {capitalizeFirstLetter(author)}
                 </p>
                 <p>
                   <span className="modal-photopreview_label">Ubicación: </span>{" "}
-                  {capitalizeFirstLetterWithoutAccents(location)} -{" "}
-                  {capitalizeWords(country)}
+                  {capitalizeFirstLetter(location)} -{" "}
+                  {capitalizeFirstLetter(country)}
                 </p>
               </div>
               <div className="modal-photopreview_company-service">

@@ -17,17 +17,16 @@ import Metadata from "@/app/components/metadata/Metadata";
 
 
 export default function Imageview() {
+
   const params = useParams();
   let id_image = "1";
+
   if (params?.id) {
     id_image = params?.id.toString().split("_")[0];
-  }
-
+  } 
   const { photo, loading } = useGetPhoto(id_image);
-
-  if (loading) {
-    return <div>Loading...</div>;
-  }
+  
+  if (loading) return <div>Loading...</div>;
 
   const metadata = {
     title: `${photo.company} - ${photo.serial}`,

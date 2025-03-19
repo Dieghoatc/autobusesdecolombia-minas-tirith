@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 
 import { autobusesApiFindOnePost } from "@/app/api/autobusesApi.find_one_post";
-import { ApiPostsResponse } from "@/app/api/autobusesApi.interfaces";
+import { ApiPostsResponse } from "@/app/api/dto/photo.dto";
 
 export function useFindOne(id: string) {
   const [post, setPost] = useState<ApiPostsResponse>({} as ApiPostsResponse);
