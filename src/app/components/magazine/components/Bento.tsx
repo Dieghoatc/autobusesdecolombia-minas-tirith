@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { BentoItem } from "./BentoItem";
 
-import { ApiPostsResponse } from "@/app/api/dto/photo.dto";
+import { ApiPostsResponse } from "@/app/api/dto/post.dto";
 import { useHookFetch } from "@/app/hooks/useHookFetch";
 import { orderById } from "@/app/utils/orderById";
 
