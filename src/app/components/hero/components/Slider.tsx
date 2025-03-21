@@ -12,16 +12,13 @@ export function Slider() {
   const { post, loading: postLoading } = usePostStore();
 
   let categoryTitle = "";
-  if(category.category_id === 5) {
+  if (category.category_id === 5) {
     categoryTitle = "nuestros-recuerdos";
   }
 
-  console.log(category)
-  console.log(categoryTitle)
-
   useEffect(() => {
     const interval = setInterval(() => {
-      setIndex((prevIndex) => (prevIndex === 2 ? 0 : prevIndex + 1)); // Si es 3, vuelve a 1
+      setIndex((prevIndex) => (prevIndex === 3 ? 0 : prevIndex + 1)); // Si es 3, vuelve a 1
     }, 10000);
 
     return () => clearInterval(interval);
@@ -32,6 +29,15 @@ export function Slider() {
   return (
     <section>
       <div className="slider-container">
+        <SliderItem
+          type="video"
+          index={index}
+          image={category.url}
+          category="Destinos"
+          title="El cerro de Monserrate"
+          location="Bogotá DC - Colombia"
+          author="Ricardo Perez"
+        />
         <SliderItem
           type="photo"
           index={index}

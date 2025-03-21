@@ -7,8 +7,8 @@ import { capitalizeFirstLetter } from "@/app/utils";
 
 interface SliderItemProps {
   index: number;
-  category?: string
-  type: "photo" | "post";
+  category?: string;
+  type: "photo" | "post" | "video";
   image: string;
   title: string;
   bodywork?: string;
@@ -20,14 +20,20 @@ interface SliderItemProps {
 export function SliderItem(data: SliderItemProps) {
   return (
     <div className={`slider-image_container slide-translation-${data.index} `}>
-      <img className="slide" src={data.image} alt={data.title} />
+      {data.type === "video" ? (
+        <video
+          className="slide"
+          src="https://res.cloudinary.com/dkj6yzrrk/video/upload/v1742531105/autobusesdecolombiavideos/18092719-hd_1920_1080_30fps_1_vph33q.mp4"
+          autoPlay
+          loop
+          muted
+        ></video>
+      ) : (
+        <img className="slide" src={data.image} alt={data.title} />
+      )}
       <div className="slide-overlay">
         <div>
-          {data.category === "nuestros-recuerdos" ? (
-            <h1>Nuestros recuerdos</h1>
-          ) : (
-            <h1>Autobuses de Colombia</h1>
-          )}
+          <h1>{data.category}</h1>
           <h2>
             {data && data.type === "photo" ? (
               <b>{capitalizeFirstLetter(data.title)}</b>
