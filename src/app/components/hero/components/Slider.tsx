@@ -13,7 +13,7 @@ export function Slider() {
 
   let categoryTitle = "";
   if (category.category_id === 5) {
-    categoryTitle = "nuestros-recuerdos";
+    categoryTitle = "Nuestros Recuerdos";
   }
 
   useEffect(() => {
