@@ -33,6 +33,12 @@
   align-items: flex-start;
   padding: 0 20px;
   font-size: 30px;
+
+  @media (min-width: 768px) {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+  }
 }
 
 .slide-overlay {
@@ -58,6 +64,8 @@
     }
   }
 }
+
+
 
 .line {
   height: 2px; /* Ajusta el grosor de la línea */

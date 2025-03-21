@@ -10,11 +10,16 @@ export function useGetPhotos() {
   const [error, setError] = useState("");
 
   const setPhotosStore = usePhotosStore((state) => state.setPhotos);
+  const setCategoryStore = usePhotosStore((state) => state.setCategory);
   const setLoadingStore = usePhotosStore((state) => state.setLoading);
 
   function formatPhotosData(data : ApiPhotosResponse[]) {
     const order = orderById(data, "photo_id");
     return order[0]
+  }
+
+  function findForCategory(data: ApiPhotosResponse[], category: number) {
+    return data.filter((photo) => photo.category_id === category);
   }
 
   useEffect(() => {
@@ -27,6 +32,9 @@ export function useGetPhotos() {
         setPhotos(result as ApiPhotosResponse[]);
         const resultFormat = formatPhotosData(result as ApiPhotosResponse[]);
         setPhotosStore(resultFormat);
+        const category = findForCategory(result as ApiPhotosResponse[], 5);
+        const categoryFormat = formatPhotosData(category);
+        setCategoryStore(categoryFormat);
       } catch (error) {
         setError(`Error to fetch data: ${error}`);
       } finally {
@@ -35,7 +43,7 @@ export function useGetPhotos() {
       }
     }
     fetchPhotos();
-  }, [setPhotosStore]);
+  }, [setPhotosStore, setLoadingStore, setCategoryStore]);
 
   return { photos, loading, error };
 }

@@ -4,10 +4,20 @@ import { SliderItem } from "../components/SliderItem";
 import "./slider.css";
 import usePhotosStore from "@/app/store/usePhotosStore";
 import { LoaderIntro } from "../../loader/LoaderIntro";
+import usePostStore from "@/app/store/usePostStore";
 
 export function Slider() {
   const [index, setIndex] = useState(0);
-  const { photos, loading} = usePhotosStore()
+  const { photos, category, loading: photosLoading } = usePhotosStore();
+  const { post, loading: postLoading } = usePostStore();
+
+  let categoryTitle = "";
+  if(category.category_id === 5) {
+    categoryTitle = "nuestros-recuerdos";
+  }
+
+  console.log(category)
+  console.log(categoryTitle)
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -17,37 +27,39 @@ export function Slider() {
     return () => clearInterval(interval);
   }, []);
 
-  if (loading) return <LoaderIntro />;
+  if (photosLoading || postLoading) return <LoaderIntro />;
 
   return (
-     <section>
-       <div className="slider-container">
-         <SliderItem
-           index={index}
-           image={photos.url}  
-           title={`${photos.company} - ${photos.serial}`}
-           bodywork={photos.bodywork}
-           chassis={photos.chassis}
-           location={photos.location}
-           author={photos.author}
-         />
-         <SliderItem
-           index={index}
-           image="https://res.cloudinary.com/dkj6yzrrk/image/upload/v1741570245/autobusesdecolombia/po8crqhjr4di5wllwmka.webp"
-           title="Coomotor 8560"
-           bodywork="Marcopolo paradiso 1350 g7"
-           chassis="Scania k 410 Opticruise"
-           location="Bogotá DC - Colombia"
-           author="Andrés Hernández"
-         />
-         <SliderItem
-           index={index}
-           image="https://www.sustainable-bus.com/wp-content/uploads/2025/03/MAN-e-bus-autobus-elettrici-SETA.jpg"
-           title="Primeros autobuses eléctricos. en Italia"
-           location="Italia"
-           author="Busworld"
-         />
-       </div>
-     </section>
+    <section>
+      <div className="slider-container">
+        <SliderItem
+          type="photo"
+          index={index}
+          image={photos.url}
+          title={`${photos.company} - ${photos.serial}`}
+          bodywork={photos.bodywork}
+          chassis={photos.chassis}
+          location={photos.location}
+          author={photos.author}
+        />
+        <SliderItem
+          type="post"
+          index={index}
+          image={post.image_url}
+          title={post.title}
+        />
+        <SliderItem
+          type="photo"
+          category={categoryTitle}
+          index={index}
+          image={category.url}
+          title={`${category.company} - ${category.serial}`}
+          bodywork={category.bodywork}
+          chassis={category.chassis}
+          location={category.location}
+          author={category.author}
+        />
+      </div>
+    </section>
   );
 }
