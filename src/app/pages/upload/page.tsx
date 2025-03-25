@@ -5,16 +5,8 @@ import "./page.css";
 import { Button } from "@/components/ui/button";
 import abcLogo from "@/assets/logo-abc.png";
 
-import {
-  Select,
-  SelectContent,
-  SelectGroup,
-  SelectItem,
-  SelectLabel,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
 import { dataURLToBlob } from "@/app/utils";
+import CategorySelect from "./components/categoryselect/CategorySelect";
 
 interface Canvas {
   img: HTMLImageElement;
@@ -288,34 +280,9 @@ export default function Upload() {
           onChange={(event) => setChassis(event.target.value)}
         />
         <label htmlFor="category">Categoria</label>
-        <Select onValueChange={(value) => setCategory(value)}>
-          <SelectTrigger
-            className="w-[300px]"
-            aria-label="Selecciona una categoria"
-          >
-            <SelectValue placeholder="Selecciona una categoria" />
-          </SelectTrigger>
-          <SelectContent>
-            <SelectGroup>
-              <SelectLabel>Categorias</SelectLabel>
-              <SelectItem value="autos">Autos</SelectItem>
-              <SelectItem value="camionetas">Camionetas</SelectItem>
-              <SelectItem value="chivas">Chivas</SelectItem>
-              <SelectItem value="interdepartamentales">
-                Interdepartamentales
-              </SelectItem>
-              <SelectItem value="intermunicipal">Van y Busetones</SelectItem>
-              <SelectItem value="internacionales">Internacionales</SelectItem>
-              <SelectItem value="nuestros recuerdos">
-                Nuestros Recuerdos
-              </SelectItem>
-              <SelectItem value="taxis">Taxis</SelectItem>
-              <SelectItem value="trompones">Trompones</SelectItem>
-              <SelectItem value="turismo">Turismo</SelectItem>
-              <SelectItem value="urbanos">Urbanos</SelectItem>
-            </SelectGroup>
-          </SelectContent>
-        </Select>
+        
+        <CategorySelect setCategory={setCategory} />
+
         <input
           type="text"
           placeholder="Placa"
