@@ -7,6 +7,8 @@ import abcLogo from "@/assets/logo-abc.png";
 
 import { dataURLToBlob } from "@/app/utils";
 import CategorySelect from "./components/categoryselect/CategorySelect";
+import InputCustom from "./components/input/InputCustom";
+import { InputFile } from "./components/input/InputFile";
 
 interface Canvas {
   img: HTMLImageElement;
@@ -31,6 +33,12 @@ export default function Upload() {
   const [description, setDescription] = useState<string>("");
   const [category, setCategory] = useState<string>("");
   const [plate, setPlate] = useState<string>("");
+  
+  const [service, setService] = useState<string>("");
+  const [carType, setCarType] = useState<string>("");
+  
+  console.log(service, carType)
+  
 
   const [ctx, setCtx] = useState<CanvasRenderingContext2D>();
   const [canvas, setCanvas] = useState<HTMLCanvasElement>();
@@ -237,58 +245,18 @@ export default function Upload() {
   return (
     <div>
       <div className="control-container">
-        <label htmlFor="file-upload">Subir imagen</label>
-        <input
-          id="file-upload"
-          type="file"
-          accept="image/*"
-          onChange={handleDrawCanvasImage}
-        />
-        <input
-          type="text"
-          placeholder="Alberto Tejedor"
-          onChange={(event) => setAuthor(event.target.value)}
-        />
-        <input
-          type="text"
-          placeholder="Bogotá - Colombia"
-          maxLength={35}
-          onChange={(event) => setDescription(event.target.value)}
-        />
-        <input
-          type="text"
-          placeholder="Empresa"
-          maxLength={35}
-          onChange={(event) => setCompany(event.target.value)}
-        />
-        <input
-          type="text"
-          placeholder="Serial"
-          maxLength={35}
-          onChange={(event) => setSerial(event.target.value)}
-        />
-        <input
-          type="text"
-          placeholder="Carroceria"
-          maxLength={35}
-          onChange={(event) => setBodywork(event.target.value)}
-        />
-        <input
-          type="text"
-          placeholder="Chasis"
-          maxLength={35}
-          onChange={(event) => setChassis(event.target.value)}
-        />
-        <label htmlFor="category">Categoria</label>
-        
-        <CategorySelect setCategory={setCategory} />
-
-        <input
-          type="text"
-          placeholder="Placa"
-          maxLength={10}
-          onChange={(event) => setPlate(event.target.value)}
-        />
+        <InputFile handleChange={handleDrawCanvasImage} />
+        <InputCustom value={setAuthor} labelText="Fotografo" placeholder="Alberto Tejedor" />
+        <InputCustom value={setDescription} labelText="Ubicación" placeholder="Bogotá D.C. - Colombia" />
+        <InputCustom value={setCompany} labelText="Empresa" placeholder="Autobuses de Colombia" />
+        <InputCustom value={setSerial} labelText="Serial de la empresa" placeholder="2025" />
+        <InputCustom value={setBodywork} labelText="Carroceria" placeholder="Marcopolo" />
+        <InputCustom value={setChassis} labelText="Chasis" placeholder="Mercedez Benz" />
+        <InputCustom value={setPlate} labelText="Placa" placeholder="ABC-123" />
+        <InputCustom value={setService} labelText="Servicio" placeholder="Viajando por Colombia" />
+        <CategorySelect setValue={setCategory} type="category" />
+        <CategorySelect setValue={setCarType} type="carType" />
+       
         <label htmlFor="category">Contraseña provisional</label>
         <input
           type="text"
