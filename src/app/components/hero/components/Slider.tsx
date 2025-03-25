@@ -42,7 +42,8 @@ export function Slider() {
           type="photo"
           index={index}
           image={photos.url}
-          title={`${photos.company} - ${photos.serial}`}
+          title={`${photos.company}`}
+          serial={photos.serial}
           bodywork={photos.bodywork}
           chassis={photos.chassis}
           location={photos.location}
@@ -59,7 +60,8 @@ export function Slider() {
           category={categoryTitle}
           index={index}
           image={category.url}
-          title={`${category.company} - ${category.serial}`}
+          title={`${category.company}`}
+          serial={category.serial}
           bodywork={category.bodywork}
           chassis={category.chassis}
           location={category.location}
