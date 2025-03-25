@@ -11,6 +11,7 @@ interface SliderItemProps {
   type: "photo" | "post" | "video";
   image: string;
   title: string;
+  serial?: string;
   bodywork?: string;
   chassis?: string;
   location?: string;
@@ -29,14 +30,21 @@ export function SliderItem(data: SliderItemProps) {
           muted
         ></video>
       ) : (
-        <img className="slide" src={data.image} alt={data.title} />
+        <img
+          className="slide"
+          src={data.image}
+          alt={`${data.title} - ${data.serial}`}
+        />
       )}
       <div className="slide-overlay">
         <div>
           <h1>{data.category}</h1>
           <h2>
             {data && data.type === "photo" ? (
-              <b>{capitalizeFirstLetter(data.title)}</b>
+              <>
+                <b>{capitalizeFirstLetter(data.title)}</b>
+                <p>{data.serial}</p>
+              </>
             ) : (
               <b>{data.title}</b>
             )}
