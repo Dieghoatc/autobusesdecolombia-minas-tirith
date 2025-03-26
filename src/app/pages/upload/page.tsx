@@ -9,6 +9,7 @@ import { dataURLToBlob } from "@/app/utils";
 import CategorySelect from "./components/categoryselect/CategorySelect";
 import InputCustom from "./components/input/InputCustom";
 import { InputFile } from "./components/input/InputFile";
+import { CheckboxCustom } from "@/app/api/ui/CheckboxCustom";
 
 interface Canvas {
   img: HTMLImageElement;
@@ -24,11 +25,9 @@ export default function Upload() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
   const [image, setImage] = useState<Canvas>();
-
-  console.log(image);
-
   const [logo, setLogo] = useState<Canvas>();
   const [author, setAuthor] = useState<string>("Alberto Tejedor");
+  const [isInternational, setIsInternational] = useState<boolean>(false);
   const [company, setCompany] = useState<string>("");
   const [bodywork, setBodywork] = useState<string>("");
   const [chassis, setChassis] = useState<string>("");
@@ -37,29 +36,11 @@ export default function Upload() {
   const [country, setCountry] = useState<string>("Colombia");
   const [category, setCategory] = useState<string>("Colombia");
   const [plate, setPlate] = useState<string>("");
-
   const [service, setService] = useState<string>("");
   const [carType, setCarType] = useState<string>("");
-
-  console.log(service, carType);
-
   const [ctx, setCtx] = useState<CanvasRenderingContext2D>();
   const [canvas, setCanvas] = useState<HTMLCanvasElement>();
-
-  const [authorVerify, setAuthorVerify] = useState(false);
-  const [password, setPassword] = useState<string>("");
-  const [passwordConfirm, setPasswordConfirm] = useState(false);
-
   const [loading, setLoading] = useState(false);
-
-  useEffect(() => {
-    if (password === process.env.NEXT_PUBLIC_PASSWORD) {
-      setPasswordConfirm(true);
-    } else {
-      setPasswordConfirm(false);
-      setAuthorVerify(false);
-    }
-  }, [password]);
 
   useEffect(() => {
     function clearCanvas1(
@@ -145,10 +126,18 @@ export default function Upload() {
     ctx: CanvasRenderingContext2D | undefined,
     canvas: HTMLCanvasElement | undefined
   ) {
-    if (!image || !logo || !author || !municipality || !country || !ctx || !canvas) return;
+    if (
+      !image ||
+      !logo ||
+      !author ||
+      !municipality ||
+      !country ||
+      !ctx ||
+      !canvas
+    )
+      return;
 
     const location = `${municipality} - ${country}`;
-    setAuthorVerify(true);
 
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
@@ -214,18 +203,22 @@ export default function Upload() {
     const dataURL = canvas.toDataURL("image/webp");
     const imageBlob = dataURLToBlob(dataURL);
     if (!imageBlob) return;
-    if (!passwordConfirm) return;
 
     const formData = new FormData();
     formData.append("image", imageBlob, "image.webp");
-    formData.append("author", author.toLowerCase());
+    formData.append("isInternational", isInternational.toString());
+    formData.append("category", category.toLowerCase());
+    formData.append("carType", carType.toLowerCase());
+    formData.append("country", country.toLowerCase());
     formData.append("company", company.toLowerCase());
+    formData.append("serial", serial.toLowerCase());
     formData.append("bodywork", bodywork.toLowerCase());
     formData.append("chassis", chassis.toLowerCase());
-    formData.append("serial", serial.toLowerCase());
-    
-    formData.append("category", category.toLowerCase());
     formData.append("plate", plate.toLowerCase());
+    formData.append("service", service.toLowerCase());
+    formData.append("author", author.toLowerCase());
+    formData.append("country", country.toLowerCase());
+    formData.append("municipality", municipality.toLowerCase());
 
     try {
       setLoading(true);
@@ -256,6 +249,7 @@ export default function Upload() {
           labelText="Fotografo"
           placeholder="Alberto Tejedor"
         />
+        <CheckboxCustom setValue={setIsInternational} />
         <InputCustom
           value={setMunicipality}
           labelText="Ciudad"
@@ -295,35 +289,25 @@ export default function Upload() {
         <CategorySelect setValue={setCategory} type="category" />
         <CategorySelect setValue={setCarType} type="carType" />
 
-        <div>
-          <label htmlFor="category">Contraseña provisional</label>
-          <input
-            type="text"
-            placeholder="Contraseña"
-            maxLength={35}
-            onChange={(event) => setPassword(event.target.value)}
-          />
-        </div>
-
         <Button
           onClick={() =>
-            uploadDrawCanvas(image, logo, author, municipality, country, ctx, canvas)
+            uploadDrawCanvas(
+              image,
+              logo,
+              author,
+              municipality,
+              country,
+              ctx,
+              canvas
+            )
           }
         >
           Agregar autor
         </Button>
         <div>
-          <Button
-            onClick={() => handleUploadImage(canvas)}
-            disabled={!authorVerify || !passwordConfirm}
-          >
+          <Button onClick={() => handleUploadImage(canvas)}>
             Subir imagen
           </Button>
-          {!authorVerify && (
-            <div className="author-verify">
-              Verificar author y descripcion en la foto
-            </div>
-          )}
         </div>
         <Button onClick={() => handleDownLoadImage(canvas)}>
           Descargar imagen
