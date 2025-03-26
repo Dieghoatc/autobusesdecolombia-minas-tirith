@@ -8,6 +8,7 @@ import {
 } from "@/components/ui/select";
 
 import CategorySelectItem from "./CategorySelectItem";
+import { Label } from "@radix-ui/react-label";
 
 const categories = [
   "Interdepartamental",
@@ -21,27 +22,27 @@ const categories = [
 ];
 
 const carTypes = [
-  "bus",
-  "doble piso",
-  "doble eje,",
-  "cuadruple eje",
-  "microbus",
-  "van",
-  "buseton",
-  "trompon",
-  "camioneta",
-  "taxi",
-  "chivas",
-  "furgon",
-  "bala",
-  "eléctrico",
-  "hibrido",
-  "articulado",
-  "bi-articulado",
-  "padron",
-  "empresarial",
-  "escolar",
-  "turismo",
+  "Bus",
+  "Doble piso",
+  "Doble eje,",
+  "Cuadruple eje",
+  "Microbus",
+  "Van",
+  "Buseton",
+  "Trompon",
+  "Camioneta",
+  "Taxi",
+  "Chivas",
+  "Furgon",
+  "Bala",
+  "Eléctrico",
+  "Hibrido",
+  "Articulado",
+  "Bi-articulado",
+  "Padron",
+  "Empresarial",
+  "Escolar",
+  "Turismo",
 ];
 
 interface CategorySelectProps {
@@ -55,7 +56,8 @@ export default function CategorySelect({
 }: CategorySelectProps) {
   if (type === "category") {
     return (
-      <>
+      <div>
+        <Label htmlFor="category">Categoria</Label>
         <Select onValueChange={(value) => setValue(value)}>
           <SelectTrigger aria-label="Selecciona una categoria">
             <SelectValue placeholder="Selecciona una categoria" />
@@ -69,11 +71,12 @@ export default function CategorySelect({
             </SelectGroup>
           </SelectContent>
         </Select>
-      </>
+      </div>
     );
   } else {
     return (
-      <>
+      <div>
+        <Label htmlFor="category">Tipo de vehículo</Label>
         <Select onValueChange={(value) => setValue(value)}>
           <SelectTrigger aria-label="Selecciona tipo de vehículo">
             <SelectValue placeholder="Selecciona tipo de vehículo" />
@@ -87,7 +90,7 @@ export default function CategorySelect({
             </SelectGroup>
           </SelectContent>
         </Select>
-      </>
+      </div>
     );
   }
 }

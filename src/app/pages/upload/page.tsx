@@ -24,21 +24,24 @@ export default function Upload() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
   const [image, setImage] = useState<Canvas>();
+
+  console.log(image);
+
   const [logo, setLogo] = useState<Canvas>();
   const [author, setAuthor] = useState<string>("Alberto Tejedor");
   const [company, setCompany] = useState<string>("");
   const [bodywork, setBodywork] = useState<string>("");
   const [chassis, setChassis] = useState<string>("");
   const [serial, setSerial] = useState<string>("");
-  const [description, setDescription] = useState<string>("");
-  const [category, setCategory] = useState<string>("");
+  const [municipality, setMunicipality] = useState<string>("Bogotá D.C.");
+  const [country, setCountry] = useState<string>("Colombia");
+  const [category, setCategory] = useState<string>("Colombia");
   const [plate, setPlate] = useState<string>("");
-  
+
   const [service, setService] = useState<string>("");
   const [carType, setCarType] = useState<string>("");
-  
-  console.log(service, carType)
-  
+
+  console.log(service, carType);
 
   const [ctx, setCtx] = useState<CanvasRenderingContext2D>();
   const [canvas, setCanvas] = useState<HTMLCanvasElement>();
@@ -137,12 +140,14 @@ export default function Upload() {
     image: Canvas | undefined,
     logo: Canvas | undefined,
     author: string | undefined,
-    description: string | undefined,
+    municipality: string | undefined,
+    country: string | undefined,
     ctx: CanvasRenderingContext2D | undefined,
     canvas: HTMLCanvasElement | undefined
   ) {
-    if (!image || !logo || !author || !description || !ctx || !canvas) return;
+    if (!image || !logo || !author || !municipality || !country || !ctx || !canvas) return;
 
+    const location = `${municipality} - ${country}`;
     setAuthorVerify(true);
 
     ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -155,7 +160,7 @@ export default function Upload() {
       image.scaleHeight
     );
 
-    ctx.globalAlpha = 1;  
+    ctx.globalAlpha = 1;
     ctx.drawImage(
       logo.img,
       logo.offsetX,
@@ -184,7 +189,7 @@ export default function Upload() {
     ctx.font = "22px mitr";
     ctx.fillText(author, canvas.width - 45, canvas.height - 26, 400);
     ctx.font = "18px mitr";
-    ctx.fillText(description, canvas.width - 22, canvas.height - 5, 400);
+    ctx.fillText(location, canvas.width - 22, canvas.height - 5, 400);
   }
 
   function clearCanvas(
@@ -209,7 +214,7 @@ export default function Upload() {
     const dataURL = canvas.toDataURL("image/webp");
     const imageBlob = dataURLToBlob(dataURL);
     if (!imageBlob) return;
-    if (!passwordConfirm) return
+    if (!passwordConfirm) return;
 
     const formData = new FormData();
     formData.append("image", imageBlob, "image.webp");
@@ -218,7 +223,7 @@ export default function Upload() {
     formData.append("bodywork", bodywork.toLowerCase());
     formData.append("chassis", chassis.toLowerCase());
     formData.append("serial", serial.toLowerCase());
-    formData.append("description", description.toLowerCase());
+    
     formData.append("category", category.toLowerCase());
     formData.append("plate", plate.toLowerCase());
 
@@ -243,51 +248,91 @@ export default function Upload() {
   }
 
   return (
-    <div>
-      <div className="control-container">
+    <div className="upload-container">
+      <div className="upload-form">
         <InputFile handleChange={handleDrawCanvasImage} />
-        <InputCustom value={setAuthor} labelText="Fotografo" placeholder="Alberto Tejedor" />
-        <InputCustom value={setDescription} labelText="Ubicación" placeholder="Bogotá D.C. - Colombia" />
-        <InputCustom value={setCompany} labelText="Empresa" placeholder="Autobuses de Colombia" />
-        <InputCustom value={setSerial} labelText="Serial de la empresa" placeholder="2025" />
-        <InputCustom value={setBodywork} labelText="Carroceria" placeholder="Marcopolo" />
-        <InputCustom value={setChassis} labelText="Chasis" placeholder="Mercedez Benz" />
+        <InputCustom
+          value={setAuthor}
+          labelText="Fotografo"
+          placeholder="Alberto Tejedor"
+        />
+        <InputCustom
+          value={setMunicipality}
+          labelText="Ciudad"
+          defaultValue={municipality}
+        />
+        <InputCustom
+          value={setCountry}
+          labelText="Pais"
+          defaultValue={country}
+        />
+        <InputCustom
+          value={setCompany}
+          labelText="Empresa"
+          placeholder="Autobuses de Colombia"
+        />
+        <InputCustom
+          value={setSerial}
+          labelText="Serial de la empresa"
+          placeholder="2025"
+        />
+        <InputCustom
+          value={setBodywork}
+          labelText="Carroceria"
+          placeholder="Marcopolo"
+        />
+        <InputCustom
+          value={setChassis}
+          labelText="Chasis"
+          placeholder="Mercedez Benz"
+        />
         <InputCustom value={setPlate} labelText="Placa" placeholder="ABC-123" />
-        <InputCustom value={setService} labelText="Servicio" placeholder="Viajando por Colombia" />
+        <InputCustom
+          value={setService}
+          labelText="Servicio"
+          placeholder="Viajando por Colombia"
+        />
         <CategorySelect setValue={setCategory} type="category" />
         <CategorySelect setValue={setCarType} type="carType" />
-       
-        <label htmlFor="category">Contraseña provisional</label>
-        <input
-          type="text"
-          placeholder="Contraseña"
-          maxLength={35}
-          onChange={(event) => setPassword(event.target.value)}
-        />
+
+        <div>
+          <label htmlFor="category">Contraseña provisional</label>
+          <input
+            type="text"
+            placeholder="Contraseña"
+            maxLength={35}
+            onChange={(event) => setPassword(event.target.value)}
+          />
+        </div>
+
         <Button
-          variant="secondary"
           onClick={() =>
-            uploadDrawCanvas(image, logo, author, description, ctx, canvas)
+            uploadDrawCanvas(image, logo, author, municipality, country, ctx, canvas)
           }
         >
           Agregar autor
         </Button>
-        {!authorVerify && <div className="author-verify">Verificar author y descripcion en la foto</div>}
-        <Button variant="secondary" onClick={() => handleDownLoadImage(canvas)}>
+        <div>
+          <Button
+            onClick={() => handleUploadImage(canvas)}
+            disabled={!authorVerify || !passwordConfirm}
+          >
+            Subir imagen
+          </Button>
+          {!authorVerify && (
+            <div className="author-verify">
+              Verificar author y descripcion en la foto
+            </div>
+          )}
+        </div>
+        <Button onClick={() => handleDownLoadImage(canvas)}>
           Descargar imagen
         </Button>
-        <Button
-          variant="secondary"
-          onClick={() => handleUploadImage(canvas)}
-          disabled={!authorVerify || !passwordConfirm}
-        >
-          Subir imagen
-        </Button>
-        <Button variant="secondary" onClick={() => clearCanvas(canvas, ctx)}>
-          Limpiar
-        </Button>
+
+        <Button onClick={() => clearCanvas(canvas, ctx)}>Limpiar</Button>
       </div>
-      <div className="canvas-container">
+
+      <div className="upload-canvas">
         <canvas id="canvas" ref={canvasRef} width="300" height="200"></canvas>
       </div>
     </div>

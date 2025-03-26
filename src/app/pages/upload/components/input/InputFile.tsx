@@ -7,7 +7,6 @@ interface InputFileProps {
     handleChange: (event: ChangeEvent<HTMLInputElement>) => void;
 }
 
-
 export function InputFile({handleChange}: InputFileProps) {
   return (
     <div>

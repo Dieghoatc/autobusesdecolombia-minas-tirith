@@ -1,17 +1,26 @@
-.control-container {
-    background : #fff;
-    margin-top: 60px;
+.upload-container {
     display: flex;
     flex-direction: column;
-    gap: 10px;
-    width: 500px;
+    color: #fff;
 }
 
-.canvas-container {
-    border: 1px solid black;
-    display: inline-block;
+.upload-form {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 8px;
+    margin-bottom: 8px;
+
+    @media (min-width: 768px) {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    @media (min-width: 1024px) {
+        grid-template-columns: repeat(4, 1fr);
+    }
+    @media (min-width: 1280px) {
+    }
 }
 
-.author-verify {
+.author-verify{
     color: red;
 }
