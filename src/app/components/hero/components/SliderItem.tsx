@@ -49,7 +49,7 @@ export function SliderItem(data: SliderItemProps) {
               <b>{data.title}</b>
             )}
           </h2>
-          {!data.bodywork ? null : (
+          {!data.bodywork ? null | "n/a" : (
             <p>{capitalizeFirstLetter(data.bodywork)}</p>
           )}
 
