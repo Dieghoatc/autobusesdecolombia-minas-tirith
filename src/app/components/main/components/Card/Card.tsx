@@ -61,7 +61,7 @@ export default function Card({ photo }: CardProps) {
               <img
                 src={url}
                 alt={`autobus de la empresa ${company} con serial ${
-                  serial === "n/a" ? "" : serial
+                  serial === "n/a" ? " " : serial
                 }`}
               />
             </Link>
@@ -75,23 +75,21 @@ export default function Card({ photo }: CardProps) {
             </div>
             <div className="modal-photopreview__details">
               <div>
-                {bodywork === "n/a" || null ? null : (
+                {!bodywork || bodywork === "n/a"? null : (
                   <p>
-                    <span className="modal-photopreview_label">
-                      Carroceria:{" "}
-                    </span>{" "}
+                    <span className="modal-photopreview_label">Carroceria: </span>
                     {capitalizeFirstLetter(bodywork)}
                   </p>
                 )}
-                {chassis === "n/a" || null ? null : (
+                {!chassis ||chassis === "n/a" || null ? null : (
                   <p>
-                    <span className="modal-photopreview_label">Chasis: </span>{" "}
+                    <span className="modal-photopreview_label">Chasis: </span>
                     {capitalizeFirstLetter(chassis)}
                   </p>
                 )}
-                {plate === "n/a" || null ? null : (
+                {!plate || plate === "n/a" || null ? null : (
                   <p>
-                    <span className="modal-photopreview_label">Placa: </span>{" "}
+                    <span className="modal-photopreview_label">Placa: </span>
                     {plateUpperCase}
                   </p>
                 )}
@@ -102,13 +100,12 @@ export default function Card({ photo }: CardProps) {
                   {capitalizeFirstLetter(author)}
                 </p>
                 <p>
-                  <span className="modal-photopreview_label">Ubicación: </span>{" "}
-                  {capitalizeFirstLetter(location)} -{" "}
-                  {capitalizeFirstLetter(country)}
+                  <span className="modal-photopreview_label">Ubicación: </span>
+                  {capitalizeFirstLetter(location)} - {capitalizeFirstLetter(country)}
                 </p>
               </div>
               <div className="modal-photopreview_company-service">
-                {service === "n/a" || null ? null : (
+                {!service || service === "n/a" || null ? null : (
                   <p>&quot;{capitalizeFirstLetter(service)}&quot;</p>
                 )}
               </div>
