@@ -5,16 +5,11 @@ import "./page.css";
 import { Button } from "@/components/ui/button";
 import abcLogo from "@/assets/logo-abc.png";
 
-import {
-  Select,
-  SelectContent,
-  SelectGroup,
-  SelectItem,
-  SelectLabel,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
 import { dataURLToBlob } from "@/app/utils";
+import CategorySelect from "./components/categoryselect/CategorySelect";
+import InputCustom from "./components/input/InputCustom";
+import { InputFile } from "./components/input/InputFile";
+import { CheckboxCustom } from "@/app/api/ui/CheckboxCustom";
 
 interface Canvas {
   img: HTMLImageElement;
@@ -32,31 +27,25 @@ export default function Upload() {
   const [image, setImage] = useState<Canvas>();
   const [logo, setLogo] = useState<Canvas>();
   const [author, setAuthor] = useState<string>("Alberto Tejedor");
+  const [isInternational, setIsInternational] = useState<number>(0);
   const [company, setCompany] = useState<string>("");
   const [bodywork, setBodywork] = useState<string>("");
   const [chassis, setChassis] = useState<string>("");
   const [serial, setSerial] = useState<string>("");
-  const [description, setDescription] = useState<string>("");
-  const [category, setCategory] = useState<string>("");
+  const [location, setLocation] = useState<string>("Bogotá D.C.");
+  const [country, setCountry] = useState<string>("Colombia");
   const [plate, setPlate] = useState<string>("");
+  const [service, setService] = useState<string>("");
+  
+  const [category, setCategory] = useState<string>("");
+  const [carType, setCarType] = useState<string>("");
+  
+  console.log(category);
+  console.log(carType);
 
   const [ctx, setCtx] = useState<CanvasRenderingContext2D>();
   const [canvas, setCanvas] = useState<HTMLCanvasElement>();
-
-  const [authorVerify, setAuthorVerify] = useState(false);
-  const [password, setPassword] = useState<string>("");
-  const [passwordConfirm, setPasswordConfirm] = useState(false);
-
   const [loading, setLoading] = useState(false);
-
-  useEffect(() => {
-    if (password === process.env.NEXT_PUBLIC_PASSWORD) {
-      setPasswordConfirm(true);
-    } else {
-      setPasswordConfirm(false);
-      setAuthorVerify(false);
-    }
-  }, [password]);
 
   useEffect(() => {
     function clearCanvas1(
@@ -136,14 +125,24 @@ export default function Upload() {
   function uploadDrawCanvas(
     image: Canvas | undefined,
     logo: Canvas | undefined,
-    author: string | undefined,
-    description: string | undefined,
+    author: string,
+    municipality: string,
+    country: string,
     ctx: CanvasRenderingContext2D | undefined,
     canvas: HTMLCanvasElement | undefined
   ) {
-    if (!image || !logo || !author || !description || !ctx || !canvas) return;
+    if (
+      !image ||
+      !logo ||
+      !author ||
+      !municipality ||
+      !country ||
+      !ctx ||
+      !canvas
+    )
+      return;
 
-    setAuthorVerify(true);
+    const location = `${municipality} - ${country}`;
 
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
@@ -155,7 +154,7 @@ export default function Upload() {
       image.scaleHeight
     );
 
-    ctx.globalAlpha = 1;  
+    ctx.globalAlpha = 1;
     ctx.drawImage(
       logo.img,
       logo.offsetX,
@@ -184,7 +183,7 @@ export default function Upload() {
     ctx.font = "22px mitr";
     ctx.fillText(author, canvas.width - 45, canvas.height - 26, 400);
     ctx.font = "18px mitr";
-    ctx.fillText(description, canvas.width - 22, canvas.height - 5, 400);
+    ctx.fillText(location, canvas.width - 22, canvas.height - 5, 400);
   }
 
   function clearCanvas(
@@ -209,18 +208,21 @@ export default function Upload() {
     const dataURL = canvas.toDataURL("image/webp");
     const imageBlob = dataURLToBlob(dataURL);
     if (!imageBlob) return;
-    if (!passwordConfirm) return
 
     const formData = new FormData();
     formData.append("image", imageBlob, "image.webp");
-    formData.append("author", author.toLowerCase());
+    formData.append("isInternational", isInternational.toString());
+    formData.append("category", category.toLowerCase());
+    formData.append("type", carType.toLowerCase());
     formData.append("company", company.toLowerCase());
+    formData.append("serial", serial.toLowerCase());
     formData.append("bodywork", bodywork.toLowerCase());
     formData.append("chassis", chassis.toLowerCase());
-    formData.append("serial", serial.toLowerCase());
-    formData.append("description", description.toLowerCase());
-    formData.append("category", category.toLowerCase());
     formData.append("plate", plate.toLowerCase());
+    formData.append("service", service.toLowerCase());
+    formData.append("author", author.toLowerCase());
+    formData.append("country", country.toLowerCase());
+    formData.append("location", location.toLowerCase());
 
     try {
       setLoading(true);
@@ -238,121 +240,86 @@ export default function Upload() {
       console.error("Error al enviar la imagen", error);
     } finally {
       setLoading(false);
-      window.location.reload();
     }
   }
 
   return (
-    <div>
-      <div className="control-container">
-        <label htmlFor="file-upload">Subir imagen</label>
-        <input
-          id="file-upload"
-          type="file"
-          accept="image/*"
-          onChange={handleDrawCanvasImage}
-        />
-        <input
-          type="text"
+    <div className="upload-container">
+      <div className="upload-form">
+        <InputFile handleChange={handleDrawCanvasImage} />
+        <InputCustom
+          value={setAuthor}
+          labelText="Fotografo"
           placeholder="Alberto Tejedor"
-          onChange={(event) => setAuthor(event.target.value)}
         />
-        <input
-          type="text"
-          placeholder="Bogotá - Colombia"
-          maxLength={35}
-          onChange={(event) => setDescription(event.target.value)}
+        <CheckboxCustom setValue={setIsInternational} />
+        <InputCustom
+          value={setLocation}
+          labelText="Ciudad"
+          defaultValue={location}
         />
-        <input
-          type="text"
-          placeholder="Empresa"
-          maxLength={35}
-          onChange={(event) => setCompany(event.target.value)}
+        <InputCustom
+          value={setCountry}
+          labelText="Pais"
+          defaultValue={country}
         />
-        <input
-          type="text"
-          placeholder="Serial"
-          maxLength={35}
-          onChange={(event) => setSerial(event.target.value)}
+        <InputCustom
+          value={setCompany}
+          labelText="Empresa"
+          placeholder="Autobuses de Colombia"
         />
-        <input
-          type="text"
-          placeholder="Carroceria"
-          maxLength={35}
-          onChange={(event) => setBodywork(event.target.value)}
+        <InputCustom
+          value={setSerial}
+          labelText="Serial de la empresa"
+          placeholder="2025"
         />
-        <input
-          type="text"
-          placeholder="Chasis"
-          maxLength={35}
-          onChange={(event) => setChassis(event.target.value)}
+        <InputCustom
+          value={setBodywork}
+          labelText="Carroceria"
+          placeholder="Marcopolo"
         />
-        <label htmlFor="category">Categoria</label>
-        <Select onValueChange={(value) => setCategory(value)}>
-          <SelectTrigger
-            className="w-[300px]"
-            aria-label="Selecciona una categoria"
-          >
-            <SelectValue placeholder="Selecciona una categoria" />
-          </SelectTrigger>
-          <SelectContent>
-            <SelectGroup>
-              <SelectLabel>Categorias</SelectLabel>
-              <SelectItem value="autos">Autos</SelectItem>
-              <SelectItem value="camionetas">Camionetas</SelectItem>
-              <SelectItem value="chivas">Chivas</SelectItem>
-              <SelectItem value="interdepartamentales">
-                Interdepartamentales
-              </SelectItem>
-              <SelectItem value="intermunicipal">Van y Busetones</SelectItem>
-              <SelectItem value="internacionales">Internacionales</SelectItem>
-              <SelectItem value="nuestros recuerdos">
-                Nuestros Recuerdos
-              </SelectItem>
-              <SelectItem value="taxis">Taxis</SelectItem>
-              <SelectItem value="trompones">Trompones</SelectItem>
-              <SelectItem value="turismo">Turismo</SelectItem>
-              <SelectItem value="urbanos">Urbanos</SelectItem>
-            </SelectGroup>
-          </SelectContent>
-        </Select>
-        <input
-          type="text"
-          placeholder="Placa"
-          maxLength={10}
-          onChange={(event) => setPlate(event.target.value)}
+        <InputCustom
+          value={setChassis}
+          labelText="Chasis"
+          placeholder="Mercedez Benz"
         />
-        <label htmlFor="category">Contraseña provisional</label>
-        <input
-          type="text"
-          placeholder="Contraseña"
-          maxLength={35}
-          onChange={(event) => setPassword(event.target.value)}
+        <InputCustom value={setPlate} labelText="Placa" placeholder="ABC-123" />
+        <InputCustom
+          value={setService}
+          labelText="Servicio"
+          placeholder="Viajando por Colombia"
         />
+        <CategorySelect setValue={setCategory} type="category" />
+        <CategorySelect setValue={setCarType} type="carType" />
+
         <Button
-          variant="secondary"
           onClick={() =>
-            uploadDrawCanvas(image, logo, author, description, ctx, canvas)
+            uploadDrawCanvas(
+              image,
+              logo,
+              author,
+              location,
+              country,
+              ctx,
+              canvas
+            )
           }
         >
           Agregar autor
         </Button>
-        {!authorVerify && <div className="author-verify">Verificar author y descripcion en la foto</div>}
-        <Button variant="secondary" onClick={() => handleDownLoadImage(canvas)}>
+        <div>
+          <Button onClick={() => handleUploadImage(canvas)}>
+            Subir imagen
+          </Button>
+        </div>
+        <Button onClick={() => handleDownLoadImage(canvas)}>
           Descargar imagen
         </Button>
-        <Button
-          variant="secondary"
-          onClick={() => handleUploadImage(canvas)}
-          disabled={!authorVerify || !passwordConfirm}
-        >
-          Subir imagen
-        </Button>
-        <Button variant="secondary" onClick={() => clearCanvas(canvas, ctx)}>
-          Limpiar
-        </Button>
+
+        <Button onClick={() => clearCanvas(canvas, ctx)}>Limpiar</Button>
       </div>
-      <div className="canvas-container">
+
+      <div className="upload-canvas">
         <canvas id="canvas" ref={canvasRef} width="300" height="200"></canvas>
       </div>
     </div>

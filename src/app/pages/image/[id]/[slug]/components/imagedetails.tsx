@@ -1,3 +1,4 @@
+import { capitalizeFirstLetter } from "@/app/utils";
 import "./imagedetails.css";
 
 interface ImageDetailsProps {
@@ -13,7 +14,7 @@ export function ImageDetails({ info, icon, type }: ImageDetailsProps) {
         <img src={icon} alt={type} />
       </div>
       <div>
-        <p>{info}</p>
+        <p>{capitalizeFirstLetter(info)}</p>
       </div>
     </div>
   );
