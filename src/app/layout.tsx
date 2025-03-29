@@ -5,6 +5,7 @@ import { Analytics } from "@vercel/analytics/react";
 //import Header from "./components/header/Header";
 import Footer from "./components/footer/Footer";
 import { Toaster } from "@/components/ui/toaster";
+import Header from "./components/header/Header";
 
 
 export const metadata: Metadata = {
@@ -23,7 +24,7 @@ export default function RootLayout({
   return (
     <html lang="es">  
       <body>
-        
+        <Header />
         {children}
         <Toaster />
         <Analytics />

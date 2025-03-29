@@ -27,17 +27,22 @@ export default function Upload() {
   const [image, setImage] = useState<Canvas>();
   const [logo, setLogo] = useState<Canvas>();
   const [author, setAuthor] = useState<string>("Alberto Tejedor");
-  const [isInternational, setIsInternational] = useState<boolean>(false);
+  const [isInternational, setIsInternational] = useState<number>(0);
   const [company, setCompany] = useState<string>("");
   const [bodywork, setBodywork] = useState<string>("");
   const [chassis, setChassis] = useState<string>("");
   const [serial, setSerial] = useState<string>("");
-  const [municipality, setMunicipality] = useState<string>("Bogotá D.C.");
+  const [location, setLocation] = useState<string>("Bogotá D.C.");
   const [country, setCountry] = useState<string>("Colombia");
-  const [category, setCategory] = useState<string>("Colombia");
   const [plate, setPlate] = useState<string>("");
   const [service, setService] = useState<string>("");
+  
+  const [category, setCategory] = useState<string>("");
   const [carType, setCarType] = useState<string>("");
+  
+  console.log(category);
+  console.log(carType);
+
   const [ctx, setCtx] = useState<CanvasRenderingContext2D>();
   const [canvas, setCanvas] = useState<HTMLCanvasElement>();
   const [loading, setLoading] = useState(false);
@@ -120,9 +125,9 @@ export default function Upload() {
   function uploadDrawCanvas(
     image: Canvas | undefined,
     logo: Canvas | undefined,
-    author: string | undefined,
-    municipality: string | undefined,
-    country: string | undefined,
+    author: string,
+    municipality: string,
+    country: string,
     ctx: CanvasRenderingContext2D | undefined,
     canvas: HTMLCanvasElement | undefined
   ) {
@@ -208,8 +213,7 @@ export default function Upload() {
     formData.append("image", imageBlob, "image.webp");
     formData.append("isInternational", isInternational.toString());
     formData.append("category", category.toLowerCase());
-    formData.append("carType", carType.toLowerCase());
-    formData.append("country", country.toLowerCase());
+    formData.append("type", carType.toLowerCase());
     formData.append("company", company.toLowerCase());
     formData.append("serial", serial.toLowerCase());
     formData.append("bodywork", bodywork.toLowerCase());
@@ -218,7 +222,7 @@ export default function Upload() {
     formData.append("service", service.toLowerCase());
     formData.append("author", author.toLowerCase());
     formData.append("country", country.toLowerCase());
-    formData.append("municipality", municipality.toLowerCase());
+    formData.append("location", location.toLowerCase());
 
     try {
       setLoading(true);
@@ -236,7 +240,6 @@ export default function Upload() {
       console.error("Error al enviar la imagen", error);
     } finally {
       setLoading(false);
-      window.location.reload();
     }
   }
 
@@ -251,9 +254,9 @@ export default function Upload() {
         />
         <CheckboxCustom setValue={setIsInternational} />
         <InputCustom
-          value={setMunicipality}
+          value={setLocation}
           labelText="Ciudad"
-          defaultValue={municipality}
+          defaultValue={location}
         />
         <InputCustom
           value={setCountry}
@@ -295,7 +298,7 @@ export default function Upload() {
               image,
               logo,
               author,
-              municipality,
+              location,
               country,
               ctx,
               canvas

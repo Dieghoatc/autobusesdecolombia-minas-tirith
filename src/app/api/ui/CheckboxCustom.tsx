@@ -1,7 +1,7 @@
 import { Checkbox } from "@/components/ui/checkbox";
 
 interface CheckboxCustomProps {
-  setValue: (value: boolean) => void;
+  setValue: (value: number) => void;
 }
 
 export function CheckboxCustom({setValue}: CheckboxCustomProps) {
@@ -11,7 +11,7 @@ export function CheckboxCustom({setValue}: CheckboxCustomProps) {
       <Checkbox
         id="terms"
         className="bg-white"
-        onCheckedChange={() => setValue(true)}
+        onCheckedChange={() => setValue(1)}
       />
       <label
         htmlFor="terms"

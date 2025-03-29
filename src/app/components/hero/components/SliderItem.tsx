@@ -19,6 +19,9 @@ interface SliderItemProps {
 }
 
 export function SliderItem(data: SliderItemProps) {
+
+  
+
   return (
     <div className={`slider-image_container slide-translation-${data.index} `}>
       {data.type === "video" ? (
@@ -49,11 +52,11 @@ export function SliderItem(data: SliderItemProps) {
               <b>{data.title}</b>
             )}
           </h2>
-          {!data.bodywork ? null | "n/a" : (
+          {!data.bodywork || data.bodywork === "n/a" ? null : (
             <p>{capitalizeFirstLetter(data.bodywork)}</p>
           )}
 
-          {!data.chassis ? null : <p>{capitalizeFirstLetter(data.chassis)}</p>}
+          {!data.chassis || data.chassis === "n/a" ? null : <p>{capitalizeFirstLetter(data.chassis)}</p>}
           <div className="line"></div>
           <div className="slide-overlay-info">
             {!data.location ? null : (

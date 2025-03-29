@@ -15,17 +15,15 @@ import camera from "@/assets/icons/camera.png";
 import location from "@/assets/icons/location.png";
 import Metadata from "@/app/components/metadata/Metadata";
 
-
 export default function Imageview() {
-
   const params = useParams();
   let id_image = "1";
 
   if (params?.id) {
     id_image = params?.id.toString().split("_")[0];
-  } 
+  }
   const { photo, loading } = useGetPhoto(id_image);
-  
+
   if (loading) return <div>Loading...</div>;
 
   const metadata = {
@@ -37,7 +35,7 @@ export default function Imageview() {
 
   return (
     <>
-      <Metadata 
+      <Metadata
         title={metadata.title}
         description={metadata.description}
         image={metadata.image}
@@ -54,29 +52,35 @@ export default function Imageview() {
             <div>
               <ImageDetails
                 type="empresa"
-                info="Auto Fusa S.A."
+                info={photo.company}
                 icon={company.src}
               />
-              <ImageDetails
-                type="carroceria"
-                info={photo.bodywork}
-                icon={bodywork.src}
-              />
-              <ImageDetails
-                type="chasis"
-                info={photo.chassis}
-                icon={chassis.src}
-              />
+              {photo.bodywork === "n/a" || photo.bodywork === "" ? null : (
+                <ImageDetails
+                  type="carroceria"
+                  info={photo.bodywork}
+                  icon={bodywork.src}
+                />
+              )}
+              {photo.chassis === "n/a" || photo.chassis === "" ? null : (
+                <ImageDetails
+                  type="chasis"
+                  info={photo.chassis}
+                  icon={chassis.src}
+                />
+              )}
               <ImageDetails
                 type="serial"
                 info={photo.serial}
                 icon={serial.src}
               />
-              <ImageDetails
-                type="servicio"
-                info={photo.service}
-                icon={service.src}
-              />
+              {photo.service === "n/a" || photo.service === "" ? null : (
+                <ImageDetails
+                  type="servicio"
+                  info={photo.service}
+                  icon={service.src}
+                />
+              )}
               <ImageDetails type="placa" info={photo.plate} icon={plate.src} />
             </div>
             <div>
