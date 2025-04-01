@@ -15,6 +15,7 @@ import camera from "@/assets/icons/camera.png";
 import location from "@/assets/icons/location.png";
 import Metadata from "@/app/components/metadata/Metadata";
 import { formatString } from "@/app/utils";
+import { LoaderIntro } from "@/app/components/loader/LoaderIntro";
 
 export default function Imageview() {
   const params = useParams();
@@ -25,7 +26,7 @@ export default function Imageview() {
   }
   const { photo, loading } = useGetPhoto(id_image);
 
-  if (loading) return <div>Loading...</div>;
+  if (loading) return <LoaderIntro />;
 
   const metadata = {
     title: `${photo.company} - ${photo.serial}`,
@@ -36,6 +37,8 @@ export default function Imageview() {
   };
 
   const title = formatString(photo.company) + " - " + formatString(photo.serial);
+
+  
 
   return (
     <>
