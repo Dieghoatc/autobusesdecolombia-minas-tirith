@@ -9,17 +9,18 @@ export default function Header() {
   return (
     <div className="header">
       <div className="header__logo">
-        <Link href="/">
+        <Link href="/" title="Ir a la página de inicio">
           <Image
             src={logo}
+            title="Logo de Autobuses de Colombia"
             alt="autobuses de colombia logo"
             className="header__logo"
           />
         </Link>
       </div>
       <div className="header_menu">
-      <Link href="/">Inicio</Link>
-        <Link href="/pages/contact">Contacto</Link>
+      <Link href="/" title="Ir a la página de inicio">Inicio</Link>
+        <Link href="/pages/contact" title="Ir a la página de contacto">Contacto</Link>
       </div>
     </div>
   );

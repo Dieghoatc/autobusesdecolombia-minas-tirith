@@ -4,7 +4,11 @@
   justify-content: center;
   align-items: center;
   margin: 0 auto;
-  margin-bottom: 16px;
+  
+  h1 {
+    color: #fff;
+    margin: 8px 0;
+  }
 }
 
 .imageview-image {

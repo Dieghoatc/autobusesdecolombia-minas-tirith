@@ -3,12 +3,15 @@ interface MetadataProps {
   description: string;
   image: string;
   url: string;
+  author: string;
 }
 
 export default function Metadata(data : MetadataProps) {
   return (
     <>
       <meta name="description" content={data.description} />
+      <meta name="keywords" content={data.title} />
+      <meta name="author" content= {data.author} />
       <link rel="canonical" href={data.url} />
       <meta name="robots" content="index, follow" />
       <meta name="viewport" content="width=device-width, initial-scale=1" />

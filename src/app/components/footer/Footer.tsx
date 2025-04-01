@@ -15,8 +15,9 @@ export default function Footer() {
               target="_blank"
               rel="noopener"
               href="https://www.facebook.com/profile.php?id=100047484230275"
+              title="Autobuses de Colombia en Facebook"
             >
-              <img src={facebook.src} alt="Logo de Facebook" />
+              <img src={facebook.src} title="Logo de Facebook" alt="Logo de Facebook" />
             </a>
           </li>
           <li>
@@ -24,8 +25,9 @@ export default function Footer() {
               target="_blank"
               rel="noopener"
               href="https://www.instagram.com/autobusesdecolombiaoficial/"
+              title="Autobuses de Colombia en Instagram"
             >
-              <img src={instagram.src} alt="Logo de Instagram" />
+              <img src={instagram.src} title="Logo de Instagram" alt="Logo de Instagram" />
             </a>
           </li>
           <li>
@@ -33,8 +35,9 @@ export default function Footer() {
               target="_blank"
               rel="noopener"
               href="https://x.com/autobuscolombia"
+              title="Autobuses de Colombia en X"
             >
-              <img src={x.src} alt="Logo de X" />
+              <img src={x.src} title="Logo de X" alt="Logo de X" />
             </a>
           </li>
           <li>
@@ -42,8 +45,9 @@ export default function Footer() {
               target="_blank"
               rel="noopener"
               href="https://www.tiktok.com/@autobusesdecol"
+              title="Autobuses de Colombia en Tiktok"
             >
-              <img src={tiktok.src} alt="Logo de tiktok" />
+              <img src={tiktok.src} title="Logo de tiktok" alt="Logo de tiktok" />
             </a>
           </li>
           <li>
@@ -51,14 +55,15 @@ export default function Footer() {
               target="_blank"
               rel="noopener"
               href="https://discord.gg/RWMBbN4KCt"
+              title="Autobuses de Colombia en Discord"
             >
-              <img src={discord.src} alt="Logo de Discord" />
+              <img src={discord.src} title="Logo de Discord" alt="Logo de Discord" />
             </a>
           </li>
         </ul>
       </div>
       <div>
-        <h2>© 2025 Autobuses de Colombia | <span className="dieghoatc"><a href="https://dieghoatc.com">Dieghoatc.com</a></span></h2>
+        <h2>© 2025 Autobuses de Colombia | <span className="dieghoatc"><a href="https://dieghoatc.com" title="Pagina del desarrollador">Dieghoatc.com</a></span></h2>
         <p>Todos los derechos reservados</p>
       </div>
     </div>

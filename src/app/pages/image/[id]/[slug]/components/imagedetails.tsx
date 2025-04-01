@@ -11,7 +11,7 @@ export function ImageDetails({ info, icon, type }: ImageDetailsProps) {
   return (
     <div className="imagedetails-container">
       <div className="imagedetails-icon">
-        <img src={icon} alt={type} />
+        <img src={icon} title={`icono de ${type}`} alt={type} />
       </div>
       <div>
         <p>{formatString(info)}</p>

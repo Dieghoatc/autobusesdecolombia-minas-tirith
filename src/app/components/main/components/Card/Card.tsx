@@ -41,6 +41,7 @@ export default function Card({ photo }: CardProps) {
       <div className="card-gallery__image" onClick={openModal}>
         <img
           src={url}
+          title={`Fotografía de la empresa ${company} numero ${serial}`}
           alt={`autobus de la empresa ${company} con serial ${
             serial === "n/a" ? "" : serial
           }`}
@@ -60,6 +61,7 @@ export default function Card({ photo }: CardProps) {
             <Link href={`/pages/image/${photo.photo_id}/${replaceStringSpaces(photo.company)}-${photo.serial}`}>
               <img
                 src={url}
+                title={`Fotografía de la empresa ${company} numero ${serial}`}
                 alt={`autobus de la empresa ${company} con serial ${
                   serial === "n/a" ? " " : serial
                 }`}
