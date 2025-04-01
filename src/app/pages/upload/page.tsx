@@ -170,7 +170,7 @@ export default function Upload() {
       canvas.height - 150
     );
 
-    gradient.addColorStop(1, "rgba(255,255,255, 0.5)");
+    gradient.addColorStop(1, "rgba(128, 128, 128, 0.7)");
     gradient.addColorStop(0, "rgba(255, 255, 255, 0)");
 
     ctx.fillStyle = gradient;
