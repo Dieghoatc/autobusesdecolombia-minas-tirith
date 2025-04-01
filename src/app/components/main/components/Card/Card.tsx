@@ -5,7 +5,7 @@ import Modal from "../Modal/Modal";
 import { useState } from "react";
 import { ApiPhotosResponse } from "@/app/api/dto/photo.dto";
 import {
-  capitalizeFirstLetter,
+  formatString,
 } from "@/app/utils";
 import Link from "next/link";
 
@@ -48,10 +48,10 @@ export default function Card({ photo }: CardProps) {
       </div>
       <div className="card-gallery__title">
         <h2>
-          {capitalizeFirstLetter(company)}
+          {formatString(company)}
           {serial === "n/a" ? "" : ` - ${serial}`}
         </h2>
-        <p>{capitalizeFirstLetter(author)}</p>
+        <p>{formatString(author)}</p>
       </div>
 
       <Modal onClose={closeModal} isOpen={isModalOpen}>
@@ -69,7 +69,7 @@ export default function Card({ photo }: CardProps) {
           <div className="modal-photopreview__content">
             <div className="modal-photopreview__title">
               <h2>
-                {capitalizeFirstLetter(company)}
+                {formatString(company)}
                 {serial === "n/a" ? "" : ` - ${serial}`}
               </h2>
             </div>
@@ -78,13 +78,13 @@ export default function Card({ photo }: CardProps) {
                 {!bodywork || bodywork === "n/a"? null : (
                   <p>
                     <span className="modal-photopreview_label">Carroceria: </span>
-                    {capitalizeFirstLetter(bodywork)}
+                    {formatString(bodywork)}
                   </p>
                 )}
                 {!chassis ||chassis === "n/a" || null ? null : (
                   <p>
                     <span className="modal-photopreview_label">Chasis: </span>
-                    {capitalizeFirstLetter(chassis)}
+                    {formatString(chassis)}
                   </p>
                 )}
                 {!plate || plate === "n/a" || null ? null : (
@@ -97,16 +97,16 @@ export default function Card({ photo }: CardProps) {
                   <span className="modal-photopreview_label">
                     Fotógrafo/a:{" "}
                   </span>{" "}
-                  {capitalizeFirstLetter(author)}
+                  {formatString(author)}
                 </p>
                 <p>
                   <span className="modal-photopreview_label">Ubicación: </span>
-                  {capitalizeFirstLetter(location)} - {capitalizeFirstLetter(country)}
+                  {formatString(location)} - {formatString(country)}
                 </p>
               </div>
               <div className="modal-photopreview_company-service">
                 {!service || service === "n/a" || null ? null : (
-                  <p>&quot;{capitalizeFirstLetter(service)}&quot;</p>
+                  <p>&quot;{formatString(service)}&quot;</p>
                 )}
               </div>
             </div>

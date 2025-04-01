@@ -5,7 +5,7 @@ import "./page.css";
 import { Button } from "@/components/ui/button";
 import abcLogo from "@/assets/logo-abc.png";
 
-import { dataURLToBlob } from "@/app/utils";
+import { dataURLToBlob, deleteLastSpace } from "@/app/utils";
 import CategorySelect from "./components/categoryselect/CategorySelect";
 import InputCustom from "./components/input/InputCustom";
 import { InputFile } from "./components/input/InputFile";
@@ -170,7 +170,7 @@ export default function Upload() {
       canvas.height - 150
     );
 
-    gradient.addColorStop(1, "rgba(255,255,255, 0.5)");
+    gradient.addColorStop(1, "rgba(128, 128, 128, 0.7)");
     gradient.addColorStop(0, "rgba(255, 255, 255, 0)");
 
     ctx.fillStyle = gradient;
@@ -214,15 +214,15 @@ export default function Upload() {
     formData.append("isInternational", isInternational.toString());
     formData.append("category", category.toLowerCase());
     formData.append("type", carType.toLowerCase());
-    formData.append("company", company.toLowerCase());
-    formData.append("serial", serial.toLowerCase());
-    formData.append("bodywork", bodywork.toLowerCase());
-    formData.append("chassis", chassis.toLowerCase());
-    formData.append("plate", plate.toLowerCase());
-    formData.append("service", service.toLowerCase());
-    formData.append("author", author.toLowerCase());
-    formData.append("country", country.toLowerCase());
-    formData.append("location", location.toLowerCase());
+    formData.append("company", deleteLastSpace(company.toLowerCase()));
+    formData.append("serial", deleteLastSpace(serial.toLowerCase()));
+    formData.append("bodywork", deleteLastSpace(bodywork.toLowerCase()));
+    formData.append("chassis", deleteLastSpace(chassis.toLowerCase()));
+    formData.append("plate", deleteLastSpace(plate.toLowerCase()));
+    formData.append("service", deleteLastSpace(service.toLowerCase()));
+    formData.append("author", deleteLastSpace(author.toLowerCase()));
+    formData.append("country", deleteLastSpace(country.toLowerCase()));
+    formData.append("location", deleteLastSpace(location.toLowerCase()));
 
     try {
       setLoading(true);
