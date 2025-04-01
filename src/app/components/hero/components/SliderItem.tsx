@@ -3,7 +3,7 @@ import location from "@/assets/icons/location.png";
 import camera from "@/assets/icons/camera.png";
 
 import "./sliderItem.css";
-import { capitalizeFirstLetter } from "@/app/utils";
+import { formatString } from "@/app/utils";
 
 interface SliderItemProps {
   index: number;
@@ -45,7 +45,7 @@ export function SliderItem(data: SliderItemProps) {
           <h2>
             {data && data.type === "photo" ? (
               <>
-                <b>{capitalizeFirstLetter(data.title)}</b>
+                <b>{formatString(data.title)}</b>
                 <p>{data.serial}</p>
               </>
             ) : (
@@ -53,10 +53,10 @@ export function SliderItem(data: SliderItemProps) {
             )}
           </h2>
           {!data.bodywork || data.bodywork === "n/a" ? null : (
-            <p>{capitalizeFirstLetter(data.bodywork)}</p>
+            <p>{formatString(data.bodywork)}</p>
           )}
 
-          {!data.chassis || data.chassis === "n/a" ? null : <p>{capitalizeFirstLetter(data.chassis)}</p>}
+          {!data.chassis || data.chassis === "n/a" ? null : <p>{formatString(data.chassis)}</p>}
           <div className="line"></div>
           <div className="slide-overlay-info">
             {!data.location ? null : (
@@ -67,7 +67,7 @@ export function SliderItem(data: SliderItemProps) {
                   width={15}
                   height={15}
                 />
-                <p>{capitalizeFirstLetter(data.location)}</p>
+                <p>{formatString(data.location)}</p>
               </>
             )}
           </div>
@@ -75,7 +75,7 @@ export function SliderItem(data: SliderItemProps) {
             {!data.author ? null : (
               <>
                 <Image src={camera.src} alt="camara" width={15} height={15} />
-                <p>{capitalizeFirstLetter(data.author)}</p>
+                <p>{formatString(data.author)}</p>
               </>
             )}
           </div>
