@@ -14,6 +14,7 @@ import plate from "@/assets/icons/plate.png";
 import camera from "@/assets/icons/camera.png";
 import location from "@/assets/icons/location.png";
 import Metadata from "@/app/components/metadata/Metadata";
+import { formatString } from "@/app/utils";
 
 export default function Imageview() {
   const params = useParams();
@@ -31,7 +32,10 @@ export default function Imageview() {
     description: `Fotografía de la empresa ${photo.company} numero ${photo.serial}`,
     image: `${photo.url}`,
     url: `https://autobusesdecolombia.com/image/${photo.photo_id}_${photo.company}_${photo.serial}`,
+    author: photo.author,
   };
+
+  const title = formatString(photo.company) + " - " + formatString(photo.serial);
 
   return (
     <>
@@ -40,15 +44,20 @@ export default function Imageview() {
         description={metadata.description}
         image={metadata.image}
         url={metadata.url}
+        author={metadata.author}
       />
       <div className="imageview-container">
-        <div>
-          <img
-            className="imageview-image"
-            src={photo.url}
-            alt={`imagen de la empresa ${photo.company} con serial ${photo.serial}`}
-          />
-          <div className="imageview-info">
+        <section>
+          <figure>
+            <img
+              className="imageview-image"
+              src={photo.url}
+              title= {`Fotografía de la empresa ${photo.company} numero ${photo.serial}`}
+              alt={`imagen de la empresa ${photo.company} con serial ${photo.serial}`}
+            />
+          </figure>
+          <h1>{title}</h1>
+          <article className="imageview-info">
             <div>
               <ImageDetails
                 type="empresa"
@@ -95,8 +104,8 @@ export default function Imageview() {
                 icon={location.src}
               />
             </div>
-          </div>
-        </div>
+          </article>
+        </section>
       </div>
     </>
   );
