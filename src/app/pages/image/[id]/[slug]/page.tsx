@@ -34,6 +34,7 @@ export default function Imageview() {
     image: `${photo.url}`,
     url: `https://autobusesdecolombia.com/image/${photo.photo_id}_${photo.company}_${photo.serial}`,
     author: photo.author,
+    publisher: "Autobuses de Colombia",
   };
 
   const title = formatString(photo.company) + " - " + formatString(photo.serial);
