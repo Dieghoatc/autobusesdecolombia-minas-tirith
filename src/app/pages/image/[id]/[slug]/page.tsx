@@ -39,8 +39,6 @@ export default function Imageview() {
 
   const title = formatString(photo.company) + " - " + formatString(photo.serial);
 
-  
-
   return (
     <>
       <Metadata

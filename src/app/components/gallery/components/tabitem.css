@@ -1,0 +1,23 @@
+.tabitem-container {
+  border-radius: 12px;
+  color: #fff;
+  height: 32px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+
+
+
+  p {
+    margin: 0 8px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    
+  }
+}
+
+.isactive {
+    background: #27272a;
+}
