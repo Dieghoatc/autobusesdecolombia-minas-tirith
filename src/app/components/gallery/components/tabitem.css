@@ -18,6 +18,10 @@
   }
 }
 
+.tabitem-container::-webkit-scrollbar {
+    display: none;
+  }
+
 .isactive {
     background: #27272a;
 }
