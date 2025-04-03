@@ -40,9 +40,6 @@ export default function Upload() {
   const [category, setCategory] = useState<string>("");
   const [carType, setCarType] = useState<string>("");
   
-  console.log(category);
-  console.log(carType);
-
   const [ctx, setCtx] = useState<CanvasRenderingContext2D>();
   const [canvas, setCanvas] = useState<HTMLCanvasElement>();
   const [loading, setLoading] = useState(false);
@@ -235,7 +232,6 @@ export default function Upload() {
       );
 
       const result = await response.json();
-      console.log("Respuesta del Servidor", result);
     } catch (error) {
       console.error("Error al enviar la imagen", error);
     } finally {

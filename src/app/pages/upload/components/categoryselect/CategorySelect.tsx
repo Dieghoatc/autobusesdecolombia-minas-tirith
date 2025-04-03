@@ -24,7 +24,7 @@ const categories = [
 const carTypes = [
   "Bus",
   "Doble piso",
-  "Doble eje,",
+  "Doble eje",
   "Cuadruple eje",
   "Microbus",
   "Van",

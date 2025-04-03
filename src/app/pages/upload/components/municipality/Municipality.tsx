@@ -29,7 +29,6 @@ interface MunicipalityProps {
 export function Municipality({ value, setValue }: MunicipalityProps) {
   const [open, setOpen] = React.useState(false);
 
-  console.log(value);
 
   return (
     <div>
