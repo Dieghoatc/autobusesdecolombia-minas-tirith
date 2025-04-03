@@ -26,10 +26,8 @@ export default function Gallery() {
   const [category, setCategory] = useState("all");
   const [searchPhoto, setSearchPhoto] = useState("");
 
-  //uso del hook useMemo para optimizar el rendimiento de la aplicación en la búsqueda de fotos.
-  //el use memo permite que se ejecute la función solo cuando el valor de la variable cambia.
   const searchPhotosMemo = useMemo(
-    () => (photos || []).filter((photo) => photo.serial.includes(searchPhoto)),
+    () => (photos || []).filter((photo) => photo.serial.includes(searchPhoto) || photo.company.includes(searchPhoto)),
     [photos, searchPhoto]
   );
   const sortedData = useMemo(
@@ -41,6 +39,7 @@ export default function Gallery() {
 
   const filteredData = useMemo(() => {
     if (!selectedCategory?.id) return sortedData;
+
     return sortedData.filter(
       (photo) => photo.category_id === selectedCategory.id
     );

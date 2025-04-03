@@ -22,7 +22,7 @@ export default function SearchGallery({search}: SearchGalleryProps) {
         <div className={`search-gallery_${showInput ? "showinput" : "input"}`}>
           <Input
             type="search"
-            placeholder="Buscar fotos por serial"
+            placeholder="Buscar fotos por empresa o serial"
             onChange={(e) => handleChange(e)}
           />
         </div>
