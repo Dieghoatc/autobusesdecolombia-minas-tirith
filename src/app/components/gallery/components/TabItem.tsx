@@ -17,6 +17,6 @@ export default function TabItem({
       onClick={handleClick}
     >
       <p>{value}</p>
-    </section>
+    </section>  
   );
 }
