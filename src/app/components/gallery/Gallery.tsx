@@ -1,5 +1,4 @@
-import { useState } from "react";
-import { ApiPhotosResponse } from "@/app/api/dto/photo.dto";
+import { useState, useMemo } from "react";
 import { useGetPhotos } from "@/app/hooks/useGetPhotos";
 
 import { orderById } from "@/app/utils/orderById";
@@ -9,6 +8,7 @@ import "./gallery.css";
 import Card from "../main/components/Card/Card";
 import SkeletonComponent from "../skeleton/Skeleton";
 import TabsCategories from "./components/TabsCategories";
+import SearchGallery from "./components/SearchGallery";
 
 interface CategoryList {
   key: string;
@@ -24,29 +24,45 @@ const categoriesList: CategoryList[] = [
 export default function Gallery() {
   const { photos, loading } = useGetPhotos();
   const [category, setCategory] = useState("all");
+  const [searchPhoto, setSearchPhoto] = useState("");
+
+  //uso del hook useMemo para optimizar el rendimiento de la aplicación en la búsqueda de fotos.
+  //el use memo permite que se ejecute la función solo cuando el valor de la variable cambia.
+  const searchPhotosMemo = useMemo(
+    () => (photos || []).filter((photo) => photo.serial.includes(searchPhoto)),
+    [photos, searchPhoto]
+  );
+  const sortedData = useMemo(
+    () => orderById(searchPhotosMemo, "photo_id"),
+    [searchPhotosMemo]
+  );
+
+  const selectedCategory = categoriesList.find((cat) => cat.key === category);
+
+  const filteredData = useMemo(() => {
+    if (!selectedCategory?.id) return sortedData;
+    return sortedData.filter(
+      (photo) => photo.category_id === selectedCategory.id
+    );
+  }, [sortedData, selectedCategory]);
+
+  function searchPhotos(search: string) {
+    setSearchPhoto(search);
+  }
 
   if (loading) return <SkeletonComponent />;
 
-  function orderHighestToLowestPhotos(data: ApiPhotosResponse[]) {
-    return orderById(data, "photo_id");
-  }
-
-  let sortedData = orderHighestToLowestPhotos(photos || []);
-
-  const selectedCategory = categoriesList.find((cat) => cat.key === category);
-  if (selectedCategory?.id) {
-    sortedData = sortedData.filter(
-      (photo) => photo.category_id === selectedCategory.id
-    );
-  }
   return (
     <div className="gallery-container">
-      <TabsCategories
-        categoriesList={categoriesList}
-        setCategory={setCategory}
-      />
+      <div className="galley-controls">
+        <TabsCategories
+          categoriesList={categoriesList}
+          setCategory={setCategory}
+        />
+        <SearchGallery search={searchPhotos} />
+      </div>
       <div className="cards-container">
-        {sortedData.map((photo) => (
+        {filteredData.map((photo) => (
           <Card key={photo.photo_id} photo={photo} />
         ))}
       </div>

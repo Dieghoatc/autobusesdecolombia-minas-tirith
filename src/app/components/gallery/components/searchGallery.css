@@ -1,0 +1,18 @@
+.search-gallery_container {
+  display: flex;
+  margin: 16px 8px;
+  justify-content: right;
+}
+
+.search-gallery_elements {
+  display: flex;
+  gap: 8px;
+}
+
+.search-gallery_input {
+    
+}
+
+.search-gallery_showinput {
+    display: block;
+}
