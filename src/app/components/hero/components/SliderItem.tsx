@@ -9,7 +9,8 @@ interface SliderItemProps {
   index: number;
   category?: string;
   type: "photo" | "post" | "video";
-  image: string;
+  image?: string;
+  urlVideo?: string;
   title: string;
   serial?: string;
   bodywork?: string;
@@ -27,7 +28,7 @@ export function SliderItem(data: SliderItemProps) {
       {data.type === "video" ? (
         <video
           className="slide"
-          src="https://res.cloudinary.com/dkj6yzrrk/video/upload/v1742531105/autobusesdecolombiavideos/18092719-hd_1920_1080_30fps_1_vph33q.mp4"
+          src={data.urlVideo}
           autoPlay
           loop
           muted
