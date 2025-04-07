@@ -18,7 +18,7 @@ export function Slider() {
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setIndex((prevIndex) => (prevIndex === 3 ? 0 : prevIndex + 1)); // Si es 3, vuelve a 1
+      setIndex((prevIndex) => (prevIndex === 5 ? 0 : prevIndex + 1)); // Si es 3, vuelve a 1
     }, 10000);
 
     return () => clearInterval(interval);
@@ -32,10 +32,10 @@ export function Slider() {
         <SliderItem
           type="video"
           index={index}
-          image={category.url}
+          urlVideo="https://res.cloudinary.com/dkj6yzrrk/video/upload/v1744049626/autobusesdecolombiavideos/3940076-uhd_3840_2160_30fps_bvjlan.mp4"
           category="Destinos"
-          title="El cerro de Monserrate"
-          location="Bogotá DC - Colombia"
+          title="Castillo de San Felipe"
+          location="Cartagena de Indias - Colombia"
           author="Ricardo Perez"
         />
         <SliderItem
@@ -50,10 +50,27 @@ export function Slider() {
           author={photos.author}
         />
         <SliderItem
+          type="video"
+          index={index}
+          urlVideo="https://res.cloudinary.com/dkj6yzrrk/video/upload/v1744049641/autobusesdecolombiavideos/VID_20250406_113226_gbaxor.mp4"
+          title="Transmilenio"
+          location="Bogotá DC - Colombia"
+          author="Dieghoatc"
+        />
+        <SliderItem
           type="post"
           index={index}
           image={post.image_url}
           title={post.title}
+        />
+        <SliderItem
+          type="video"
+          index={index}
+          urlVideo="https://res.cloudinary.com/dkj6yzrrk/video/upload/v1742531105/autobusesdecolombiavideos/18092719-hd_1920_1080_30fps_1_vph33q.mp4"
+          category="Destinos"
+          title="El cerro de Monserrate"
+          location="Bogotá DC - Colombia"
+          author="Ricardo Perez"
         />
         <SliderItem
           type="photo"
