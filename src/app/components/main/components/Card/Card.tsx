@@ -58,7 +58,7 @@ export default function Card({ photo }: CardProps) {
       <Modal onClose={closeModal} isOpen={isModalOpen}>
         <div>
           <div className="modal-photopreview__image">
-            <Link href={`/pages/image/${photo.photo_id}/${replaceStringSpaces(photo.company)}-${photo.serial}`}>
+            <Link href={`/image/${photo.photo_id}/${replaceStringSpaces(photo.company)}-${photo.serial}`}>
               <img
                 src={url}
                 title={`Fotografía de la empresa ${company} numero ${serial}`}

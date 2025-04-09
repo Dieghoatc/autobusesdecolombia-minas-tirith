@@ -2,7 +2,7 @@
 
 import { useParams } from "next/navigation";
 import { ImageDetails } from "./components/imagedetails";
-import { useGetPhoto } from "../../../hooks/useGetPhoto";
+import { useGetPhoto } from "./hooks/useGetPhoto";
 import "./image.css";
 
 import company from "@/assets/icons/company.png";

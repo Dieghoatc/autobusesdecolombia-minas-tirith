@@ -2,9 +2,7 @@
 import { FormContact } from "./components/FormContact";
 import "./contact.css";
 
-export default function ContactPage() {
-
-  
+export default function ContactPage() { 
 
   return (
     <div className="contact">
