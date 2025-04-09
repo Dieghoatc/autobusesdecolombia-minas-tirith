@@ -10,7 +10,6 @@ import CategorySelect from "./components/categoryselect/CategorySelect";
 import InputCustom from "./components/input/InputCustom";
 import { InputFile } from "./components/input/InputFile";
 import { CheckboxCustom } from "@/app/api/ui/CheckboxCustom";
-
 interface Canvas {
   img: HTMLImageElement;
   offsetX: number;
@@ -23,7 +22,6 @@ const URL_ABC_API_UPLOAD_IMAGE = process.env.NEXT_PUBLIC_ABC_API_UPLOAD_IMAGE;
 
 export default function Upload() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
-
   const [image, setImage] = useState<Canvas>();
   const [logo, setLogo] = useState<Canvas>();
   const [author, setAuthor] = useState<string>("Alberto Tejedor");
@@ -36,10 +34,10 @@ export default function Upload() {
   const [country, setCountry] = useState<string>("Colombia");
   const [plate, setPlate] = useState<string>("");
   const [service, setService] = useState<string>("");
-  
+
   const [category, setCategory] = useState<string>("");
   const [carType, setCarType] = useState<string>("");
-  
+
   const [ctx, setCtx] = useState<CanvasRenderingContext2D>();
   const [canvas, setCanvas] = useState<HTMLCanvasElement>();
   const [loading, setLoading] = useState(false);
