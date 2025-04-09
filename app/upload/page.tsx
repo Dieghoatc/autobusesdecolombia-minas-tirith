@@ -3,7 +3,7 @@ import { useState, useEffect, useRef } from "react";
 
 import "./page.css";
 import { Button } from "@/app/components/ui/button";
-import abcLogo from "@/assets/logo-abc.png";
+import abcLogo from "../assets/abclogo_1.png";
 
 import { dataURLToBlob, deleteLastSpace } from "@/app/utils";
 import CategorySelect from "./components/categoryselect/CategorySelect";
