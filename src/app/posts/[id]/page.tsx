@@ -1,10 +1,11 @@
 "use client";
-import { useParams } from "next/navigation";
 
-import "./post.css";
-import { useFindOne } from "../../hooks/useGetOnePost";
+import { useParams } from "next/navigation";
+import { useFindPost} from "./hooks/useFindPost";
 import ReactMarkdown from "react-markdown";
 import { Loader } from "@/app/components/loader/Loader";
+
+import "./post.css";
 
 export default function PostsIdPage() {
   let id_post = "1";
@@ -14,7 +15,7 @@ export default function PostsIdPage() {
     id_post = params.id.toString().split("_")[0];
   }
 
-  const { post, loading } = useFindOne(id_post);
+  const { post, loading } = useFindPost(id_post);
 
   if (!post) {
     return <div>No post found</div>;

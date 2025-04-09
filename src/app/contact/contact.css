@@ -5,7 +5,7 @@
   align-items: center;
 
   @media (min-width: 768px) {
-    height: 78vh;
+    height: 80vh;
   }
 }
 

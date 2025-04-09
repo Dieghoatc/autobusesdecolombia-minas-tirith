@@ -31,7 +31,7 @@ export function Bento() {
             const { post_id, slug } = post;
             return (
               <div className="magazine-bento__item" key={post.post_id}>
-                <Link href={`/pages/posts/${post_id}_${slug}`}>
+                <Link href={`/posts/${post_id}_${slug}`}>
                   <BentoItem post={post} style="" />
                 </Link>
               </div>

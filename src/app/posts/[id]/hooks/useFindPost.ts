@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { autobusesApiFindOnePost } from "@/app/api/autobusesApi.find_one_post";
 import { ApiPostsResponse } from "@/app/api/dto/post.dto";
 
-export function useFindOne(id: string) {
+export function useFindPost(id: string) {
   const [post, setPost] = useState<ApiPostsResponse>({} as ApiPostsResponse);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
