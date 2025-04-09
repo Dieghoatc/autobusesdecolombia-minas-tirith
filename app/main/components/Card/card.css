@@ -1,0 +1,103 @@
+.card-gallery {
+  display: flex;
+  flex-direction: column;
+  width: 180px;
+  @media (min-width: 768px) {
+    width: 300px;
+  }
+}
+
+.card-gallery__image {
+  border-radius: 8px;
+  width: 180px;
+  height: 112.5px;
+  overflow: hidden;
+  cursor: pointer;
+
+  @media (min-width: 768px) {
+    width: 300px;
+    height: 168.75px;
+  }
+}
+
+.card-gallery__image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.card-gallery__title {
+  margin: 8px;
+}
+
+.card-gallery__title p {
+  color: #aaa;
+  font-size: 12px;
+}
+
+.modal-photopreview__image {
+  overflow: hidden;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+}
+
+.modal-photopreview__image img {
+  width: 100%;
+  height: 100%;
+
+  @media (min-width: 768px) {
+    width: auto;
+    height: 90vh;
+  }
+}
+
+.modal-photopreview__content {
+  margin: 8px;
+
+  @media (min-width: 768px) {
+    margin: 0;
+  }
+}
+
+.modal-photopreview__title {
+  margin: 16px 0;
+  font-size: 1.2rem;
+  font-weight: 700;
+}
+
+.modal-photopreview__details {
+  padding: 16px;
+  background-color: #141414;
+  border-radius: 10px;
+  width: 100%;
+  height: 100%;
+
+  @media (min-width: 768px) {
+    display: flex;
+    justify-content: space-between;
+  }  
+}
+
+.modal-photopreview_label {
+  font-size: 1rem;
+}
+
+.modal-photopreview_company-service {
+  margin-top: 8px;
+
+  @media (min-width: 768px) {
+    margin-top: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+.modal-photopreview_company-service p{
+  text-align: center;
+  font-size: 1rem;
+
+
+}
