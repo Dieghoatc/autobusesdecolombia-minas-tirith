@@ -16,8 +16,7 @@ import {
 } from "@/app/components/ui/form";
 import { Input } from "@/app/components/ui/input";
 
-
-import { useRouter } from 'next/navigation'
+import { useRouter } from "next/navigation";
 import "./login.css";
 
 const formSchema = z.object({
@@ -25,11 +24,9 @@ const formSchema = z.object({
   password: z.string(),
 });
 
-
 const API_URL = process.env.NEXT_PUBLIC_ABC_API;
 
 export default function Login() {
-
   const router = useRouter();
 
   const form = useForm<z.infer<typeof formSchema>>({
@@ -43,19 +40,21 @@ export default function Login() {
   async function onSubmit(values: z.infer<typeof formSchema>) {
     const response = await fetch(`${API_URL}/users/login`, {
       method: "POST",
-      credentials: 'include',
+      credentials: "include",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(values),
+      redirect: "manual",
     });
 
     if (response.ok) {
-      router.push("/dashboard");
-    } else {
-      alert('Usuario o contraseña incorrectos')
+      form.reset();
+      router.push("/upload");
     }
-    form.reset();
+     else {
+      alert("Usuario o contraseña incorrectos");
+    }
   }
 
   return (
@@ -72,7 +71,7 @@ export default function Login() {
                   <FormControl>
                     <Input placeholder="correo@ejemplo.com" {...field} />
                   </FormControl>
-                  <FormDescription>Ingresa tu corro</FormDescription>
+                  <FormDescription>Ingresa tu correo</FormDescription>
                   <FormMessage />
                 </FormItem>
               )}
@@ -91,7 +90,9 @@ export default function Login() {
                 </FormItem>
               )}
             />
-            <Button type="submit">Ingresar</Button>
+            <Button type="submit" disabled={form.formState.isSubmitting}>
+              {form.formState.isSubmitting ? "Ingresando..." : "Ingresar"}
+            </Button>
           </form>
         </Form>
       </div>
