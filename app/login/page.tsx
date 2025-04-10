@@ -48,11 +48,12 @@ export default function Login() {
       redirect: "manual",
     });
 
-    if (response.ok) {
-      form.reset();
-      router.push("/upload");
-    }
-     else {
+    if (response.ok && response.status === 200) {
+      setTimeout(() => {
+        form.reset();
+        router.push("/upload");
+      }, 100);
+    } else {
       alert("Usuario o contraseña incorrectos");
     }
   }
