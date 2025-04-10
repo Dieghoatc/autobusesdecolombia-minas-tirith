@@ -27,7 +27,7 @@ export function Gallery() {
   const [searchPhoto, setSearchPhoto] = useState("");
 
   const searchPhotosMemo = useMemo(
-    () => (photos || []).filter((photo) => photo.serial.includes(searchPhoto) || photo.company.includes(searchPhoto) || photo.bodywork.includes(searchPhoto) || photo.chassis.includes(searchPhoto)),
+    () => (photos || []).filter((photo) => photo.serial.includes(searchPhoto) || photo.company.includes(searchPhoto) || photo.bodywork.includes(searchPhoto) || photo.chassis.includes(searchPhoto) || photo.author.includes(searchPhoto)),
     [photos, searchPhoto]
   );
   const sortedData = useMemo(
