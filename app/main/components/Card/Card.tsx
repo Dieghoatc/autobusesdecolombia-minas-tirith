@@ -39,6 +39,7 @@ export function Card({ photo }: CardProps) {
       <figure className="card-gallery__image" onClick={openModal}>
         <img
           src={url}
+          loading="lazy"
           title={`Fotografía de la empresa ${company} numero ${serial}`}
           alt={`autobus de la empresa ${company} con serial ${
             serial === "n/a" ? "" : serial
@@ -64,6 +65,7 @@ export function Card({ photo }: CardProps) {
               <figure>
                 <img
                   src={url}
+                  loading="lazy"
                   title={`Fotografía de la empresa ${company} numero ${serial}`}
                   alt={`autobus de la empresa ${company} con serial ${
                     serial === "n/a" ? " " : serial
