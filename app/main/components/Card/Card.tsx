@@ -4,9 +4,7 @@ import "./card.css";
 import Modal from "../Modal/Modal";
 import { useState } from "react";
 import { ApiPhotosResponse } from "@/app/api/dto/photo.dto";
-import {
-  formatString,
-} from "@/app/utils";
+import { formatString } from "@/app/utils";
 import Link from "next/link";
 
 import { replaceStringSpaces } from "@/app/utils/replaceStringSpaces";
@@ -38,7 +36,7 @@ export function Card({ photo }: CardProps) {
 
   return (
     <div className="card-gallery">
-      <div className="card-gallery__image" onClick={openModal}>
+      <figure className="card-gallery__image" onClick={openModal}>
         <img
           src={url}
           title={`Fotografía de la empresa ${company} numero ${serial}`}
@@ -46,7 +44,7 @@ export function Card({ photo }: CardProps) {
             serial === "n/a" ? "" : serial
           }`}
         />
-      </div>
+      </figure>
       <div className="card-gallery__title">
         <h2>
           {formatString(company)}
@@ -58,14 +56,20 @@ export function Card({ photo }: CardProps) {
       <Modal onClose={closeModal} isOpen={isModalOpen}>
         <div>
           <div className="modal-photopreview__image">
-            <Link href={`/image/${photo.photo_id}/${replaceStringSpaces(photo.company)}-${photo.serial}`}>
-              <img
-                src={url}
-                title={`Fotografía de la empresa ${company} numero ${serial}`}
-                alt={`autobus de la empresa ${company} con serial ${
-                  serial === "n/a" ? " " : serial
-                }`}
-              />
+            <Link
+              href={`/image/${photo.photo_id}/${replaceStringSpaces(
+                photo.company
+              )}-${photo.serial}`}
+            >
+              <figure>
+                <img
+                  src={url}
+                  title={`Fotografía de la empresa ${company} numero ${serial}`}
+                  alt={`autobus de la empresa ${company} con serial ${
+                    serial === "n/a" ? " " : serial
+                  }`}
+                />
+              </figure>
             </Link>
           </div>
           <div className="modal-photopreview__content">
@@ -77,13 +81,15 @@ export function Card({ photo }: CardProps) {
             </div>
             <div className="modal-photopreview__details">
               <div>
-                {!bodywork || bodywork === "n/a"? null : (
+                {!bodywork || bodywork === "n/a" ? null : (
                   <p>
-                    <span className="modal-photopreview_label">Carroceria: </span>
+                    <span className="modal-photopreview_label">
+                      Carroceria:{" "}
+                    </span>
                     {formatString(bodywork)}
                   </p>
                 )}
-                {!chassis ||chassis === "n/a" || null ? null : (
+                {!chassis || chassis === "n/a" || null ? null : (
                   <p>
                     <span className="modal-photopreview_label">Chasis: </span>
                     {formatString(chassis)}

@@ -10,11 +10,12 @@ async function fetchData<ApiPostsResponse>(
 
   try {
     const response = await fetch(`${URL}/posts/${id}`);
-    return await response.json();
-
+    
     if (!response.ok) {
       throw new Error(`Failed to fetch data: ${response.statusText}`);
     }
+    return await response.json();
+
   } catch (error) {
     console.error(`Failed to fetch data: ${error}`);
     return {} as ApiPostsResponse;

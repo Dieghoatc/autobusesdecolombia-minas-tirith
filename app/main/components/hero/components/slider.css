@@ -1,6 +1,6 @@
 .slider-container {
   display: grid;
-  grid-template-columns: repeat(6, 100%);
+  grid-template-columns: repeat(3, 100%);
   overflow: hidden;
 }
 
