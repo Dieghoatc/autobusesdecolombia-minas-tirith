@@ -51,11 +51,26 @@ export default function Imageview() {
       <div className="imageview-container">
         <section>
           <figure>
+            <picture>
+            <source
+                    type="image/webp"
+                    srcSet={photo.url}
+                    media="min-width: 1200px"
+                  />
+                  <source
+                    type="image/webp"
+                    srcSet={photo.url}
+                    media="min-width: 768px"
+                  />
+            </picture>
             <img
               className="imageview-image"
               src={photo.url}
+              role="presentation"
+              loading="lazy"
               title= {`Fotografía de la empresa ${photo.company} numero ${photo.serial}`}
               alt={`imagen de la empresa ${photo.company} con serial ${photo.serial}`}
+              decoding="async"
             />
           </figure>
           <h1>{title}</h1>

@@ -37,14 +37,20 @@ export function Card({ photo }: CardProps) {
   return (
     <div className="card-gallery">
       <figure className="card-gallery__image" onClick={openModal}>
-        <img
-          src={url}
-          loading="lazy"
-          title={`Fotografía de la empresa ${company} numero ${serial}`}
-          alt={`autobus de la empresa ${company} con serial ${
-            serial === "n/a" ? "" : serial
-          }`}
-        />
+        <picture>
+          <source type="image/webp" srcSet={url} media="min-width: 1200px" />
+          <source type="image/webp" srcSet={url} media="min-width: 768px" />
+          <img
+            src={url}
+            role="presentation"
+            loading="lazy"
+            title={`Fotografía de la empresa ${company} numero ${serial}`}
+            alt={`autobus de la empresa ${company} con serial ${
+              serial === "n/a" ? "" : serial
+            }`}
+            decoding="async"
+          />
+        </picture>
       </figure>
       <div className="card-gallery__title">
         <h2>
@@ -63,14 +69,28 @@ export function Card({ photo }: CardProps) {
               )}-${photo.serial}`}
             >
               <figure>
-                <img
-                  src={url}
-                  loading="lazy"
-                  title={`Fotografía de la empresa ${company} numero ${serial}`}
-                  alt={`autobus de la empresa ${company} con serial ${
-                    serial === "n/a" ? " " : serial
-                  }`}
-                />
+                <picture>
+                  <source
+                    type="image/webp"
+                    srcSet={url}
+                    media="min-width: 1200px"
+                  />
+                  <source
+                    type="image/webp"
+                    srcSet={url}
+                    media="min-width: 768px"
+                  />
+                  <img
+                    src={url}
+                    loading="lazy"
+                    role="pesentation"
+                    title={`Fotografía de la empresa ${company} numero ${serial}`}
+                    alt={`autobus de la empresa ${company} con serial ${
+                      serial === "n/a" ? " " : serial
+                    }`}
+                    decoding="async"
+                  />
+                </picture>
               </figure>
             </Link>
           </div>
