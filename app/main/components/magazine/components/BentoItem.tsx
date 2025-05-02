@@ -7,7 +7,9 @@ interface BentoItemProps {
 }
 
 export function BentoItem({ post, style }: BentoItemProps) {
+  
   const { title, image_url } = post;
+
   return (
     <article className={`bento-item ${style}`}>
       <img src={image_url} alt={title} className="bento-item__image" />

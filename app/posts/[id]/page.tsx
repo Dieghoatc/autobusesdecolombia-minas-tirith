@@ -1,13 +1,12 @@
 "use client";
 
 import { useParams } from "next/navigation";
-import { useFindPost} from "./hooks/useFindPost";
-import ReactMarkdown from "react-markdown";
-import { Loader } from "@/app/main/components/loader/Loader";
-
+import { useFindPost } from "./hooks/useFindPost";
 import "./post.css";
+import { LoaderIntro } from "@/app/main/components/loader/LoaderIntro";
 
-export default function PostsIdPage() {
+
+export default function PostToID() {
   let id_post = "1";
   const params = useParams();
 
@@ -17,20 +16,24 @@ export default function PostsIdPage() {
 
   const { post, loading } = useFindPost(id_post);
 
+
   if (!post) {
     return <div>No post found</div>;
   }
+  if (loading) {
+    return <div>Loading...</div>;
+  }  
 
   return (
     <div className="post-container">
       <div className="article-container">
         <div className="article__content">
           {loading ? (
-            <div className="article-loader">
-              <Loader />
-            </div>
+            <LoaderIntro />
           ) : (
-            <ReactMarkdown>{post.content}</ReactMarkdown>
+            <div className="post-content">
+              <EditorRenderer data={post.content} />
+            </div>
           )}
         </div>
       </div>

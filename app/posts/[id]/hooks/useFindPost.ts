@@ -9,7 +9,6 @@ export function useFindPost(id: string) {
   const [error, setError] = useState("");
 
   useEffect(() => {
-
     async function fetchOnePost(id: string) {
       setLoading(true);
       setError("");
