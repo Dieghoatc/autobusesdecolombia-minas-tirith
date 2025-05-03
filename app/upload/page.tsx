@@ -18,7 +18,7 @@ interface Canvas {
   scaleHeight: number;
 }
 
-const URL_ABC_API_UPLOAD_IMAGE = process.env.NEXT_PUBLIC_ABC_API_UPLOAD_IMAGE;
+const URL_ABC_API_UPLOAD_IMAGE = `${process.env.NEXT_PUBLIC_ABC_API}/photos/image`;
 
 export default function Upload() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -121,23 +121,20 @@ export default function Upload() {
     image: Canvas | undefined,
     logo: Canvas | undefined,
     author: string,
-    municipality: string,
+    location: string,
     country: string,
     ctx: CanvasRenderingContext2D | undefined,
     canvas: HTMLCanvasElement | undefined
   ) {
-    if (
-      !image ||
-      !logo ||
-      !author ||
-      !municipality ||
-      !country ||
-      !ctx ||
-      !canvas
-    )
-      return;
+    if (!image || !logo || !author || !ctx || !canvas) return;
+    
 
-    const location = `${municipality} - ${country}`;
+    let locationDescription = "";
+    if (location) {
+      locationDescription = `${deleteLastSpace(location)} - ${deleteLastSpace(country)}`;
+    } else {
+      locationDescription = `${deleteLastSpace(country)}`;
+    } 
 
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
@@ -178,7 +175,12 @@ export default function Upload() {
     ctx.font = "22px mitr";
     ctx.fillText(author, canvas.width - 45, canvas.height - 26, 400);
     ctx.font = "18px mitr";
-    ctx.fillText(location, canvas.width - 22, canvas.height - 5, 400);
+    ctx.fillText(
+      locationDescription,
+      canvas.width - 22,
+      canvas.height - 5,
+      400
+    );
   }
 
   function clearCanvas(
