@@ -32,6 +32,8 @@ export const metadata: Metadata = {
   },
 };
 
+const GOOLGE_ADSENSE_CLIEND_ID = process.env.PUBLIC_GOOLGE_ADSENSE_CLIEND_ID;
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -42,7 +44,7 @@ export default function RootLayout({
       <body>
         <Script
           async
-          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1070802324735715"
+          src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${GOOLGE_ADSENSE_CLIEND_ID}`}
           crossOrigin="anonymous"
         ></Script>
         <Header />
