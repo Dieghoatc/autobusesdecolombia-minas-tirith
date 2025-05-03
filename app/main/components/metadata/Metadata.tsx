@@ -25,10 +25,6 @@ export default function Metadata(data : MetadataProps) {
       <meta property="og:image:type" content="image/webp"></meta>
       <meta property="og:url" content={data.url} />
       <meta property="og:type" content="website" />
-      <meta name="twitter:card" content="summary_large_image" />
-      <meta name="twitter:title" content="Título para Twitter" />
-      <meta name="twitter:description" content="Descripción para Twitter" />
-      <meta name="twitter:image" content={data.image} />
     </>
   );
 }

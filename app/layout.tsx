@@ -5,7 +5,7 @@ import { Analytics } from "@vercel/analytics/react";
 import Footer from "./components/footer/Footer";
 import { Toaster } from "@/app/components/ui/toaster";
 import Header from "./components/header/Header";
-import abcBus from "./assets/autobusesdecolombia_bus.png"
+import abcBus from "./assets/autobusesdecolombia_bus.png";
 
 export const metadata: Metadata = {
   title: "Autobuses de Colombia - ¡Mucho más para ver!",
@@ -38,6 +38,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="es">
+      <head>
+        <script
+          async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1070802324735715"
+          crossOrigin="anonymous"
+        ></script>
+      </head>
       <body>
         <Header />
         {children}
