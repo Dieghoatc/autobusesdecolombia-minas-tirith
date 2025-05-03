@@ -6,6 +6,8 @@ import Footer from "./components/footer/Footer";
 import { Toaster } from "@/app/components/ui/toaster";
 import Header from "./components/header/Header";
 import abcBus from "./assets/autobusesdecolombia_bus.png";
+import Adsense from "./components/adsense/Adsense";
+
 
 export const metadata: Metadata = {
   title: "Autobuses de Colombia - ¡Mucho más para ver!",
@@ -31,6 +33,8 @@ export const metadata: Metadata = {
   },
 };
 
+const GOOLGE_ADSENSE_CLIEND_ID = process.env.NEXT_PUBLIC_GOOLGE_ADSENSE_CLIEND_ID || '';
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -39,13 +43,9 @@ export default function RootLayout({
   return (
     <html lang="es">
       <head>
-        <script
-          async
-          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1070802324735715"
-          crossOrigin="anonymous"
-        ></script>
+        <Adsense clientId={GOOLGE_ADSENSE_CLIEND_ID} />
       </head>
-      <body>
+      <body>        
         <Header />
         {children}
         <Toaster />
