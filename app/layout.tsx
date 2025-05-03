@@ -32,7 +32,7 @@ export const metadata: Metadata = {
   },
 };
 
-const GOOLGE_ADSENSE_CLIEND_ID = process.env.PUBLIC_GOOLGE_ADSENSE_CLIEND_ID;
+const GOOLGE_ADSENSE_CLIEND_ID = process.env.PUBLIC_GOOLGE_ADSENSE_CLIEND_ID || '';
 
 export default function RootLayout({
   children,
