@@ -1,20 +1,21 @@
-import { NextRequest, NextResponse } from 'next/server'
+import { NextRequest, NextResponse } from "next/server";
 
 export function middleware(request: NextRequest) {
-  console.log('✅ Middleware ejecutado en:', request.nextUrl.pathname)
-  const token = request.cookies.get('access_token')?.value
+  console.log("✅ Middleware ejecutado en:", request.nextUrl.pathname);
+  const token = request.cookies.get("access_token")?.value;
+  console.log("🚀 Token:", token);
 
   if (
     request.method === "GET" &&
     !token &&
-    request.nextUrl.pathname.startsWith('/upload')
+    request.nextUrl.pathname.startsWith("/upload")
   ) {
-    return NextResponse.redirect(new URL('/login', request.url))
+    return NextResponse.redirect(new URL("/login", request.url));
   }
 
-  return NextResponse.next()
+  return NextResponse.next();
 }
 
 export const config = {
-  matcher: ['/upload', '/upload/:path*'],
+  matcher: ["/upload", "/upload/:path*"],
 };
