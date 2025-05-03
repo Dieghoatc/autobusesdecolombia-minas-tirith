@@ -6,6 +6,7 @@ import Footer from "./components/footer/Footer";
 import { Toaster } from "@/app/components/ui/toaster";
 import Header from "./components/header/Header";
 import abcBus from "./assets/autobusesdecolombia_bus.png";
+import Script from "next/script";
 
 export const metadata: Metadata = {
   title: "Autobuses de Colombia - ¡Mucho más para ver!",
@@ -38,14 +39,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="es">
-      <head>
-        <script
+      <body>
+        <Script
           async
           src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1070802324735715"
           crossOrigin="anonymous"
-        ></script>
-      </head>
-      <body>
+        ></Script>
         <Header />
         {children}
         <Toaster />
