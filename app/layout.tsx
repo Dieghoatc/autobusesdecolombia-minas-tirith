@@ -5,7 +5,9 @@ import { Analytics } from "@vercel/analytics/react";
 import Footer from "./components/footer/Footer";
 import { Toaster } from "@/app/components/ui/toaster";
 import Header from "./components/header/Header";
-import abcBus from "./assets/autobusesdecolombia_bus.png"
+import abcBus from "./assets/autobusesdecolombia_bus.png";
+import Adsense from "./components/adsense/Adsense";
+
 
 export const metadata: Metadata = {
   title: "Autobuses de Colombia - ¡Mucho más para ver!",
@@ -31,6 +33,8 @@ export const metadata: Metadata = {
   },
 };
 
+const GOOLGE_ADSENSE_CLIEND_ID = process.env.NEXT_PUBLIC_GOOLGE_ADSENSE_CLIEND_ID || '';
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -38,7 +42,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="es">
-      <body>
+      <head>
+        <Adsense clientId={GOOLGE_ADSENSE_CLIEND_ID} />
+      </head>
+      <body>        
         <Header />
         {children}
         <Toaster />
