@@ -8,7 +8,7 @@ export function Author({ author }: AuthorProps) {
   return (
     <div className="post-author">
       <span className="post-author_text">
-        Por: <span>{author}</span>
+        Por <span className="post-author_name">{author}</span>
       </span>
     </div>
   );
