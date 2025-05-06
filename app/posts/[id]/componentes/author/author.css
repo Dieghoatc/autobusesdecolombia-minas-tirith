@@ -1,0 +1,20 @@
+.post-author {
+    border-top: 0.5px solid #ccc;
+    border-bottom: 0.5px solid #ccc;
+    margin: var(--margin-container-mobile);
+    font-family: var(--post-font-content);
+  
+    @media (min-width: 768px) {
+      margin: var(--margin-container-desktop);
+    }
+  }
+  
+  .post-author_text {
+    margin: var(--margin-container-mobile);
+    font-size: var(--post-text-content-size-mobile);
+  
+    @media (min-width: 768px) {
+      margin: var(--margin-container-desktop);
+      font-size: var(--post-text-content-size);
+    }
+  }

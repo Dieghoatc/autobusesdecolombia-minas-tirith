@@ -1,0 +1,21 @@
+.post-header {
+  display: flex;
+  gap: 8px;
+  font-family: var(--post-font-content);
+  font-size: var(--post-text-content-size-mobile);
+
+  @media (min-width: 768px) {
+    font-size: var(--post-text-content-size);
+  }
+}
+
+.post-header_items {
+  display: flex;
+  place-items: center;
+  gap: var(--margin-container-mobile);
+}
+
+.post-header_icons {
+  height: 15px;
+  width: 15px;
+}

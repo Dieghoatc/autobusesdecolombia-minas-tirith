@@ -1,0 +1,9 @@
+.post-content-principal-p {
+    font-family: var(--post-font-content);
+    font-weight: 500;
+  }
+  
+  .post-content-p {
+    font-family: var(--post-font-content);
+    line-height: 1.625;
+  }

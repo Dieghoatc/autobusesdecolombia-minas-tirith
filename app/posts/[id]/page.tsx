@@ -1,13 +1,14 @@
 "use client";
 
 import { useParams } from "next/navigation";
-import { useFindPost} from "./hooks/useFindPost";
-import ReactMarkdown from "react-markdown";
-import { Loader } from "@/app/main/components/loader/Loader";
+import { useFindPost } from "./hooks/useFindPost";
 
 import "./post.css";
 
-export default function PostsIdPage() {
+import { RenderBlocks } from "./componentes/RenderBlocks";
+import { LoaderIntro } from "@/app/main/components/loader/LoaderIntro";
+
+export default function PostToID() {
   let id_post = "1";
   const params = useParams();
 
@@ -20,20 +21,15 @@ export default function PostsIdPage() {
   if (!post) {
     return <div>No post found</div>;
   }
+  if (loading) {
+    return <LoaderIntro />;
+  }
 
   return (
-    <div className="post-container">
-      <div className="article-container">
-        <div className="article__content">
-          {loading ? (
-            <div className="article-loader">
-              <Loader />
-            </div>
-          ) : (
-            <ReactMarkdown>{post.content}</ReactMarkdown>
-          )}
-        </div>
-      </div>
-    </div>
+    <main className="post-container">
+      <article className="post-article">
+        <RenderBlocks blocks={post.content} />
+      </article>
+    </main>
   );
 }
