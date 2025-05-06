@@ -2,9 +2,11 @@
 
 import { useParams } from "next/navigation";
 import { useFindPost } from "./hooks/useFindPost";
-import "./post.css";
-import { LoaderIntro } from "@/app/main/components/loader/LoaderIntro";
 
+import "./post.css";
+
+import { RenderBlocks } from "./componentes/RenderBlocks";
+import { LoaderIntro } from "@/app/main/components/loader/LoaderIntro";
 
 export default function PostToID() {
   let id_post = "1";
@@ -16,27 +18,18 @@ export default function PostToID() {
 
   const { post, loading } = useFindPost(id_post);
 
-
   if (!post) {
     return <div>No post found</div>;
   }
   if (loading) {
-    return <div>Loading...</div>;
-  }  
+    return <LoaderIntro />;
+  }
 
   return (
-    <div className="post-container">
-      <div className="article-container">
-        <div className="article__content">
-          {loading ? (
-            <LoaderIntro />
-          ) : (
-            <div className="post-content">
-              <EditorRenderer data={post.content} />
-            </div>
-          )}
-        </div>
-      </div>
-    </div>
+    <main className="post-container">
+      <article className="post-article">
+        <RenderBlocks blocks={post.content} />
+      </article>
+    </main>
   );
 }

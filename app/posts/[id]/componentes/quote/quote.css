@@ -1,0 +1,15 @@
+.post-content-quote {
+    font-family: var(--post-title-font);
+    font-style: italic;
+  
+    border-left: 4px solid rgb(43 113 183 / 0.5);
+    padding-left: 16px;
+    margin: 16px 0;
+  }
+  
+  .post-content-quote p {
+    font-size: var(--post-text-content-size-mobile);
+    font-family: var(--post-font-content);
+    font-style: italic;
+    line-height: 1.25rem;
+  }
