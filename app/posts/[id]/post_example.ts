@@ -143,9 +143,21 @@ export const content: PostBlock[] = [
 
 export const content2: PostBlock[] = [
   {
+    type: "header",
+    children: [
+      { type: "category", text: "Tecnología y componentes" },
+      { type: "date", text: "2 Enero, 2025" },
+      { type: "reading_time", text: "5 min de lectura" },
+    ],
+  },
+  {
     type: "heading",
     level: 1,
     text: "Michelin X® MULTI™ ENERGY™ Z Neumatico utilizado para la fabricación de autobuses",
+  },
+  {
+    type: "author",
+    text: "Autobuses de Colombia",
   },
   {
     type: "image",

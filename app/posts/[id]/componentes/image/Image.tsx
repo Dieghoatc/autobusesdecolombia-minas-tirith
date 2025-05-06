@@ -22,7 +22,7 @@ export function Image({ src, alt, overlay, photograper }: ImageProps) {
       </div>
       <div className="post-image_author">
         <figcaption className="post-image-author-text">
-          <span>Por: <span>{photograper}</span></span>
+          <span>{photograper}</span>
         </figcaption>
       </div>
     </section>

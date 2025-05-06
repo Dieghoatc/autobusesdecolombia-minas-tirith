@@ -2,7 +2,7 @@
     font-size: var(--h1-size-mobile);
     font-family: var(--post-title-font);
     font-weight: var(--post-title-weight);
-    margin: var(--margin-container-mobile);
+    margin: var(--margin-container-mobile) 0;
   
     @media (min-width: 768px) {
       font-size: var(--h1-size);
