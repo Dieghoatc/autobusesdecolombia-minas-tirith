@@ -15,8 +15,6 @@ const SKELETON_ITEM_COUNT = 5;
 export function Bento() {
   const { post, loading } = useGetPosts();
 
-  console.log("post", post);
-
   function orderHighestToLowestPosts(data: ApiPostsResponse[]) {
     return orderById(data, "post_id");
   }

@@ -1,11 +1,11 @@
 .post-author {
-    border-top: 0.5px solid #ccc;
-    border-bottom: 0.5px solid #ccc;
-    margin: var(--margin-container-mobile);
+    border-top: 0.5px solid rgb(43 113 183 / 0.5);
+    border-bottom: 0.5px solid rgb(43 113 183 / 0.5);
+    margin: var(--margin-container-mobile) 0;
     font-family: var(--post-font-content);
   
     @media (min-width: 768px) {
-      margin: var(--margin-container-desktop);
+      margin: var(--margin-container-desktop) 0;
     }
   }
   

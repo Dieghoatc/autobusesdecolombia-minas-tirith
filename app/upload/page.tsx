@@ -231,8 +231,7 @@ export default function Upload() {
         }
       );
 
-      const result = await response.json();
-      console.log("Respuesta del Servidor", result);
+      return await response.json();
     } catch (error) {
       console.error("Error al enviar la imagen", error);
     } finally {
