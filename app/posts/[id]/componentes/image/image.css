@@ -33,6 +33,11 @@
   font-family: var(--post-font-content);
 }
 
+.post-image-author-text {
+  margin-left: 24px;
+  font-size: var(--post-text-content-size-mobile);
+}
+
 .post-image-author-text:before {
   content: "";
   position: absolute;
@@ -44,8 +49,3 @@
   left: 0px;
 }
 
-
-
-.post-image-author-text {
-  margin-left: 24px;
-}
