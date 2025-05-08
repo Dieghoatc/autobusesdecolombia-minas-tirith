@@ -3,23 +3,12 @@
     border-bottom: 0.5px solid rgb(43 113 183 / 0.5);
     margin: var(--margin-container-mobile) 0;
     font-family: var(--post-font-content);
-  
+    padding: 8px 0;
     @media (min-width: 768px) {
       margin: var(--margin-container-desktop) 0;
     }
   }
-  
-  .post-author_text {
-    margin: var(--margin-container-mobile);
-    font-size: var(--post-text-content-size-mobile);
-    
-  
-    @media (min-width: 768px) {
-      margin: var(--margin-container-desktop);
-      font-size: var(--post-text-content-size);
-    }
-  }
-  
+
   .post-author_text span {
     font-weight: 700;
     color: rgb(155 135 245 / 0.9);
