@@ -15,7 +15,7 @@
   font-size: 17px;
 
   @media (min-width: 768px) {
-    grid-column: span 4;
+    grid-column: span 6;
   }
 }
 
@@ -24,18 +24,25 @@
   font-size: 13px;
 
   @media (min-width: 768px) {
+    grid-column: span 3;
     font-size: 17px;
   }
 }
 
 .magazine-skeleton__bento:first-child {
   grid-column: span 2;
+
   @media (min-width: 768px) {
-    grid-column: span 4;
+    grid-column: span 6;
   }
 }
 
 .magazine-skeleton__bento {
   grid-column: span 2;
   background-color: #000;
+
+  @media (min-width: 768px) {
+    grid-column: span 3;
+    font-size: 17px;
+  }
 }
