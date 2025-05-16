@@ -1,33 +1,79 @@
 .post-content-h1 {
-    font-size: var(--h1-size-mobile);
-    font-family: var(--post-title-font);
-    font-weight: var(--post-title-weight);
-    margin: var(--margin-container-mobile) 0;
-  
-    @media (min-width: 768px) {
-      font-size: var(--h1-size);
-      line-height: 1;
-    }
+  font-size: 2.5rem;
+  font-family: var(--post-title-font);
+  font-weight: 700;
+  line-height: 1.2;
+  color: #111827;
+  margin: 1.5rem 0;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid #2563eb;
+  position: relative;
+
+  @media (min-width: 768px) {
+    font-size: 3rem;
+    margin: 2rem 0;
   }
-  
-  .post-content-h2 {
-    font-family: var(--post-title-font);
-    font-size: var(--h2-size-mobile);
-    font-weight: 700;
-    margin: 8px 0;
-  
-    @media (min-width: 768px) {
-      font-size: var(--h2-size);
-    }
+
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(90deg, #2563eb 0%, #3b82f6 100%);
+    transition: width 0.3s ease;
   }
-  
-  .post-content-h3 {
-    font-family: var(--post-title-font);
-    font-size: var(--h3-size-mobile);
-    font-weight: 700;
-    margin: 8px 0;
-  
-    @media (min-width: 768px) {
-      font-size: var(--h3-size);
-    }
+
+  &:hover::after {
+    width: 100%;
   }
+}
+
+.post-content-h2 {
+  font-family: var(--post-title-font);
+  font-size: 2rem;
+  font-weight: 600;
+  color: #1f2937;
+  margin: 1.5rem 0;
+  line-height: 1.4;
+  position: relative;
+  padding-left: 1rem;
+
+  @media (min-width: 768px) {
+    font-size: 2.25rem;
+  }
+
+  &::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 4px;
+    height: 1.5rem;
+    background: linear-gradient(180deg, #2563eb 0%, #3b82f6 100%);
+  }
+}
+
+.post-content-h3 {
+  font-family: var(--post-title-font);
+  font-size: 1.75rem;
+  font-weight: 600;
+  color: #1f2937;
+  margin: 1.25rem 0;
+  line-height: 1.4;
+  position: relative;
+  padding: 0.5rem 1rem;
+  background: linear-gradient(135deg, #f3f4f6 0%, #e5e7eb 100%);
+  border-radius: 0.5rem;
+  transition: transform 0.3s ease;
+
+  @media (min-width: 768px) {
+    font-size: 1.875rem;
+  }
+
+  &:hover {
+    transform: translateY(-2px);
+  }
+}
