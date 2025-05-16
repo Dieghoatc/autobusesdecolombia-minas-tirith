@@ -13,13 +13,13 @@ import "./bento.css";
 const SKELETON_ITEM_COUNT = 5;
 
 export function Bento() {
-  const { post, loading } = useGetPosts();
+  const { posts, loading } = useGetPosts();
 
   function orderHighestToLowestPosts(data: ApiPostsResponse[]) {
     return orderById(data, "post_id");
   }
 
-  const sortedData = orderHighestToLowestPosts(post as ApiPostsResponse[]);
+  const sortedData = orderHighestToLowestPosts(posts as ApiPostsResponse[]);
   const skeletonItems = generateArray(SKELETON_ITEM_COUNT);
 
   return (
