@@ -6,7 +6,7 @@ import usePostStore from "../store/usePostStore";
 import { orderById } from "../utils/orderById";
 
 export function useGetPosts() {
-  const [post, setPost] = useState<ApiPostsResponse[]>([]);
+  const [posts, setPost] = useState<ApiPostsResponse[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
 
@@ -40,5 +40,5 @@ export function useGetPosts() {
 
   }, [setPostsStore, setLoadingPostsStore]);
 
-  return { post, loading, error };
+  return { posts, loading, error };
 }

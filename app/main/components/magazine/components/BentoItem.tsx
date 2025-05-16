@@ -3,15 +3,14 @@ import "./bentoItem.css";
 
 interface BentoItemProps {
   post: ApiPostsResponse;
-  style: string;
 }
 
-export function BentoItem({ post, style }: BentoItemProps) {
+export function BentoItem({ post }: BentoItemProps) {
   
   const { title, image_url } = post;
 
   return (
-    <article className={`bento-item ${style}`}>
+    <article className={`bento-item `}>
       <img src={image_url} alt={title} className="bento-item__image" />
       <div className="bento-item__overlay">
         <div className="bento-item__content">

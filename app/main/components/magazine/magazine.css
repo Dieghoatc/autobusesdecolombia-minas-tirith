@@ -7,3 +7,10 @@
   }
 }
 
+.magazine__more {
+  margin-top: 24px;
+  display: flex;
+  justify-content: end;
+}
+
+
