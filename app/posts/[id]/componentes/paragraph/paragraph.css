@@ -1,11 +1,15 @@
 .post-content-principal-p {
   font-family: var(--post-font-content);
   font-weight: 500;
-  margin-block: lh;
+  line-height: 1.625;
+  margin: 1.5rem 0;
+  font-size: 1.125rem;
 }
 
 .post-content-p {
   font-family: var(--post-font-content);
   line-height: 1.625;
-  margin-block: lh;
+  margin: 1rem 0;
+  font-size: 1rem;
 }
+
