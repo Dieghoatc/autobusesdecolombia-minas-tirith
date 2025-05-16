@@ -10,7 +10,7 @@ import { useGetPosts } from "@/app/hooks/useGetPosts";
 
 import "./bento.css";
 
-const SKELETON_ITEM_COUNT = 5;
+const SKELETON_ITEM_COUNT = 3;
 
 export function Bento() {
   const { posts, loading } = useGetPosts();
@@ -28,16 +28,16 @@ export function Bento() {
         ? skeletonItems.map((item: number) => (
             <Skeleton key={item} className="magazine-skeleton__bento" />
           ))
-        : sortedData.map((post) => {
+        : sortedData.slice(0, 3).map((post) => {
             const { post_id, slug } = post;
             return (
               <div className="magazine-bento__item" key={post.post_id}>
                 <Link href={`/posts/${post_id}_${slug}`}>
-                  <BentoItem post={post} style="" />
+                  <BentoItem post={post} />
                 </Link>
               </div>
             );
-          })}
+          })}    
     </div>
   );
 }
