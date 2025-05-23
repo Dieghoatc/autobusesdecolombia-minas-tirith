@@ -27,27 +27,26 @@ export function Card({ photo }: CardProps) {
     country,
   } = photo;
 
-  const plateUpperCase = plate.toUpperCase();
-
   const [isModalOpen, setIsModalOpen] = useState(false);
-
+  
+  
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => setIsModalOpen(false);
-
+  
+  const plateUpperCase = plate.toUpperCase();
+  
   return (
     <div className="card-gallery">
       <figure className="card-gallery_image" onClick={openModal}>
         <picture>
-          <source type="image/webp" srcSet={url} media="min-width: 1200px" />
-          <source type="image/webp" srcSet={url} media="min-width: 768px" />
+          <source type="image/webp" srcSet={url} media="(min-width: 1200px)" />
+          <source type="image/webp" srcSet={url} media="(min-width: 768px)" />
           <img
             src={url}
             role="presentation"
             loading="lazy"
-            title={`Fotografía de la empresa ${company} numero ${serial}`}
-            alt={`autobus de la empresa ${company} con serial ${
-              serial === "n/a" ? "" : serial
-            }`}
+            title={`Fotografía de la empresa ${company} ${serial !== "n/a" ? `numero ${serial}` : ""}`}
+            alt={`autobus de la empresa ${company} ${serial !== "n/a" ? `numero ${serial}` : ""}`}
             decoding="async"
           />
         </picture>
@@ -55,13 +54,13 @@ export function Card({ photo }: CardProps) {
       <div className="card-gallery_title">
         <h2>
           {formatString(company)}
-          {serial === "n/a" ? "" : ` - ${serial}`}
+          {serial && serial !== "n/a" ? ` - ${serial}` : ""}
         </h2>
       </div>
 
       <Modal onClose={closeModal} isOpen={isModalOpen}>
         <div>
-          <div className="modal-photopreview__image">
+          <div className="modal-photopreview_image">
             <Link
               href={`/image/${photo.photo_id}/${replaceStringSpaces(
                 photo.company
@@ -72,37 +71,35 @@ export function Card({ photo }: CardProps) {
                   <source
                     type="image/webp"
                     srcSet={url}
-                    media="min-width: 1200px"
+                    media="(min-width: 1200px)"
                   />
                   <source
                     type="image/webp"
                     srcSet={url}
-                    media="min-width: 768px"
+                    media="(min-width: 768px)"
                   />
                   <img
                     src={url}
                     loading="lazy"
-                    role="pesentation"
-                    title={`Fotografía de la empresa ${company} numero ${serial}`}
-                    alt={`autobus de la empresa ${company} con serial ${
-                      serial === "n/a" ? " " : serial
-                    }`}
+                    role="presentation"
+                    title={`Fotografía de la empresa ${company} ${serial && serial !== "n/a" ? `numero ${serial}` : ""}`}
+                    alt={`autobus de la empresa ${company} ${serial && serial !== "n/a" ? `numero ${serial}` : ""}`}
                     decoding="async"
                   />
                 </picture>
               </figure>
             </Link>
           </div>
-          <div className="modal-photopreview__content">
-            <div className="modal-photopreview__title">
+          <div className="modal-photopreview_content">
+            <div className="modal-photopreview_title">
               <h2>
                 {formatString(company)}
-                {serial === "n/a" ? "" : ` - ${serial}`}
+                {serial && serial !== "n/a" ? ` - ${serial}` : ""}
               </h2>
             </div>
-            <div className="modal-photopreview__details">
+            <div className="modal-photopreview_details">
               <div>
-                {!bodywork || bodywork === "n/a" ? null : (
+                {bodywork && bodywork !== "n/a" && (
                   <p>
                     <span className="modal-photopreview_label">
                       Carroceria:{" "}
@@ -110,13 +107,13 @@ export function Card({ photo }: CardProps) {
                     {formatString(bodywork)}
                   </p>
                 )}
-                {!chassis || chassis === "n/a" || null ? null : (
+                {chassis && chassis !== "n/a" && (
                   <p>
                     <span className="modal-photopreview_label">Chasis: </span>
                     {formatString(chassis)}
                   </p>
                 )}
-                {!plate || plate === "n/a" || null ? null : (
+                {plate && plate !== "n/a" && (
                   <p>
                     <span className="modal-photopreview_label">Placa: </span>
                     {plateUpperCase}
@@ -134,7 +131,7 @@ export function Card({ photo }: CardProps) {
                 </p>
               </div>
               <div className="modal-photopreview_company-service">
-                {!service || service === "n/a" || null ? null : (
+                {service && service !== "n/a" && (
                   <p>&quot;{formatString(service)}&quot;</p>
                 )}
               </div>
