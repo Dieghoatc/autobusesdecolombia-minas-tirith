@@ -36,7 +36,7 @@ export function Card({ photo }: CardProps) {
 
   return (
     <div className="card-gallery">
-      <figure className="card-gallery__image" onClick={openModal}>
+      <figure className="card-gallery_image" onClick={openModal}>
         <picture>
           <source type="image/webp" srcSet={url} media="min-width: 1200px" />
           <source type="image/webp" srcSet={url} media="min-width: 768px" />
@@ -52,12 +52,11 @@ export function Card({ photo }: CardProps) {
           />
         </picture>
       </figure>
-      <div className="card-gallery__title">
+      <div className="card-gallery_title">
         <h2>
           {formatString(company)}
           {serial === "n/a" ? "" : ` - ${serial}`}
         </h2>
-        <p>{formatString(author)}</p>
       </div>
 
       <Modal onClose={closeModal} isOpen={isModalOpen}>
