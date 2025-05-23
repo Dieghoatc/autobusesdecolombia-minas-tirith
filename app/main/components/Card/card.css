@@ -25,12 +25,17 @@
 
 .card-gallery_title {
   position: absolute;
-  bottom: 0;
   padding: 4px;
+  bottom: 0;
   width: 100%;
   font-weight: 700;
   font-size: 0.8rem;
   background: linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.5));
+
+  @media (min-width: 768px) {
+    padding: 8px;
+    font-size: 1rem;
+  }
 }
 
 .modal-photopreview__image {
