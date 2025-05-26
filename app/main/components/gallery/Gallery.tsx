@@ -7,8 +7,8 @@ import SkeletonComponent from "../skeleton/Skeleton";
 import TabsCategories from "./components/tabs/TabsCategories";
 import SearchGallery from "./components/search/SearchGallery";
 
-import { Card } from "../card/Card";
 import "./gallery.css";
+import { Card } from "../card";
 
 interface CategoryList {
   key: string;
