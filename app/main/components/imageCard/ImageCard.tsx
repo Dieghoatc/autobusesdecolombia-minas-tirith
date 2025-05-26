@@ -1,11 +1,11 @@
 "use client";
 
-import "./card.css";
-import Modal from "../modal/Modal";
 import { useState } from "react";
+import Link from "next/link";
 import { ApiPhotosResponse } from "@/services/types/photo.type";
 import { formatString } from "@/lib/helpers/formatString";
-import Link from "next/link";
+import Modal from "../modal/Modal";
+import "./imageCard.module.css";
 
 import { replaceStringSpaces } from "@/lib/helpers/replaceStringSpaces";
 
@@ -28,13 +28,12 @@ export function Card({ photo }: CardProps) {
   } = photo;
 
   const [isModalOpen, setIsModalOpen] = useState(false);
-  
-  
+
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => setIsModalOpen(false);
-  
+
   const plateUpperCase = plate.toUpperCase();
-  
+
   return (
     <div className="card-gallery">
       <figure className="card-gallery_image" onClick={openModal}>
@@ -45,8 +44,12 @@ export function Card({ photo }: CardProps) {
             src={url}
             role="presentation"
             loading="lazy"
-            title={`Fotografía de la empresa ${company} ${serial !== "n/a" ? `numero ${serial}` : ""}`}
-            alt={`autobus de la empresa ${company} ${serial !== "n/a" ? `numero ${serial}` : ""}`}
+            title={`Fotografía de la empresa ${company} ${
+              serial !== "n/a" ? `numero ${serial}` : ""
+            }`}
+            alt={`autobus de la empresa ${company} ${
+              serial !== "n/a" ? `numero ${serial}` : ""
+            }`}
             decoding="async"
           />
         </picture>
@@ -82,8 +85,12 @@ export function Card({ photo }: CardProps) {
                     src={url}
                     loading="lazy"
                     role="presentation"
-                    title={`Fotografía de la empresa ${company} ${serial && serial !== "n/a" ? `numero ${serial}` : ""}`}
-                    alt={`autobus de la empresa ${company} ${serial && serial !== "n/a" ? `numero ${serial}` : ""}`}
+                    title={`Fotografía de la empresa ${company} ${
+                      serial && serial !== "n/a" ? `numero ${serial}` : ""
+                    }`}
+                    alt={`autobus de la empresa ${company} ${
+                      serial && serial !== "n/a" ? `numero ${serial}` : ""
+                    }`}
                     decoding="async"
                   />
                 </picture>

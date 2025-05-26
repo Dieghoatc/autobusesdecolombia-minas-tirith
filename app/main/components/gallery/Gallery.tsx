@@ -8,7 +8,7 @@ import TabsCategories from "./components/tabs/TabsCategories";
 import SearchGallery from "./components/search/SearchGallery";
 
 import "./gallery.css";
-import { Card } from "@/app/main/components/card";
+import { Card } from "@/app/main/components/imageCard";
 
 interface CategoryList {
   key: string;
