@@ -2,9 +2,9 @@ import { useState, useEffect } from "react";
 import { SliderItem } from "./SliderItem";
 
 import "./slider.css";
-import usePhotosStore from "@/app/store/usePhotosStore";
+import usePhotosStore from "@/lib/store/usePhotosStore";
 import { LoaderIntro } from "../../loader/LoaderIntro";
-import usePostStore from "@/app/store/usePostStore";
+import usePostStore from "@/lib/store/usePostStore";
 
 export function Slider() {
   const [index, setIndex] = useState(0);

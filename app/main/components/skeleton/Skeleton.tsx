@@ -1,5 +1,5 @@
-import { Skeleton } from "@/app/components/ui/skeleton";
-import { generateArray } from "../../../utils";  
+import { Skeleton } from "@/components/ui/skeleton";
+import { generateArray } from "@/lib/helpers";  
 import "./skeleton.css";
 
 const SKELETON_ITEM_COUNT = 30;

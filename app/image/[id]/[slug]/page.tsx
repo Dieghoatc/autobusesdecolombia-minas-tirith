@@ -14,7 +14,7 @@ import plate from "../../../assets/icons/plate.png";
 import camera from "../../../assets/icons/camera.png";
 import location from "../../../assets/icons/location.png";
 import Metadata from "@/app/main/components/metadata/Metadata";
-import { formatString } from "@/app/utils";
+import { formatString } from "@/lib/helpers/formatString";
 import { LoaderIntro } from "@/app/main/components/loader/LoaderIntro";
 
 export default function Imageview() {

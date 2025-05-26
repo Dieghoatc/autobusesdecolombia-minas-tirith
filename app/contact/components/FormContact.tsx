@@ -5,7 +5,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 
-import { Button } from "@/app/components/ui/button";
+import { Button } from "@/components/ui/button";
 import {
   Form,
   FormControl,
@@ -14,14 +14,14 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "@/app/components/ui/form";
-import { Input } from "@/app/components/ui/input";
-import { Textarea } from "@/app/components/ui/textarea";
+} from "@/components/ui/form";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
 import {
-  autobusesApiEmailMessage,
+  emailMutation,
   PostMessage,
-} from "@/app/api/autobusesApi.email_message";
-import { useToast } from "@/app/hooks/use-toast";
+} from "@/services/api/email.mutation";
+import { useToast } from "@/lib/hooks/use-toast";
 
 const formSchema = z.object({
   email: z.string().email({
@@ -67,7 +67,7 @@ export function FormContact() {
   }
 
   useEffect(() => {
-    autobusesApiEmailMessage(message);
+    emailMutation(message);
   }, [message]);
 
   return (

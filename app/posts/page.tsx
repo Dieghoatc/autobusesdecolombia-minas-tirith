@@ -1,7 +1,7 @@
 "use client";
 
 import styles from "./posts.module.css";
-import { useGetPosts } from "../hooks/useGetPosts";
+import { useGetPosts } from "../../lib/hooks/useGetPosts";
 import Link from "next/link";
 
 export default function Posts() {

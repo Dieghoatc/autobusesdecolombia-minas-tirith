@@ -1,13 +1,13 @@
 "use client";
 
 import "./card.css";
-import Modal from "../Modal/Modal";
+import Modal from "../modal/Modal";
 import { useState } from "react";
-import { ApiPhotosResponse } from "@/app/api/dto/photo.dto";
-import { formatString } from "@/app/utils";
+import { ApiPhotosResponse } from "@/services/types/photo.type";
+import { formatString } from "@/lib/helpers/formatString";
 import Link from "next/link";
 
-import { replaceStringSpaces } from "@/app/utils/replaceStringSpaces";
+import { replaceStringSpaces } from "@/lib/helpers/replaceStringSpaces";
 
 interface CardProps {
   photo: ApiPhotosResponse;

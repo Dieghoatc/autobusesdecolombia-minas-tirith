@@ -2,11 +2,11 @@ import type { Metadata } from "next";
 import "@fontsource/mitr";
 import "./globals.css";
 import { Analytics } from "@vercel/analytics/react";
-import Footer from "./components/footer/Footer";
-import { Toaster } from "@/app/components/ui/toaster";
-import Header from "./components/header/Header";
-import abcBus from "./assets/autobusesdecolombia_bus.png";
-import Adsense from "./components/adsense/Adsense";
+import Footer from "../components/footer/Footer";
+import { Toaster } from "@/components/ui/toaster";
+import Header from "../components/header/Header";
+import abcBus from "@/assets/autobusesdecolombia_bus.png";
+import Adsense from "../components/adsense/Adsense";
 
 const GOOGLE_ADSENSE_CLIENT_ID =
   process.env.NEXT_PUBLIC_GOOGLE_ADSENSE_CLIENT_ID || "";

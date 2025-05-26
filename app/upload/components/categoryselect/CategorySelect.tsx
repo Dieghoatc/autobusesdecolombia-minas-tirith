@@ -5,7 +5,7 @@ import {
   SelectLabel,
   SelectTrigger,
   SelectValue,
-} from "@/app/components/ui/select";
+} from "@/components/ui/select";
 
 import CategorySelectItem from "./CategorySelectItem";
 import { Label } from "@radix-ui/react-label";
