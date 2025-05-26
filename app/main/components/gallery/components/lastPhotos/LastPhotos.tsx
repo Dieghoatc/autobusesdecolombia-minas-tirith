@@ -1,4 +1,4 @@
-import { Card } from "../../../imageCard/ImageCard"
+import { Card } from "../imageCard/ImageCard"
 import { ApiPhotosResponse } from "@/services/types/photo.type"
 
 interface LastPhotosProps {

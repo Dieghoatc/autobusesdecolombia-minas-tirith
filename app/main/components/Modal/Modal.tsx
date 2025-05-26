@@ -7,7 +7,7 @@ interface ModalProps {
   isOpen: boolean;
 }
 
-export default function Modal({ children, onClose, isOpen }: ModalProps) {
+export function Modal({ children, onClose, isOpen }: ModalProps) {
 
   useEffect(() => {
 

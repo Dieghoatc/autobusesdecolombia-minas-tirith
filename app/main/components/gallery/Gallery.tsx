@@ -8,7 +8,7 @@ import TabsCategories from "./components/tabs/TabsCategories";
 import SearchGallery from "./components/search/SearchGallery";
 
 import "./gallery.css";
-import { Card } from "@/app/main/components/imageCard";
+import { ImageCard } from "@/app/main/components/gallery/components/imageCard";
 
 interface CategoryList {
   key: string;
@@ -71,7 +71,7 @@ export function Gallery() {
       </div>
       <div className="cards-container">
         {filteredData.map((photo) => (
-          <Card key={photo.photo_id} photo={photo} />
+          <ImageCard key={photo.photo_id} photo={photo} />
         ))}
       </div>
     </div>
