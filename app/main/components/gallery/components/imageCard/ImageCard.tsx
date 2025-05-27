@@ -5,7 +5,7 @@ import { ApiPhotosResponse } from "@/services/types/photo.type";
 import { formatString } from "@/lib/helpers/formatString";
 
 import styles from "./ImageCard.module.css";
-import { Modal } from "../../../modal/Modal";
+import { Modal } from "../modal";
 import { ModalChildren } from "../modalChildren";
 
 interface ImageCardProps {
