@@ -3,10 +3,10 @@
 import { useState } from "react";
 import { ApiPhotosResponse } from "@/services/types/photo.type";
 import { formatString } from "@/lib/helpers/formatString";
-import { Modal } from "@/app/main/components/modal";
-import { ModalChildren } from "@/app/main/components/gallery/components/modalChildren";
 
 import styles from "./ImageCard.module.css";
+import { Modal } from "../../../modal";
+import { ModalChildren } from "../modalChildren";
 
 interface ImageCardProps {
   photo: ApiPhotosResponse;
