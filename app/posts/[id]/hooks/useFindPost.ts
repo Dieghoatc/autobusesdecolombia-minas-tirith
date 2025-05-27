@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 
-import { autobusesApiFindOnePost } from "@/app/api/autobusesApi.find_one_post";
-import { ApiPostsResponse } from "@/app/api/dto/post.dto";
+import { postByIdQuery } from "@/services/api/postById.query";
+import { ApiPostsResponse } from "@/services/types/post.type";
 
 export function useFindPost(id: string) {
   const [post, setPost] = useState<ApiPostsResponse>({} as ApiPostsResponse);
@@ -13,7 +13,7 @@ export function useFindPost(id: string) {
       setLoading(true);
       setError("");
       try {
-        const result = await autobusesApiFindOnePost(id);
+        const result = await postByIdQuery(id);
         setPost(result as ApiPostsResponse);
       } catch (error) {
         setError(`Error to fetch data: ${error}`);

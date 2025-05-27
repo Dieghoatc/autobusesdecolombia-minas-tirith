@@ -1,4 +1,4 @@
-import { formatString } from "@/app/utils";
+import { formatString } from "@/lib/helpers/formatString";
 import "./imagedetails.css";
 
 interface ImageDetailsProps {

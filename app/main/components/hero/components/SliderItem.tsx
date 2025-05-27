@@ -1,9 +1,9 @@
 import Image from "next/image";
-import location from "../../../../assets/icons/location.png";
-import camera from "../../../../assets/icons/camera.png";
+import location from "@/assets/icons/location.png";
+import camera from "@/assets/icons/camera.png";
 
 import "./sliderItem.css";
-import { formatString } from "@/app/utils";
+import { formatString } from "@/lib/helpers/formatString";
 
 interface SliderItemProps {
   index: number;

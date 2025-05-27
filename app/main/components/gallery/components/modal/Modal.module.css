@@ -1,0 +1,48 @@
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 30;
+}
+
+.modal_container {
+  box-shadow: 0 0 0 0.5px #585858;
+  border-radius: 8px;
+  background-color: #000;
+  overflow: auto;  
+  scrollbar-color: #585858 #000;
+
+  @media (min-width: 1024px) {
+    padding: 16px;
+    margin: 0 8px;
+    width: auto;
+    height: 100%;
+    margin-top: 24px;
+    margin-left: 96px;
+    margin-right: 96px;
+  }
+}
+
+.button {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+
+  @media (min-width: 435px) {
+    top: 30px;
+    right: 40px;
+  }
+}
+
+.close_button {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  border: 1px solid #fff;
+}

@@ -1,7 +1,7 @@
 import { ChangeEvent } from "react"
 
-import { Input } from "@/app/components/ui/input"
-import { Label } from "@/app/components/ui/label"
+import { Input } from "@/components/ui/input"
+import { Label } from "@/components/ui/label"
 
 interface InputFileProps {
     handleChange: (event: ChangeEvent<HTMLInputElement>) => void;

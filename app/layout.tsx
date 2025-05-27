@@ -2,11 +2,14 @@ import type { Metadata } from "next";
 import "@fontsource/mitr";
 import "./globals.css";
 import { Analytics } from "@vercel/analytics/react";
-import Footer from "./components/footer/Footer";
-import { Toaster } from "@/app/components/ui/toaster";
-import Header from "./components/header/Header";
-import abcBus from "./assets/autobusesdecolombia_bus.png";
-import Script from "next/script";
+import Footer from "../components/footer/Footer";
+import { Toaster } from "@/components/ui/toaster";
+import Header from "../components/header/Header";
+import abcBus from "@/assets/autobusesdecolombia_bus.png";
+import Adsense from "../components/adsense/Adsense";
+
+const GOOGLE_ADSENSE_CLIENT_ID =
+  process.env.NEXT_PUBLIC_GOOGLE_ADSENSE_CLIENT_ID || "";
 
 export const metadata: Metadata = {
   title: "Autobuses de Colombia - ¡Mucho más para ver!",
@@ -18,7 +21,7 @@ export const metadata: Metadata = {
   publisher: "Autobuses de Colombia",
   robots: "index, follow",
   other: {
-    "google-adsense-account": "ca-pub-1070802324735715",
+    "google-adsense-account": GOOGLE_ADSENSE_CLIENT_ID,
   },
   openGraph: {
     type: "website",
@@ -35,9 +38,6 @@ export const metadata: Metadata = {
   },
 };
 
-const GOOGLE_ADSENSE_CLIENT_ID =
-  process.env.NEXT_PUBLIC_GOOGLE_ADSENSE_CLIENT_ID || "ca-pub-1070802324735715";
-
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -46,12 +46,7 @@ export default function RootLayout({
   return (
     <html lang="es">
       <head>
-        <Script
-          async
-          src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${GOOGLE_ADSENSE_CLIENT_ID}`}
-          crossOrigin="anonymous"
-          strategy="beforeInteractive"
-        />
+        <Adsense clientId={GOOGLE_ADSENSE_CLIENT_ID} />
       </head>
       <body>
         <Header />

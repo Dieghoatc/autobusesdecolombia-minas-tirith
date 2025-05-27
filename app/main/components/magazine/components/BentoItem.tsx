@@ -1,4 +1,4 @@
-import { ApiPostsResponse } from "@/app/api/dto/post.dto";
+import { ApiPostsResponse } from "@/services/types/post.type";
 import "./bentoItem.css";
 
 interface BentoItemProps {

@@ -2,14 +2,14 @@
 import { useState, useEffect, useRef } from "react";
 
 import "./page.css";
-import { Button } from "@/app/components/ui/button";
-import abcLogo from "../assets/abclogo_1.png";
+import { Button } from "@/components/ui/button";
+import abcLogo from "@/assets/abclogo_1.png";
 
-import { dataURLToBlob, deleteLastSpace } from "@/app/utils";
+import { dataURLToBlob, deleteLastSpace } from "@/lib/helpers";
 import CategorySelect from "./components/categoryselect/CategorySelect";
 import InputCustom from "./components/input/InputCustom";
 import { InputFile } from "./components/input/InputFile";
-import { CheckboxCustom } from "@/app/api/ui/CheckboxCustom";
+import { CheckboxCustom } from "@/services/api/ui/CheckboxCustom";
 interface Canvas {
   img: HTMLImageElement;
   offsetX: number;

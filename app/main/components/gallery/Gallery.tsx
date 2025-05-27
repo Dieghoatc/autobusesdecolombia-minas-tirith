@@ -1,14 +1,14 @@
 import { useState, useMemo } from "react";
-import { useGetPhotos } from "@/app/hooks/useGetPhotos";
+import { useGetPhotos } from "@/lib/hooks/useGetPhotos";
 
-import { orderById } from "@/app/utils/orderById";
-
-import "./gallery.css";
+import { orderById } from "@/lib/helpers/orderById";
 
 import SkeletonComponent from "../skeleton/Skeleton";
-import TabsCategories from "./components/TabsCategories";
-import SearchGallery from "./components/SearchGallery";
-import { Card} from "../Card/Card";
+import TabsCategories from "./components/tabs/TabsCategories";
+import SearchGallery from "./components/search/SearchGallery";
+
+import "./gallery.css";
+import { ImageCard } from "@/app/main/components/gallery/components/imageCard";
 
 interface CategoryList {
   key: string;
@@ -27,9 +27,18 @@ export function Gallery() {
   const [searchPhoto, setSearchPhoto] = useState("");
 
   const searchPhotosMemo = useMemo(
-    () => (photos || []).filter((photo) => photo.serial.includes(searchPhoto) || photo.company.includes(searchPhoto) || photo.bodywork.includes(searchPhoto) || photo.chassis.includes(searchPhoto) || photo.author.includes(searchPhoto)),
+    () =>
+      (photos || []).filter(
+        (photo) =>
+          photo.serial.includes(searchPhoto) ||
+          photo.company.includes(searchPhoto) ||
+          photo.bodywork.includes(searchPhoto) ||
+          photo.chassis.includes(searchPhoto) ||
+          photo.author.includes(searchPhoto)
+      ),
     [photos, searchPhoto]
   );
+
   const sortedData = useMemo(
     () => orderById(searchPhotosMemo, "photo_id"),
     [searchPhotosMemo]
@@ -62,7 +71,7 @@ export function Gallery() {
       </div>
       <div className="cards-container">
         {filteredData.map((photo) => (
-          <Card key={photo.photo_id} photo={photo} />
+          <ImageCard key={photo.photo_id} photo={photo} />
         ))}
       </div>
     </div>

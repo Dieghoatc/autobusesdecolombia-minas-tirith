@@ -1,12 +1,12 @@
 import Link from "next/link";
 import { BentoItem } from "./BentoItem";
 
-import { ApiPostsResponse } from "@/app/api/dto/post.dto";
-import { orderById } from "@/app/utils/orderById";
+import { ApiPostsResponse } from "@/services/types/post.type";
+import { orderById } from "@/lib/helpers/orderById";
 
-import { Skeleton } from "@/app/components/ui/skeleton";
-import { generateArray } from "../../../../utils";
-import { useGetPosts } from "@/app/hooks/useGetPosts";
+import { Skeleton } from "@/components/ui/skeleton";
+import { generateArray } from "@/lib/helpers/generateArray";
+import { useGetPosts } from "@/lib/hooks/useGetPosts";
 
 import "./bento.css";
 
