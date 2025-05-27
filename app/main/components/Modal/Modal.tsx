@@ -1,5 +1,8 @@
+'use client'
+
 import { useEffect } from "react";
-import "./modal.css";
+
+import styles from "./Modal.module.css";
 
 interface ModalProps {
   children: React.ReactNode;
@@ -24,20 +27,20 @@ export function Modal({ children, onClose, isOpen }: ModalProps) {
 
   const handleOverlayClick = (e: React.MouseEvent<HTMLDivElement>) => {
     if (e.target === e.currentTarget) {
-      onClose(); // Cerrar modal al hacer clic fuera
+      onClose();
     }
   };
 
   if (!isOpen) return null;
 
   return (
-    <div className="overlay" onClick={handleOverlayClick}>
-      <div className="close-button-container">
-        <button className="close-button" onClick={onClose}>
+    <div className={styles.overlay} onClick={handleOverlayClick}>
+      <div className={styles.button}>
+        <button className={styles.close_button} onClick={onClose}>
           x
         </button>
       </div>
-      <div className="modal">
+      <div className={styles.modal_container}>
         <div>{children}</div>
       </div>
     </div>
