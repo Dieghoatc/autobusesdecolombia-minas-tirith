@@ -19,3 +19,5 @@ export function middleware(request: NextRequest) {
 export const config = {
   matcher: ["/upload", "/upload/:path*"],
 };
+
+export const runtime = 'nodejs';  
