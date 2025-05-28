@@ -40,12 +40,12 @@ export default function Login() {
   async function onSubmit(values: z.infer<typeof formSchema>) {
     const response = await fetch(`${API_URL}/users/login`, {
       method: "POST",
-      credentials: "include",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(values),
       redirect: "manual",
+      body: JSON.stringify(values),
+      credentials: "include",
     });
 
     if (response.ok && response.status === 200) {
