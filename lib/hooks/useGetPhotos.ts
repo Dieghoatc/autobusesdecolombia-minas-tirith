@@ -1,3 +1,5 @@
+"use client";
+
 import { useState, useEffect } from "react";
 import { photosQuery } from "@/services/api/photos.query";
 import { ApiPhotosResponse } from "@/services/types/photo.type";

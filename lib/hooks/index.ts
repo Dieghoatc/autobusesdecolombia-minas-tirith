@@ -1,2 +1,3 @@
 export * from "./useGetPhotos";
-export * from "./usePhotosById"
+export * from "./useCategoryById";
+export * from "./usePhotoById";

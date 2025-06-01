@@ -2,7 +2,7 @@ import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 
-import { usePhotosById } from "@/lib/hooks/usePhotosById";
+import { useCategoryById } from "@/lib/hooks/useCategoryById";
 import { ApiPhotosResponse } from "@/services/types/photo.type";
 
 import { Modal, ModalChildren } from "@/components/modal";
@@ -33,7 +33,7 @@ export function CategoryList({ category }: CategoryListProps) {
 
   const selectedCategory = categoriesList.find((cat) => cat.key === category);
 
-  const { photosById, loading } = usePhotosById({
+  const { photosById, loading } = useCategoryById({
     id: selectedCategory?.id.toString() || "",
   });
 

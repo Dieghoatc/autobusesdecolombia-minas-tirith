@@ -1,7 +1,7 @@
 "use client";
 
 import { useParams } from "next/navigation";
-import { usePhotosById } from "@/lib/hooks";
+import { useCategoryById } from "@/lib/hooks";
 import { GalleryList } from "@/components/galleryList";
 import { LoaderIntro } from "@/app/main/components/loader/LoaderIntro";
 
@@ -21,7 +21,7 @@ export default function CategoryGallery() {
     (cat) => cat.key === id_category
   );
 
-  const { photosById, loading } = usePhotosById({
+  const { photosById, loading } = useCategoryById({
     id: selectedCategory?.id.toString() || "",
   });
 

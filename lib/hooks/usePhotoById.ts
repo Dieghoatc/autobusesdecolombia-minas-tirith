@@ -2,12 +2,11 @@ import { useEffect, useState } from "react";
 import { ApiPhotosResponse } from "@/services/types/photo.type";
 import { photoByIdQuery } from "@/services/api/photoById.query";
 
-interface UsePhotosByIdProps {
-  id: string;
-}
+export function usePhotoById(id: string) {
 
-export function usePhotosById({ id }: UsePhotosByIdProps) {
-  const [photosById, setPhotoById] = useState([] as ApiPhotosResponse[]);
+  console.log(">>>>>",id);
+
+  const [image, setImage] = useState({} as ApiPhotosResponse);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
 
@@ -18,7 +17,7 @@ export function usePhotosById({ id }: UsePhotosByIdProps) {
 
       try {
         const result = await photoByIdQuery(id);
-        setPhotoById(result as ApiPhotosResponse[]);
+        setImage(result as ApiPhotosResponse);
       } catch (error) {
         setError(`Error to fetch data: ${error}`);
       } finally {
@@ -30,7 +29,7 @@ export function usePhotosById({ id }: UsePhotosByIdProps) {
   }, [id]);
 
   return {
-    photosById,
+    image,
     loading,
     error,
   };
