@@ -11,8 +11,7 @@
 
 .image {
   border-radius: 8px;
-  width: 100%;
-  aspect-ratio: 16 / 9;
+  aspect-ratio: 16/9;
   overflow: hidden;
   cursor: pointer;
 }

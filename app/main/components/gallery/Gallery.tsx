@@ -9,6 +9,7 @@ import SearchGallery from "./components/search/SearchGallery";
 
 import "./gallery.css";
 import { ImageCard } from "@/app/main/components/gallery/components/imageCard";
+import { LastPhotos } from "./components/lastPhotos";
 
 interface CategoryList {
   key: string;
@@ -69,6 +70,7 @@ export function Gallery() {
         />
         <SearchGallery search={searchPhotos} />
       </div>
+      <LastPhotos photos={photos} />
       <div className="cards-container">
         {filteredData.map((photo) => (
           <ImageCard key={photo.photo_id} photo={photo} />
