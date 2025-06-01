@@ -7,7 +7,7 @@ interface UsePhotosByIdProps {
 }
 
 export function usePhotosById({ id }: UsePhotosByIdProps) {
-  const [photoById, setPhotoById] = useState([] as ApiPhotosResponse[]);
+  const [photosById, setPhotoById] = useState([] as ApiPhotosResponse[]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
 
@@ -30,7 +30,7 @@ export function usePhotosById({ id }: UsePhotosByIdProps) {
   }, [id]);
 
   return {
-    photoById,
+    photosById,
     loading,
     error,
   };

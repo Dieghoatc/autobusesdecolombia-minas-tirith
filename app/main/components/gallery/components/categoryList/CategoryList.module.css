@@ -34,7 +34,7 @@
 
 .image {
   width: 170px;
-  aspect-ratio: 16/9;
+  aspect-ratio: 4/3;
   object-fit: cover;
   border-radius: 10px;
 }

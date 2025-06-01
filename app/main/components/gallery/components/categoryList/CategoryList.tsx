@@ -5,26 +5,20 @@ import Link from "next/link";
 import { usePhotosById } from "@/lib/hooks/usePhotosById";
 import { ApiPhotosResponse } from "@/services/types/photo.type";
 
-import { Modal } from "../modal";
-import { ModalChildren } from "../modalChildren";
+import { Modal, ModalChildren } from "@/components/modal";
 
 import { orderById } from "@/lib/helpers/orderById";
 import { formatString } from "@/lib/helpers/formatString";
+
+import { categoriesList } from "@/lib/constants";
+
 import styles from "./CategoryList.module.css";
+
 
 interface CategoryListProps {
   category: string;
 }
 
-const categoriesList = [
-  { key: "interdepartamental", label: "Interdepartamentales", id: 1 },
-  { key: "intermunicipal", label: "Intermunicipales", id: 2 },
-  { key: "nuestros_recuerdos", label: "Nuestros Recuerdos", id: 5 },
-  { key: "especial", label: "Especiales", id: 3 },
-  { key: "mixto", label: "Mixto", id: 4 },
-  { key: "urbanos", label: "Urbanos", id: 6 },
-  { key: "internacionales", label: "Internacionales", id: 8 },
-];
 
 export function CategoryList({ category }: CategoryListProps) {
   const [isModalOpen, setIsModalOpen] = useState({
@@ -39,7 +33,7 @@ export function CategoryList({ category }: CategoryListProps) {
 
   const selectedCategory = categoriesList.find((cat) => cat.key === category);
 
-  const { photoById, loading } = usePhotosById({
+  const { photosById, loading } = usePhotosById({
     id: selectedCategory?.id.toString() || "",
   });
 
@@ -49,12 +43,12 @@ export function CategoryList({ category }: CategoryListProps) {
     <div className={styles.container}>
       <div className={styles.header}>
         <h2>{selectedCategory?.label}</h2>
-        <Link href={`/category/${category}`}>
+        <Link href={`/category/${selectedCategory?.key}`}>
           <span>Ver más</span>
         </Link>
       </div>
       <div className={styles.carousel}>
-        {orderById(photoById, "photo_id")
+        {orderById(photosById, "photo_id")
           .slice(0, 6)
           .map((photo: ApiPhotosResponse) => (
             <div

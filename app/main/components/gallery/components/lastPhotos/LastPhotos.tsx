@@ -1,11 +1,9 @@
 "use client";
 
 import { useState } from "react";
-//import Image from "next/image";
 
 import { ApiPhotosResponse } from "@/services/types/photo.type";
-import { Modal } from "../modal";
-import { ModalChildren } from "../modalChildren";
+import { Modal, ModalChildren } from "@/components/modal";
 import styles from "./LastPhotos.module.css";
 
 interface LastPhotosProps {
@@ -18,8 +16,10 @@ export function LastPhotos({ photos }: LastPhotosProps) {
     photo: {} as ApiPhotosResponse,
   });
 
-  const openModal = (photo: ApiPhotosResponse) => setIsModalOpen({ isOpen: true, photo });
-  const closeModal = () => setIsModalOpen({ isOpen: false, photo: {} as ApiPhotosResponse });
+  const openModal = (photo: ApiPhotosResponse) =>
+    setIsModalOpen({ isOpen: true, photo });
+  const closeModal = () =>
+    setIsModalOpen({ isOpen: false, photo: {} as ApiPhotosResponse });
 
   return (
     <section className={styles.container}>
