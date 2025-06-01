@@ -9,6 +9,9 @@ import SearchGallery from "./components/search/SearchGallery";
 
 import "./gallery.css";
 import { ImageCard } from "@/app/main/components/gallery/components/imageCard";
+import { LastPhotos } from "./components/lastPhotos";
+import { useIsMobile } from "@/lib/hooks/useIsMobile";
+import { CategoryList } from "./components/categoryList";
 
 interface CategoryList {
   key: string;
@@ -25,6 +28,8 @@ export function Gallery() {
   const { photos, loading } = useGetPhotos();
   const [category, setCategory] = useState("all");
   const [searchPhoto, setSearchPhoto] = useState("");
+
+  const isMobile = useIsMobile();
 
   const searchPhotosMemo = useMemo(
     () =>
@@ -69,10 +74,24 @@ export function Gallery() {
         />
         <SearchGallery search={searchPhotos} />
       </div>
+      {isMobile ? (
+        <div>
+          <LastPhotos photos={photos} />
+          <CategoryList category={"interdepartamental"} />
+          <CategoryList category={"intermunicipal"} />
+          <CategoryList category={"nuestros_recuerdos"} />
+          <CategoryList category={"especial"} />
+          <CategoryList category={"mixto"} />
+          <CategoryList category={"urbanos"} />
+          <CategoryList category={"internacionales"} />
+        </div>
+      ) : null}
       <div className="cards-container">
-        {filteredData.map((photo) => (
-          <ImageCard key={photo.photo_id} photo={photo} />
-        ))}
+        {!isMobile
+          ? filteredData.map((photo) => (
+              <ImageCard key={photo.photo_id} photo={photo} />
+            ))
+          : null}
       </div>
     </div>
   );

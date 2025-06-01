@@ -16,5 +16,6 @@ async function fetchData<ApiPhotosResponse>(id: string): Promise<ApiPhotosRespon
 }
 
 export async function photoByIdQuery(id: string): Promise<ApiPhotosResponse | undefined> {
+  
   return fetchData<ApiPhotosResponse>(id);
 }

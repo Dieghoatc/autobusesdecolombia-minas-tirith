@@ -1,0 +1,31 @@
+.contianer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.container h3 {
+  margin-bottom: 8px;
+}
+
+.carousel {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 8px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  scroll-behavior: smooth;
+}
+
+.slide {
+  width: 95%;
+  scroll-snap-align: start;
+  flex-shrink: 0;
+}
+
+.image {
+  aspect-ratio: 16/9;
+  object-fit: cover;
+  border-radius: 10px;
+}

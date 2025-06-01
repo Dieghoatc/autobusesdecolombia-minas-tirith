@@ -1,4 +1,4 @@
-'use client'
+"use client";
 
 import { useEffect } from "react";
 
@@ -11,17 +11,15 @@ interface ModalProps {
 }
 
 export function Modal({ children, onClose, isOpen }: ModalProps) {
-
   useEffect(() => {
-
     if (isOpen) {
       document.body.style.overflow = "hidden";
     } else {
-     document.body.style.overflow = "";
+      document.body.style.overflow = "auto";
     }
 
     return () => {
-      document.body.style.overflow = "";
+      document.body.style.overflow = "auto";
     };
   }, [isOpen]);
 

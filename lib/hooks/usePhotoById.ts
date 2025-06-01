@@ -2,11 +2,13 @@ import { useEffect, useState } from "react";
 import { ApiPhotosResponse } from "@/services/types/photo.type";
 import { photoByIdQuery } from "@/services/api/photoById.query";
 
-export function useGetPhoto(id: string) {
-  const [photo, setPhoto] = useState<ApiPhotosResponse>({} as ApiPhotosResponse);
+export function usePhotoById(id: string) {
+
+  console.log(">>>>>",id);
+
+  const [image, setImage] = useState({} as ApiPhotosResponse);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
-
 
   useEffect(() => {
     async function fetchOnePhoto(id: string) {
@@ -15,7 +17,7 @@ export function useGetPhoto(id: string) {
 
       try {
         const result = await photoByIdQuery(id);
-        setPhoto(result as ApiPhotosResponse);
+        setImage(result as ApiPhotosResponse);
       } catch (error) {
         setError(`Error to fetch data: ${error}`);
       } finally {
@@ -26,5 +28,9 @@ export function useGetPhoto(id: string) {
     fetchOnePhoto(id);
   }, [id]);
 
-  return { photo, loading, error };
+  return {
+    image,
+    loading,
+    error,
+  };
 }

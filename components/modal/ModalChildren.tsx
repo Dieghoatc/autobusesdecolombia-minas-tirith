@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { replaceStringSpaces } from "@/lib/helpers/replaceStringSpaces";
+import { toSlug } from "@/lib/helpers";
 
 import styles from "./ModalChildren.module.css";
 import { ApiPhotosResponse } from "@/services/types/photo.type";
@@ -28,9 +28,7 @@ export function ModalChildren({ photo }: ModalChildrenProps) {
     <div>
       <div className={styles.image}>
         <Link
-          href={`/image/${photo.photo_id}/${replaceStringSpaces(
-            photo.company
-          )}-${photo.serial}`}
+          href={`/image/${photo.photo_id}/${toSlug(photo.company)}-${photo.serial}`}
         >
           <figure>
             <picture>

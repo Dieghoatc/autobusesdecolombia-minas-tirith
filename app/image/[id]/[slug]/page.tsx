@@ -2,7 +2,8 @@
 
 import { useParams } from "next/navigation";
 import { ImageDetails } from "./components/imagedetails";
-import { useGetPhoto } from "./hooks/useGetPhoto";
+import { usePhotoById } from "@/lib/hooks";
+
 import "./image.css";
 
 import company from "@/assets/icons/company.png";
@@ -13,34 +14,38 @@ import service from "@/assets/icons/service.png";
 import plate from "@/assets/icons/plate.png";
 import camera from "@/assets/icons/camera.png";
 import location from "@/assets/icons/location.png";
+
 import Metadata from "@/app/main/components/metadata/Metadata";
 import { formatString } from "@/lib/helpers/formatString";
 import { LoaderIntro } from "@/app/main/components/loader/LoaderIntro";
 
-export default function Imageview() {
+export default function ImageView() {
   const params = useParams();
-  let id_image = "1";
 
-  if (params?.id) {
-    id_image = params?.id.toString().split("_")[0];
+  let imageId = "1";
+
+  if (params.id) {
+    imageId = Array.isArray(params.id) ? params.id[0] : params.id;
   }
-  const { photo, loading } = useGetPhoto(id_image);
+
+  const { image, loading } = usePhotoById(imageId);
 
   if (loading) return <LoaderIntro />;
 
   const metadata = {
-    title: `${photo.company} - ${photo.serial}`,
-    description: `Fotografía de la empresa ${photo.company} numero ${photo.serial}`,
-    image: `${photo.url}`,
-    url: `https://autobusesdecolombia.com/image/${photo.photo_id}_${photo.company}_${photo.serial}`,
-    author: photo.author,
+    title: `${image.company} - ${image.serial}`,
+    description: `Fotografía de la empresa ${image.company} numero ${image.serial}`,
+    image: `${image.url}`,
+    url: `https://autobusesdecolombia.com/image/${image.photo_id}_${image.company}_${image.serial}`,
+    author: image.author,
     publisher: "Autobuses de Colombia",
   };
 
-  const title = formatString(photo.company) + " - " + formatString(photo.serial);
+  const title =
+    formatString(image.company) + " - " + formatString(image.serial);
 
   return (
-    <>
+    <section>
       <Metadata
         title={metadata.title}
         description={metadata.description}
@@ -52,78 +57,78 @@ export default function Imageview() {
         <section>
           <figure>
             <picture>
-            <source
-                    type="image/webp"
-                    srcSet={photo.url}
-                    media="min-width: 1200px"
-                  />
-                  <source
-                    type="image/webp"
-                    srcSet={photo.url}
-                    media="min-width: 768px"
-                  />
+              <source
+                type="image/webp"
+                srcSet={image.url}
+                media="min-width: 1200px"
+              />
+              <source
+                type="image/webp"
+                srcSet={image.url}
+                media="min-width: 768px"
+              />
+              <img
+                className="imageview-image"
+                src={image.url}
+                role="presentation"
+                loading="lazy"
+                title={`Fotografía de la empresa ${image.company} numero ${image.serial}`}
+                alt={`imagen de la empresa ${image.company} con serial ${image.serial}`}
+                decoding="async"
+              />
             </picture>
-            <img
-              className="imageview-image"
-              src={photo.url}
-              role="presentation"
-              loading="lazy"
-              title= {`Fotografía de la empresa ${photo.company} numero ${photo.serial}`}
-              alt={`imagen de la empresa ${photo.company} con serial ${photo.serial}`}
-              decoding="async"
-            />
           </figure>
           <h1>{title}</h1>
           <article className="imageview-info">
             <div>
               <ImageDetails
                 type="empresa"
-                info={photo.company}
+                info={image.company}
                 icon={company.src}
               />
-              {photo.bodywork === "n/a" || photo.bodywork === "" ? null : (
+              {image.bodywork === "n/a" || image.bodywork === "" ? null : (
                 <ImageDetails
                   type="carroceria"
-                  info={photo.bodywork}
+                  info={image.bodywork}
                   icon={bodywork.src}
                 />
               )}
-              {photo.chassis === "n/a" || photo.chassis === "" ? null : (
+              {image.chassis === "n/a" || image.chassis === "" ? null : (
                 <ImageDetails
                   type="chasis"
-                  info={photo.chassis}
+                  info={image.chassis}
                   icon={chassis.src}
                 />
               )}
               <ImageDetails
                 type="serial"
-                info={photo.serial}
+                info={image.serial}
                 icon={serial.src}
               />
-              {photo.service === "n/a" || photo.service === "" ? null : (
+              {image.service === "n/a" || image.service === "" ? null : (
                 <ImageDetails
                   type="servicio"
-                  info={photo.service}
+                  info={image.service}
                   icon={service.src}
                 />
               )}
-              <ImageDetails type="placa" info={photo.plate} icon={plate.src} />
+              <ImageDetails type="placa" info={image.plate} icon={plate.src} />
             </div>
             <div>
               <ImageDetails
                 type="fotografo"
-                info={photo.author}
+                info={image.author}
                 icon={camera.src}
               />
               <ImageDetails
                 type="localización"
-                info={`${photo.location} - ${photo.country}`}
+                info={`${image.location} - ${image.country}`}
                 icon={location.src}
               />
             </div>
           </article>
         </section>
       </div>
-    </>
+    </section>
   );
 }
