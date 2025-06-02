@@ -77,13 +77,13 @@ export function Gallery() {
       {isMobile ? (
         <div>
           <LastPhotos photos={photos} />
-          <CategoryList category={"interdepartamental"} />
-          <CategoryList category={"intermunicipal"} />
-          <CategoryList category={"nuestros_recuerdos"} />
-          <CategoryList category={"especial"} />
-          <CategoryList category={"mixto"} />
-          <CategoryList category={"urbanos"} />
-          <CategoryList category={"internacionales"} />
+          <CategoryList category="interdepartamental" />
+          <CategoryList category="intermunicipal" />
+          <CategoryList category="nuestros_recuerdos" />
+          <CategoryList category="especial" />
+          <CategoryList category="mixto" />
+          <CategoryList category="urbanos" />
+          <CategoryList category="internacionales" />
         </div>
       ) : null}
       <div className="cards-container">

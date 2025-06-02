@@ -78,15 +78,14 @@ export default function Footer() {
           </li>
         </ul>
       </div>
-      <div>
-        <h2>
-          © 2025 Autobuses de Colombia |{" "}
-          <span className="dieghoatc">
-            <a href="https://dieghoatc.com" title="Pagina del desarrollador">
-              Dieghoatc.com
-            </a>
-          </span>
-        </h2>
+      <div className="footer-info">
+        <h2>© 2025 Autobuses de Colombia</h2>
+        <span className="dieghoatc">
+          developed by{" "}
+          <a href="https://dieghoatc.com" title="Pagina del desarrollador">
+            Dieghoatc.com
+          </a>
+        </span>
       </div>
     </div>
   );

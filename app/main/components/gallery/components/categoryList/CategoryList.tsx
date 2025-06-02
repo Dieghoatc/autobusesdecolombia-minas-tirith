@@ -13,14 +13,9 @@ import { formatString } from "@/lib/helpers/formatString";
 import { categoriesList } from "@/lib/constants";
 
 import styles from "./CategoryList.module.css";
+import { SkeletonCatList } from "./components/SkeletonCatList";
 
-
-interface CategoryListProps {
-  category: string;
-}
-
-
-export function CategoryList({ category }: CategoryListProps) {
+export function CategoryList({ category }: { category: string }) {
   const [isModalOpen, setIsModalOpen] = useState({
     isOpen: false,
     photo: {} as ApiPhotosResponse,
@@ -37,7 +32,9 @@ export function CategoryList({ category }: CategoryListProps) {
     id: selectedCategory?.id.toString() || "",
   });
 
-  if (loading) return <div>Loading...</div>;
+  console.log(loading);
+
+  if (loading) return <SkeletonCatList />;
 
   return (
     <div className={styles.container}>
