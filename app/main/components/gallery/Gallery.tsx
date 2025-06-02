@@ -9,9 +9,8 @@ import SearchGallery from "./components/search/SearchGallery";
 
 import "./gallery.css";
 import { ImageCard } from "@/app/main/components/gallery/components/imageCard";
-import { LastPhotos } from "./components/lastPhotos";
+import { MobileGallery } from "../mobileView/MobileGallery";
 import { useIsMobile } from "@/lib/hooks/useIsMobile";
-import { CategoryList } from "./components/categoryList";
 
 interface CategoryList {
   key: string;
@@ -63,7 +62,9 @@ export function Gallery() {
     setSearchPhoto(search);
   }
 
-  if (loading) return <SkeletonComponent />;
+  if (isMobile) {
+    if (loading) return <SkeletonComponent />;
+  }
 
   return (
     <div className="gallery-container">
@@ -75,16 +76,7 @@ export function Gallery() {
         <SearchGallery search={searchPhotos} />
       </div>
       {isMobile ? (
-        <div>
-          <LastPhotos photos={photos} />
-          <CategoryList category="interdepartamental" />
-          <CategoryList category="intermunicipal" />
-          <CategoryList category="nuestros_recuerdos" />
-          <CategoryList category="especial" />
-          <CategoryList category="mixto" />
-          <CategoryList category="urbanos" />
-          <CategoryList category="internacionales" />
-        </div>
+        <MobileGallery images={photos} />
       ) : null}
       <div className="cards-container">
         {!isMobile
