@@ -3,9 +3,6 @@ import { ApiPhotosResponse } from "@/services/types/photo.type";
 import { photoByIdQuery } from "@/services/api/photoById.query";
 
 export function usePhotoById(id: string) {
-
-  console.log(">>>>>",id);
-
   const [image, setImage] = useState({} as ApiPhotosResponse);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");

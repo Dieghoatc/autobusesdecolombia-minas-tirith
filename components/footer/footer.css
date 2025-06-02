@@ -17,6 +17,17 @@
     height: 30px;
 }
 
+.footer-info {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.footer-info span {
+    color: #aaaaaa;
+    font-size: 12px;
+}
+
 .dieghoatc a {
     color: #D1B000
 }

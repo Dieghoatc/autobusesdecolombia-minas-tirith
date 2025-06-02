@@ -1,0 +1,26 @@
+.skeleton_title {
+  display: flex;
+  justify-content: space-between;
+  margin: 8px 0;
+}
+
+.skeleton_title_item {
+  width: 50px;
+  height: 16px;
+  background-color: #27272a;
+}
+
+.skeleton_title_item:first-child {
+  width: 220px;
+}
+
+.skeleton_card {
+  display: flex;
+  gap: 8px;
+}
+
+.skeleton_card_item {
+  width: 100%;
+  aspect-ratio: 16/9;
+  background-color: #27272a;
+}
