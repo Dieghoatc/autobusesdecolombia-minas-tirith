@@ -3,7 +3,7 @@ import { useState, useEffect, useRef } from "react";
 
 import "./page.css";
 import { Button } from "@/components/ui/button";
-import abcLogo from "@/assets/abclogo_1.png";
+import abcLogo from "@/assets/abclogo_1.png"
 
 import { dataURLToBlob, deleteLastSpace } from "@/lib/helpers";
 import CategorySelect from "./components/categoryselect/CategorySelect";
@@ -93,6 +93,8 @@ export default function Upload() {
       };
 
       const imgLogo = new Image();
+      imgLogo.src = abcLogo.src;
+
       imgLogo.onload = () => {
         ctx.drawImage(
           imgLogo,
@@ -111,7 +113,6 @@ export default function Upload() {
         });
       };
 
-      imgLogo.src = abcLogo.src;
       img.src = event.target.result as string;
     };
     reader.readAsDataURL(file);
