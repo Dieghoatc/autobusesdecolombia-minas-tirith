@@ -32,8 +32,6 @@ export function CategoryList({ category }: { category: string }) {
     id: selectedCategory?.id.toString() || "",
   });
 
-  console.log(loading);
-
   if (loading) return <SkeletonCatList />;
 
   return (
