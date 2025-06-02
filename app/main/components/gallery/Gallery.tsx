@@ -11,7 +11,6 @@ import "./gallery.css";
 import { ImageCard } from "@/app/main/components/gallery/components/imageCard";
 import { MobileGallery } from "../mobileView/MobileGallery";
 import { useIsMobile } from "@/lib/hooks/useIsMobile";
-import { DesktopGallery } from "../desktopView/DesktopGallery";
 
 interface CategoryList {
   key: string;
