@@ -3,7 +3,7 @@ import { useState, useEffect, useRef } from "react";
 
 import "./page.css";
 import { Button } from "@/components/ui/button";
-import abcLogo from "@/assets/abclogo_1.png";
+import logox2 from "@/assets/logox2.png";
 
 import { dataURLToBlob, deleteLastSpace } from "@/lib/helpers";
 import CategorySelect from "./components/categoryselect/CategorySelect";
@@ -24,9 +24,6 @@ export default function Upload() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [image, setImage] = useState<Canvas>();
   const [logo, setLogo] = useState<Canvas>();
-
-  console.log(">>>>", logo)
-
   const [author, setAuthor] = useState<string>("Alberto Tejedor");
   const [isInternational, setIsInternational] = useState<number>(0);
   const [company, setCompany] = useState<string>("");
@@ -96,7 +93,7 @@ export default function Upload() {
       };
 
       const imgLogo = new Image();
-      imgLogo.src = abcLogo.src;
+      imgLogo.src = logox2.src;
 
       imgLogo.onload = () => {
         

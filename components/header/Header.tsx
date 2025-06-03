@@ -1,6 +1,6 @@
 "use client";
 
-import logo from "../../assets/abclogo_1.png";
+import logo from "@/assets/logox2.png";
 import Image from "next/image";
 import "./header.css";
 import Link from "next/link";
