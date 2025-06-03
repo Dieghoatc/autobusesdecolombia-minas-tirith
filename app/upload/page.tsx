@@ -24,6 +24,9 @@ export default function Upload() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [image, setImage] = useState<Canvas>();
   const [logo, setLogo] = useState<Canvas>();
+
+  console.log(">>>>", logo)
+
   const [author, setAuthor] = useState<string>("Alberto Tejedor");
   const [isInternational, setIsInternational] = useState<number>(0);
   const [company, setCompany] = useState<string>("");
@@ -139,6 +142,14 @@ export default function Upload() {
     } else {
       locationDescription = `${deleteLastSpace(country)}`;
     }
+
+    ctx.drawImage(
+      logo.img,
+      logo.offsetX,
+      logo.offsetY,
+      logo.scaleWidth,
+      logo.scaleHeight
+    );
 
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
