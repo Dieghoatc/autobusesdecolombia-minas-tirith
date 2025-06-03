@@ -38,21 +38,8 @@ export default function Upload() {
   const [category, setCategory] = useState<string>("");
   const [carType, setCarType] = useState<string>("");
 
-  const [ctx, setCtx] = useState<CanvasRenderingContext2D>();
-  const [canvas, setCanvas] = useState<HTMLCanvasElement>();
-  const [loading, setLoading] = useState(false);
-
-  useEffect(() => {
-    function clearCanvas1(
-      canvas: HTMLCanvasElement | undefined,
-      ctx: CanvasRenderingContext2D | undefined
-    ) {
-      if (!canvas || !ctx) return;
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-    }
-
-    clearCanvas1(canvas, ctx);
-  }, [canvas, ctx, loading]);
+  const canvas = canvasRef.current;
+  const ctx = canvas?.getContext("2d");
 
   function handleDrawCanvasImage(event: React.ChangeEvent<HTMLInputElement>) {
     if (!event.target.files) return;
@@ -64,10 +51,8 @@ export default function Upload() {
 
       const canvas = canvasRef.current;
       if (!canvas) return;
-      setCanvas(canvas);
       const ctx = canvas.getContext("2d");
       if (!ctx) return;
-      setCtx(ctx);
 
       let heightImageCanvas = 0;
 
@@ -96,7 +81,6 @@ export default function Upload() {
       imgLogo.src = logox2.src;
 
       imgLogo.onload = () => {
-        
         ctx.drawImage(
           imgLogo,
           0,
@@ -125,10 +109,7 @@ export default function Upload() {
     author: string,
     location: string,
     country: string,
-    ctx: CanvasRenderingContext2D | undefined,
-    canvas: HTMLCanvasElement | undefined
   ) {
-
     if (!image || !logo || !author || !ctx || !canvas) return;
 
     let locationDescription = "";
@@ -140,7 +121,7 @@ export default function Upload() {
       locationDescription = `${deleteLastSpace(country)}`;
     }
 
-    console.log(">>>>", logo)
+    console.log(">>>>", logo);
 
     ctx.drawImage(
       logo.img,
@@ -197,15 +178,12 @@ export default function Upload() {
     );
   }
 
-  function clearCanvas(
-    canvas: HTMLCanvasElement | undefined,
-    ctx: CanvasRenderingContext2D | undefined
-  ) {
+  function clearCanvas() {
     if (!canvas || !ctx) return;
     ctx.clearRect(0, 0, canvas.width, canvas.height);
   }
 
-  function handleDownLoadImage(canvas: HTMLCanvasElement | undefined) {
+  function handleDownLoadImage() {
     if (!canvas) return;
     const dataURL = canvas.toDataURL("image/webp");
     const link = document.createElement("a");
@@ -214,7 +192,7 @@ export default function Upload() {
     link.click();
   }
 
-  async function handleUploadImage(canvas: HTMLCanvasElement | undefined) {
+  async function handleUploadImage() {
     if (!canvas) return;
     const dataURL = canvas.toDataURL("image/webp");
     const imageBlob = dataURLToBlob(dataURL);
@@ -236,7 +214,6 @@ export default function Upload() {
     formData.append("location", deleteLastSpace(location.toLowerCase()));
 
     try {
-      setLoading(true);
       const response = await fetch(
         URL_ABC_API_UPLOAD_IMAGE || "http://localhost:3001/photos/image",
         {
@@ -248,8 +225,6 @@ export default function Upload() {
       return await response.json();
     } catch (error) {
       console.error("Error al enviar la imagen", error);
-    } finally {
-      setLoading(false);
     }
   }
 
@@ -310,23 +285,21 @@ export default function Upload() {
               author,
               location,
               country,
-              ctx,
-              canvas
             )
           }
         >
           Agregar autor
         </Button>
         <div>
-          <Button onClick={() => handleUploadImage(canvas)}>
+          <Button onClick={() => handleUploadImage()}>
             Subir imagen
           </Button>
         </div>
-        <Button onClick={() => handleDownLoadImage(canvas)}>
+        <Button onClick={() => handleDownLoadImage()}>
           Descargar imagen
         </Button>
 
-        <Button onClick={() => clearCanvas(canvas, ctx)}>Limpiar</Button>
+        <Button onClick={() => clearCanvas()}>Limpiar</Button>
       </div>
 
       <div className="upload-canvas">
