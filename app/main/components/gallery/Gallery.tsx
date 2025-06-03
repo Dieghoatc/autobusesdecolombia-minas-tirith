@@ -68,6 +68,7 @@ export function Gallery() {
 
   return (
     <div className="gallery-container">
+     {!isMobile && (
       <div className="galley-controls">
         <TabsCategories
           categoriesList={categoriesList}
@@ -75,6 +76,7 @@ export function Gallery() {
         />
         <SearchGallery search={searchPhotos} />
       </div>
+     )}
       {isMobile ? (
         <MobileGallery images={photos} />
       ) : null}

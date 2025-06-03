@@ -14,7 +14,6 @@ export function MobileGallery({ images }: MobileGalleryProps) {
       <CategoryList category="intermunicipal" />
       <CategoryList category="nuestros_recuerdos" />
       <CategoryList category="especial" />
-      <CategoryList category="mixto" />
       <CategoryList category="urbanos" />
       <CategoryList category="internacionales" />
     </div>

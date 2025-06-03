@@ -3,7 +3,7 @@ import { SliderItem } from "./SliderItem";
 
 import "./slider.css";
 import usePhotosStore from "@/lib/store/usePhotosStore";
-import { LoaderIntro } from "../../loader/LoaderIntro";
+import { LoaderIntro } from "../../../../../components/loader/LoaderIntro";
 import usePostStore from "@/lib/store/usePostStore";
 
 export function Slider() {
