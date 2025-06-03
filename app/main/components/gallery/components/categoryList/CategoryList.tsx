@@ -37,7 +37,7 @@ export function CategoryList({ category }: { category: string }) {
   return (
     <div className={styles.container}>
       <div className={styles.header}>
-        <h2>{selectedCategory?.label}</h2>
+        <span>{selectedCategory?.label}</span>
         <Link href={`/category/${selectedCategory?.key}`}>
           <span>Ver más</span>
         </Link>

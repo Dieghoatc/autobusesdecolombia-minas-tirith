@@ -3,7 +3,7 @@
 import { useParams } from "next/navigation";
 import { useCategoryById } from "@/lib/hooks";
 import { GalleryList } from "@/components/galleryList";
-import { LoaderIntro } from "@/app/main/components/loader/LoaderIntro";
+import { LoaderIntro } from "@/components/loader/LoaderIntro";
 
 import { categoriesList } from "@/lib/constants";
 

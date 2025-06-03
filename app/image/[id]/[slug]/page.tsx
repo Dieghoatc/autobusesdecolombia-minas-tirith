@@ -17,7 +17,7 @@ import location from "@/assets/icons/location.png";
 
 import Metadata from "@/app/main/components/metadata/Metadata";
 import { formatString } from "@/lib/helpers/formatString";
-import { LoaderIntro } from "@/app/main/components/loader/LoaderIntro";
+import { LoaderIntro } from "@/components/loader/LoaderIntro";
 
 export default function ImageView() {
   const params = useParams();

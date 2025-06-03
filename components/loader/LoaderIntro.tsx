@@ -1,5 +1,5 @@
 import "./loader-intro.css"
-import abcLogo from "@/assets/logox2.png"
+import abcLogo from "@/assets/singlelogo.png"
 import Image from "next/image"
 
 export function LoaderIntro() {

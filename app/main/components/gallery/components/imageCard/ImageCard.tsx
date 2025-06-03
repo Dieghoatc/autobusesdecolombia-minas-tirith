@@ -40,10 +40,7 @@ export function ImageCard({ photo }: ImageCardProps) {
         </picture>
       </figure>
       <div className={styles.title}>
-        <h2>
-          {formatString(company)}
-          {serial && serial !== "n/a" ? ` - ${serial}` : ""}
-        </h2>
+        <h2>{formatString(company)}</h2>
       </div>
 
       <Modal onClose={closeModal} isOpen={isModalOpen}>
