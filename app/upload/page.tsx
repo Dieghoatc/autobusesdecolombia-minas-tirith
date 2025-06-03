@@ -3,7 +3,7 @@ import { useState, useEffect, useRef } from "react";
 
 import "./page.css";
 import { Button } from "@/components/ui/button";
-import abcLogo from "@/assets/abclogo_1.png"
+import abcLogo from "@/assets/abclogo_1.png";
 
 import { dataURLToBlob, deleteLastSpace } from "@/lib/helpers";
 import CategorySelect from "./components/categoryselect/CategorySelect";
@@ -96,6 +96,7 @@ export default function Upload() {
       imgLogo.src = abcLogo.src;
 
       imgLogo.onload = () => {
+        
         ctx.drawImage(
           imgLogo,
           0,
@@ -127,15 +128,17 @@ export default function Upload() {
     ctx: CanvasRenderingContext2D | undefined,
     canvas: HTMLCanvasElement | undefined
   ) {
+
     if (!image || !logo || !author || !ctx || !canvas) return;
-    
 
     let locationDescription = "";
     if (location) {
-      locationDescription = `${deleteLastSpace(location)} - ${deleteLastSpace(country)}`;
+      locationDescription = `${deleteLastSpace(location)} - ${deleteLastSpace(
+        country
+      )}`;
     } else {
       locationDescription = `${deleteLastSpace(country)}`;
-    } 
+    }
 
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
