@@ -20,7 +20,7 @@
 .header span:last-child {
   font-size: 0.8rem;
   color: #ffffff99;
-  border: 1px solid #ffffff;
+  border: 1px solid #ffffff99;
   border-radius: 50px;
   padding: 2px 8px;
 }
@@ -29,9 +29,14 @@
   display: flex;
   gap: 8px;
   overflow-x: auto;
-  scroll-snap-type: x mandatory;
-  -webkit-overflow-scrolling: touch;
-  scroll-behavior: smooth;
+  overflow-y: hidden;
+  white-space: nowrap;
+  -ms-overflow-style: none;  /* Internet Explorer 10+ */
+  scrollbar-width: none; 
+}
+
+.carousel::-webkit-scrollbar {
+    display: none;
 }
 
 .slide {
