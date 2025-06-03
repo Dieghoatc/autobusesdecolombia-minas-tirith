@@ -10,6 +10,7 @@ import CategorySelect from "./components/categoryselect/CategorySelect";
 import InputCustom from "./components/input/InputCustom";
 import { InputFile } from "./components/input/InputFile";
 import { CheckboxCustom } from "@/services/api/ui/CheckboxCustom";
+import { useToast } from "@/lib/hooks/use-toast";
 interface Canvas {
   img: HTMLImageElement;
   offsetX: number;
@@ -50,8 +51,12 @@ export default function Upload() {
 
   const canvas = canvasRef.current;
   const ctx = canvas?.getContext("2d");
+  const { toast } = useToast();
 
  const handleDrawCanvasImage = async (event: React.ChangeEvent<HTMLInputElement>) => {
+
+  
+
     if (!event.target.files) return;
     const file = event.target.files[0];
 
@@ -133,8 +138,6 @@ export default function Upload() {
     } else {
       locationDescription = `${deleteLastSpace(country)}`;
     }
-
-  
 
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
@@ -234,6 +237,12 @@ export default function Upload() {
           body: formData,
         }
       );
+
+      toast({
+        description: "Imagen Subida",
+      });
+
+      clearCanvas();
 
       return await response.json();
     } catch (error) {
