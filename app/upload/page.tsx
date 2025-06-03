@@ -3,7 +3,7 @@ import { useState, useEffect, useRef } from "react";
 
 import "./page.css";
 import { Button } from "@/components/ui/button";
-import logox2 from "@/assets/logox2.png";
+import logox2 from "./logox2.png";
 
 import { dataURLToBlob, deleteLastSpace } from "@/lib/helpers";
 import CategorySelect from "./components/categoryselect/CategorySelect";
@@ -139,6 +139,8 @@ export default function Upload() {
     } else {
       locationDescription = `${deleteLastSpace(country)}`;
     }
+
+    console.log(">>>>", logo)
 
     ctx.drawImage(
       logo.img,
