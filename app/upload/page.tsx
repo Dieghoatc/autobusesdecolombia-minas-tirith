@@ -3,7 +3,7 @@ import { useState, useRef } from "react";
 
 import "./page.css";
 import { Button } from "@/components/ui/button";
-import logox2 from "./logox2.png";
+
 
 import { dataURLToBlob, deleteLastSpace } from "@/lib/helpers";
 import CategorySelect from "./components/categoryselect/CategorySelect";
@@ -19,6 +19,16 @@ interface Canvas {
 }
 
 const URL_ABC_API_UPLOAD_IMAGE = `${process.env.NEXT_PUBLIC_ABC_API}/photos/image`;
+
+// Helper function to load images
+const loadImage = async (src: string): Promise<HTMLImageElement> => {
+  return new Promise((resolve, reject) => {
+    const img = new Image();
+    img.onload = () => resolve(img);
+    img.onerror = reject;
+    img.src = src;
+  });
+};
 
 export default function Upload() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -41,7 +51,7 @@ export default function Upload() {
   const canvas = canvasRef.current;
   const ctx = canvas?.getContext("2d");
 
-  function handleDrawCanvasImage(event: React.ChangeEvent<HTMLInputElement>) {
+ const handleDrawCanvasImage = async (event: React.ChangeEvent<HTMLInputElement>) => {
     if (!event.target.files) return;
     const file = event.target.files[0];
 
@@ -77,26 +87,29 @@ export default function Upload() {
         });
       };
 
-      const imgLogo = new Image();
-      imgLogo.src = logox2.src;
+      (async () => {
+        const logoImg = await loadImage("/logox2.png");
+        const imgLogo = new Image();
+        imgLogo.src = logoImg.src;
 
-      imgLogo.onload = () => {
-        ctx.drawImage(
-          imgLogo,
-          0,
-          heightImageCanvas - imgLogo.height,
-          imgLogo.width,
-          imgLogo.height
-        );
+        imgLogo.onload = () => {
+          ctx.drawImage(
+            imgLogo,
+            0,
+            heightImageCanvas - imgLogo.height,
+            imgLogo.width,
+            imgLogo.height
+          );
 
-        setLogo({
-          img: imgLogo,
-          offsetX: 0,
-          offsetY: heightImageCanvas - imgLogo.height,
-          scaleWidth: imgLogo.width,
-          scaleHeight: imgLogo.height,
-        });
-      };
+          setLogo({
+            img: imgLogo,
+            offsetX: 0,
+            offsetY: heightImageCanvas - imgLogo.height,
+            scaleWidth: imgLogo.width,
+            scaleHeight: imgLogo.height,
+          });
+        };
+      })();
 
       img.src = event.target.result as string;
     };
