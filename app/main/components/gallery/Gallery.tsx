@@ -67,7 +67,7 @@ export function Gallery() {
   }
 
   return (
-    <div className="gallery-container">
+    <div className="gallery-container" id="gallery">
      {!isMobile && (
       <div className="galley-controls">
         <TabsCategories
