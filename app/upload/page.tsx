@@ -134,15 +134,7 @@ export default function Upload() {
       locationDescription = `${deleteLastSpace(country)}`;
     }
 
-    console.log(">>>>", logo);
-
-    ctx.drawImage(
-      logo.img,
-      logo.offsetX,
-      logo.offsetY,
-      logo.scaleWidth,
-      logo.scaleHeight
-    );
+  
 
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
@@ -152,6 +144,14 @@ export default function Upload() {
       image.offsetY,
       image.scaleWidth,
       image.scaleHeight
+    );
+    
+    ctx.drawImage(
+      logo.img,
+      logo.offsetX,
+      logo.offsetY,
+      logo.scaleWidth,
+      logo.scaleHeight
     );
 
     ctx.globalAlpha = 1;
