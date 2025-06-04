@@ -20,7 +20,7 @@ export const metadata: Metadata = {
   publisher: "Autobuses de Colombia",
   robots: "index, follow",
   other: {
-    "google-adsense-account": GOOGLE_ADSENSE_CLIENT_ID,
+    "google-adsense-account": "ca-pub-1070802324735715",
   },
   openGraph: {
     type: "website",

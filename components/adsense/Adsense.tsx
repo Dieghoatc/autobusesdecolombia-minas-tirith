@@ -5,6 +5,8 @@ interface AdsenseAdProps {
 }
 
 export default function Adsense({ clientId }: AdsenseAdProps) {
+
+  console.log(">>>",clientId)
   return (
     <Script
       async
