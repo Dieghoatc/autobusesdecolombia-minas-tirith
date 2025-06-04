@@ -5,10 +5,7 @@ import { Analytics } from "@vercel/analytics/react";
 import Footer from "../components/footer/Footer";
 import { Toaster } from "@/components/ui/toaster";
 import abcBus from "@/assets/autobusesdecolombia_bus.png";
-import Adsense from "../components/adsense/Adsense";
-
-const GOOGLE_ADSENSE_CLIENT_ID =
-  process.env.NEXT_PUBLIC_GOOGLE_ADSENSE_CLIENT_ID || "";
+import Script from "next/script";
 
 export const metadata: Metadata = {
   title: "Autobuses de Colombia - ¡Mucho más para ver!",
@@ -45,7 +42,12 @@ export default function RootLayout({
   return (
     <html lang="es">
       <head>
-        <Adsense clientId={GOOGLE_ADSENSE_CLIENT_ID} />
+        <Script
+          async
+          src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1070802324735715`}
+          crossOrigin="anonymous"
+          strategy="afterInteractive"
+        ></Script>
       </head>
       <body>
         {children}
