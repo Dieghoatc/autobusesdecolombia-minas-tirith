@@ -1,24 +1,28 @@
-.slide-translation-0 {
+.container {
+  position: relative;
+}
+
+.translation-0 {
   transform: translateX(0%);
 }
 
-.slide-translation-1 {
+.translation-1 {
   transform: translateX(-100%);
 }
 
-.slide-translation-2 {
+.translation-2 {
   transform: translateX(-200%);
 }
 
-.slide-translation-3 {
+.translation-3 {
   transform: translateX(-300%);
 }
 
-.slide-translation-4 {
+.translation-4 {
   transform: translateX(-400%);
 }
 
-.slide-translation-5 {
+.translation-5 {
   transform: translateX(-500%);
 }
 
@@ -26,11 +30,12 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
+  aspect-ratio: 16/9;
 
   mask-image: linear-gradient(to bottom, black 20%, transparent 100%);
 }
 
-.slide-overlay {
+.overlay {
   position: absolute;
   top: 0;
   left: 0;
@@ -58,8 +63,8 @@
   }
   h2 {
     font-size: 30px;
-  }  
-  
+  }
+
   p {
     font-size: 15px;
   }
@@ -78,9 +83,9 @@
 }
 
 .line {
-  height: 2px; /* Ajusta el grosor de la línea */
-  width: 200px; /* O establece un ancho específico */
-  background-color: transparent; /* Si deseas que sea invisible */
+  height: 2px;
+  width: 200px;
+  background-color: transparent;
   box-shadow: 0 1px 1px rgba(255, 255, 255, 1);
   margin: 16px 0;
 }

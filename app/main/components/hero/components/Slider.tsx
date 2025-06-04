@@ -18,7 +18,7 @@ export function Slider() {
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setIndex((prevIndex) => (prevIndex === 2 ? 0 : prevIndex + 1)); // Si es 3, vuelve a 1
+      setIndex((prevIndex) => (prevIndex === 2 ? 0 : prevIndex + 1));
     }, 10000);
 
     return () => clearInterval(interval);
