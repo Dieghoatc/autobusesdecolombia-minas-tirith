@@ -1,0 +1,9 @@
+.container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.container span {
+    font-size: 24px;
+}

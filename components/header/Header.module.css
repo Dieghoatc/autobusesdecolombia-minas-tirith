@@ -1,0 +1,51 @@
+.container {
+  position: relative;
+}
+.container_menu {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #fff;
+  padding: 0 16px;
+}
+
+.menu_mobile {
+  @media (min-width: 768px) {
+    display: none;
+  }
+}
+
+.logo {
+  width: 50px;
+  height: 40px;
+  margin: 8px 0;
+
+  @media (min-width: 768px) {
+    display: none;
+  }
+}
+
+.login {
+  @media (min-width: 768px) {
+    display: none;
+  }
+}
+
+.logo_large {
+  padding: 8px 0;
+
+  @media (max-width: 768px) {
+    display: none;
+  }
+}
+
+.menu_desktop {
+  @media (max-width: 768px) {
+    display: none;
+  }
+}
+
+.menu_desktop ul {
+  display: flex;
+  gap: 16px;
+}
