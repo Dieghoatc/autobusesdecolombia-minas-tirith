@@ -1,7 +1,7 @@
 import { LastPhotos } from "../gallery/components/lastPhotos";
 import { CategoryList } from "../gallery/components/categoryList";
 import { ApiPhotosResponse } from "@/services/types/photo.type";
-import AdHorizontal from "@/components/adsense/AdHorizontal";
+import { AdHorizontal } from "@/components/adsense/AdHorizontal";
 
 interface MobileGalleryProps {
   images: ApiPhotosResponse[];
