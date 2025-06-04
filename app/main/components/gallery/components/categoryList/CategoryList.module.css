@@ -64,6 +64,7 @@
 .info p {
   font-weight: 700;
   font-size: 0.8rem;
+  text-wrap: auto;
 }
 
 

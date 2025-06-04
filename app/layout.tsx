@@ -48,6 +48,14 @@ export default function RootLayout({
           crossOrigin="anonymous"
           strategy="afterInteractive"
         ></Script>
+        <Script id="adsense-init" strategy="afterInteractive">
+          {`
+            (adsbygoogle = window.adsbygoogle || []).push({
+              google_ad_client: "ca-pub-1070802324735715",
+              enable_page_level_ads: true
+            });
+          `}
+        </Script>
       </head>
       <body>
         {children}

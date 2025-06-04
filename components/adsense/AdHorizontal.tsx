@@ -1,23 +1,8 @@
-import { useEffect } from "react";
+"use client";
 
-declare global {
-  interface Window {
-    adsbygoogle?: Array<() => void>;
-  }
-}
+import Script from "next/script";
 
 export function AdHorizontal() {
-  useEffect(() => {
-    try {
-      if (window.adsbygoogle) {
-        window.adsbygoogle = window.adsbygoogle || [];
-        window.adsbygoogle.push(() => {});
-      }
-    } catch (e) {
-      console.error("Adsense error:", e);
-    }
-  }, []);
-
   return (
     <>
       <ins
@@ -28,6 +13,10 @@ export function AdHorizontal() {
         data-ad-format="auto"
         data-full-width-responsive="true"
       ></ins>
+
+      <Script id="adsense-horizontal" strategy="afterInteractive">
+        {`(adsbygoogle = window.adsbygoogle || []).push({});`}
+      </Script>
     </>
   );
 }
