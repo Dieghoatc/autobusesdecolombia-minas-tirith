@@ -1,16 +1,18 @@
-import { Bento } from "./components/Bento";
+
+"use client";
+
+import { useGetPosts } from "@/lib/hooks/useGetPosts";
+import { LastNews } from "./components/lastnews/LastNews";
 import "./magazine.css";
-import Link from "next/link";
+import { useIsMobile } from "@/lib/hooks/useIsMobile";
 
 export function Magazine() {
+  const { posts } = useGetPosts();
+  const isMobile = useIsMobile();
+
   return (
     <section className="magazine">
-      <Bento />
-      <div className="magazine__more">
-        <Link href="/posts">
-          <span>Ver más</span>
-        </Link>
-      </div>
+      {isMobile ? <LastNews posts={posts} /> : ""}
     </section>
   );
 }
