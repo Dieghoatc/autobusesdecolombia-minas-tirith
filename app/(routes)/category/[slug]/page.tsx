@@ -5,13 +5,14 @@ import { useCategoryById } from "@/lib/hooks";
 import { GalleryList } from "@/components/galleryList";
 import { LoaderIntro } from "@/components/loader/LoaderIntro";
 
+import { orderById } from "@/lib/helpers/orderById";
 import { categoriesList } from "@/lib/constants";
 
 import styles from "./CategoryGallery.module.css";
 
 export default function CategoryGallery() {
   const params = useParams();
-  
+
   const selectedCategory = categoriesList.find(
     (cat) => cat.key === params.slug
   );
@@ -19,6 +20,8 @@ export default function CategoryGallery() {
   const { photosById, loading } = useCategoryById({
     id: selectedCategory?.id.toString() || "",
   });
+
+  const orderedPhotos = orderById(photosById, "photo_id");
 
   if (loading) return <LoaderIntro />;
 
@@ -28,7 +31,7 @@ export default function CategoryGallery() {
         <h2>{selectedCategory?.label}</h2>
       </div>
       <div className={styles.list}>
-        {photosById.map((photo) => (
+        {orderedPhotos.map((photo) => (
           <GalleryList key={photo.photo_id} photo={photo} />
         ))}
       </div>
