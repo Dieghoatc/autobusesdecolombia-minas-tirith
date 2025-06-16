@@ -6,14 +6,17 @@ import { orderById } from "@/lib/helpers/orderById";
 
 import { Skeleton } from "@/components/ui/skeleton";
 import { generateArray } from "@/lib/helpers/generateArray";
-import { useGetPosts } from "@/lib/hooks/useGetPosts";
 
 import "./bento.css";
 
 const SKELETON_ITEM_COUNT = 3;
 
-export function Bento() {
-  const { posts, loading } = useGetPosts();
+interface BentoProps {
+  posts: ApiPostsResponse[];
+  loading: boolean
+}
+
+export function Bento({ posts, loading }: BentoProps) {
 
   function orderHighestToLowestPosts(data: ApiPostsResponse[]) {
     return orderById(data, "post_id");

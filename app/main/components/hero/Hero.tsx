@@ -1,5 +1,4 @@
 import "./hero.css";
-//import { Slider } from "./components/Slider";
 
 export function Hero() { 
 
