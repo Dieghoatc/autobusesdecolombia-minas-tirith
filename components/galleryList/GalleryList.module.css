@@ -5,8 +5,7 @@
 }
 
 .image {
-  border-radius: 10px;
-  aspect-ratio: 16/9;
+  aspect-ratio: 1/1;
   width: 180px;
   object-fit: cover;
   object-position: center;
@@ -16,17 +15,3 @@
   }
 }
 
-.title {
-  position: absolute;
-  padding: 4px;
-  bottom: 0;
-  width: 100%;
-  font-weight: 700;
-  font-size: 0.8rem;
-  background: linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.5));
-
-  @media (min-width: 768px) {
-    padding: 8px;
-    font-size: 1rem;
-  }
-}

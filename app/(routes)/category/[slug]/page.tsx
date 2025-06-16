@@ -11,14 +11,9 @@ import styles from "./CategoryGallery.module.css";
 
 export default function CategoryGallery() {
   const params = useParams();
-  let id_category = "1";
-
-  if (params?.slug) {
-    id_category = params.slug.toString().split("_")[0];
-  }
-
+  
   const selectedCategory = categoriesList.find(
-    (cat) => cat.key === id_category
+    (cat) => cat.key === params.slug
   );
 
   const { photosById, loading } = useCategoryById({
@@ -29,7 +24,9 @@ export default function CategoryGallery() {
 
   return (
     <section className={styles.container}>
-      <h2 className={styles.title}>{selectedCategory?.label}</h2>
+      <div className={styles.header}>
+        <h2>{selectedCategory?.label}</h2>
+      </div>
       <div className={styles.list}>
         {photosById.map((photo) => (
           <GalleryList key={photo.photo_id} photo={photo} />
