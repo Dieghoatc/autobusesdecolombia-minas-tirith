@@ -18,17 +18,18 @@ export function LastNews({ posts }: LastNewsProps) {
       </div>
       <div className={styles.carousel}>
         {posts.slice(0, 6).map((post) => (
-          <article key={post.post_id} className={styles.slide}>
-            <div className={styles.image}>
-              <img
-                src={post.image_url}
-                alt={post.title}
-              />
-            </div>
-            <div className={styles.title}>
-              <h1>{post.title}</h1>
-            </div>
-          </article>
+          <div key={post.post_id}>
+            <Link href={`/posts/${post.post_id}_${post.slug}`}>
+              <article key={post.post_id} className={styles.slide}>
+                <div className={styles.image}>
+                  <img src={post.image_url} alt={post.title} />
+                </div>
+                <div className={styles.title}>
+                  <h1>{post.title}</h1>
+                </div>
+              </article>
+            </Link>
+          </div>
         ))}
       </div>
     </section>
