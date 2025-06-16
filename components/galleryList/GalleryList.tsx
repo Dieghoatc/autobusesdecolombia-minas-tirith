@@ -1,5 +1,4 @@
 import styles from "./GalleryList.module.css";
-import { formatString } from "@/lib/helpers/formatString";
 import { ApiPhotosResponse } from "@/services/types/photo.type";
 import Link from "next/link";
 
@@ -41,9 +40,6 @@ export function GalleryList({ photo }: GalleryListProps) {
               />
             </picture>
           </figure>
-        </div>
-        <div className={styles.title}>
-          <h2>{formatString(company)}</h2>
         </div>
       </Link>
     </section>
