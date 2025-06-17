@@ -1,4 +1,4 @@
-.contianer {
+.container {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -6,6 +6,7 @@
 
 .container h3 {
   margin-bottom: 8px;
+  color: #fff;
 }
 
 .carousel {

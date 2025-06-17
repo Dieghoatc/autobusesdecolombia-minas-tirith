@@ -1,5 +1,5 @@
-import { LastPhotos } from "../gallery/components/lastPhotos";
-import { CategoryList } from "../gallery/components/categoryList";
+import { LastPhotos } from "../lastPhotos";
+import { CategoryList } from "../categoryList";
 import { ApiPhotosResponse } from "@/services/types/photo.type";
 
 interface MobileGalleryProps {

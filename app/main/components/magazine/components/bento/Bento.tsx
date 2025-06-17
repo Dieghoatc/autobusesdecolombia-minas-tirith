@@ -2,23 +2,20 @@ import Link from "next/link";
 import { ApiPostsResponse } from "@/services/types/post.type";
 import { orderById } from "@/lib/helpers/orderById";
 
-import { SkeletonBento } from "../skeletonbento";
 import styles from "./Bento.module.css";
 import { BentoItem } from "./BentoItem";
 
 interface BentoProps {
   posts: ApiPostsResponse[];
-  loading: boolean;
 }
 
-export function Bento({ posts, loading }: BentoProps) {
+export function Bento({ posts }: BentoProps) {
   function orderHighestToLowestPosts(data: ApiPostsResponse[]) {
     return orderById(data, "post_id");
   }
 
   const sortedData = orderHighestToLowestPosts(posts as ApiPostsResponse[]);
 
-  if (loading) return <SkeletonBento />;
 
   return (
     <div className={styles.container}>

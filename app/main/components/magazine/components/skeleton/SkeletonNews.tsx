@@ -1,8 +1,8 @@
 import { Skeleton } from "@/components/ui/skeleton";
 
-import styles from "./SkeletonBento.module.css";
+import styles from "./Skeleton.module.css";
 
-export function SkeletonBento() {
+export function SkeletonNews() {
   return (
     <div className={styles.container}>
       <Skeleton className={styles.item} />
