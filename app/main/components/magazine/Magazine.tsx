@@ -1,11 +1,11 @@
-
 "use client";
 
 import { useGetPosts } from "@/lib/hooks/useGetPosts";
 import { LastNews } from "./components/lastnews/LastNews";
-import "./magazine.css";
 import { useIsMobile } from "@/lib/hooks/useIsMobile";
-import { Bento } from "./components/Bento";
+import { Bento } from "./components/bento";
+
+import "./magazine.css";
 
 export function Magazine() {
   const { posts, loading } = useGetPosts();
@@ -13,7 +13,7 @@ export function Magazine() {
 
   return (
     <section className="magazine">
-      {isMobile ? <LastNews posts={posts} /> : <Bento posts={posts} loading={loading} />}
+      {isMobile ? <LastNews posts={posts} loading={loading} /> : <Bento posts={posts} loading={loading} />}
     </section>
   );
 }
