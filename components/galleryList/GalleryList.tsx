@@ -1,18 +1,25 @@
-import styles from "./GalleryList.module.css";
+import { useState } from "react";
 import { ApiPhotosResponse } from "@/services/types/photo.type";
-import Link from "next/link";
+import { Modal } from "../modal";
+import { ModalChildren } from "../modal/components/ModalChildren";
+
+import styles from "./GalleryList.module.css";
 
 interface GalleryListProps {
   photo: ApiPhotosResponse;
 }
 
 export function GalleryList({ photo }: GalleryListProps) {
+  
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const { url, company, serial } = photo;
+  
+    const openModal = () => setIsModalOpen(true);
+    const closeModal = () => setIsModalOpen(false);
 
   return (
     <section className={styles.container}>
-      <Link href={`/image/${photo.photo_id}/${photo.company}-${photo.serial}`}>
-        <div>
+        <div onClick={openModal}>
           <figure>
             <picture>
               <source
@@ -41,7 +48,9 @@ export function GalleryList({ photo }: GalleryListProps) {
             </picture>
           </figure>
         </div>
-      </Link>
+        <Modal isOpen={isModalOpen} onClose={closeModal}>
+          <ModalChildren photo={photo} />
+        </Modal>
     </section>
   );
 }
