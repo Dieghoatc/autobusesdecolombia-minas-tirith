@@ -1,0 +1,6 @@
+.container {
+  display: grid;
+  grid-template-columns: repeat(3, 100%);
+  grid-auto-rows: 19rem;
+  overflow: hidden;
+}

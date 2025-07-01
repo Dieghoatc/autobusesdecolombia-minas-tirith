@@ -15,6 +15,7 @@
 .hero_images {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
+  grid-auto-rows: 19rem;
   height: 100vh;
   gap: 8px;
   transform: translate3d(0px, 0px, 0px) scale3d(3.2, 3.2, 1) rotateX(0deg)
@@ -22,5 +23,11 @@
 }
 
 .item {
-  border: 1px solid white;
+}
+
+.image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
 }

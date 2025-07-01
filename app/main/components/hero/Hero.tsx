@@ -4,8 +4,18 @@ import { useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
+import { Slider } from "./components/slider/Slider";
 
 import styles from "./Hero.module.css";
+
+import chasis from "@/assets/hero/chassis.webp"
+import destinations from "@/assets/hero/destinations.webp";
+import bodywork from "@/assets/hero/bodywork.webp";
+import companies from "@/assets/hero/companies.webp";
+import routes from "@/assets/hero/routes.webp";
+import terminal from "@/assets/hero/terminal.webp";
+import news from "@/assets/hero/news.webp";
+import community from "@/assets/hero/community.jpg";
 
 export function Hero() {
   const heroRef = useRef<HTMLDivElement>(null);
@@ -16,11 +26,9 @@ export function Hero() {
     if (heroRef.current) {
       const tl = gsap.timeline({
         scrollTrigger: {
-          trigger: heroRef.current,
           start: "top top",
           end: "+=100%",
           scrub: true,
-          markers: true,
         },
       });
 
@@ -37,17 +45,51 @@ export function Hero() {
 
   return (
     <section className={styles.container}>
-      <div className={styles.content_wrapper}>
+      <div className={styles.content_wrapper}>        
         <div className={styles.hero_images} ref={heroRef}>
-          <div className={styles.item}>1</div>
-          <div className={styles.item}>2</div>
-          <div className={styles.item}>3</div>
-          <div className={styles.item}>4</div>
-          <div className={styles.item}>5</div>
-          <div className={styles.item}>6</div>
-          <div className={styles.item}>7</div>
-          <div className={styles.item}>8</div>
-          <div className={styles.item}>9</div>
+          <div className={styles.item}>
+            <picture>
+              <img src={chasis.src} alt="Fotografia chasis" className={styles.image} />
+            </picture>
+          </div>
+          <div className={styles.item}>
+            <picture>
+              <img src={destinations.src} alt="Fotografia destinos" className={styles.image} />
+            </picture>
+          </div>
+          <div className={styles.item}>
+            <picture>
+              <img src={bodywork.src} alt="Fotografia carroceria de buses" className={styles.image} />
+            </picture>
+          </div>
+          <div className={styles.item}>
+            <picture>
+              <img src={companies.src} alt="Fotografia compañias de transporte" className={styles.image} />
+            </picture>
+          </div>
+          <div className={styles.item}>
+            <Slider />         
+          </div>
+          <div className={styles.item}>
+            <picture>
+              <img src={community.src} alt="Fotografia comunidad de transporte" className={styles.image} />
+            </picture>
+          </div>
+          <div className={styles.item}>
+            <picture>
+              <img src={news.src} alt="Fotografia noticias de transporte" className={styles.image} />
+            </picture>
+          </div>
+          <div className={styles.item}>
+            <picture>
+              <img src={terminal.src} alt="Fotografia terminal de transporte colombia" className={styles.image} />
+            </picture>
+          </div>
+          <div className={styles.item}>
+            <picture>
+              <img src={routes.src} alt="Fotografia rutas de colombia" className={styles.image} />
+            </picture>
+          </div>
         </div>
       </div>
     </section>
