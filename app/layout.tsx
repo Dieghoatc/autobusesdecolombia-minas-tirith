@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import "@fontsource/mitr";
 import "./globals.css";
 import { Analytics } from "@vercel/analytics/react";
-import Footer from "../components/footer/Footer";
 import { Toaster } from "@/components/ui/toaster";
 import abcBus from "@/assets/autobusesdecolombia_bus.png";
 import Script from "next/script";
@@ -60,8 +59,7 @@ export default function RootLayout({
       <body>
         {children}
         <Toaster />
-        <Analytics />
-        <Footer />
+        <Analytics />       
       </body>
     </html>
   );
