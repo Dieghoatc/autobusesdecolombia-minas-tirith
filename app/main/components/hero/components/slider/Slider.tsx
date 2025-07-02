@@ -17,15 +17,13 @@ export function Slider() {
   }, []);
 
   return (
-    <section>
-      <div className={styles.container}>
-        <SliderItem
-          type="post"
-          index={index}
-          image={post.image_url}
-          title={post.title}
-        />
-      </div>
+    <section className={styles.container}>
+      <SliderItem
+        type="post"
+        index={index}
+        image={post.image_url}
+        title={post.title}
+      />
     </section>
   );
 }
