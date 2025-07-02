@@ -8,7 +8,7 @@ import { Slider } from "./components/slider/Slider";
 
 import styles from "./Hero.module.css";
 
-import chasis from "@/assets/hero/chassis.webp"
+import chasis from "@/assets/hero/chassis.webp";
 import destinations from "@/assets/hero/destinations.webp";
 import bodywork from "@/assets/hero/bodywork.webp";
 import companies from "@/assets/hero/companies.webp";
@@ -45,49 +45,81 @@ export function Hero() {
 
   return (
     <section className={styles.container}>
-      <div className={styles.content_wrapper}>        
+      <div className={styles.content_wrapper}>
         <div className={styles.hero_images} ref={heroRef}>
           <div className={styles.item}>
             <picture>
-              <img src={chasis.src} alt="Fotografia chasis" className={styles.image} />
+              <img
+                src={chasis.src}
+                alt="Fotografia chasis"
+                className={styles.image}
+              />
             </picture>
           </div>
           <div className={styles.item}>
             <picture>
-              <img src={destinations.src} alt="Fotografia destinos" className={styles.image} />
+              <img
+                src={destinations.src}
+                alt="Fotografia destinos"
+                className={styles.image}
+              />
             </picture>
           </div>
           <div className={styles.item}>
             <picture>
-              <img src={bodywork.src} alt="Fotografia carroceria de buses" className={styles.image} />
+              <img
+                src={bodywork.src}
+                alt="Fotografia carroceria de buses"
+                className={styles.image}
+              />
             </picture>
           </div>
           <div className={styles.item}>
             <picture>
-              <img src={companies.src} alt="Fotografia compañias de transporte" className={styles.image} />
+              <img
+                src={companies.src}
+                alt="Fotografia compañias de transporte"
+                className={styles.image}
+              />
             </picture>
           </div>
           <div className={styles.item}>
-            <Slider />         
+            <Slider />
           </div>
           <div className={styles.item}>
             <picture>
-              <img src={community.src} alt="Fotografia comunidad de transporte" className={styles.image} />
-            </picture>
-          </div>
-          <div className={styles.item}>
-            <picture>
-              <img src={news.src} alt="Fotografia noticias de transporte" className={styles.image} />
-            </picture>
-          </div>
-          <div className={styles.item}>
-            <picture>
-              <img src={terminal.src} alt="Fotografia terminal de transporte colombia" className={styles.image} />
+              <img
+                src={community.src}
+                alt="Fotografia comunidad de transporte"
+                className={styles.image}
+              />
             </picture>
           </div>
           <div className={styles.item}>
             <picture>
-              <img src={routes.src} alt="Fotografia rutas de colombia" className={styles.image} />
+              <img
+                src={news.src}
+                alt="Fotografia noticias de transporte"
+                className={styles.image}
+              />
+            </picture>
+          </div>
+          <div className={styles.item}>
+            <picture>
+              <img
+                src={terminal.src}
+                alt="Fotografia terminal de transporte colombia"
+                className={styles.image}
+              />
+            </picture>
+          </div>
+          <div className={styles.item}>
+            <picture>
+              <img
+                src={routes.src}
+                alt="Fotografia rutas de colombia"
+                className={styles.image}
+              />
             </picture>
           </div>
         </div>
