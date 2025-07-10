@@ -13,7 +13,7 @@ interface ImageCardProps {
 }
 
 export function ImageCard({ photo }: ImageCardProps) {
-  const { url, company, serial } = photo;
+  const { url, company } = photo;
 
   const [isModalOpen, setIsModalOpen] = useState(false);
 
