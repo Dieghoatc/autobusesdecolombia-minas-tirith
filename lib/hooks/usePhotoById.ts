@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
-import { ApiPhotosResponse } from "@/services/types/photo.type";
+import { ApiPhotoById } from "@/services/types/photo.type";
 import { photoByIdQuery } from "@/services/api/photoById.query";
 
 export function usePhotoById(id: string) {
-  const [image, setImage] = useState({} as ApiPhotosResponse);
+  const [image, setImage] = useState({} as ApiPhotoById);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
 
@@ -14,7 +14,7 @@ export function usePhotoById(id: string) {
 
       try {
         const result = await photoByIdQuery(id);
-        setImage(result as ApiPhotosResponse);
+        setImage(result as ApiPhotoById);
       } catch (error) {
         setError(`Error to fetch data: ${error}`);
       } finally {

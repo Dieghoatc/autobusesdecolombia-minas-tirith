@@ -29,3 +29,7 @@ export interface ApiPhotosResponse {
     endItem: number;
   }
 }
+
+export interface ApiPhotoById {
+  data: ApiPhoto;
+}
