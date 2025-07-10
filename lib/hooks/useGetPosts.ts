@@ -1,3 +1,5 @@
+"use client";
+
 import { useState, useEffect } from "react";
 
 import { ApiPostsResponse } from "../../services/types/post.type";
