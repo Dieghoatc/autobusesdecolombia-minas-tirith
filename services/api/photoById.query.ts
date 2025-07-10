@@ -1,9 +1,9 @@
-import { ApiPhotosResponse } from "../types/photo.type";
+import { ApiPhoto } from "../types/photo.type";
 const URL = process.env.NEXT_PUBLIC_ABC_API;
 
-async function fetchData<ApiPhotosResponse>(id: string): Promise<ApiPhotosResponse> {
+async function fetchData<ApiPhoto>(id: string): Promise<ApiPhoto> {
 
-  if (!URL) return {} as ApiPhotosResponse;
+  if (!URL) return {} as ApiPhoto;
 
   try {
     const response = await fetch(`${URL}/photos/${id}`);
@@ -11,11 +11,11 @@ async function fetchData<ApiPhotosResponse>(id: string): Promise<ApiPhotosRespon
 
   } catch (error) {
     console.error(`Failed to fetch data: ${error}`);
-    return {} as ApiPhotosResponse;
+    return {} as ApiPhoto;
   }
 }
 
-export async function photoByIdQuery(id: string): Promise<ApiPhotosResponse | undefined> {
+export async function photoByIdQuery(id: string): Promise<ApiPhoto | undefined> {
   
-  return fetchData<ApiPhotosResponse>(id);
+  return fetchData<ApiPhoto>(id);
 }

@@ -1,12 +1,9 @@
 .container {
   display: flex;
   flex-direction: column;
-  width: 180px;
+ 
   position: relative;
 
-  @media (min-width: 768px) {
-    width: 300px;
-  }
 }
 
 .image {

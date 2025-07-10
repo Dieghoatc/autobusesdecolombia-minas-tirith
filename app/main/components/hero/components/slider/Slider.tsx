@@ -3,10 +3,11 @@ import { SliderItem } from "../sliderItem/SliderItem";
 import usePostStore from "@/lib/store/usePostStore";
 
 import styles from "./Slider.module.css";
+import { LoaderIntro } from "@/components/loader/LoaderIntro";
 
 export function Slider() {
   const [index, setIndex] = useState(0);
-  const { post } = usePostStore();
+  const { post, loading } = usePostStore();
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -16,12 +17,14 @@ export function Slider() {
     return () => clearInterval(interval);
   }, []);
 
+  if (loading) return <LoaderIntro />;
+
   return (
     <section className={styles.container}>
       <SliderItem
         type="post"
         index={index}
-        image={post.image_url}
+        url={post.image_url}
         title={post.title}
       />
     </section>

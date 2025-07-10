@@ -6,14 +6,14 @@ import { usePhotoById } from "@/lib/hooks";
 
 import "./image.css";
 
-import company from "@/assets/icons/company.png";
-import bodywork from "@/assets/icons/bodywork.png";
-import chassis from "@/assets/icons/chassis.png";
-import serial from "@/assets/icons/serial.png";
-import service from "@/assets/icons/service.png";
-import plate from "@/assets/icons/plate.png";
-import camera from "@/assets/icons/camera.png";
-import location from "@/assets/icons/location.png";
+import companyIcon from "@/assets/icons/company.png";
+import bodyworkIcon from "@/assets/icons/bodywork.png";
+import chassisIcon from "@/assets/icons/chassis.png";
+import serialIcon from "@/assets/icons/serial.png";
+import serviceIcon from "@/assets/icons/service.png";
+import plateIcon from "@/assets/icons/plate.png";
+import cameraIcon from "@/assets/icons/camera.png";
+import locationIcon from "@/assets/icons/location.png";
 
 import Metadata from "@/app/main/components/metadata/Metadata";
 import { formatString } from "@/lib/helpers/formatString";
@@ -29,20 +29,21 @@ export default function ImageView() {
   }
 
   const { image, loading } = usePhotoById(imageId);
+  const { company, serial, url, author, bodywork, chassis, service, plate, location, country } = image;
 
   if (loading) return <LoaderIntro />;
 
   const metadata = {
-    title: `${image.company} - ${image.serial}`,
-    description: `Fotografía de la empresa ${image.company} numero ${image.serial}`,
-    image: `${image.url}`,
-    url: `https://autobusesdecolombia.com/image/${image.photo_id}_${image.company}_${image.serial}`,
-    author: image.author,
+    title: `${company} - ${serial}`,
+    description: `Fotografía de la empresa ${company} numero ${serial}`,
+    image: `${url}`,
+    url: `https://autobusesdecolombia.com/image/${image.photo_id}_${company}_${serial}`,
+    author: author,
     publisher: "Autobuses de Colombia",
   };
 
   const title =
-    formatString(image.company) + " - " + formatString(image.serial);
+    formatString(company) + " - " + formatString(serial);
 
   return (
     <section>
@@ -59,21 +60,21 @@ export default function ImageView() {
             <picture>
               <source
                 type="image/webp"
-                srcSet={image.url}
+                srcSet={url}
                 media="min-width: 1200px"
               />
               <source
                 type="image/webp"
-                srcSet={image.url}
+                srcSet={url}
                 media="min-width: 768px"
               />
               <img
                 className="imageview-image"
-                src={image.url}
+                src={url}
                 role="presentation"
                 loading="lazy"
-                title={`Fotografía de la empresa ${image.company} numero ${image.serial}`}
-                alt={`imagen de la empresa ${image.company} con serial ${image.serial}`}
+                title={`Fotografía de la empresa ${company} numero ${serial}`}
+                alt={`imagen de la empresa ${company} con serial ${serial}`}
                 decoding="async"
               />
             </picture>
@@ -83,47 +84,47 @@ export default function ImageView() {
             <div>
               <ImageDetails
                 type="empresa"
-                info={image.company}
-                icon={company.src}
+                info={company}
+                icon={companyIcon.src}
               />
-              {image.bodywork === "n/a" || image.bodywork === "" ? null : (
+              {bodywork === "n/a" || bodywork === "" ? null : (
                 <ImageDetails
                   type="carroceria"
-                  info={image.bodywork}
-                  icon={bodywork.src}
+                  info={bodywork}
+                  icon={bodyworkIcon.src}
                 />
               )}
-              {image.chassis === "n/a" || image.chassis === "" ? null : (
+              {chassis === "n/a" || chassis === "" ? null : (
                 <ImageDetails
                   type="chasis"
-                  info={image.chassis}
-                  icon={chassis.src}
+                  info={chassis}
+                  icon={chassisIcon.src}
                 />
               )}
               <ImageDetails
                 type="serial"
-                info={image.serial}
-                icon={serial.src}
+                info={serial}
+                icon={serialIcon.src}
               />
-              {image.service === "n/a" || image.service === "" ? null : (
+              {service === "n/a" || service === "" ? null : (
                 <ImageDetails
                   type="servicio"
-                  info={image.service}
-                  icon={service.src}
+                  info={service}
+                  icon={serviceIcon.src}
                 />
               )}
-              <ImageDetails type="placa" info={image.plate} icon={plate.src} />
+              <ImageDetails type="placa" info={plate} icon={plateIcon.src} />
             </div>
             <div>
               <ImageDetails
                 type="fotografo"
-                info={image.author}
-                icon={camera.src}
+                info={author}
+                icon={cameraIcon.src}
               />
               <ImageDetails
                 type="localización"
-                info={`${image.location} - ${image.country}`}
-                icon={location.src}
+                info={`${location} - ${country}`}
+                icon={locationIcon.src}
               />
             </div>
           </article>

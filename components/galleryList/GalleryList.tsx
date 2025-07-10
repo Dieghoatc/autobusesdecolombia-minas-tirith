@@ -1,12 +1,12 @@
 import { useState } from "react";
-import { ApiPhotosResponse } from "@/services/types/photo.type";
+import { ApiPhoto } from "@/services/types/photo.type";
 import { Modal } from "../modal";
 import { ModalChildren } from "../modal/components/ModalChildren";
 
 import styles from "./GalleryList.module.css";
 
 interface GalleryListProps {
-  photo: ApiPhotosResponse;
+  photo: ApiPhoto;
 }
 
 export function GalleryList({ photo }: GalleryListProps) {

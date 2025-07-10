@@ -7,7 +7,7 @@ interface SliderItemProps {
   category?: string;
   type: "photo" | "post" | "video";
   image?: string;
-  urlVideo?: string;
+  url?: string;
   title: string;
   serial?: string;
   bodywork?: string;
@@ -22,7 +22,7 @@ export function SliderItem(data: SliderItemProps) {
       className={styles.container + " " + styles["translation-" + data.index]}
     >
       <div className={styles.slide}>
-        <Image src={data.image || ""} alt="" width={1920} height={1080} />
+        <Image src={data.url!} alt="" width={1920} height={1080} />
       </div>
       <div className={styles.overlay}>
         <div className={styles.content}>
