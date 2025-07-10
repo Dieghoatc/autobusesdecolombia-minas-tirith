@@ -6,10 +6,11 @@ import { categoryByIdQuery } from "@/services/api/categoryById.query";
 
 interface UseCategoryByIdProps {
   id: string;
+  page: number;
 }
 
-export function useCategoryById({ id }: UseCategoryByIdProps) {
-  const [photosById, setPhotoById] = useState([] as ApiPhotosResponse[]);
+export function useCategoryById({ id, page }: UseCategoryByIdProps) {
+  const [photosById, setPhotoById] = useState<ApiPhotosResponse>({} as ApiPhotosResponse);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
 
@@ -19,8 +20,8 @@ export function useCategoryById({ id }: UseCategoryByIdProps) {
       setError("");
 
       try {
-        const result = await categoryByIdQuery(id);
-        setPhotoById(result as ApiPhotosResponse[]);
+        const result = await categoryByIdQuery(id, page);
+        setPhotoById(result || {} as ApiPhotosResponse);
       } catch (error) {
         setError(`Error to fetch data: ${error}`);
       } finally {
