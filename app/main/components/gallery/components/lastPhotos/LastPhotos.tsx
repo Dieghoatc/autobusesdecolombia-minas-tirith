@@ -1,31 +1,33 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef } from "react";
 
-import { ApiPhotosResponse } from "@/services/types/photo.type";
+import { ApiPhoto } from "@/services/types/photo.type";
 import { Modal, ModalChildren } from "@/components/modal";
+import { ChevronLeft, ChevronRight } from "lucide-react";
+import { useCarousel, useModal } from "@/lib/hooks";
+
 import styles from "./LastPhotos.module.css";
 
 interface LastPhotosProps {
-  photos: ApiPhotosResponse[];
+  photos: ApiPhoto[];
 }
 
 export function LastPhotos({ photos }: LastPhotosProps) {
-  const [isModalOpen, setIsModalOpen] = useState({
-    isOpen: false,
-    photo: {} as ApiPhotosResponse,
-  });
-
-  const openModal = (photo: ApiPhotosResponse) =>
-    setIsModalOpen({ isOpen: true, photo });
-  const closeModal = () =>
-    setIsModalOpen({ isOpen: false, photo: {} as ApiPhotosResponse });
+  const { isModalOpen, openModal, closeModal } = useModal();
+  const sliderRef = useRef<HTMLDivElement>(null);
+  const { showLeftArrow, showRightArrow, scroll } = useCarousel(sliderRef);
 
   return (
     <section className={styles.container}>
       <h3>Últimas fotografías</h3>
-      <div className={styles.fade_shadow}>
-        <div className={styles.carousel}>
+      <div className={styles.arrows_controls}>
+        {showLeftArrow && (
+          <button className={styles.arrow_left} onClick={() => scroll("left")}>
+            <ChevronLeft />
+          </button>
+        )}
+        <div className={styles.carousel} ref={sliderRef}>
           {photos.slice(0, 6).map((photo) => (
             <div
               key={photo.photo_id}
@@ -36,10 +38,18 @@ export function LastPhotos({ photos }: LastPhotosProps) {
             </div>
           ))}
         </div>
-        <Modal onClose={closeModal} isOpen={isModalOpen.isOpen}>
-          <ModalChildren photo={isModalOpen.photo} />
-        </Modal>
+        {showRightArrow && (
+          <button
+            className={styles.arrow_right}
+            onClick={() => scroll("right")}
+          >
+            <ChevronRight />
+          </button>
+        )}
       </div>
+      <Modal onClose={closeModal} isOpen={isModalOpen.isOpen}>
+        <ModalChildren photo={isModalOpen.photo} />
+      </Modal>
     </section>
   );
 }

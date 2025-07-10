@@ -1,14 +1,15 @@
 "use client";
 
 import { useState } from "react";
-import { ApiPhotosResponse } from "@/services/types/photo.type";
+import { ApiPhoto } from "@/services/types/photo.type";
 import { formatString } from "@/lib/helpers/formatString";
 
 import styles from "./ImageCard.module.css";
 import { Modal, ModalChildren } from "@/components/modal";
+import Image from "next/image";
 
 interface ImageCardProps {
-  photo: ApiPhotosResponse;
+  photo: ApiPhoto;
 }
 
 export function ImageCard({ photo }: ImageCardProps) {
@@ -23,19 +24,13 @@ export function ImageCard({ photo }: ImageCardProps) {
     <div className={styles.container}>
       <figure className={styles.image} onClick={openModal}>
         <picture>
-          <source type="image/webp" srcSet={url} media="(min-width: 1200px)" />
-          <source type="image/webp" srcSet={url} media="(min-width: 768px)" />
-          <img
-            src={url}
-            role="presentation"
-            loading="lazy"
-            title={`Fotografía de la empresa ${company} ${
-              serial !== "n/a" ? `numero ${serial}` : ""
-            }`}
-            alt={`autobus de la empresa ${company} ${
-              serial !== "n/a" ? `numero ${serial}` : ""
-            }`}
-            decoding="async"
+          <source type="image/webp" srcSet={url} />
+          <Image
+            src={url} // Puede ser externa, asegúrate de configurar "images.domains" en next.config.js
+            alt={`Foto de ${company}`}
+            width={800}
+            height={600}
+            unoptimized // si no quieres optimización automática de Next.js
           />
         </picture>
       </figure>

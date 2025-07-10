@@ -1,85 +1,25 @@
-import { useState, useMemo } from "react";
 import { useGetPhotos } from "@/lib/hooks/useGetPhotos";
 
-import { orderById } from "@/lib/helpers/orderById";
-
 import SkeletonComponent from "../skeleton/Skeleton";
-import TabsCategories from "./components/tabs/TabsCategories";
-import SearchGallery from "./components/search/SearchGallery";
+import { LastPhotos } from "./components/lastPhotos";
+import { CategoryList } from "./components/categoryList";
+import styles from "./Gallery.module.css";
 
-import "./gallery.css";
-import { ImageCard } from "@/app/main/components/gallery/components/imageCard";
-import { MobileGallery } from "./components/mobileGallery";
-import { useIsMobile } from "@/lib/hooks/useIsMobile";
-
-interface CategoryList {
-  key: string;
-  label: string;
-  id?: number;
-}
-const categoriesList: CategoryList[] = [
-  { key: "all", label: "Todos" },
-  { key: "interdepartamental", label: "Interdepartamental", id: 1 },
-  { key: "intermunicipal", label: "Intermunicipal", id: 2 },
-  { key: "nuestros_recuerdos", label: "Nuestros Recuerdos", id: 5 },
-];
 export function Gallery() {
-  const { photos, loading } = useGetPhotos();
-  const [category, setCategory] = useState("all");
-  const [searchPhoto, setSearchPhoto] = useState("");
+  const { photos, loading } = useGetPhotos(1);
 
-  const isMobile = useIsMobile();
+  if (loading || !photos) return <SkeletonComponent />;
 
-  const searchPhotosMemo = useMemo(
-    () =>
-      (photos || []).filter(
-        (photo) =>
-          photo.serial.includes(searchPhoto) ||
-          photo.company.includes(searchPhoto) ||
-          photo.bodywork.includes(searchPhoto) ||
-          photo.chassis.includes(searchPhoto) ||
-          photo.author.includes(searchPhoto)
-      ),
-    [photos, searchPhoto]
-  );
-
-  const sortedData = useMemo(
-    () => orderById(searchPhotosMemo, "photo_id"),
-    [searchPhotosMemo]
-  );
-
-  const selectedCategory = categoriesList.find((cat) => cat.key === category);
-
-  const filteredData = useMemo(() => {
-    if (!selectedCategory?.id) return sortedData;
-
-    return sortedData.filter(
-      (photo) => photo.category_id === selectedCategory.id
-    );
-  }, [sortedData, selectedCategory]);
-
-  function searchPhotos(search: string) {
-    setSearchPhoto(search);
-  }
-
-  if (loading) return <SkeletonComponent />;
-
-  if (isMobile) return <MobileGallery images={photos} />;
-  
   return (
-    <div className="gallery-container" id="gallery">
-      <div className="galley-controls">
-        <TabsCategories
-          categoriesList={categoriesList}
-          setCategory={setCategory}
-        />
-        <SearchGallery search={searchPhotos} />
-      </div>
-      <div className="cards-container">
-        {filteredData.map((photo) => (
-          <ImageCard key={photo.photo_id} photo={photo} />
-        ))}
-      </div>
-    </div>
+    <section className={styles.container} id="gallery">
+      <LastPhotos photos={photos.data} />
+      <CategoryList photos={photos.data} category="Interdepartamentales" />
+      <CategoryList photos={photos.data} category="Intermunicipales" />
+      <CategoryList photos={photos.data} category="Nuestros Recuerdos" />
+      <CategoryList photos={photos.data} category="Turismo" />
+      <CategoryList photos={photos.data} category="Urbanos" />
+      <CategoryList photos={photos.data} category="Chivas" />
+      <CategoryList photos={photos.data} category="Internacionales" />
+    </section>
   );
 }

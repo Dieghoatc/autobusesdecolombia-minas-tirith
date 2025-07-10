@@ -1,12 +1,12 @@
 import styles from "./ModalChildren.module.css";
-import { ApiPhotosResponse } from "@/services/types/photo.type";
+import { ApiPhoto } from "@/services/types/photo.type";
 import { useState } from "react";
 import { useIsMobile } from "@/lib/hooks/useIsMobile";
 import { Car, RotateCw } from "lucide-react";
 import Link from "next/link";
 
 interface ModalChildrenProps {
-  photo: ApiPhotosResponse;
+  photo: ApiPhoto;
 }
 
 export function ModalChildren({ photo }: ModalChildrenProps) {
