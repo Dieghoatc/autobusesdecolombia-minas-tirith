@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef } from "react";
+import { useRef } from "react";
 
 import { ApiPhoto } from "@/services/types/photo.type";
 import { Modal, ModalChildren } from "@/components/modal";
@@ -34,7 +34,10 @@ export function LastPhotos({ photos }: LastPhotosProps) {
               className={styles.slide}
               onClick={() => openModal(photo)}
             >
-              <img src={photo.url} alt="" className={styles.image} />
+              <picture>
+                <source type="image/webp" srcSet={photo.url} />
+                <img src={photo.url} alt={photo.company} className={styles.image} />
+              </picture>
             </div>
           ))}
         </div>
