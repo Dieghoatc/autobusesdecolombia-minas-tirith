@@ -16,9 +16,9 @@ export function Gallery() {
       <CategoryList category="Interdepartamentales" />
       <CategoryList category="Intermunicipales" />
       <CategoryList category="Nuestros Recuerdos" />
-      <CategoryList category="Turismo" />
+      {/* <CategoryList category="Turismo" /> */}
       <CategoryList category="Urbanos" />
-      <CategoryList category="Chivas" />
+      {/* <CategoryList category="Chivas" /> */}
       <CategoryList category="Internacionales" />
     </section>
   );
