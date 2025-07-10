@@ -15,7 +15,7 @@ export function useCategoryById({ id, page }: UseCategoryByIdProps) {
   const [error, setError] = useState("");
 
   useEffect(() => {
-    async function fetchOnePhoto(id: string) {
+    async function fetchOnePhoto(id: string, page: number) {
       setLoading(true);
       setError("");
 
@@ -29,8 +29,8 @@ export function useCategoryById({ id, page }: UseCategoryByIdProps) {
       }
     }
 
-    fetchOnePhoto(id);
-  }, [id]);
+    fetchOnePhoto(id, page);
+  }, [id, page]);
 
   return {
     photosById,

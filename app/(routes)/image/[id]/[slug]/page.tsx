@@ -29,8 +29,7 @@ export default function ImageView() {
   }
 
   const { image, loading } = usePhotoById(imageId);
-  const { data } = image;
-  const { company, serial, url, author, bodywork, chassis, service, plate, location, country } = data;
+  const { company, serial, url, author, bodywork, chassis, service, plate, location, country } = image;
 
   if (loading) return <LoaderIntro />;
 
@@ -38,7 +37,7 @@ export default function ImageView() {
     title: `${company} - ${serial}`,
     description: `Fotografía de la empresa ${company} numero ${serial}`,
     image: `${url}`,
-    url: `https://autobusesdecolombia.com/image/${data.photo_id}_${company}_${serial}`,
+    url: `https://autobusesdecolombia.com/image/${image.photo_id}_${company}_${serial}`,
     author: author,
     publisher: "Autobuses de Colombia",
   };
@@ -61,12 +60,12 @@ export default function ImageView() {
             <picture>
               <source
                 type="image/webp"
-                srcSet={data.url}
+                srcSet={url}
                 media="min-width: 1200px"
               />
               <source
                 type="image/webp"
-                srcSet={data.url}
+                srcSet={url}
                 media="min-width: 768px"
               />
               <img

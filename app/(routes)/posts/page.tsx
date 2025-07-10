@@ -1,4 +1,3 @@
-"use client";
 
 import styles from "./posts.module.css";
 import { useGetPosts } from "../../../lib/hooks/useGetPosts";

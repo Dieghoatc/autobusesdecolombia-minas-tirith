@@ -20,11 +20,6 @@ export const categoriesList = [
     id: 3,
   },
   { 
-    key: "mixto", 
-    label: "Mixto",
-    id: 4,
-  },
-  { 
     key: "urbanos", 
     label: "Urbanos",
     id: 6,

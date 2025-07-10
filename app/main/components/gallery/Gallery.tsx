@@ -13,13 +13,13 @@ export function Gallery() {
   return (
     <section className={styles.container} id="gallery">
       <LastPhotos photos={photos.data} />
-      <CategoryList photos={photos.data} category="Interdepartamentales" />
-      <CategoryList photos={photos.data} category="Intermunicipales" />
-      <CategoryList photos={photos.data} category="Nuestros Recuerdos" />
-      <CategoryList photos={photos.data} category="Turismo" />
-      <CategoryList photos={photos.data} category="Urbanos" />
-      <CategoryList photos={photos.data} category="Chivas" />
-      <CategoryList photos={photos.data} category="Internacionales" />
+      <CategoryList category="Interdepartamentales" />
+      <CategoryList category="Intermunicipales" />
+      <CategoryList category="Nuestros Recuerdos" />
+      <CategoryList category="Turismo" />
+      <CategoryList category="Urbanos" />
+      <CategoryList category="Chivas" />
+      <CategoryList category="Internacionales" />
     </section>
   );
 }
