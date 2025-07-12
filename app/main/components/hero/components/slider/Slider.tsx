@@ -17,7 +17,7 @@ export function Slider() {
     return () => clearInterval(interval);
   }, []);
 
-  if (!loading) return <LoaderIntro />;
+  if (loading) return <LoaderIntro />;
 
   return (
     <section className={styles.container}>
