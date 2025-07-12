@@ -59,9 +59,9 @@ export default function ProvisionalSeach() {
         <SearchGallery search={searchPhotos} />
       </div>
       <div className="grid grid-cols-4 gap-2">
-        {searchPhotosMemo.map((item: any) => (
+        {searchPhotosMemo.map((item: Photo) => (
           <div key={item.photo_id}>
-            <img src={item.url} alt={item.title} className="w-full h-full object-cover" />
+            <img src={item.url} alt={item.serial} className="w-full h-full object-cover" />
           </div>
         ))}
       </div>
