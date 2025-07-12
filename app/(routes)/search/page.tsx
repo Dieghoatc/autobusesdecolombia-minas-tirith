@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useMemo } from "react";
 import SearchGallery from "@/components/search/SearchGallery";
+import {orderById} from '@/lib/helpers/orderById'
 const URL = process.env.NEXT_PUBLIC_ABC_API;
 
 interface Photo {
@@ -17,9 +18,7 @@ interface Photo {
 export default function ProvisionalSeach() {
   const [photos, setPhotos] = useState<Photo[]>([]);
   const [searchPhoto, setSearchPhoto] = useState("");
-
-  console.log(searchPhoto)
-
+  
   useEffect(() => {
     async function fetchData() {
       try {
@@ -33,6 +32,8 @@ export default function ProvisionalSeach() {
 
     fetchData();
   }, []);
+
+  const orderPhotos = useMemo(() => orderById(photos, 'photo_id'), [photos]);
 
   const searchPhotosMemo = useMemo(
     () =>
@@ -59,7 +60,7 @@ export default function ProvisionalSeach() {
         <SearchGallery search={searchPhotos} />
       </div>
       <div className="grid grid-cols-4 gap-2">
-        {searchPhotosMemo.map((item: Photo) => (
+        {orderPhotos.map((item: Photo) => (
           <div key={item.photo_id}>
             <img src={item.url} alt={item.serial} className="w-full h-full object-cover" />
           </div>
