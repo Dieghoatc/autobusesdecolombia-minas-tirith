@@ -4,8 +4,18 @@ import { useState, useEffect, useMemo } from "react";
 import SearchGallery from "@/components/search/SearchGallery";
 const URL = process.env.NEXT_PUBLIC_ABC_API;
 
+interface Photo {
+  photo_id: number;
+  serial: string;
+  company: string;
+  bodywork: string;
+  chassis: string;
+  author: string;
+  url: string;
+}
+
 export default function ProvisionalSeach() {
-  const [photos, setPhotos] = useState<any>([]);
+  const [photos, setPhotos] = useState<Photo[]>([]);
   const [searchPhoto, setSearchPhoto] = useState("");
 
   console.log(searchPhoto)
@@ -27,7 +37,7 @@ export default function ProvisionalSeach() {
   const searchPhotosMemo = useMemo(
     () =>
       (photos || []).filter(
-        (photo: any) =>
+        (photo: Photo) =>
           photo.serial.includes(searchPhoto) ||
           photo.company.includes(searchPhoto) ||
           photo.bodywork.includes(searchPhoto) ||
