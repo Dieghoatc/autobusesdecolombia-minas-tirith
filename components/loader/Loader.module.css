@@ -1,4 +1,4 @@
-.loader-intro_container {
+.container {
   width: 100%;
   height: 100%;
   display: flex;
@@ -6,10 +6,14 @@
   justify-content: center;
   align-items: center;
   animation: appear-disappear 3s ease-in-out infinite;
+}
 
-  h1 {
-    font-size: 20px;
-    color: white;
+.container h1 {
+  font-size: 6px;
+  color: white;
+
+  @media (min-width: 768px) {
+    font-size: 12px;
   }
 }
 
@@ -25,7 +29,11 @@
   }
 }
 
-.abc-logo {
-  width: 50px;
+.logo {
+  width: 30px;
   margin: 0 auto;
+
+  @media (min-width: 768px) {
+    width: 50px;
+  }
 }

@@ -3,7 +3,7 @@ import { SliderItem } from "../sliderItem/SliderItem";
 import usePostStore from "@/lib/store/usePostStore";
 
 import styles from "./Slider.module.css";
-import { LoaderIntro } from "@/components/loader/LoaderIntro";
+import { LoaderIntro } from "@/components/loader/Loader";
 
 export function Slider() {
   const [index, setIndex] = useState(0);
@@ -17,7 +17,7 @@ export function Slider() {
     return () => clearInterval(interval);
   }, []);
 
-  if (loading) return <LoaderIntro />;
+  if (!loading) return <LoaderIntro />;
 
   return (
     <section className={styles.container}>

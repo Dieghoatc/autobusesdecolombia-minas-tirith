@@ -6,7 +6,7 @@ import { useFindPost } from "./hooks/useFindPost";
 import "./post.css";
 
 import { RenderBlocks } from "./componentes/RenderBlocks";
-import { LoaderIntro } from "@/components/loader/LoaderIntro";
+import { LoaderIntro } from "@/components/loader/Loader";
 
 export default function PostToID() {
   let id_post = "1";
