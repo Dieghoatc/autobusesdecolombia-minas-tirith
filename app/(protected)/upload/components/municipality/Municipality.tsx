@@ -58,7 +58,7 @@ export function Municipality({ value, setValue }: MunicipalityProps) {
                   <CommandItem
                     key={municipality.id}
                     value={municipality.name}
-                    onSelect={(currentValue) => {
+                    onSelect={(currentValue: string) => {
                       setValue(currentValue === value ? "" : currentValue);
                       setOpen(false);
                     }}
