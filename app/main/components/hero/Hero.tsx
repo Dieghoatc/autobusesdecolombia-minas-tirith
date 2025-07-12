@@ -1,9 +1,8 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, useEffect } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { useGSAP } from "@gsap/react";
 import { Slider } from "./components/slider/Slider";
 
 import styles from "./Hero.module.css";
@@ -20,7 +19,7 @@ import community from "@/assets/hero/community.jpg";
 export function Hero() {
   const heroRef = useRef<HTMLDivElement>(null);
 
-  useGSAP(() => {
+  useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
 
     if (heroRef.current) {
@@ -41,7 +40,7 @@ export function Hero() {
     return () => {
       ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
     };
-  }, []);
+  }, [heroRef]);
 
   return (
     <section className={styles.container}>

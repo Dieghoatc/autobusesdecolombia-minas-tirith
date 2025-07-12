@@ -11,9 +11,6 @@ importers:
       '@fontsource/mitr':
         specifier: ^5.2.6
         version: 5.2.6
-      '@gsap/react':
-        specifier: ^2.1.2
-        version: 2.1.2(gsap@3.13.0)(react@19.1.0)
       '@hookform/resolvers':
         specifier: ^3.10.0
         version: 3.10.0(react-hook-form@7.60.0(react@19.1.0))
@@ -97,8 +94,8 @@ importers:
         specifier: ^3.3.1
         version: 3.3.1
       '@types/node':
-        specifier: ^20.19.6
-        version: 20.19.6
+        specifier: ^20.19.7
+        version: 20.19.7
       '@types/react':
         specifier: ^19.1.8
         version: 19.1.8
@@ -198,12 +195,6 @@ packages:
 
   '@fontsource/mitr@5.2.6':
     resolution: {integrity: sha512-Xgp9KkubOfedpD+jmZW4rsiHJ/z0Bnu/2T47NKEo92YRqhn2WNcxj0sFMNd8kU6+nLbxcbOT+ralhnrqGbH4EA==}
-
-  '@gsap/react@2.1.2':
-    resolution: {integrity: sha512-JqliybO1837UcgH2hVOM4VO+38APk3ECNrsuSM4MuXp+rbf+/2IG2K1YJiqfTcXQHH7XlA0m3ykniFYstfq0Iw==}
-    peerDependencies:
-      gsap: ^3.12.5
-      react: '>=17'
 
   '@hookform/resolvers@3.10.0':
     resolution: {integrity: sha512-79Dv+3mDF7i+2ajj7SkypSKHhl1cbln1OGavqrsF7p6mbUv11xpqpacPsGDCTRvCSjEEIez2ef1NveSVL3b0Ag==}
@@ -833,8 +824,8 @@ packages:
   '@types/json5@0.0.29':
     resolution: {integrity: sha512-dRLjCWHYg4oaA77cxO64oO+7JwCwnIzkZPdrrC71jQmQtlhM556pwKo5bUzqvZndkVbeFLIIi+9TC40JNF5hNQ==}
 
-  '@types/node@20.19.6':
-    resolution: {integrity: sha512-uYssdp9z5zH5GQ0L4zEJ2ZuavYsJwkozjiUzCRfGtaaQcyjAMJ34aP8idv61QlqTozu6kudyr6JMq9Chf09dfA==}
+  '@types/node@20.19.7':
+    resolution: {integrity: sha512-1GM9z6BJOv86qkPvzh2i6VW5+VVrXxCLknfmTkWEqz+6DqosiY28XUWCTmBcJ0ACzKqx/iwdIREfo1fwExIlkA==}
 
   '@types/react-dom@19.1.6':
     resolution: {integrity: sha512-4hOiT/dwO8Ko0gV1m/TJZYk3y0KBnY9vzDh7W+DH17b2HFSOGgdj33dhihPeuy3l0q23+4e+hoXHV6hCC4dCXw==}
@@ -2578,11 +2569,6 @@ snapshots:
 
   '@fontsource/mitr@5.2.6': {}
 
-  '@gsap/react@2.1.2(gsap@3.13.0)(react@19.1.0)':
-    dependencies:
-      gsap: 3.13.0
-      react: 19.1.0
-
   '@hookform/resolvers@3.10.0(react-hook-form@7.60.0(react@19.1.0))':
     dependencies:
       react-hook-form: 7.60.0(react@19.1.0)
@@ -3152,7 +3138,7 @@ snapshots:
 
   '@types/json5@0.0.29': {}
 
-  '@types/node@20.19.6':
+  '@types/node@20.19.7':
     dependencies:
       undici-types: 6.21.0
 
