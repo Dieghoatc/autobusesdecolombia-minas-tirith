@@ -8,7 +8,7 @@ import styles from "./Gallery.module.css";
 export function Gallery() {
   const { photos, loading } = useGetPhotos(1);
 
-  if (loading || !photos) return <SkeletonComponent />;
+  if (loading) return <SkeletonComponent />;
 
   return (
     <section className={styles.container} id="gallery">
@@ -16,9 +16,7 @@ export function Gallery() {
       <CategoryList category="Interdepartamentales" />
       <CategoryList category="Intermunicipales" />
       <CategoryList category="Nuestros Recuerdos" />
-      {/* <CategoryList category="Turismo" /> */}
       <CategoryList category="Urbanos" />
-      {/* <CategoryList category="Chivas" /> */}
       <CategoryList category="Internacionales" />
     </section>
   );
