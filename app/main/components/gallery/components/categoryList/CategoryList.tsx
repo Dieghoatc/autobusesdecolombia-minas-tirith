@@ -47,7 +47,7 @@ export function CategoryList({ category }: CategoryListProps) {
               className={styles.slide}
               onClick={() => openModal(photo)}
             >
-              <img src={photo.url} alt="" className={styles.image} />
+              <img src={photo.url} alt={`${photo.company}-${photo.serial}`} className={styles.image} />
             </div>
           ))}
         </div>
