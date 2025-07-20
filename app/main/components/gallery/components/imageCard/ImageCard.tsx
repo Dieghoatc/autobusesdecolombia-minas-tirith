@@ -1,19 +1,18 @@
 "use client";
 
 import { useState } from "react";
-import { ApiPhoto } from "@/services/types/photo.type";
-import { formatString } from "@/lib/helpers/formatString";
+import { Photo } from "@/services/types/photo.type";
 
 import styles from "./ImageCard.module.css";
 import { Modal, ModalChildren } from "@/components/modal";
 import Image from "next/image";
 
 interface ImageCardProps {
-  photo: ApiPhoto;
+  photo: Photo;
 }
 
 export function ImageCard({ photo }: ImageCardProps) {
-  const { url, company } = photo;
+  const { image_url, company: { name } } = photo;
 
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -24,10 +23,10 @@ export function ImageCard({ photo }: ImageCardProps) {
     <div className={styles.container}>
       <figure className={styles.image} onClick={openModal}>
         <picture>
-          <source type="image/webp" srcSet={url} />
+          <source type="image/webp" srcSet={image_url} />
           <Image
-            src={url} // Puede ser externa, asegúrate de configurar "images.domains" en next.config.js
-            alt={`Foto de ${company}`}
+            src={image_url} // Puede ser externa, asegúrate de configurar "images.domains" en next.config.js
+            alt={`Foto de ${name}`}
             width={800}
             height={600}
             unoptimized // si no quieres optimización automática de Next.js
@@ -35,7 +34,7 @@ export function ImageCard({ photo }: ImageCardProps) {
         </picture>
       </figure>
       <div className={styles.title}>
-        <h2>{formatString(company)}</h2>
+        <h2>{name}</h2>
       </div>
 
       <Modal onClose={closeModal} isOpen={isModalOpen}>
