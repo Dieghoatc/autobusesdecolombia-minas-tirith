@@ -1,5 +1,6 @@
 export * from "./useGetPhotos";
-export * from "./useCategoryById";
+export * from "./usePhotosCategoryById";
 export * from "./usePhotoById";
 export * from "./useCarousel";
 export * from "./useModal";
+export * from "./useTransportCategories";

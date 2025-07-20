@@ -9,6 +9,8 @@
 .header {
   display: flex;
   justify-content: center;
+  align-items: center;
+  flex-direction: column;
   padding: 16px;
 }
 
@@ -19,8 +21,19 @@
   line-height: 1.2;
 }
 
+.header p {
+  font-size: 1rem;
+  font-weight: 400;
+  letter-spacing: -0.5px;
+  line-height: 1.2;
+}
+
 .list {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 2px;
+}
+
+.pagination {
+  margin: 16px 0;
 }

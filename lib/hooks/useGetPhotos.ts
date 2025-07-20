@@ -2,11 +2,11 @@
 
 import { useState, useEffect } from "react";
 import { photosQuery } from "@/services/api/photos.query";
-import { ApiPhotosResponse } from "@/services/types/photo.type";
+import { ApiPhotoResponse, Photo } from "@/services/types/photo.type";
 import usePhotosStore from "@/lib/store/usePhotosStore";
 
-export function useGetPhotos(page: number) {
-  const [photos, setPhotos] = useState<ApiPhotosResponse>({} as ApiPhotosResponse);
+export function useGetPhotos(page: number, limit: number) {
+  const [photos, setPhotos] = useState<Photo[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
 
@@ -14,13 +14,15 @@ export function useGetPhotos(page: number) {
   const setLoadingStore = usePhotosStore((state) => state.setLoading);
 
   useEffect(() => {
-    async function fetchPhotos(page: number) {
+    async function fetchPhotos(page: number, limit: number) {
       setLoading(true);
       setError("");
 
       try {
-        const result = await photosQuery(page);      
-        setPhotos(result as ApiPhotosResponse);
+        const result = await photosQuery(page, limit); 
+        const { data } = result || {} as ApiPhotoResponse;    
+        setPhotos(data);
+        setPhotosStore(data);
       } catch (error) {
         setError(`Error to fetch data: ${error}`);
       } finally {
@@ -28,7 +30,7 @@ export function useGetPhotos(page: number) {
         setLoading(false);
       }
     }
-    fetchPhotos(page);
+    fetchPhotos(page, limit);
   }, [setPhotosStore, setLoadingStore, page]);
 
   return { photos, loading, error };

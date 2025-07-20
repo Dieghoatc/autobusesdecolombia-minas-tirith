@@ -1,18 +1,17 @@
 import { useState } from "react";
-import { ApiPhoto } from "@/services/types/photo.type";
+import { Photo } from "@/services/types/photo.type";
 import { Modal } from "../modal";
 import { ModalChildren } from "../modal/components/ModalChildren";
 
 import styles from "./GalleryList.module.css";
 
 interface GalleryListProps {
-  photo: ApiPhoto;
+  photo: Photo;
 }
 
-export function GalleryList({ photo }: GalleryListProps) {
-  
+export function GalleryList({ photo }: GalleryListProps) {  
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const { url, company, serial } = photo;
+  const { image_url, company: { name }, serial: serial_company } = photo
   
     const openModal = () => setIsModalOpen(true);
     const closeModal = () => setIsModalOpen(false);
@@ -24,23 +23,23 @@ export function GalleryList({ photo }: GalleryListProps) {
             <picture>
               <source
                 type="image/webp"
-                srcSet={url}
+                srcSet={image_url}
                 media="(min-width: 1200px)"
               />
               <source
                 type="image/webp"
-                srcSet={url}
+                srcSet={image_url}
                 media="(min-width: 768px)"
               />
               <img
-                src={url}
+                src={image_url}
                 role="presentation"
                 loading="lazy"
-                title={`Fotografía de la empresa ${company} ${
-                  serial !== "n/a" ? `numero ${serial}` : ""
+                title={`Fotografía de la empresa ${name} ${
+                  serial_company ? `número ${serial_company}` : ""
                 }`}
-                alt={`autobus de la empresa ${company} ${
-                  serial !== "n/a" ? `numero ${serial}` : ""
+                alt={`autobus de la empresa ${name} ${
+                  serial_company ? `número ${serial_company}` : ""
                 }`}
                 decoding="async"
                 className={styles.image}

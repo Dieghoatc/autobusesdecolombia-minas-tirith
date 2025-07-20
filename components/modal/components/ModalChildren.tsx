@@ -1,16 +1,16 @@
 import styles from "./ModalChildren.module.css";
-import { ApiPhoto } from "@/services/types/photo.type";
+import { Photo } from "@/services/types/photo.type";
 import { useState } from "react";
 import { useIsMobile } from "@/lib/hooks/useIsMobile";
 import { Car, RotateCw } from "lucide-react";
 import Link from "next/link";
 
 interface ModalChildrenProps {
-  photo: ApiPhoto;
+  photo: Photo;
 }
 
 export function ModalChildren({ photo }: ModalChildrenProps) {
-  const { url, company, serial } = photo;
+  const { image_url, company: { name }, serial_company } = photo;
   const [isRotated, setIsRotated] = useState(false);
 
   const isMobile = useIsMobile();
@@ -26,22 +26,22 @@ export function ModalChildren({ photo }: ModalChildrenProps) {
         className={`${styles.image} ${isRotated ? styles.rotated_image : ""}`}
       >
         <img
-          src={url}
+          src={image_url}
           loading="lazy"
           decoding="async"
           role="presentation"
-          title={`Fotografía de la empresa ${company} ${
-            serial && serial !== "n/a" ? `número ${serial}` : ""
+          title={`Fotografía de la empresa ${name} ${
+            serial_company && serial_company !== "n/a" ? `número ${serial_company}` : ""
           }`}
-          alt={`Autobús de la empresa ${company} ${
-            serial && serial !== "n/a" ? `número ${serial}` : ""
+          alt={`Autobús de la empresa ${name} ${
+            serial_company && serial_company !== "n/a" ? `número ${serial_company}` : ""
           }`}
         />
       </div>
 
       <div className={styles.car_button}>
         <Link
-          href={`/image/${photo.photo_id}/${photo.company}-${photo.serial}`}
+          href={`/image/${photo.photo_id}/${name}-${serial_company}`}
         >
           <Car size={30} />
         </Link>
