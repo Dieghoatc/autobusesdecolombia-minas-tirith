@@ -2,13 +2,11 @@
 
 import { useRef } from "react";
 
-import { Photo } from "@/services/types/photo.type";
 import { Modal, ModalChildren } from "@/components/modal";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { useCarousel, useGetPhotos, useModal } from "@/lib/hooks";
 
 import styles from "./LastPhotos.module.css";
-
 
 
 export function LastPhotos() {
