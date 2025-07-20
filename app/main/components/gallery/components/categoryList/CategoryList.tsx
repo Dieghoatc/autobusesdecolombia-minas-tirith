@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useRef } from "react";
+import { useRef } from "react";
 import Link from "next/link";
 import { Photo } from "@/services/types/photo.type";
 import { Modal, ModalChildren } from "@/components/modal";

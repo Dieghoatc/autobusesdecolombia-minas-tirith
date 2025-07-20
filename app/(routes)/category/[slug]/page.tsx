@@ -1,10 +1,9 @@
 "use client";
 
-import { useState } from "react";
 import { useParams, useSearchParams, useRouter } from "next/navigation";
 
 import { usePhotosCategoryById } from "@/lib/hooks";
-import { Photo, Info } from "@/services/types/photo.type";
+import { Photo } from "@/services/types/photo.type";
 
 import { GalleryList } from "@/components/galleryList";
 import { LoaderIntro } from "@/components/loader/Loader";
@@ -14,18 +13,14 @@ import styles from "./CategoryGallery.module.css";
 
 export default function CategoryGallery() {
   const searchParams = useSearchParams();
-  const { slug } = useParams();
+  const { slug } = useParams<{ slug: string }>();
   const router = useRouter();
 
   const page = parseInt(searchParams.get("page") || "1");
   const limit = parseInt(searchParams.get("limit") || "20");
 
-  if (typeof slug !== "string" || slug.trim() === "") {
-    return <LoaderIntro />;
-  }
-
   const { photos, loading } = usePhotosCategoryById({
-    slug: slug || "",
+    slug: slug,
     page: page,
     limit: limit,
   });
