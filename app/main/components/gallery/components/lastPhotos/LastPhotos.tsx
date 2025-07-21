@@ -2,18 +2,15 @@
 
 import { useRef } from "react";
 
-import { ApiPhoto } from "@/services/types/photo.type";
 import { Modal, ModalChildren } from "@/components/modal";
 import { ChevronLeft, ChevronRight } from "lucide-react";
-import { useCarousel, useModal } from "@/lib/hooks";
+import { useCarousel, useGetPhotos, useModal } from "@/lib/hooks";
 
 import styles from "./LastPhotos.module.css";
 
-interface LastPhotosProps {
-  photos: ApiPhoto[];
-}
 
-export function LastPhotos({ photos }: LastPhotosProps) {
+export function LastPhotos() {
+  const { photos } = useGetPhotos(1, 10);
   const { isModalOpen, openModal, closeModal } = useModal();
   const sliderRef = useRef<HTMLDivElement>(null);
   const { showLeftArrow, showRightArrow, scroll } = useCarousel(sliderRef);
@@ -28,17 +25,17 @@ export function LastPhotos({ photos }: LastPhotosProps) {
           </button>
         )}
         <div className={styles.carousel} ref={sliderRef}>
-          {photos.slice(0, 6).map((photo) => (
-            <div
+          {photos.map((photo) => (
+            <figure
               key={photo.photo_id}
               className={styles.slide}
               onClick={() => openModal(photo)}
             >
               <picture>
-                <source type="image/webp" srcSet={photo.url} />
-                <img src={photo.url} alt={photo.company} className={styles.image} />
+                <source type="image/webp" srcSet={photo.image_url} />
+                <img src={photo.image_url} alt={photo.company.name} />
               </picture>
-            </div>
+            </figure>
           ))}
         </div>
         {showRightArrow && (

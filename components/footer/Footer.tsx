@@ -5,7 +5,7 @@ import x from "../../assets/x.png";
 import tiktok from "../../assets/tiktok.png";
 import discord from "../../assets/discord.png";
 
-export default function Footer() {
+export function Footer() {
   return (
     <div className="footer-container">
       <div className="footer-social-media">

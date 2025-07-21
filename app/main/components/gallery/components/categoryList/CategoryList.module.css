@@ -1,6 +1,10 @@
 .container {
   color: #fff;
   margin: 0 4px;
+
+  @media (min-width: 768px) {
+    margin: 16px 0;
+  }
 }
 
 .header {
@@ -18,7 +22,7 @@
   color: #fff;
 
   @media (min-width: 768px) {
-    font-size: 28px;
+    font-size: 24px;
   }
 }
 
@@ -82,8 +86,9 @@
   }
 }
 
-.image {
+.slide img {
   aspect-ratio: 16/9;
   object-fit: cover;
   border-radius: 10px;
+  cursor: pointer;
 }

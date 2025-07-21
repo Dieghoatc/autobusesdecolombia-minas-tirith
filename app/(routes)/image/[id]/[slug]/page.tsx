@@ -21,29 +21,24 @@ import { LoaderIntro } from "@/components/loader/Loader";
 
 export default function ImageView() {
   const params = useParams();
+  const { id: imageId = 1 } = params;
 
-  let imageId = "1";
-
-  if (params.id) {
-    imageId = Array.isArray(params.id) ? params.id[0] : params.id;
-  }
-
-  const { image, loading } = usePhotoById(imageId);
-  const { company, serial, url, author, bodywork, chassis, service, plate, location, country } = image;
+  const { image, loading } = usePhotoById(imageId.toString());
+  const { company, serial_company, image_url, photographer, bodywork, chassis, service, plate, location, country } = image;
 
   if (loading) return <LoaderIntro />;
 
   const metadata = {
-    title: `${company} - ${serial}`,
-    description: `Fotografía de la empresa ${company} numero ${serial}`,
-    image: `${url}`,
-    url: `https://autobusesdecolombia.com/image/${image.photo_id}_${company}_${serial}`,
-    author: author,
+    title: `${company.name} - ${serial_company}`,
+    description: `Fotografía de la empresa ${company.name} numero serial ${serial_company}`,
+    image: `${image_url}`,
+    url: `https://autobusesdecolombia.com/image/${image.photo_id}_${company.name}_${serial_company}`,
+    author: photographer.name,
     publisher: "Autobuses de Colombia",
   };
 
   const title =
-    formatString(company) + " - " + formatString(serial);
+    formatString(company.name) + " - " + formatString(serial_company);
 
   return (
     <section>
@@ -60,21 +55,21 @@ export default function ImageView() {
             <picture>
               <source
                 type="image/webp"
-                srcSet={url}
+                srcSet={image_url}
                 media="min-width: 1200px"
               />
               <source
                 type="image/webp"
-                srcSet={url}
+                srcSet={image_url}
                 media="min-width: 768px"
               />
               <img
                 className="imageview-image"
-                src={url}
+                src={image_url}
                 role="presentation"
                 loading="lazy"
-                title={`Fotografía de la empresa ${company} numero ${serial}`}
-                alt={`imagen de la empresa ${company} con serial ${serial}`}
+                title={`Fotografía de la empresa ${company} numero ${serial_company}`}
+                alt={`imagen de la empresa ${company} con serial ${serial_company}`}
                 decoding="async"
               />
             </picture>
@@ -84,26 +79,26 @@ export default function ImageView() {
             <div>
               <ImageDetails
                 type="empresa"
-                info={company}
+                info={company.name}
                 icon={companyIcon.src}
               />
-              {bodywork === "n/a" || bodywork === "" ? null : (
+              {bodywork.model === "n/a" || bodywork.model === "" ? null : (
                 <ImageDetails
                   type="carroceria"
-                  info={bodywork}
+                  info={bodywork.model}
                   icon={bodyworkIcon.src}
                 />
               )}
-              {chassis === "n/a" || chassis === "" ? null : (
+              {chassis.model === "n/a" || chassis.model === "" ? null : (
                 <ImageDetails
                   type="chasis"
-                  info={chassis}
+                  info={chassis.model}
                   icon={chassisIcon.src}
                 />
               )}
               <ImageDetails
                 type="serial"
-                info={serial}
+                info={serial_company}
                 icon={serialIcon.src}
               />
               {service === "n/a" || service === "" ? null : (
@@ -118,7 +113,7 @@ export default function ImageView() {
             <div>
               <ImageDetails
                 type="fotografo"
-                info={author}
+                info={photographer.name}
                 icon={cameraIcon.src}
               />
               <ImageDetails

@@ -76,13 +76,14 @@
   width: 95%;
   scroll-snap-align: start;
   flex-shrink: 0;
+  cursor: pointer;
 
   @media (min-width: 768px) {
     width: 320px;
   }
 }
 
-.image {
+.slide img {
   aspect-ratio: 16/9;
   object-fit: cover;
   border-radius: 10px;

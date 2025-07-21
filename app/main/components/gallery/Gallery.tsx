@@ -1,23 +1,20 @@
-import { useGetPhotos } from "@/lib/hooks/useGetPhotos";
+import { useTransportCategories } from "@/lib/hooks";
+import { TransportCategory } from "@/services/types/transportCategories.type";
 
-import SkeletonComponent from "../skeleton/Skeleton";
 import { LastPhotos } from "./components/lastPhotos";
 import { CategoryList } from "./components/categoryList";
+
 import styles from "./Gallery.module.css";
 
 export function Gallery() {
-  const { photos, loading } = useGetPhotos(1);
-
-  if (loading) return <SkeletonComponent />;
+  const categoriesList = useTransportCategories();
 
   return (
     <section className={styles.container} id="gallery">
-      <LastPhotos photos={photos.data} />
-      <CategoryList category="Interdepartamentales" />
-      <CategoryList category="Intermunicipales" />
-      <CategoryList category="Nuestros Recuerdos" />
-      <CategoryList category="Urbanos" />
-      <CategoryList category="Internacionales" />
+      <LastPhotos />
+      {categoriesList.list.map((category: TransportCategory) => (
+        <CategoryList key={category.category_id} category={category.slug} name={category.name} />
+      ))}
     </section>
   );
 }
