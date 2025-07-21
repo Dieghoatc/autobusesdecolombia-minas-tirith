@@ -40,13 +40,13 @@ export function CategoryList({ category, name }: CategoryListProps) {
         )}
         <div className={styles.carousel} ref={sliderRef}>
           {photos.data.map((photo: Photo) => (
-            <div
+            <figure
               key={photo.photo_id}
               className={styles.slide}
               onClick={() => openModal(photo)}
             >
-              <img src={photo.image_url} alt={`${photo.company}-${photo.serial}`} className={styles.image} />
-            </div>
+              <img src={photo.image_url} alt={`${photo.company}-${photo.serial}`} />
+            </figure>
           ))}
         </div>
         {showRightArrow && (

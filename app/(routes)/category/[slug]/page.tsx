@@ -6,10 +6,9 @@ import { usePhotosCategoryById } from "@/lib/hooks";
 import { Photo } from "@/services/types/photo.type";
 
 import { GalleryList } from "@/components/galleryList";
-import { LoaderIntro } from "@/components/loader/Loader";
 import { PaginationGallery } from "@/components/paginationGallery/paginationGallery";
-import Footer from "@/components/footer/Footer";
 import styles from "./CategoryGallery.module.css";
+import { SkeletonGallery } from "../components/SkeletonGallery";
 
 export default function CategoryGallery() {
   const searchParams = useSearchParams();
@@ -31,7 +30,7 @@ export default function CategoryGallery() {
     router.push(`?${params.toString()}`);
   };
 
-  if (loading) return <LoaderIntro />;
+  if (loading) return <SkeletonGallery />;
 
   const categoryTitle = photos.data[0].category.name;
   const categoryDescription = photos.data[0].category.description;
@@ -51,9 +50,6 @@ export default function CategoryGallery() {
         <div className={styles.pagination}>
           <PaginationGallery pagination={photos.info} goToPage={goToPage} />
         </div>
-      </section>
-      <section>
-        <Footer />
       </section>
     </div>
   );

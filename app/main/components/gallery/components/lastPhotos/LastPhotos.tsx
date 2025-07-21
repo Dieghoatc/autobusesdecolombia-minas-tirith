@@ -26,16 +26,16 @@ export function LastPhotos() {
         )}
         <div className={styles.carousel} ref={sliderRef}>
           {photos.map((photo) => (
-            <div
+            <figure
               key={photo.photo_id}
               className={styles.slide}
               onClick={() => openModal(photo)}
             >
               <picture>
                 <source type="image/webp" srcSet={photo.image_url} />
-                <img src={photo.image_url} alt={photo.company.name} className={styles.image} />
+                <img src={photo.image_url} alt={photo.company.name} />
               </picture>
-            </div>
+            </figure>
           ))}
         </div>
         {showRightArrow && (
