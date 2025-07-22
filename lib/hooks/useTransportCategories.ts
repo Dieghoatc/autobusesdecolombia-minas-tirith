@@ -1,35 +1,18 @@
-import { useEffect, useState } from "react";
-import { TransportCategory } from "@/services/types/transportCategories.type";
-import { transportCategoriesQuery } from "@/services/api/transportCategories.query";
+import { useEffect } from "react";
 import { useTransportCategoryStore } from "@/lib/store/useTransportCategoryStore";
 
 export function useTransportCategories() {
-  const [categoriesList, setCategoriesList] = useState<TransportCategory[]>([]);
-  const setCategory = useTransportCategoryStore((state) => state.setCategory);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState("");
+  const { categories, loading, error, fetchCategories } = useTransportCategoryStore()
 
   useEffect(() => {
-    async function fetchCategories() {
-      setLoading(true);
-      setError("");
-
-      try {
-        const result = await transportCategoriesQuery();
-        setCategoriesList(result);
-        setCategory(result);
-      } catch (error) {
-        setError(`Error to fetch data: ${error}`);
-      } finally {
-        setLoading(false);
-      }
+    if(categories.length === 0){
+      fetchCategories()
     }
 
-    fetchCategories();
-  }, []);
+  }, [fetchCategories, categories]);
 
   return {
-    list: categoriesList,
+    categories,
     loading,
     error,
   };

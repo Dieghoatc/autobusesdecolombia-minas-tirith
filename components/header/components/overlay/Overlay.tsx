@@ -2,7 +2,12 @@ import styles from "./Overlay.module.css";
 import { Item } from "../Item";
 import Link from "next/link";
 
-export function Overlay({ open }: { open: boolean }) {
+import { Skeleton } from "@/components/ui/skeleton";
+import { useTransportCategories } from "@/lib/hooks";
+
+export function Overlay({open}: {open: boolean}) { 
+  const {categories, loading} = useTransportCategories()
+
   return (
     <section className={`${styles.container} ${open ? "" : styles.close}`}>
       <div className={styles.content}>
@@ -10,12 +15,16 @@ export function Overlay({ open }: { open: boolean }) {
         <div className={styles.content_categories}>
           <h4>Categorias</h4>
           <ul className={styles.content_categories_list}>
-            <Item title="Interdepartamentales" />
-            <Item title="Intermunicipales" />
-            <Item title="Urbanos" />
-            <Item title="Nuestros Recuerdos" />
-            <Item title="Especial" />
-            <Item title="Internacionales" />
+            {loading ? (
+              <div className="space-y-2">
+                <Skeleton className="h-4 w-[250px]" />
+                <Skeleton className="h-4 w-[200px]" />
+              </div>
+            ) : (
+              categories.map((category) => (
+                <Item key={category.category_id} title={category.name} />
+              ))
+            )}
           </ul>
         </div>
       </div>
