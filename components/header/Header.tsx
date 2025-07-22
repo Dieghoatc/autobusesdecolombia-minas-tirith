@@ -4,6 +4,9 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 
+import { useTransportCategories } from "@/lib/hooks";
+import { useTransportCategoryStore } from "@/lib/store/useTransportCategoryStore";
+
 import { Menu, X } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
 
