@@ -105,10 +105,12 @@ export interface Info {
   pages:     number;
   limit:     number;
   next:      string;
+  prev:      string;
   hasNext:   boolean;
   hasPrev:   boolean;
   startItem: number;
   endItem:   number;
+  currentPage: number;
 }
 
 
