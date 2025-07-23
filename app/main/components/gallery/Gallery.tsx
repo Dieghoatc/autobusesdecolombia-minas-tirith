@@ -12,8 +12,8 @@ export function Gallery() {
       <LastPhotos />
       {categories.map((category) => (
         <CategoryList
-          key={category.category_id}
-          category={category.slug}
+          key={category.transport_category_id}
+          category={category.transport_category_id}
           name={category.name}
         />
       ))}

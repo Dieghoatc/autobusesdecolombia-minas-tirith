@@ -33,7 +33,7 @@ export function LastPhotos() {
             >
               <picture>
                 <source type="image/webp" srcSet={photo.image_url} />
-                <img src={photo.image_url} alt={photo.company.name} />
+                <img src={photo.image_url} alt="" />
               </picture>
             </figure>
           ))}
