@@ -10,7 +10,7 @@ interface ModalChildrenProps {
 }
 
 export function ModalChildren({ photo }: ModalChildrenProps) {
-  const { image_url, company: { name }, serial_company } = photo;
+  const { image_url } = photo;
   const [isRotated, setIsRotated] = useState(false);
 
   const isMobile = useIsMobile();
@@ -30,21 +30,17 @@ export function ModalChildren({ photo }: ModalChildrenProps) {
           loading="lazy"
           decoding="async"
           role="presentation"
-          title={`Fotografía de la empresa ${name} ${
-            serial_company && serial_company !== "n/a" ? `número ${serial_company}` : ""
-          }`}
-          alt={`Autobús de la empresa ${name} ${
-            serial_company && serial_company !== "n/a" ? `número ${serial_company}` : ""
-          }`}
+          title=""
+          alt=""
         />
       </div>
 
       <div className={styles.car_button}>
-        <Link
-          href={`/image/${photo.photo_id}/${name}-${serial_company}`}
+        {/* <Link
+          href={`/image/${photo.photo_id}`}
         >
           <Car size={30} />
-        </Link>
+        </Link> */}
       </div>
 
       {isMobile && (

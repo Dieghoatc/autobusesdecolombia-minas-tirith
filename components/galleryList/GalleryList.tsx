@@ -11,7 +11,7 @@ interface GalleryListProps {
 
 export function GalleryList({ photo }: GalleryListProps) {  
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const { image_url, company: { name }, serial: serial_company } = photo
+  const { image_url } = photo
   
     const openModal = () => setIsModalOpen(true);
     const closeModal = () => setIsModalOpen(false);
@@ -35,12 +35,8 @@ export function GalleryList({ photo }: GalleryListProps) {
                 src={image_url}
                 role="presentation"
                 loading="lazy"
-                title={`Fotografía de la empresa ${name} ${
-                  serial_company ? `número ${serial_company}` : ""
-                }`}
-                alt={`autobus de la empresa ${name} ${
-                  serial_company ? `número ${serial_company}` : ""
-                }`}
+                title=""
+                alt=""
                 decoding="async"
                 className={styles.image}
               />

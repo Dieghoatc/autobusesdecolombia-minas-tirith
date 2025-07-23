@@ -6,17 +6,17 @@ import { usePhotoById } from "@/lib/hooks";
 
 import "./image.css";
 
-import companyIcon from "@/assets/icons/company.png";
-import bodyworkIcon from "@/assets/icons/bodywork.png";
-import chassisIcon from "@/assets/icons/chassis.png";
-import serialIcon from "@/assets/icons/serial.png";
-import serviceIcon from "@/assets/icons/service.png";
-import plateIcon from "@/assets/icons/plate.png";
-import cameraIcon from "@/assets/icons/camera.png";
-import locationIcon from "@/assets/icons/location.png";
+// import companyIcon from "@/assets/icons/company.png";
+// import bodyworkIcon from "@/assets/icons/bodywork.png";
+// import chassisIcon from "@/assets/icons/chassis.png";
+// import serialIcon from "@/assets/icons/serial.png";
+// import serviceIcon from "@/assets/icons/service.png";
+// import plateIcon from "@/assets/icons/plate.png";
+// import cameraIcon from "@/assets/icons/camera.png";
+// import locationIcon from "@/assets/icons/location.png";
 
-import Metadata from "@/app/main/components/metadata/Metadata";
-import { formatString } from "@/lib/helpers/formatString";
+// import Metadata from "@/app/main/components/metadata/Metadata";
+// import { formatString } from "@/lib/helpers/formatString";
 import { LoaderIntro } from "@/components/loader/Loader";
 
 export default function ImageView() {
@@ -24,25 +24,24 @@ export default function ImageView() {
   const { id: imageId = 1 } = params;
 
   const { image, loading } = usePhotoById(imageId.toString());
-  const { company, serial_company, image_url, photographer, bodywork, chassis, service, plate, location, country } = image;
 
   if (loading) return <LoaderIntro />;
 
-  const metadata = {
-    title: `${company.name} - ${serial_company}`,
-    description: `Fotografía de la empresa ${company.name} numero serial ${serial_company}`,
-    image: `${image_url}`,
-    url: `https://autobusesdecolombia.com/image/${image.photo_id}_${company.name}_${serial_company}`,
-    author: photographer.name,
-    publisher: "Autobuses de Colombia",
-  };
+  // const metadata = {
+  //   title: `${image.company.name} - ${image.serial_company}`,
+  //   description: `Fotografía de la empresa ${company.name} numero serial ${serial_company}`,
+  //   image: `${image_url}`,
+  //   url: `https://autobusesdecolombia.com/image/${image.photo_id}_${company.name}_${serial_company}`,
+  //   author: photographer.name,
+  //   publisher: "Autobuses de Colombia",
+  // };
 
-  const title =
-    formatString(company.name) + " - " + formatString(serial_company);
+  // const title =
+  //   formatString(company.name) + " - " + formatString(serial_company);
 
   return (
     <section>
-      <Metadata
+      {/* <Metadata
         title={metadata.title}
         description={metadata.description}
         image={metadata.image}
@@ -124,7 +123,7 @@ export default function ImageView() {
             </div>
           </article>
         </section>
-      </div>
+      </div> */}
     </section>
   );
 }
