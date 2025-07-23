@@ -12,7 +12,7 @@ interface ImageCardProps {
 }
 
 export function ImageCard({ photo }: ImageCardProps) {
-  const { image_url, company: { name } } = photo;
+  const { image_url } = photo;
 
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -26,7 +26,7 @@ export function ImageCard({ photo }: ImageCardProps) {
           <source type="image/webp" srcSet={image_url} />
           <Image
             src={image_url} // Puede ser externa, asegúrate de configurar "images.domains" en next.config.js
-            alt={`Foto de ${name}`}
+            alt={`Foto de`}
             width={800}
             height={600}
             unoptimized // si no quieres optimización automática de Next.js
@@ -34,7 +34,6 @@ export function ImageCard({ photo }: ImageCardProps) {
         </picture>
       </figure>
       <div className={styles.title}>
-        <h2>{name}</h2>
       </div>
 
       <Modal onClose={closeModal} isOpen={isModalOpen}>
