@@ -2,8 +2,7 @@ import styles from "./ModalChildren.module.css";
 import { Photo } from "@/services/types/photo.type";
 import { useState } from "react";
 import { useIsMobile } from "@/lib/hooks/useIsMobile";
-import { Car, RotateCw } from "lucide-react";
-import Link from "next/link";
+import { RotateCw } from "lucide-react";
 
 interface ModalChildrenProps {
   photo: Photo;
