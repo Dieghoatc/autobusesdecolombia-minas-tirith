@@ -10,13 +10,13 @@ import { Ellipsis, ChevronLeft, ChevronRight } from "lucide-react";
 import styles from "./CategoryList.module.css";
 
 interface CategoryListProps {
-  category: string;
+  category: number;
   name:string;
 }
 
 export function CategoryList({ category, name }: CategoryListProps) {
 
-  const { photos, loading } = usePhotosCategoryById({ slug: category, page: 1, limit: 10 });
+  const { photos, loading } = usePhotosCategoryById({ category_id: category, page: 1, limit: 10 });
 
   const { isModalOpen, openModal, closeModal } = useModal();
   const sliderRef = useRef<HTMLDivElement>(null);
@@ -45,7 +45,7 @@ export function CategoryList({ category, name }: CategoryListProps) {
               className={styles.slide}
               onClick={() => openModal(photo)}
             >
-              <img src={photo.image_url} alt={`${photo.company}-${photo.serial}`} />
+              <img src={photo.image_url} alt={`${photo.vehicles}-${photo.vehicles}`} />
             </figure>
           ))}
         </div>

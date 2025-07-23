@@ -1,3 +1,5 @@
+import { TransportCategory } from "./transportCategories.type";
+
 export interface ApiPhoto {
   photo_id: number;
   category_id: number;
@@ -43,95 +45,70 @@ export interface ApiPhotoResponse {
 
 export interface Photo {
   photo_id:        number;
-  category_id:     number;
   vehicle_id:      number;
   image_url:       string;
-  brand_id:        number;
-  company_id:      number;
-  serial_company:  string;
-  serial_id:       null;
-  chassis_id:      number;
-  bodywork_id:     number;
-  plate:           string;
-  service:         string;
   photographer_id: number;
+  transport_category_id: number;
   location:        string;
+  department:      string;
   country_id:      number;
+  description:     string;
+  notes:           string;
+  tags:            string;
+  status:          string;
+  likes:           string;
+  views:           string;
+  favorites:       string;
+  shares:          string;
+  comments:        string;
+  downloads:       string;
   created_at:      Date;
-  category:        Category;
-  vehicle:         Vehicle;
-  brand:           Brand;
-  company:         Company;
-  serial:          null;
-  chassis:         Bodywork;
-  bodywork:        Bodywork;
-  photographer:    Photographer;
-  country:         Country;
+  vehicles:        Vehicles;
+  photographers:   Photographers;
+  countries:       Countries;
+  transportCategory: TransportCategory;
 }
 
-export interface Bodywork {
-  bodywork_id?: number;
-  brand_id:     number;
-  model:        string;
-  description:  null | string;
-  vehicle_id:   number;
-  active:       boolean;
-  chassis_id?:  number;
+export interface Countries {
+  country_id:   number;
+  country_name: string;
+  iso_code:     string;
 }
 
-export interface Brand {
-  brand_id: number;
-  name:     string;
-  active:   boolean;
-  logo:     null;
-}
-
-export interface Category {
-  category_id: number;
-  name:        string;
-  description: null;
-  active:      boolean;
-  created_at:  Date;
-  slug:        string;
-}
-
-export interface Company {
-  company_id:  number;
-  name:        string;
-  description: string;
-  active:      boolean;
-}
-
-export interface Country {
-  country_id: number;
-  name:       string;
-  iso_code:   string;
-}
-
-export interface Photographer {
+export interface Photographers {
   photographer_id: number;
   name:            string;
-  email:           null;
-  phone:           null;
+  email:           string;
+  phone:           string;
   active:          boolean;
   created_at:      Date;
 }
 
-export interface Vehicle {
-  vehicle_id:  number;
-  name:        string;
-  description: string;
+export interface Vehicles {
+  vehicle_id:            number;
+  vehicle_type_id:       number;
+  model_id:              number;
+  chassis_id:            number;
+  bodywork_id:           number;
+  company_id:            number;
+  company_serial_id:     number;
+  company_service_id:    number;
+  transport_category_id: number;
+  plate:                 string;
+  year_manufactured:     string;
+  notes:                 string;
+  created_at:            Date;
 }
 
 export interface Info {
-  count?:      number;
-  totalPages?: number;
-  limit?:      number;
-  currentPage: number;
-  next:        string;
-  prev:        string;
-  hasNext:     boolean;
-  hasPrev:     boolean;
-  startItem:   number;
-  endItem:     number;
+  count:     number;
+  pages:     number;
+  limit:     number;
+  next:      string;
+  hasNext:   boolean;
+  hasPrev:   boolean;
+  startItem: number;
+  endItem:   number;
 }
+
+

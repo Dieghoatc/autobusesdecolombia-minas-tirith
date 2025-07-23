@@ -22,7 +22,7 @@ export function Overlay({open}: {open: boolean}) {
               </div>
             ) : (
               categories.map((category) => (
-                <Item key={category.category_id} title={category.name} />
+                <Item key={category.transport_category_id} category={category} />
               ))
             )}
           </ul>

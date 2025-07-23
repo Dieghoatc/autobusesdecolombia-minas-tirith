@@ -5,23 +5,23 @@ import { ApiPhotoResponse } from "@/services/types/photo.type";
 import { photosCategoryByIdQuery } from "@/services/api/photosCategoryById.query";
 
 interface UseCategoryByIdProps {
-  slug: string;
+  category_id: number;
   page: number;
   limit?: number;
 }
 
-export function usePhotosCategoryById({ slug, page, limit }: UseCategoryByIdProps) {
+export function usePhotosCategoryById({ category_id, page, limit }: UseCategoryByIdProps) {
   const [photos, setPhotosByCategory] = useState<ApiPhotoResponse>({} as ApiPhotoResponse);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
 
   useEffect(() => {
-    async function fetchPhotoCategoryById(slug: string, page: number, limit?: number) {
+    async function fetchPhotoCategoryById(category_id: number, page: number, limit?: number) {
       setLoading(true);
       setError("");
 
       try {
-        const result = await photosCategoryByIdQuery(slug, page, limit);
+        const result = await photosCategoryByIdQuery(category_id, page, limit);
         setPhotosByCategory(result || {} as ApiPhotoResponse);
       } catch (error) {
         setError(`Error to fetch data: ${error}`);
@@ -30,8 +30,8 @@ export function usePhotosCategoryById({ slug, page, limit }: UseCategoryByIdProp
       }
     }
 
-    fetchPhotoCategoryById(slug, page, limit);
-  }, [slug, page]);
+    fetchPhotoCategoryById(category_id, page, limit);
+  }, [category_id, page]);
 
   return {
     photos,

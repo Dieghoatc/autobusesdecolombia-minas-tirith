@@ -19,7 +19,7 @@ export default function CategoryGallery() {
   const limit = parseInt(searchParams.get("limit") || "20");
 
   const { photos, loading } = usePhotosCategoryById({
-    slug: slug,
+    category_id: Number(slug),
     page: page,
     limit: limit,
   });
@@ -32,8 +32,8 @@ export default function CategoryGallery() {
 
   if (loading) return <SkeletonGallery />;
 
-  const categoryTitle = photos.data[0].category.name;
-  const categoryDescription = photos.data[0].category.description;
+  const categoryTitle = photos.data[0].transportCategory.name;
+  const categoryDescription = photos.data[0].transportCategory.description;
 
   return (
     <div>
