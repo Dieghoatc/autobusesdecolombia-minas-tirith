@@ -1,7 +1,7 @@
 "use client";
 
 import { useParams } from "next/navigation";
-import { ImageDetails } from "./components/imagedetails";
+//import { ImageDetails } from "./components/imagedetails";
 import { usePhotoById } from "@/lib/hooks";
 
 import "./image.css";
@@ -23,7 +23,7 @@ export default function ImageView() {
   const params = useParams();
   const { id: imageId = 1 } = params;
 
-  const { image, loading } = usePhotoById(imageId.toString());
+  const { loading } = usePhotoById(imageId.toString());
 
   if (loading) return <LoaderIntro />;
 
