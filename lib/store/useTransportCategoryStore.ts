@@ -16,7 +16,7 @@ interface TransportCategoryStore {
 
 export const useTransportCategoryStore = create<TransportCategoryStore>()(
   persist(
-    (set, get) => ({
+    (set) => ({
       transportCategories: [],
       loading: false,
       error: "",
