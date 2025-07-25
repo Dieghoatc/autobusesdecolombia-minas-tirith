@@ -18,7 +18,7 @@ interface PaginationProps {
 export function PaginationGallery({ pagination, goToPage }: PaginationProps) {
 
   return (
-    <Pagination>
+    <Pagination className="text-white">
       <PaginationContent>
         {pagination.hasPrev && (
           <>
