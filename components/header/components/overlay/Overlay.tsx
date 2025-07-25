@@ -3,10 +3,10 @@ import { Item } from "../Item";
 import Link from "next/link";
 
 import { Skeleton } from "@/components/ui/skeleton";
-import { useTransportCategories } from "@/lib/hooks";
+import { useTransportCategoryStore } from "@/lib/store/useTransportCategoryStore";
 
 export function Overlay({open}: {open: boolean}) { 
-  const {transportCategories, loading} = useTransportCategories()
+  const {transportCategories, loading} = useTransportCategoryStore()  
 
   return (
     <section className={`${styles.container} ${open ? "" : styles.close}`}>
