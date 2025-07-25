@@ -5,13 +5,11 @@ import { Gallery } from "./components/gallery/Gallery";
 import { Hero } from "./components/hero";
 import { useIsMobile } from '@/lib/hooks/useIsMobile';
 
-import "./main.css";
-
 export default function Main() {
   const isMobile = useIsMobile();
 
   return (
-    <div className="main-container">
+    <div>
       {!isMobile ? <Hero /> : " "}
       <Magazine />
       <Gallery />
