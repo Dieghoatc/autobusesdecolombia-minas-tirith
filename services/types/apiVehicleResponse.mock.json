@@ -1,0 +1,106 @@
+{
+  "info": {
+    "count": 85,
+    "pages": 5,
+    "limit": 20,
+
+    "next": "",
+    "prev": "/vehicle/3?page=4&limit=20",
+    "hasNext": false,
+    "hasPrev": true,
+    "startItem": 81,
+    "endItem": 85
+  },
+
+  "data": [
+    {
+      "vehicle_id": 1,
+      "vehicle_type_id": 17,
+      "model_id": 1,
+      "chassis_id": 166,
+      "bodywork_id": 127,
+      "company_id": 1,
+      "transport_category_id": 3,
+      "plate": "7692 ao",
+
+      "year_manufactured": "null",
+
+      "notes": "null",
+      "created_at": "2025-07-24T14:06:17.842Z",
+
+      "company": {
+        "company_id": 1,
+
+        "company_serial_id": null,
+
+        "company_service_id": null,
+
+        "country_id": null,
+        "company_name": "ptv",
+
+        "servicio": null,
+
+        "routes": null,
+
+        "description": null,
+
+        "company_logo": null,
+
+        "city": null,
+
+        "company_url": null,
+        "active": true,
+        "created_at": "2025-07-24T13:56:37.250Z"
+      },
+
+      "bodywork": {
+        "bodywork_id": 127,
+        "brand_id": 1,
+        "bodywork_name": "Volgren CR228L 'Futurebus'",
+        "description": "69 pasajeros (44 de pie, 25 sentados). Aire acondicionado Cooltek CA329N"
+      },
+
+      "chassis": {
+        "chassis_id": 166,
+        "brand_id": 1,
+        "chassis_name": "Volvo B7RLE Euro V/EEV",
+
+        "description": null
+      },
+
+      "vehiclePhotos": [
+        {
+          "vehicle_photo_id": 1,
+          "vehicle_id": 1,
+          "image_url": "https://res.cloudinary.com/dkj6yzrrk/image/upload/v1736662846/autobusesdecolombia/tbohalck1y0kzbmk0nku.webp",
+          "photographer_id": 1,
+          "country_id": 7,
+          "location": "melbourne",
+
+          "department": null,
+
+          "description": null,
+
+          "notes": null,
+
+          "tags": null,
+
+          "status": null,
+
+          "likes": null,
+
+          "views": null,
+
+          "favorites": null,
+
+          "shares": null,
+
+          "comments": null,
+
+          "downloads": null,
+          "created_at": "2025-07-24T14:08:07.251Z"
+        }
+      ]
+    }
+  ]
+}

@@ -2,21 +2,21 @@
 
 import { useRef } from "react";
 import Link from "next/link";
-import { Photo } from "@/services/types/photo.type";
 import { Modal, ModalChildren } from "@/components/modal";
-import { useModal, useCarousel, usePhotosCategoryById } from "@/lib/hooks";
+import { useModal, useCarousel, useGetVehicleCategoryById } from "@/lib/hooks";
+import { TransportCategory } from "@/services/types/transportCategories.type";
 
 import { Ellipsis, ChevronLeft, ChevronRight } from "lucide-react";
 import styles from "./CategoryList.module.css";
+import { Skeleton } from "@/components/ui/skeleton";
 
 interface CategoryListProps {
-  category: number;
-  name:string;
+  transportCategory: TransportCategory;
 }
 
-export function CategoryList({ category, name }: CategoryListProps) {
+export function CategoryList({ transportCategory }: CategoryListProps) {
 
-  const { photos, loading } = usePhotosCategoryById({ category_id: category, page: 1, limit: 10 });
+  const { vehicles, loading } = useGetVehicleCategoryById({ id: transportCategory.transport_category_id, page: 1, limit: 10 });
 
   const { isModalOpen, openModal, closeModal } = useModal();
   const sliderRef = useRef<HTMLDivElement>(null);
@@ -27,8 +27,8 @@ export function CategoryList({ category, name }: CategoryListProps) {
   return (
     <div className={styles.container}>
       <div className={styles.header}>
-        <h3>{name}</h3>
-        <Link href={`/category/${category}`}>
+        <h3>{transportCategory.name}</h3>
+        <Link href={`/transport-category/${transportCategory.transport_category_id}`}>
           <Ellipsis />
         </Link>
       </div>
@@ -39,13 +39,16 @@ export function CategoryList({ category, name }: CategoryListProps) {
           </button>
         )}
         <div className={styles.carousel} ref={sliderRef}>
-          {photos.data.map((photo: Photo) => (
+          {vehicles.data.map((vehicle) => (
             <figure
-              key={photo.photo_id}
+              key={vehicle.vehicle_id}
               className={styles.slide}
-              onClick={() => openModal(photo)}
-            >
-              <img src={photo.image_url} alt={`${photo.vehicles}-${photo.vehicles}`} />
+              onClick={() => openModal(vehicle)}
+            >{vehicle.vehiclePhotos[0] ? (
+              <img src={vehicle.vehiclePhotos[0].image_url} alt={""} />
+            ) : (
+              <Skeleton className="h-[125px] w-[250px] rounded-xl bg-slate-900" />
+            )}
             </figure>
           ))}
         </div>
@@ -59,7 +62,7 @@ export function CategoryList({ category, name }: CategoryListProps) {
         )}
       </div>
       <Modal onClose={closeModal} isOpen={isModalOpen.isOpen}>
-        <ModalChildren photo={isModalOpen.photo} />
+        <ModalChildren vehicle={isModalOpen.vehicle} />
       </Modal>
     </div>
   );

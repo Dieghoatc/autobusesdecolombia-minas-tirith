@@ -6,7 +6,7 @@ import { transportCategoriesQuery } from '@/services/api/transportCategories.que
 const api = transportCategoriesQuery();
 
 interface TransportCategoryStore {
-    categories: TransportCategory[];
+    transportCategories: TransportCategory[];
     loading: boolean;
     error: string;
     setCategory: (data: TransportCategory[]) => void;
@@ -14,18 +14,18 @@ interface TransportCategoryStore {
 }
 
 export const useTransportCategoryStore = create<TransportCategoryStore>((set) => ({
-    categories: [] as TransportCategory[],
+    transportCategories: [] as TransportCategory[],
     loading: false,
     error: "",
 
     setCategory: (data: TransportCategory[]) => {
-        set({ categories: data })
+        set({ transportCategories: data })
     },
     fetchCategories: async () => {
         set({ loading: true , error: ""});
         try {
             const result = await api;
-            set({ categories: result, loading: false })
+            set({ transportCategories: result, loading: false })
         } catch (error) {
             set({ error: `Error to fetch data: ${error}` })
         } finally {

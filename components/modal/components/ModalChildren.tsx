@@ -1,15 +1,16 @@
 import styles from "./ModalChildren.module.css";
-import { Photo } from "@/services/types/photo.type";
+import { Vehicle } from "@/services/types/vehicle.type";
 import { useState } from "react";
 import { useIsMobile } from "@/lib/hooks/useIsMobile";
 import { RotateCw } from "lucide-react";
+import { Skeleton } from "@/components/ui/skeleton";
 
 interface ModalChildrenProps {
-  photo: Photo;
+  vehicle: Vehicle;
 }
 
-export function ModalChildren({ photo }: ModalChildrenProps) {
-  const { image_url } = photo;
+export function ModalChildren({ vehicle }: ModalChildrenProps) {
+  const { vehiclePhotos } = vehicle;
   const [isRotated, setIsRotated] = useState(false);
 
   const isMobile = useIsMobile();
@@ -24,15 +25,19 @@ export function ModalChildren({ photo }: ModalChildrenProps) {
       <div
         className={`${styles.image} ${isRotated ? styles.rotated_image : ""}`}
       >
-        <img
-          src={image_url}
-          loading="lazy"
-          decoding="async"
-          role="presentation"
-          title=""
-          alt=""
-        />
-      </div>
+        {vehiclePhotos[0] ? (
+          <img
+            src={vehiclePhotos[0].image_url}
+            loading="lazy"
+            decoding="async"
+            role="presentation"
+            title=""
+            alt=""  
+          />
+        ) : (
+          <Skeleton className="h-[125px] w-[250px] rounded-xl bg-slate-900" />
+        )}
+      </div>  
 
       <div className={styles.car_button}>
         {/* <Link

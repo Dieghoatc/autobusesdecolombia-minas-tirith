@@ -1,17 +1,17 @@
 import { useState } from "react";
-import { Photo } from "@/services/types/photo.type";
+import { Vehicle } from "@/services/types/vehicle.type";
 import { Modal } from "../modal";
 import { ModalChildren } from "../modal/components/ModalChildren";
 
 import styles from "./GalleryList.module.css";
+import { Skeleton } from "@/components/ui/skeleton";
 
 interface GalleryListProps {
-  photo: Photo;
+  vehicle: Vehicle;
 }
 
-export function GalleryList({ photo }: GalleryListProps) {  
+export function GalleryList({ vehicle }: GalleryListProps) {  
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const { image_url } = photo
   
     const openModal = () => setIsModalOpen(true);
     const closeModal = () => setIsModalOpen(false);
@@ -20,19 +20,20 @@ export function GalleryList({ photo }: GalleryListProps) {
     <section className={styles.container}>
         <div onClick={openModal}>
           <figure>
-            <picture>
-              <source
-                type="image/webp"
-                srcSet={image_url}
-                media="(min-width: 1200px)"
+            {vehicle.vehiclePhotos[0] ? (
+              <picture>
+                <source
+                  type="image/webp"
+                  srcSet={vehicle.vehiclePhotos[0].image_url}
+                  media="(min-width: 1200px)"
               />
               <source
                 type="image/webp"
-                srcSet={image_url}
+                srcSet={vehicle.vehiclePhotos[0].image_url}
                 media="(min-width: 768px)"
               />
               <img
-                src={image_url}
+                src={vehicle.vehiclePhotos[0].image_url}
                 role="presentation"
                 loading="lazy"
                 title=""
@@ -41,10 +42,13 @@ export function GalleryList({ photo }: GalleryListProps) {
                 className={styles.image}
               />
             </picture>
+            ) : (
+              <Skeleton className="h-[125px] w-[250px] rounded-xl bg-slate-900" />
+            )}
           </figure>
         </div>
         <Modal isOpen={isModalOpen} onClose={closeModal}>
-          <ModalChildren photo={photo} />
+          <ModalChildren vehicle={vehicle} />
         </Modal>
     </section>
   );

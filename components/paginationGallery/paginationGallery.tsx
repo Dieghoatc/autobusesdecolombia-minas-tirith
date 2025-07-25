@@ -8,7 +8,7 @@ import {
   PaginationPrevious,
 } from "@/components/ui/pagination";
 
-import { Info } from "@/services/types/photo.type";
+import { Info } from "@/services/types/vehicle.type";
 
 interface PaginationProps {
   pagination: Info;
@@ -48,7 +48,9 @@ export function PaginationGallery({ pagination, goToPage }: PaginationProps) {
               </PaginationLink>
             </PaginationItem>
             <PaginationItem>
-              <PaginationEllipsis />
+              <div onClick={() => goToPage(pagination.pages)}>
+                <PaginationEllipsis />
+              </div>
             </PaginationItem>
             <PaginationItem>
               <PaginationNext
