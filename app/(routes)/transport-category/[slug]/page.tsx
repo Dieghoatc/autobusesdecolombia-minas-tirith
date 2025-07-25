@@ -11,7 +11,7 @@ import { PaginationGallery } from "@/components/paginationGallery/paginationGall
 import { SkeletonGallery } from "../components/SkeletonGallery";
 import { useTransportCategories } from "@/lib/hooks";
 
-import { ArrowRightIcon, ChevronDownIcon, ChevronUpIcon } from "lucide-react";
+import { ChevronDownIcon, ChevronUpIcon } from "lucide-react";
 import styles from "./CategoryGallery.module.css";
 
 export default function CategoryGallery() {
