@@ -5,6 +5,7 @@
 body {
   font-family: var(--post-font-content);
   background-color: var(--background);
+  color: var(--color-white);
 }
 
 @layer base {
