@@ -5,16 +5,15 @@ import styles from "./Gallery.module.css";
 import { useTransportCategories } from "@/lib/hooks";
 
 export function Gallery() {
-  const { categories } = useTransportCategories();
+  const { transportCategories } = useTransportCategories();
 
   return (
     <section className={styles.container} id="gallery">
       <LastPhotos />
-      {categories.map((category) => (
+      {transportCategories.map((category) => (
         <CategoryList
           key={category.transport_category_id}
-          category={category.transport_category_id}
-          name={category.name}
+          transportCategory={category}
         />
       ))}
     </section>

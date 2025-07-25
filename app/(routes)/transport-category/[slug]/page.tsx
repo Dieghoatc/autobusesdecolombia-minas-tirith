@@ -2,8 +2,7 @@
 
 import { useParams, useSearchParams, useRouter } from "next/navigation";
 
-import { usePhotosCategoryById } from "@/lib/hooks";
-import { Photo } from "@/services/types/photo.type";
+import { useGetVehicleCategoryById   } from "@/lib/hooks";
 
 import { GalleryList } from "@/components/galleryList";
 import { PaginationGallery } from "@/components/paginationGallery/paginationGallery";
@@ -18,8 +17,8 @@ export default function CategoryGallery() {
   const page = parseInt(searchParams.get("page") || "1");
   const limit = parseInt(searchParams.get("limit") || "20");
 
-  const { photos, loading } = usePhotosCategoryById({
-    category_id: Number(slug),
+  const { vehicles, loading } = useGetVehicleCategoryById({
+    id: Number(slug),
     page: page,
     limit: limit,
   });
@@ -32,23 +31,21 @@ export default function CategoryGallery() {
 
   if (loading) return <SkeletonGallery />;
 
-  const categoryTitle = photos.data[0].transportCategory.name;
-  const categoryDescription = photos.data[0].transportCategory.description;
 
   return (
     <div>
       <section className={styles.container}>
         <div className={styles.header}>
-          <h2>{categoryTitle}</h2>
-          <p>{categoryDescription}</p>
+          {/* <h2>{categoryTitle}</h2>
+          <p>{categoryDescription}</p> */}
         </div>
         <div className={styles.list}>
-          {photos.data.map((photo: Photo) => (
-            <GalleryList key={photo.photo_id} photo={photo} />
+          {vehicles.data.map((vehicle) => (
+            <GalleryList key={vehicle.vehicle_id} vehicle={vehicle} />
           ))}
         </div>
         <div className={styles.pagination}>
-          <PaginationGallery pagination={photos.info} goToPage={goToPage} />
+          <PaginationGallery pagination={vehicles.info} goToPage={goToPage} />
         </div>
       </section>
     </div>

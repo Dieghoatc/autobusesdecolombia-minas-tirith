@@ -2,17 +2,17 @@ import { useEffect } from "react";
 import { useTransportCategoryStore } from "@/lib/store/useTransportCategoryStore";
 
 export function useTransportCategories() {
-  const { categories, loading, error, fetchCategories } = useTransportCategoryStore()
+  const { transportCategories, loading, error, fetchCategories } = useTransportCategoryStore()
 
   useEffect(() => {
-    if(categories.length === 0){
+    if(transportCategories.length === 0){
       fetchCategories()
     }
 
-  }, [fetchCategories, categories]);
+  }, [fetchCategories, transportCategories]);
 
   return {
-    categories,
+    transportCategories,
     loading,
     error,
   };

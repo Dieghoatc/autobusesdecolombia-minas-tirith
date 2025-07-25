@@ -4,3 +4,4 @@ export * from "./usePhotoById";
 export * from "./useCarousel";
 export * from "./useModal";
 export * from "./useTransportCategories";
+export * from "./useGetVehicleCategoryById";

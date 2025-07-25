@@ -6,7 +6,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { useTransportCategories } from "@/lib/hooks";
 
 export function Overlay({open}: {open: boolean}) { 
-  const {categories, loading} = useTransportCategories()
+  const {transportCategories, loading} = useTransportCategories()
 
   return (
     <section className={`${styles.container} ${open ? "" : styles.close}`}>
@@ -21,7 +21,7 @@ export function Overlay({open}: {open: boolean}) {
                 <Skeleton className="h-4 w-[200px]" />
               </div>
             ) : (
-              categories.map((category) => (
+              transportCategories.map((category) => (
                 <Item key={category.transport_category_id} category={category} />
               ))
             )}

@@ -1,16 +1,16 @@
 import { useState } from "react";
-import { Photo } from "@/services/types/photo.type";
+import { Vehicle } from "@/services/types/vehicle.type";
 
 export function useModal() {
   const [isModalOpen, setIsModalOpen] = useState({
     isOpen: false,
-    photo: {} as Photo,
+    vehicle: {} as Vehicle,
   });
 
-  const openModal = (photo: Photo) =>
-    setIsModalOpen({ isOpen: true, photo });
+  const openModal = (vehicle: Vehicle) =>
+    setIsModalOpen({ isOpen: true, vehicle });
   const closeModal = () =>
-    setIsModalOpen({ isOpen: false, photo: {} as Photo });
+    setIsModalOpen({ isOpen: false, vehicle: {} as Vehicle });
 
   return {
     isModalOpen,
