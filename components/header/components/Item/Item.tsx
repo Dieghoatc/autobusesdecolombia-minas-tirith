@@ -10,7 +10,7 @@ interface ItemProps {
 
 export function Item({ category }: ItemProps) {
   return (
-    <Link href={`/category/${category.transport_category_id}`}>
+    <Link href={`/transport-category/${category.transport_category_id}`}>
       <li className={styles.container}>
         <span>{category.name}</span>
         <ChevronRight />

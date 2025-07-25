@@ -24,26 +24,25 @@ export function PaginationGallery({ pagination, goToPage }: PaginationProps) {
           <>
             <PaginationItem>
               <PaginationPrevious
-                href={pagination.prev}
                 onClick={() => goToPage(pagination.currentPage - 1)}
               />
             </PaginationItem>
             <PaginationItem>
-              <PaginationLink href={`?page=${pagination.currentPage - 1}`}>
+              <PaginationLink onClick={() => goToPage(pagination.currentPage - 1)}>
                 {pagination.currentPage - 1}
               </PaginationLink>
             </PaginationItem>
           </>
         )}
         <PaginationItem>
-          <PaginationLink href={`?page=${pagination.currentPage}`} isActive>
+          <PaginationLink onClick={() => goToPage(pagination.currentPage)} isActive>
             {pagination.currentPage}
           </PaginationLink>
         </PaginationItem>
         {pagination.hasNext && (
           <>
             <PaginationItem>
-              <PaginationLink href={`?page=${pagination.currentPage + 1}`}>
+              <PaginationLink onClick={() => goToPage(pagination.currentPage + 1)}>
                 {pagination.currentPage + 1}
               </PaginationLink>
             </PaginationItem>
@@ -54,7 +53,6 @@ export function PaginationGallery({ pagination, goToPage }: PaginationProps) {
             </PaginationItem>
             <PaginationItem>
               <PaginationNext
-                href={pagination.next}
                 onClick={() => goToPage(pagination.currentPage + 1)}
               />
             </PaginationItem>

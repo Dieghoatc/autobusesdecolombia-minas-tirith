@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import "@fontsource/mitr";
+
 import "./globals.css";
 import { Analytics } from "@vercel/analytics/react";
 import { Toaster } from "@/components/ui/toaster";
