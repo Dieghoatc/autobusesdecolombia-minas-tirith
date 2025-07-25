@@ -3,13 +3,13 @@
 @tailwind utilities;
 
 body {
-  font-family: "Mitr", sans-serif;
-  background-color: #000;
+  font-family: var(--post-font-content);
+  background-color: var(--background);
 }
 
 @layer base {
   :root {
-    --background: 0 0% 0%;
+    --background: #15151e;
     --foreground: 0 0% 3.9%;
     --card: 0 0% 100%;
     --card-foreground: 0 0% 3.9%;
@@ -35,7 +35,9 @@ body {
     --chart-5: 27 87% 67%;
     --radius: 0.5rem;
 
-    --primary-color: #d1b000;
+    --primary-color: #f59E0B;
+    /* --primary-color: #d1b000; */
+    --primary-content-color: #d1d5dc;
     --secondary-color: #e53025;
     --tertiary-color: #2b71b7;
 
@@ -49,7 +51,7 @@ body {
     --h3-size: 18px;
     --h3-size-mobile: 16px;
 
-    --post-title-font: Georgia, Cambria, Times New Roman, Times, serif;
+    --post-title-font: sans-serif;
     --post-title-weight: 700;
 
     --post-font-content: Inter, sans-serif;
