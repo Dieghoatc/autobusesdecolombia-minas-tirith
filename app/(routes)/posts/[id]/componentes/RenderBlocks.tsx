@@ -8,13 +8,15 @@ import { Quote } from "./quote/Quote";
 import { List } from "./list/List";
 import { Fact } from "./fact/Fact";
 
+import styles from "./RenderBlocks.module.css";
+
 interface RenderBlocksProps {
   blocks: PostBlock[];
 }
 
 export function RenderBlocks({ blocks }: RenderBlocksProps) {
   return (
-    <>
+    <section className={styles.container}>
       {blocks.map((block, i) => {
         switch (block.type) {
           case "header":
@@ -68,6 +70,6 @@ export function RenderBlocks({ blocks }: RenderBlocksProps) {
             return null;
         }
       })}
-    </>
+    </section>
   );
 }
