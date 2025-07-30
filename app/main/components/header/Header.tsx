@@ -1,11 +1,12 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import { ChevronLeft, ChevronRight, Clock, Eye } from "lucide-react";
+import { ChevronLeft, ChevronRight, Clock } from "lucide-react";
 import { ABCLoader } from "@/components/abcLoader";
 import { useGetPosts } from "@/lib/hooks/useGetPosts";
 
 import styles from "./Header.module.css";
 import Link from "next/link";
+import { formatDate } from "@/lib/helpers/formatDate";
 
 type TouchOrMouseEvent = React.TouchEvent | React.MouseEvent;
 
@@ -187,16 +188,12 @@ export function Header() {
                             "Transporte"
                           )}`}
                         >
-                          Transporte
+                          {news.category}
                         </span>
                         <div className="flex items-center gap-4 text-sm text-gray-300">
                           <div className="flex items-center gap-1">
                             <Clock size={14} />
-                            30 Jul 2025
-                          </div>
-                          <div className="flex items-center gap-1">
-                            <Eye size={14} />
-                            100
+                            {formatDate(news.created_at)}
                           </div>
                         </div>
                       </div>
