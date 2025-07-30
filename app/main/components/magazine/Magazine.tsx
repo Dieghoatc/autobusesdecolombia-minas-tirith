@@ -2,7 +2,6 @@
 
 import { useGetPosts } from "@/lib/hooks/useGetPosts";
 import { LastNews } from "./components/lastnews/LastNews";
-import { useIsMobile } from "@/lib/hooks/useIsMobile";
 import { SkeletonNews } from "./components/skeleton/SkeletonNews";
 
 import "./magazine.css";
