@@ -1,9 +1,9 @@
 import abcLogo from "@/assets/singlelogo.png";
 import Image from "next/image";
 
-import styles from "./Loader.module.css";
+import styles from "./ABCLoader.module.css";
 
-export function LoaderIntro() {
+export function ABCLoader() {
   return (
     <div className={styles.container}>
       <div className={styles.logo}>

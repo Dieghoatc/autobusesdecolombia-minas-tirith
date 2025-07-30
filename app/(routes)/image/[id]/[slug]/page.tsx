@@ -17,7 +17,7 @@ import "./image.css";
 
 // import Metadata from "@/app/main/components/metadata/Metadata";
 // import { formatString } from "@/lib/helpers/formatString";
-import { LoaderIntro } from "@/components/loader/Loader";
+import { ABCLoader } from "@/components/abcLoader/ABCLoader";
 
 export default function ImageView() {
   const params = useParams();
@@ -25,7 +25,7 @@ export default function ImageView() {
 
   const { loading } = usePhotoById(imageId.toString());
 
-  if (loading) return <LoaderIntro />;
+  if (loading) return <ABCLoader />;
 
   // const metadata = {
   //   title: `${image.company.name} - ${image.serial_company}`,

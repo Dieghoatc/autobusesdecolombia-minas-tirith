@@ -6,7 +6,7 @@ import { useFindPost } from "./hooks/useFindPost";
 import "./post.css";
 
 import { RenderBlocks } from "./componentes/RenderBlocks";
-import { LoaderIntro } from "@/components/loader/Loader";
+import { ABCLoader } from "@/components/abcLoader/ABCLoader";
 
 export default function PostToID() {
   let id_post = "1";
@@ -22,7 +22,7 @@ export default function PostToID() {
     return <div>No post found</div>;
   }
   if (loading) {
-    return <LoaderIntro />;
+    return <ABCLoader />;
   }
 
   return (
