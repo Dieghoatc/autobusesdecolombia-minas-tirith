@@ -1,42 +1,37 @@
 {
   "info": {
-    "count": 85,
-    "pages": 5,
+    "count": 551,
+    "currentPage": 28,
+    "pages": 28,
     "limit": 20,
 
-    "next": "",
-    "prev": "/vehicle/3?page=4&limit=20",
+    "next": null,
+    "prev": "/vehicle/1?page=27&limit=20",
     "hasNext": false,
     "hasPrev": true,
-    "startItem": 81,
-    "endItem": 85
+    "startItem": 541,
+    "endItem": 551
   },
 
   "data": [
     {
-      "vehicle_id": 1,
-      "vehicle_type_id": 17,
-      "model_id": 1,
-      "chassis_id": 166,
-      "bodywork_id": 127,
-      "company_id": 1,
-      "transport_category_id": 3,
-      "plate": "7692 ao",
+      "vehicle_id": 25,
+      "vehicle_type_id": 1,
+      "model_id": 4,
+      "company_id": 15,
+      "transport_category_id": 1,
+      "company_serial_id": 25,
+      "plate": "ttv 734",
 
-      "year_manufactured": "null",
+      "year_manufactured": null,
 
-      "notes": "null",
+      "notes": null,
       "created_at": "2025-07-24T14:06:17.842Z",
 
       "company": {
-        "company_id": 1,
-
-        "company_serial_id": null,
-
-        "company_service_id": null,
-
-        "country_id": null,
-        "company_name": "ptv",
+        "company_id": 15,
+        "country_id": 1,
+        "company_name": "Copetran",
 
         "servicio": null,
 
@@ -53,29 +48,42 @@
         "created_at": "2025-07-24T13:56:37.250Z"
       },
 
-      "bodywork": {
-        "bodywork_id": 127,
-        "brand_id": 1,
-        "bodywork_name": "Volgren CR228L 'Futurebus'",
-        "description": "69 pasajeros (44 de pie, 25 sentados). Aire acondicionado Cooltek CA329N"
-      },
+      "model": {
+        "model_id": 4,
+        "brand_id": 14,
+        "chassis_id": 2,
+        "bodywork_id": 2,
+        "model_name": "Marcopolo Paradiso 1200 G7 Scania K400",
 
-      "chassis": {
-        "chassis_id": 166,
-        "brand_id": 1,
-        "chassis_name": "Volvo B7RLE Euro V/EEV",
+        "description": null,
 
-        "description": null
+        "year_from": null,
+
+        "chassis": {
+          "chassis_id": 2,
+          "brand_id": 2,
+          "chassis_name": "K400 4x2",
+
+          "description": null
+        },
+
+        "bodywork": {
+          "bodywork_id": 2,
+          "brand_id": 14,
+          "bodywork_name": "Paradiso 1200 G7",
+
+          "description": null
+        }
       },
 
       "vehiclePhotos": [
         {
-          "vehicle_photo_id": 1,
-          "vehicle_id": 1,
-          "image_url": "https://res.cloudinary.com/dkj6yzrrk/image/upload/v1736662846/autobusesdecolombia/tbohalck1y0kzbmk0nku.webp",
-          "photographer_id": 1,
-          "country_id": 7,
-          "location": "melbourne",
+          "vehicle_photo_id": 25,
+          "vehicle_id": 25,
+          "image_url": "https://res.cloudinary.com/dkj6yzrrk/image/upload/v1738536822/autobusesdecolombia/ay5zhr1frtr4e38k9sn6.webp",
+          "photographer_id": 3,
+          "country_id": 1,
+          "location": "Medellín",
 
           "department": null,
 
@@ -98,7 +106,18 @@
           "comments": null,
 
           "downloads": null,
-          "created_at": "2025-07-24T14:08:07.251Z"
+          "created_at": "2025-07-24T14:08:07.251Z",
+
+          "photographer": {
+            "photographer_id": 3,
+            "name": "daniel gómez arango",
+
+            "email": null,
+
+            "phone": null,
+            "active": true,
+            "created_at": "2025-07-24T13:58:51.918Z"
+          }
         }
       ]
     }

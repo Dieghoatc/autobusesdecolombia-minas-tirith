@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import {useState } from "react";
 import { useParams, useSearchParams, useRouter } from "next/navigation";
 
 import { useGetVehicleCategoryById } from "@/lib/hooks";
@@ -10,9 +10,11 @@ import { PaginationGallery } from "@/components/paginationGallery/paginationGall
 
 import { SkeletonGallery } from "../components/SkeletonGallery";
 import { useTransportCategories } from "@/lib/hooks";
+import { splitString } from "@/lib/helpers";
 
 import { ChevronDownIcon, ChevronUpIcon } from "lucide-react";
 import styles from "./CategoryGallery.module.css";
+
 
 export default function CategoryGallery() {
   const [isExpanded, setIsExpanded] = useState(false);
@@ -45,27 +47,8 @@ export default function CategoryGallery() {
   const categoryTitle = category?.name.split(" ") || "";
   const categoryDescription = category?.description || "";
 
-  function splitDescription(texto: string) {
-    const palabras = texto.split(" ");
-    const mitad = Math.floor(palabras.length / 3);
-
-    // Buscar el espacio más cercano a la mitad para no cortar frases bruscamente
-    let indiceDivision = mitad;
-
-    // Ajustamos el índice hacia atrás hasta encontrar un punto o coma (opcional)
-    for (let i = mitad; i > 0; i--) {
-      if (palabras[i].endsWith(".")) {
-        indiceDivision = i + 1;
-        break;
-      }
-    }
-
-    const parrafo1 = palabras.slice(0, indiceDivision).join(" ");
-    const parrafo2 = palabras.slice(indiceDivision).join(" ");
-
-    return [parrafo1, parrafo2];
-  }
-  const [p1, p2] = splitDescription(categoryDescription);
+ 
+  const [p1, p2] = splitString(categoryDescription);
   const fullDescripcion = p1 + " " + p2;
   const shortDescripcion = p1;
 
