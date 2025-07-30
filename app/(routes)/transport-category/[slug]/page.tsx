@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useState } from "react";
+import {useState } from "react";
 import { useParams, useSearchParams, useRouter } from "next/navigation";
 
 import { useGetVehicleCategoryById } from "@/lib/hooks";
