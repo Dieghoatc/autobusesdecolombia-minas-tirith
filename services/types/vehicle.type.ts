@@ -7,18 +7,42 @@ export interface Vehicle {
     vehicle_id:            number;
     vehicle_type_id:       number;
     model_id:              number;
-    chassis_id:            number;
-    bodywork_id:           number;
     company_id:            number;
     transport_category_id: number;
+    company_serial_id:     number;
     plate:                 string;
     year_manufactured:     string;
     notes:                 string;
     created_at:            Date;
     company:               Company;
-    bodywork:              Bodywork;
-    chassis:               Chassis;
+    model:                 Model;
     vehiclePhotos:         VehiclePhoto[];
+}
+
+export interface Company {
+    company_id:   number;
+    country_id:   number;
+    company_name: string;
+    servicio:     string;
+    routes:       string;
+    description:  string;
+    company_logo: string;
+    city:         string;
+    company_url:  string;
+    active:       boolean;
+    created_at:   Date;
+}
+
+export interface Model {
+    model_id:    number;
+    brand_id:    number;
+    chassis_id:  number;
+    bodywork_id: number;
+    model_name:  string;
+    description: string;
+    year_from:   string;
+    chassis:     Chassis;
+    bodywork:    Bodywork;
 }
 
 export interface Bodywork {
@@ -33,22 +57,6 @@ export interface Chassis {
     brand_id:     number;
     chassis_name: string;
     description:  string;
-}
-
-export interface Company {
-    company_id:         number;
-    company_serial_id:  number;
-    company_service_id: number;
-    country_id:         number;
-    company_name:       string;
-    servicio:           string;
-    routes:             string;
-    description:        string;
-    company_logo:       string;
-    city:               string;
-    company_url:        string;
-    active:             boolean;
-    created_at:         Date;
 }
 
 export interface VehiclePhoto {
@@ -70,17 +78,27 @@ export interface VehiclePhoto {
     comments:         string;
     downloads:        string;
     created_at:       Date;
+    photographer:     Photographer;
+}
+
+export interface Photographer {
+    photographer_id: number;
+    name:            string;
+    email:           string;
+    phone:           string;
+    active:          boolean;
+    created_at:      Date;
 }
 
 export interface Info {
-    count:          number;
-    currentPage:    number;
-    pages:          number;
-    limit:          number;
-    next:           string;
-    prev:           string;
-    hasNext:        boolean;
-    hasPrev:        boolean;
-    startItem:      number;
-    endItem:        number;
+    count:       number;
+    currentPage: number;
+    pages:       number;
+    limit:       number;
+    next:        string;
+    prev:        string;
+    hasNext:     boolean;
+    hasPrev:     boolean;
+    startItem:   number;
+    endItem:     number;
 }
