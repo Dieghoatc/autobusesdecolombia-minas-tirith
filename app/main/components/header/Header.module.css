@@ -28,7 +28,6 @@
 .bento_item {
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
-  cursor: pointer;
   transition: transform 0.2s ease;
 }
 
@@ -80,6 +79,7 @@
   text-wrap: wrap;
   font-size: 12px;
   line-height: 1.2;
+  cursor: pointer;
 
   @media (min-width: 1200px) {
     font-size: 14px;

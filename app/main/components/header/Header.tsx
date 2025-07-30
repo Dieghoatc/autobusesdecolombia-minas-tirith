@@ -5,6 +5,7 @@ import { ABCLoader } from "@/components/abcLoader";
 import { useGetPosts } from "@/lib/hooks/useGetPosts";
 
 import styles from "./Header.module.css";
+import Link from "next/link";
 
 type TouchOrMouseEvent = React.TouchEvent | React.MouseEvent;
 
@@ -201,7 +202,9 @@ export function Header() {
                       </div>
 
                       <h3 className="text-3xl font-bold mb-3 leading-tight">
-                        {news.title}
+                        <Link href={`/posts/${news.post_id}_${news.slug}`}>
+                          {news.title}
+                        </Link>
                       </h3>
                       <p className="text-lg text-gray-200 leading-relaxed max-w-3xl"></p>
                     </div>
@@ -245,7 +248,9 @@ export function Header() {
             <img src={posts[3].image_url} alt={posts[3].title} />
           </div>
           <div className={styles.bento_item_image_title}>
-            <h1>{posts[3].title}</h1>
+            <Link href={`/posts/${posts[3].post_id}_${posts[3].slug}`}>
+              <h1>{posts[3].title}</h1>
+            </Link>
           </div>
         </article>
         <article className={`${styles.bento_item} ${styles.bento_item_small}`}>
@@ -253,7 +258,9 @@ export function Header() {
             <img src={posts[4].image_url} alt={posts[4].title} />
           </div>
           <div className={styles.bento_item_image_title}>
-            <h1>{posts[4].title}</h1>
+            <Link href={`/posts/${posts[4].post_id}_${posts[4].slug}`}>
+              <h1>{posts[4].title}</h1>
+            </Link>
           </div>
         </article>
       </section>
