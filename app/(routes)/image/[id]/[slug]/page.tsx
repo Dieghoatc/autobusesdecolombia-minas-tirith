@@ -17,7 +17,7 @@ import "./image.css";
 
 // import Metadata from "@/app/main/components/metadata/Metadata";
 // import { formatString } from "@/lib/helpers/formatString";
-import { LoaderIntro } from "@/components/loader/Loader";
+import { LoaderIntro } from "@/components/abcLoader/ABCLoader";
 
 export default function ImageView() {
   const params = useParams();

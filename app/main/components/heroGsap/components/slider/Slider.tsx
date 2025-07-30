@@ -3,7 +3,7 @@ import { SliderItem } from "../sliderItem/SliderItem";
 import usePostStore from "@/lib/store/usePostStore";
 
 import styles from "./Slider.module.css";
-import { LoaderIntro } from "@/components/loader/Loader";
+import { LoaderIntro } from "@/components/abcLoader/ABCLoader";
 
 export function Slider() {
   const [index, setIndex] = useState(0);

@@ -10,14 +10,8 @@ interface LastNewsProps {
 export function LastNews({ posts }: LastNewsProps) {
   return (
     <section className={styles.container}>
-      <div className={styles.header}>
-        <h2>Noticias</h2>
-        <span>
-          <Link href="/posts">Ver más</Link>
-        </span>
-      </div>
       <div className={styles.carousel}>
-        {posts.slice(0, 6).map((post) => (
+        {posts.slice(3, 6).map((post) => (
           <div key={post.post_id}>
             <Link href={`/posts/${post.post_id}_${post.slug}`}>
               <article key={post.post_id} className={styles.slide}>

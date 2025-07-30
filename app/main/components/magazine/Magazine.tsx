@@ -16,7 +16,7 @@ export function Magazine() {
 
   return (
     <section className="magazine">
-      {isMobile ? <LastNews posts={posts} /> : <Bento posts={posts} />}
+      <LastNews posts={posts} />
     </section>
   );
 }
