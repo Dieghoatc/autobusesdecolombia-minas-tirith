@@ -5,64 +5,6 @@ import { useGetPosts } from "@/lib/hooks/useGetPosts";
 
 import styles from "./Header.module.css";
 
-const noticias = [
-  {
-    id: 1,
-    titulo: "Avances en Inteligencia Artificial transforman la medicina",
-    resumen:
-      "Nuevos algoritmos de IA están revolucionando el diagnóstico médico, permitiendo detectar enfermedades con precisión del 95%.",
-    imagen:
-      "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=800&h=400&fit=crop",
-    categoria: "Tecnología",
-    fecha: "30 Jul 2025",
-    vistas: "2.3k",
-  },
-  {
-    id: 2,
-    titulo: "Crisis climática: temperaturas récord en Europa",
-    resumen:
-      "El continente europeo registra las temperaturas más altas de su historia, con varios países superando los 45°C.",
-    imagen:
-      "https://res.cloudinary.com/dkj6yzrrk/image/upload/v1740021773/autobusesdecolombia/pqbnzro0nu0scilckiha.webp",
-    categoria: "Medio Ambiente",
-    fecha: "29 Jul 2025",
-    vistas: "4.1k",
-  },
-  {
-    id: 3,
-    titulo: "SpaceX lanza nueva misión a Marte con tripulación",
-    resumen:
-      "La empresa de Elon Musk envía la primera misión tripulada al planeta rojo, marcando un hito histórico en la exploración espacial.",
-    imagen:
-      "https://images.unsplash.com/photo-1446776653964-20c1d3a81b06?w=800&h=400&fit=crop",
-    categoria: "Espacio",
-    fecha: "28 Jul 2025",
-    vistas: "5.7k",
-  },
-  {
-    id: 4,
-    titulo: "Revolución en energías renovables: nueva tecnología solar",
-    resumen:
-      "Científicos desarrollan paneles solares con eficiencia del 50%, prometiendo cambiar el panorama energético mundial.",
-    imagen:
-      "https://res.cloudinary.com/dkj6yzrrk/image/upload/v1738728056/autobusesdecolombia/mtjqqnnwpyhvhno0vwic.webp",
-    categoria: "Energía",
-    fecha: "27 Jul 2025",
-    vistas: "3.2k",
-  },
-  {
-    id: 5,
-    titulo: "Descubrimiento arqueológico revela nueva civilización",
-    resumen:
-      "Arqueólogos descubren ruinas de una civilización desconocida en la Amazonía, con tecnología avanzada para su época.",
-    imagen:
-      "https://images.unsplash.com/photo-1539650116574-75c0c6d73f6e?w=800&h=400&fit=crop",
-    categoria: "Historia",
-    fecha: "26 Jul 2025",
-    vistas: "2.8k",
-  },
-];
-
 export function Header() {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isMobile, setIsMobile] = useState(false);
@@ -102,12 +44,13 @@ export function Header() {
     setCurrentSlide(index);
   };
 
+  /* eslint-disable no-unused-vars */
   const getPositionX = (event: any) => {
     return event.type.includes("mouse")
       ? event.clientX
       : event.touches[0].clientX;
   };
-
+  /* eslint-disable no-unused-vars */
   const getPositionY = (event: any) => {
     if ("clientY" in event) {
       return event.clientY;
@@ -116,7 +59,7 @@ export function Header() {
     }
     return 0;
   };
-
+  /* eslint-disable no-unused-vars */
   const handleStart = (event: any) => {
     if (!isMobile && event.type === "touchstart") return;
 
@@ -128,7 +71,7 @@ export function Header() {
     setCurrentTranslate(-currentSlide * 100);
     setPrevTranslate(-currentSlide * 100);
   };
-
+  /* eslint-disable no-unused-vars */
   const handleMove = (event: any) => {
     if (!isDragging) return;
 
@@ -162,7 +105,7 @@ export function Header() {
     const movedBy = currentTranslate - prevTranslate;
     const threshold = 25; // Porcentaje mínimo para cambiar slide
 
-    if (movedBy < -threshold && currentSlide < noticias.length - 1) {
+    if (movedBy < -threshold && currentSlide < 2 - 1) {
       nextSlide();
     } else if (movedBy > threshold && currentSlide > 0) {
       prevSlide();
@@ -280,7 +223,7 @@ export function Header() {
             </button>
 
             <div className="flex justify-center items-center w-full py-3 gap-3 absolute bottom-0">
-              {noticias.slice(0, 2).map((_, index) => (
+              {posts.slice(0, 2).map((_, index) => (
                 <button
                   key={index}
                   onClick={() => goToSlide(index)}
