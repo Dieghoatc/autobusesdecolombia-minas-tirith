@@ -1,9 +1,12 @@
+import React from "react";
 import { useState, useEffect } from "react";
 import { ChevronLeft, ChevronRight, Clock, Eye } from "lucide-react";
 import { ABCLoader } from "@/components/abcLoader";
 import { useGetPosts } from "@/lib/hooks/useGetPosts";
 
 import styles from "./Header.module.css";
+
+type TouchOrMouseEvent = React.TouchEvent | React.MouseEvent;
 
 export function Header() {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -44,14 +47,16 @@ export function Header() {
     setCurrentSlide(index);
   };
 
-  /* eslint-disable no-unused-vars */
-  const getPositionX = (event: any) => {
-    return event.type.includes("mouse")
-      ? event.clientX
-      : event.touches[0].clientX;
+  const getPositionX = (event: TouchOrMouseEvent) => {
+    if ("clientX" in event) {
+      return event.clientX;
+    } else if ("touches" in event && event.touches.length > 0) {
+      return event.touches[0].clientX;
+    }
+    return 0;
   };
-  /* eslint-disable no-unused-vars */
-  const getPositionY = (event: any) => {
+
+  const getPositionY = (event: TouchOrMouseEvent): number => {
     if ("clientY" in event) {
       return event.clientY;
     } else if ("touches" in event && event.touches.length > 0) {
@@ -59,8 +64,7 @@ export function Header() {
     }
     return 0;
   };
-  /* eslint-disable no-unused-vars */
-  const handleStart = (event: any) => {
+  const handleStart = (event: TouchOrMouseEvent) => {
     if (!isMobile && event.type === "touchstart") return;
 
     setIsDragging(true);
@@ -71,8 +75,7 @@ export function Header() {
     setCurrentTranslate(-currentSlide * 100);
     setPrevTranslate(-currentSlide * 100);
   };
-  /* eslint-disable no-unused-vars */
-  const handleMove = (event: any) => {
+  const handleMove = (event: TouchOrMouseEvent) => {
     if (!isDragging) return;
 
     const currentPositionX = getPositionX(event);
