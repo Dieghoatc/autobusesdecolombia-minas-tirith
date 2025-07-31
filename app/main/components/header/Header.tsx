@@ -1,14 +1,15 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import { ChevronLeft, ChevronRight, Clock, Eye } from "lucide-react";
+import { ChevronLeft, ChevronRight, Clock } from "lucide-react";
 import { ABCLoader } from "@/components/abcLoader";
 import { useGetPosts } from "@/lib/hooks/useGetPosts";
 
 import styles from "./Header.module.css";
 import Link from "next/link";
+import { formatDate } from "@/lib/helpers/formatDate";
 
 type TouchOrMouseEvent = React.TouchEvent | React.MouseEvent;
-
+const SLIDES_NUMBER = 3;
 export function Header() {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isMobile, setIsMobile] = useState(false);
@@ -20,11 +21,11 @@ export function Header() {
   const { posts, loading } = useGetPosts();
 
   const nextSlide = () => {
-    setCurrentSlide((prev) => (prev + 1) % 2);
+    setCurrentSlide((prev) => (prev + 1) % SLIDES_NUMBER);
   };
 
   const prevSlide = () => {
-    setCurrentSlide((prev) => (prev - 1 + 2) % 2);
+    setCurrentSlide((prev) => (prev - 1 + SLIDES_NUMBER) % SLIDES_NUMBER);
   };
 
   useEffect(() => {
@@ -40,7 +41,7 @@ export function Header() {
   useEffect(() => {
     if (isDragging) return;
 
-    const interval = setInterval(nextSlide, 5000);
+    const interval = setInterval(nextSlide, 10000);
     return () => clearInterval(interval);
   }, [isDragging]);
 
@@ -109,7 +110,7 @@ export function Header() {
     const movedBy = currentTranslate - prevTranslate;
     const threshold = 25; // Porcentaje mínimo para cambiar slide
 
-    if (movedBy < -threshold && currentSlide < 2 - 1) {
+    if (movedBy < -threshold && currentSlide < SLIDES_NUMBER - 1) {
       nextSlide();
     } else if (movedBy > threshold && currentSlide > 0) {
       prevSlide();
@@ -130,11 +131,11 @@ export function Header() {
 
   const getCategoryColor = (categoria: string) => {
     const colors: Record<string, string> = {
-      Transporte: "bg-blue-500",
-      "Medio Ambiente": "bg-green-500",
-      Espacio: "bg-purple-500",
-      Energía: "bg-yellow-500",
-      Historia: "bg-orange-500",
+      Tecnología: "bg-blue-500",
+      Sostenibilidad: "bg-green-500",
+      Scania: "bg-purple-500",
+      Eventos: "bg-yellow-500",
+      Transmilenio: "bg-orange-500",
     };
     return colors[categoria] || "bg-gray-500";
   };
@@ -159,7 +160,7 @@ export function Header() {
             onTouchEnd={handleEnd}
             style={{ touchAction: "none" }}
           >
-            {posts.slice(0, 2).map((news, index) => (
+            {posts.slice(0, SLIDES_NUMBER).map((news, index) => (
               <div
                 key={news.post_id}
                 className={`absolute inset-0 transition-transform duration-700 ease-in-out ${
@@ -184,19 +185,15 @@ export function Header() {
                       <div className="flex items-center gap-4 mb-4">
                         <span
                           className={`px-3 py-1 rounded-full text-xs font-semibold text-white ${getCategoryColor(
-                            "Transporte"
+                            news.category
                           )}`}
                         >
-                          Transporte
+                          {news.category}
                         </span>
                         <div className="flex items-center gap-4 text-sm text-gray-300">
                           <div className="flex items-center gap-1">
                             <Clock size={14} />
-                            30 Jul 2025
-                          </div>
-                          <div className="flex items-center gap-1">
-                            <Eye size={14} />
-                            100
+                            {formatDate(news.created_at)}
                           </div>
                         </div>
                       </div>
@@ -206,7 +203,9 @@ export function Header() {
                           {news.title}
                         </Link>
                       </h3>
-                      <p className="text-lg text-gray-200 leading-relaxed max-w-3xl"></p>
+                      <p className="text-lg text-gray-200 leading-relaxed max-w-3xl">
+                        {news.resume}
+                      </p>
                     </div>
                   </div>
                 </div>
@@ -216,20 +215,20 @@ export function Header() {
             {/* Navigation Arrows */}
             <button
               onClick={prevSlide}
-              className="hidden md:block absolute left-4 top-[45%] transform -translate-y-1/2 bg-white/20 hover:bg-white/30 backdrop-blur-sm rounded-full p-3 transition-all duration-300 text-white hover:scale-110"
+              className="hidden md:block absolute left-4 top-1/2 transform -translate-y-1/2 bg-white/20 hover:bg-white/30 hover:backdrop-blur-sm rounded-full p-2 transition-all duration-300 text-white hover:scale-110"
             >
               <ChevronLeft size={24} />
             </button>
 
             <button
               onClick={nextSlide}
-              className="hidden md:block absolute right-4 top-[45%] transform -translate-y-1/2 bg-white/20 hover:bg-white/30 backdrop-blur-sm rounded-full p-3 transition-all duration-300 text-white hover:scale-110"
+              className="hidden md:block absolute right-4 top-1/2 transform -translate-y-1/2 bg-white/20 hover:bg-white/30 hover:backdrop-blur-sm rounded-full p-2 transition-all duration-300 text-white hover:scale-110"
             >
               <ChevronRight size={24} />
             </button>
 
             <div className="flex justify-center items-center w-full py-3 gap-3 absolute bottom-0">
-              {posts.slice(0, 2).map((_, index) => (
+              {posts.slice(0, SLIDES_NUMBER).map((_, index) => (
                 <button
                   key={index}
                   onClick={() => goToSlide(index)}
@@ -243,26 +242,21 @@ export function Header() {
             </div>
           </div>
         </article>
-        <article className={`${styles.bento_item} ${styles.bento_item_small}`}>
-          <div className={styles.bento_item_image}>
-            <img src={posts[3].image_url} alt={posts[3].title} />
-          </div>
-          <div className={styles.bento_item_image_title}>
-            <Link href={`/posts/${posts[3].post_id}_${posts[3].slug}`}>
-              <h1>{posts[3].title}</h1>
-            </Link>
-          </div>
-        </article>
-        <article className={`${styles.bento_item} ${styles.bento_item_small}`}>
-          <div className={styles.bento_item_image}>
-            <img src={posts[4].image_url} alt={posts[4].title} />
-          </div>
-          <div className={styles.bento_item_image_title}>
-            <Link href={`/posts/${posts[4].post_id}_${posts[4].slug}`}>
-              <h1>{posts[4].title}</h1>
-            </Link>
-          </div>
-        </article>
+        {posts.slice(3, posts.length).map((news) => (
+          <article
+            key={news.post_id}
+            className={`${styles.bento_item} ${styles.bento_item_small}`}
+          >
+            <div className={styles.bento_item_image}>
+              <img src={news.image_url} alt={news.title} />
+            </div>
+            <div className={styles.bento_item_image_title}>
+              <Link href={`/posts/${news.post_id}_${news.slug}`}>
+                <h1>{news.title}</h1>
+              </Link>
+            </div>
+          </article>
+        ))}
       </section>
     </div>
   );

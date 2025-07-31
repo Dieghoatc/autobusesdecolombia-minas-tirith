@@ -2,7 +2,10 @@ export interface ApiPostsResponse {
   post_id: number;
   image_url: string;
   title: string;
+  resume: string;
+  category: string;
   slug: string;
+  created_at: string;
   content: PostBlock[];
 }
 
