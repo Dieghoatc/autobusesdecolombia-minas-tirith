@@ -12,6 +12,7 @@
   "dependencies": {
     "@fontsource/mitr": "^5.2.6",
     "@hookform/resolvers": "^3.10.0",
+    "@microsoft/clarity": "^1.0.0",
     "@radix-ui/react-checkbox": "^1.3.2",
     "@radix-ui/react-dialog": "^1.1.14",
     "@radix-ui/react-label": "^2.1.7",
