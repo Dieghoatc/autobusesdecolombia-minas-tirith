@@ -17,10 +17,15 @@
 .bento {
   display: grid;
   grid-template-columns: repeat(12, 1fr);
-  grid-template-rows: repeat(1, 320px);
+  grid-template-rows: repeat(1, 380px);
   gap: 8px;
 
+  @media (min-width: 768px) {
+    grid-template-rows: repeat(1, 320px);
+  }
+
   @media (min-width: 1500px) {
+    grid-template-rows: repeat(1, 320px);
     grid-template-columns: repeat(11, 1fr);
   }
 }

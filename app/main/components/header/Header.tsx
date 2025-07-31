@@ -151,7 +151,7 @@ export function Header() {
           className={`w-full max-w-6xl mx-auto bg-white rounded-2xl shadow-2xl overflow-hidden ${styles.bento_item} ${styles.bento_item_large}`}
         >
           <div
-            className="relative h-80 bg-gray-900 overflow-hidden"
+            className="relative h-full bg-gray-900 overflow-hidden"
             onTouchStart={handleStart}
             onTouchMove={(e) => {
               e.preventDefault();
