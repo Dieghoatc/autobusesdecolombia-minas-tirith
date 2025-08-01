@@ -251,7 +251,7 @@ export function Header() {
           </div>
           <div className={styles.bento_item_image_title}>
             <Link href={`/destinos/medellin`}>
-              <h1>Inicial la feria de las Flores en medellín.</h1>
+              <h1>Inicia la feria de las Flores en medellín.</h1>
             </Link>
           </div>
         </article>
