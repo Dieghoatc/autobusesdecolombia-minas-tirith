@@ -8,6 +8,8 @@ import styles from "./Header.module.css";
 import Link from "next/link";
 import { formatDate } from "@/lib/helpers/formatDate";
 
+import FeriaFlores from "@/assets/destinations/feria_flores.webp";
+
 type TouchOrMouseEvent = React.TouchEvent | React.MouseEvent;
 const SLIDES_NUMBER = 3;
 export function Header() {
@@ -197,12 +199,11 @@ export function Header() {
                           </div>
                         </div>
                       </div>
-
-                      <h3 className="text-3xl font-bold mb-3 leading-tight">
-                        <Link href={`/posts/${news.post_id}_${news.slug}`}>
+                      <Link href={`/posts/${news.post_id}_${news.slug}`}>
+                        <h3 className="text-3xl font-bold mb-3 leading-tight">
                           {news.title}
-                        </Link>
-                      </h3>
+                        </h3>
+                      </Link>
                       <p className="text-lg text-gray-200 leading-relaxed max-w-3xl">
                         {news.resume}
                       </p>
@@ -242,13 +243,27 @@ export function Header() {
             </div>
           </div>
         </article>
+        <article className={`${styles.bento_item} ${styles.bento_item_small}`}>
+          <div className={styles.bento_item_image}>
+            <Link href={`/destinos/medellin`}>
+              <img src={FeriaFlores.src} alt="Feria de las Flores" />
+            </Link>
+          </div>
+          <div className={styles.bento_item_image_title}>
+            <Link href={`/destinos/medellin`}>
+              <h1>Inicial la feria de las Flores en medellín.</h1>
+            </Link>
+          </div>
+        </article>
         {posts.slice(3, posts.length).map((news) => (
           <article
             key={news.post_id}
             className={`${styles.bento_item} ${styles.bento_item_small}`}
           >
             <div className={styles.bento_item_image}>
-              <img src={news.image_url} alt={news.title} />
+              <Link href={`/posts/${news.post_id}_${news.slug}`}>
+                <img src={news.image_url} alt={news.title} />
+              </Link>
             </div>
             <div className={styles.bento_item_image_title}>
               <Link href={`/posts/${news.post_id}_${news.slug}`}>
