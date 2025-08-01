@@ -1,68 +1,36 @@
 "use client";
 
-import { useState, useEffect, useMemo } from "react";
-import SearchGallery from "@/components/search/SearchGallery";
-import { orderById } from "@/lib/helpers/orderById";
-const URL = process.env.NEXT_PUBLIC_ABC_API;
-
-interface Photo {
-  photo_id: number;
-  serial: string;
-  company: string;
-  bodywork: string;
-  chassis: string;
-  author: string;
-  url: string;
-}
+import { useGetVehicle } from "@/lib/hooks";
+import { Vehicle } from "@/services/types/vehicle.type";
 
 export default function ProvisionalSeach() {
-  const [photos, setPhotos] = useState<Photo[]>([]);
-  const [searchPhoto, setSearchPhoto] = useState("");
+  const { vehicles, loading } = useGetVehicle({ page: 1, limit: 100 });
 
-  useEffect(() => {
-    async function fetchData() {
-      try {
-        const response = await fetch(`${URL}/photos`);
-        const photos = await response.json();
-        setPhotos(photos);
-      } catch (error) {
-        console.error(error);
-      }
-    }
-
-    fetchData();
-  }, []);
-
-  const orderPhotos = useMemo(() => orderById(photos, "photo_id"), [photos]);
-  const searchPhotosMemo = useMemo(
-    () =>
-      (orderPhotos || []).filter(
-        (photo: Photo) =>
-          photo.serial.includes(searchPhoto) ||
-          photo.company.includes(searchPhoto) ||
-          photo.bodywork.includes(searchPhoto) ||
-          photo.chassis.includes(searchPhoto) ||
-          photo.author.includes(searchPhoto)
-      ),
-    [photos, searchPhoto]
-  );
-
-  function searchPhotos(search: string) {
-    setSearchPhoto(search);
+  if (loading) {
+    return <div>Loading...</div>;
   }
 
   return (
     <div className="text-white">
-      <h1>Provisional Seach</h1>
-      <div className="galley-controls">
-        <SearchGallery search={searchPhotos} />
-      </div>
-      <div className="grid grid-cols-4 gap-2">
-        {searchPhotosMemo.map((item: Photo) => (
-          <div key={item.photo_id}>
+      <div className="grid grid-cols-2 gap-2">
+        {vehicles.data.map((item: Vehicle) => (
+          <div key={item.vehicle_id} className="relative w-full h-96">
+            <div className="absolute top-0 left-0 z-10 p-4 text-white bg-gray-950 bg-opacity-20">
+              <h1 className="text-9xl font-bold">{item.vehicle_id}</h1>
+              {item.model ? (
+                <p className="text-2xl">{item.model.model_name}</p>
+              ) : null}
+              {item.model?.bodywork ? (
+                <p className="text-2xl">{item.model.bodywork.bodywork_name}</p>
+              ) : null}
+              {item.model?.chassis ? (
+                <p className="text-2xl">{item.model.chassis.chassis_name}</p>
+              ) : null}
+            </div>
+
             <img
-              src={item.url}
-              alt={item.serial}
+              src={item.vehiclePhotos[0]?.image_url}
+              alt="Vehicle"
               className="w-full h-full object-cover"
             />
           </div>
