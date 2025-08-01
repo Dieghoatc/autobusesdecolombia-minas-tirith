@@ -1,22 +1,34 @@
-
 import { APIVehicleResponse } from "../types/vehicle.type";
 
 const URL = process.env.NEXT_PUBLIC_ABC_API;
 
-async function fetchData<T>(id: number, page: number, limit?: number): Promise<T> {
-
-  if (!URL) return {} as T;
+async function fetchData<T>(page?: number, limit?: number): Promise<T> {
+  if (!URL) {
+    throw new Error("API base URL not defined in NEXT_PUBLIC_ABC_API");
+  }
 
   try {
-    const response = await fetch(`${URL}/vehicle/${id}?page=${page}${limit ? `&limit=${limit}` : ""}`);
-    return await response.json();
+    const endpoint = `/vehicle${page ? `?page=${page}` : ""}${
+      limit ? `&limit=${limit}` : ""
+    }`;
 
+    const fullUrl = `${URL}${endpoint}`;
+    const response = await fetch(fullUrl);
+
+    if (!response.ok) {
+      throw new Error(`Error ${response.status}: ${response.statusText}`);
+    }
+
+    return await response.json();
   } catch (error) {
     console.error(`Failed to fetch data: ${error}`);
-    return {} as T;
+    throw error;
   }
 }
 
-export async function vehicleQuery(id: number, page: number, limit?: number): Promise<APIVehicleResponse | undefined> {
-  return fetchData<APIVehicleResponse>(id, page, limit);
+export async function vehicleQuery(
+  page?: number,
+  limit?: number
+): Promise<APIVehicleResponse> {
+  return fetchData<APIVehicleResponse>(page, limit);
 }
