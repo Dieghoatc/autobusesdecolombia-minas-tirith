@@ -251,7 +251,10 @@ export function Header() {
           </div>
           <div className={styles.bento_item_image_title}>
             <Link href={`/destinos/medellin`}>
-              <h1>Inicia la feria de las Flores en Medellín.</h1>
+              <h1>
+                Inicia la feria de las Flores en Medellín. Del 1 al 10 de Agosto
+                de 2025
+              </h1>
             </Link>
           </div>
         </article>
