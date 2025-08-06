@@ -6,13 +6,22 @@
 
 .image {
   aspect-ratio: 1/1;
-  width: 180px;
+  width: 100%;
   object-fit: cover;
   object-position: center;
   border-radius: 8px;
 
   @media (min-width: 768px) {
-    width: 300px;
   }
 }
 
+.content {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 1rem;
+  background: rgba(0, 0, 0, 0.5);
+  font-size: 0.9rem;
+  font-weight: 500;
+}
