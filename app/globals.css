@@ -3,7 +3,8 @@
 @tailwind utilities;
 
 body {
-  font-family: var(--post-font-content);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica,
+    Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
   background-color: var(--background);
   color: var(--color-white);
 }
@@ -36,7 +37,7 @@ body {
     --chart-5: 27 87% 67%;
     --radius: 0.5rem;
 
-    --primary-color: #f59E0B;
+    --primary-color: #f59e0b;
     /* --primary-color: #d1b000; */
     --primary-content-color: #d1d5dc;
     --secondary-color: #e53025;
@@ -52,10 +53,7 @@ body {
     --h3-size: 18px;
     --h3-size-mobile: 16px;
 
-    --post-title-font: sans-serif;
     --post-title-weight: 700;
-
-    --post-font-content: Inter, sans-serif;
 
     --padding-container-mobile: 16px;
     --margin-container-mobile: 8px;

@@ -3,7 +3,6 @@
 import { Gallery } from "./components/gallery/Gallery";
 import { Header } from "./components/header";
 import styles from "./Main.module.css";
-import "@fontsource-variable/caveat";
 
 import Link from "next/link";
 

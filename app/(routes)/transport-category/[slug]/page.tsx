@@ -1,6 +1,6 @@
 "use client";
 
-import {useState } from "react";
+import { useState, useCallback } from "react";
 import { useParams, useSearchParams, useRouter } from "next/navigation";
 
 import { useGetVehicleCategoryById } from "@/lib/hooks";
@@ -14,7 +14,6 @@ import { splitString } from "@/lib/helpers";
 
 import { ChevronDownIcon, ChevronUpIcon } from "lucide-react";
 import styles from "./CategoryGallery.module.css";
-
 
 export default function CategoryGallery() {
   const [isExpanded, setIsExpanded] = useState(false);
@@ -33,21 +32,24 @@ export default function CategoryGallery() {
     limit: limit,
   });
 
-  const goToPage = (newPage: number) => {
-    const params = new URLSearchParams(searchParams);
-    params.set("page", newPage.toString());
-    router.push(`?${params.toString()}`);
-  };
+  const goToPage = useCallback(
+    (newPage: number) => {
+      const params = new URLSearchParams(searchParams);
+      params.set("page", newPage.toString());
+      router.push(`?${params.toString()}`);
+    },
+    [searchParams, router]
+  );
 
   if (loading || loadingCategories) return <SkeletonGallery />;
 
   const category = transportCategories.find(
     (category) => category.transport_category_id === Number(slug)
   );
-  const categoryTitle = category?.name.split(" ") || "";
+
+  const categoryTitle = category?.name?.split(" ") ?? ["", ""];
   const categoryDescription = category?.description || "";
 
- 
   const [p1, p2] = splitString(categoryDescription);
   const fullDescripcion = p1 + " " + p2;
   const shortDescripcion = p1;
