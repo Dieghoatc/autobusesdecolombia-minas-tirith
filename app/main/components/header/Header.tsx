@@ -4,11 +4,11 @@ import { ChevronLeft, ChevronRight, Clock } from "lucide-react";
 import { ABCLoader } from "@/components/abcLoader";
 import { useGetPosts } from "@/lib/hooks/useGetPosts";
 
-import styles from "./Header.module.css";
 import Link from "next/link";
 import { formatDate } from "@/lib/helpers/formatDate";
 
 import FeriaFlores from "@/assets/destinations/feria_flores.webp";
+import styles from "./Header.module.css";
 
 type TouchOrMouseEvent = React.TouchEvent | React.MouseEvent;
 const SLIDES_NUMBER = 3;
@@ -16,7 +16,7 @@ export function Header() {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isMobile, setIsMobile] = useState(false);
   const [isDragging, setIsDragging] = useState(false);
-  const [startPos, setStartPos] = useState({ x: 0, y: 0 });
+  const [startPos, setStartPos] = useState({ x: 0 });
   const [currentTranslate, setCurrentTranslate] = useState(0);
   const [prevTranslate, setPrevTranslate] = useState(0);
 
@@ -60,22 +60,13 @@ export function Header() {
     return 0;
   };
 
-  const getPositionY = (event: TouchOrMouseEvent): number => {
-    if ("clientY" in event) {
-      return event.clientY;
-    } else if ("touches" in event && event.touches.length > 0) {
-      return event.touches[0].clientY;
-    }
-    return 0;
-  };
   const handleStart = (event: TouchOrMouseEvent) => {
     if (!isMobile && event.type === "touchstart") return;
 
     setIsDragging(true);
     const posX = getPositionX(event);
-    const posY = getPositionY(event);
 
-    setStartPos({ x: posX, y: posY });
+    setStartPos({ x: posX });
     setCurrentTranslate(-currentSlide * 100);
     setPrevTranslate(-currentSlide * 100);
   };
@@ -83,14 +74,7 @@ export function Header() {
     if (!isDragging) return;
 
     const currentPositionX = getPositionX(event);
-    const currentPositionY = getPositionY(event);
     const diffX = currentPositionX - startPos.x;
-    const diffY = Math.abs(currentPositionY - startPos.y);
-
-    // Si el movimiento vertical es mayor que el horizontal, no interceptar
-    if (diffY > Math.abs(diffX) && Math.abs(diffX) < 50) {
-      return;
-    }
 
     // Prevenir scroll vertical en móvil cuando se hace swipe horizontal
     if (Math.abs(diffX) > 10) {
@@ -160,7 +144,6 @@ export function Header() {
               handleMove(e);
             }}
             onTouchEnd={handleEnd}
-            style={{ touchAction: "none" }}
           >
             {posts.slice(0, SLIDES_NUMBER).map((news, index) => (
               <div
