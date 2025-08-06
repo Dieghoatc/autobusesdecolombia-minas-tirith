@@ -5,8 +5,13 @@ import Link from "next/link";
 import { Skeleton } from "@/components/ui/skeleton";
 import { useTransportCategoryStore } from "@/lib/store/useTransportCategoryStore";
 
-export function Overlay({open}: {open: boolean}) { 
-  const {transportCategories, loading} = useTransportCategoryStore()  
+interface OverlayProps {
+  open: boolean;
+  setOpen: (open: boolean) => void;
+}
+
+export function Overlay({ open, setOpen }: OverlayProps) {
+  const { transportCategories, loading } = useTransportCategoryStore();
 
   return (
     <section className={`${styles.container} ${open ? "" : styles.close}`}>
@@ -22,7 +27,11 @@ export function Overlay({open}: {open: boolean}) {
               </div>
             ) : (
               transportCategories.map((category) => (
-                <Item key={category.transport_category_id} category={category} />
+                <Item
+                  key={category.transport_category_id}
+                  category={category}
+                  setOpen={setOpen}
+                />
               ))
             )}
           </ul>

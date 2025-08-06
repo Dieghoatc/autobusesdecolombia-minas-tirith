@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 
-import { Menu, X } from "lucide-react";
+import { HomeIcon, Menu, X } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
 
 import { Overlay } from "./components/overlay";
@@ -58,17 +58,21 @@ export function Header() {
               </motion.div>
             )}
           </AnimatePresence>
+          <div className={styles.logo}>
+            <Image
+              src={logo}
+              alt="Logo de Autobuses de Colombia"
+              title="Logo de Autobuses de Colombia"
+              width={100}
+              height={100}
+            />
+          </div>
+          <div className={styles.homepage}>
+            <Link href="/">
+              <HomeIcon />
+            </Link>
+          </div>
         </div>
-        <div className={styles.logo}>
-          <Image
-            src={logo}
-            alt="Logo de Autobuses de Colombia"
-            title="Logo de Autobuses de Colombia"
-            width={100}
-            height={100}
-          />
-        </div>
-        <div className={styles.login}></div>
         <div className={styles.logo_large}>
           <Image
             src={logoLarge}
@@ -95,7 +99,7 @@ export function Header() {
           </ul>
         </div>
       </div>
-      <Overlay open={open} />
+      <Overlay open={open} setOpen={setOpen} />
     </div>
   );
 }
