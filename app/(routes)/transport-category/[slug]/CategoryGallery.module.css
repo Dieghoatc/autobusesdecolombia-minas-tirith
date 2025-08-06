@@ -60,11 +60,13 @@
 .list {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 24px;
-  padding: 32px;
+  gap: 4px;
+  padding: 8px;
 
   @media (min-width: 768px) {
     grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    padding: 32px;
   }
 }
 

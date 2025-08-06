@@ -4,6 +4,7 @@ export interface ApiPostsResponse {
   title: string;
   resume: string;
   category: string;
+  tags: string;
   slug: string;
   created_at: string;
   content: PostBlock[];

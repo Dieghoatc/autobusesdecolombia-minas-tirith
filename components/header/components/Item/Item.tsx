@@ -6,12 +6,13 @@ import { TransportCategory } from "@/services/types/transportCategories.type";
 
 interface ItemProps {
   category: TransportCategory;
+  setOpen: (open: boolean) => void;
 }
 
-export function Item({ category }: ItemProps) {
+export function Item({ category, setOpen }: ItemProps) {
   return (
     <Link href={`/transport-category/${category.transport_category_id}`}>
-      <li className={styles.container}>
+      <li className={styles.container} onClick={() => setOpen(false)}>
         <span>{category.name}</span>
         <ChevronRight />
       </li>
