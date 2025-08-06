@@ -1,27 +1,28 @@
 .upload-container {
-    display: flex;
-    flex-direction: column;
-    color: #fff;
+  font-family: "Mitr", sans-serif;
+  display: flex;
+  flex-direction: column;
+  color: #fff;
 }
 
 .upload-form {
-    display: grid;
-    grid-template-columns: repeat(1, 1fr);
-    gap: 8px;
-    margin-bottom: 8px;
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  gap: 8px;
+  margin-bottom: 8px;
 
-    @media (min-width: 768px) {
-        grid-template-columns: repeat(2, 1fr);
-    }
+  @media (min-width: 768px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
 
-    @media (min-width: 1024px) {
-        grid-template-columns: repeat(4, 1fr);
-    }
-    @media (min-width: 1280px) {
-        grid-template-columns: repeat(8, 1fr);
-    }
+  @media (min-width: 1024px) {
+    grid-template-columns: repeat(4, 1fr);
+  }
+  @media (min-width: 1280px) {
+    grid-template-columns: repeat(8, 1fr);
+  }
 }
 
-.author-verify{
-    color: red;
+.author-verify {
+  color: red;
 }

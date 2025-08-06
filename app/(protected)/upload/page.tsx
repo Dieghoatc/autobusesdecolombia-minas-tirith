@@ -4,13 +4,14 @@ import { useState, useRef } from "react";
 import "./page.css";
 import { Button } from "@/components/ui/button";
 
-
 import { dataURLToBlob, deleteLastSpace } from "@/lib/helpers";
 import CategorySelect from "./components/categoryselect/CategorySelect";
 import InputCustom from "./components/input/InputCustom";
 import { InputFile } from "./components/input/InputFile";
 import { CheckboxCustom } from "@/services/api/ui/CheckboxCustom";
 import { useToast } from "@/lib/hooks/use-toast";
+import "@fontsource/mitr";
+
 interface Canvas {
   img: HTMLImageElement;
   offsetX: number;
@@ -53,10 +54,9 @@ export default function Upload() {
   const ctx = canvas?.getContext("2d");
   const { toast } = useToast();
 
- const handleDrawCanvasImage = async (event: React.ChangeEvent<HTMLInputElement>) => {
-
-  
-
+  const handleDrawCanvasImage = async (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
     if (!event.target.files) return;
     const file = event.target.files[0];
 
@@ -119,14 +119,14 @@ export default function Upload() {
       img.src = event.target.result as string;
     };
     reader.readAsDataURL(file);
-  }
+  };
 
   function uploadDrawCanvas(
     image: Canvas | undefined,
     logo: Canvas | undefined,
     author: string,
     location: string,
-    country: string,
+    country: string
   ) {
     if (!image || !logo || !author || !ctx || !canvas) return;
 
@@ -148,7 +148,7 @@ export default function Upload() {
       image.scaleWidth,
       image.scaleHeight
     );
-    
+
     ctx.drawImage(
       logo.img,
       logo.offsetX,
@@ -301,25 +301,15 @@ export default function Upload() {
 
         <Button
           onClick={() =>
-            uploadDrawCanvas(
-              image,
-              logo,
-              author,
-              location,
-              country,
-            )
+            uploadDrawCanvas(image, logo, author, location, country)
           }
         >
           Agregar autor
         </Button>
         <div>
-          <Button onClick={() => handleUploadImage()}>
-            Subir imagen
-          </Button>
+          <Button onClick={() => handleUploadImage()}>Subir imagen</Button>
         </div>
-        <Button onClick={() => handleDownLoadImage()}>
-          Descargar imagen
-        </Button>
+        <Button onClick={() => handleDownLoadImage()}>Descargar imagen</Button>
 
         <Button onClick={() => clearCanvas()}>Limpiar</Button>
       </div>

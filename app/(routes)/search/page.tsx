@@ -1,10 +1,24 @@
 "use client";
 
+import { useSearchParams, useRouter } from "next/navigation";
 import { useGetVehicle } from "@/lib/hooks";
 import { Vehicle } from "@/services/types/vehicle.type";
+import { PaginationGallery } from "@/components/paginationGallery/paginationGallery";
 
 export default function ProvisionalSeach() {
-  const { vehicles, loading } = useGetVehicle({ page: 1, limit: 100 });
+  const searchParams = useSearchParams();
+  const router = useRouter();
+
+  const page = parseInt(searchParams.get("page") || "1");
+  const limit = parseInt(searchParams.get("limit") || "20");
+
+  const { vehicles, loading } = useGetVehicle({ page: page, limit: limit });
+
+  const goToPage = (newPage: number) => {
+    const params = new URLSearchParams(searchParams);
+    params.set("page", newPage.toString());
+    router.push(`?${params.toString()}`);
+  };
 
   if (loading) {
     return <div>Loading...</div>;
@@ -35,6 +49,9 @@ export default function ProvisionalSeach() {
             />
           </div>
         ))}
+      </div>
+      <div>
+        <PaginationGallery pagination={vehicles.info} goToPage={goToPage} />
       </div>
     </div>
   );
