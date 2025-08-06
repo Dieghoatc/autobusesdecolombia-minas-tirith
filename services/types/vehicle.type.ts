@@ -1,104 +1,114 @@
 export interface APIVehicleResponse {
-    info: Info;
-    data: Vehicle[];
+  info: Info;
+  data: Vehicle[];
 }
 
 export interface Vehicle {
-    vehicle_id:            number;
-    vehicle_type_id:       number;
-    model_id:              number;
-    company_id:            number;
-    transport_category_id: number;
-    company_serial_id:     number;
-    plate:                 string;
-    year_manufactured:     string;
-    notes:                 string;
-    created_at:            Date;
-    company:               Company;
-    model:                 Model;
-    vehiclePhotos:         VehiclePhoto[];
+  vehicle_id: number;
+  vehicle_type_id: number;
+  model_id: number;
+  company_id: number;
+  transport_category_id: number;
+  company_serial_id: number;
+  company_service_id: null;
+  plate: string;
+  year_manufactured: null;
+  notes: string;
+  created_at: Date;
+  model: Model;
+  company: Company;
+  transportCategory: TransportCategory;
+  companySerial: CompanySerial;
+  companyService: CompanyService;
+  vehiclePhotos: VehiclePhoto[];
 }
 
 export interface Company {
-    company_id:   number;
-    country_id:   number;
-    company_name: string;
-    servicio:     string;
-    routes:       string;
-    description:  string;
-    company_logo: string;
-    city:         string;
-    company_url:  string;
-    active:       boolean;
-    created_at:   Date;
+  company_id: number;
+  country_id: number;
+  company_name: string;
+  servicio: null;
+  routes: null;
+  description: null;
+  company_logo: null;
+  city: null;
+  company_url: null;
+  active: boolean;
+  created_at: Date;
+}
+
+export interface CompanySerial {
+  company_serial_id: number;
+  company_id: number;
+  company_serial_code: string;
+  company: Company;
+}
+
+export interface CompanyService {
+  company_service_id: number;
+  company_id: number;
+  company_service_name: string;
+  company: Company;
 }
 
 export interface Model {
-    model_id:    number;
-    brand_id:    number;
-    chassis_id:  number;
-    bodywork_id: number;
-    model_name:  string;
-    description: string;
-    year_from:   string;
-    chassis:     Chassis;
-    bodywork:    Bodywork;
+  model_id: number;
+  brand_id: number;
+  chassis_id: number;
+  bodywork_id: number;
+  model_name: string;
+  description: null;
+  year_from: null;
 }
 
-export interface Bodywork {
-    bodywork_id:   number;
-    brand_id:      number;
-    bodywork_name: string;
-    description:   string;
-}
-
-export interface Chassis {
-    chassis_id:   number;
-    brand_id:     number;
-    chassis_name: string;
-    description:  string;
+export interface TransportCategory {
+  transport_category_id: number;
+  name: string;
+  description: string;
+  slug: string;
+  created_at: Date;
 }
 
 export interface VehiclePhoto {
-    vehicle_photo_id: number;
-    vehicle_id:       number;
-    image_url:        string;
-    photographer_id:  number;
-    country_id:       number;
-    location:         string;
-    department:       string;
-    description:      string;
-    notes:            string;
-    tags:             string;
-    status:           string;
-    likes:            string;
-    views:            string;
-    favorites:        string;
-    shares:           string;
-    comments:         string;
-    downloads:        string;
-    created_at:       Date;
-    photographer:     Photographer;
+  vehicle_photo_id: number;
+  vehicle_id: number;
+  image_url: string;
+  photographer_id: number;
+  country_id: number;
+  location: string;
+  department: null;
+  description: null;
+  notes: null;
+  tags: null;
+  status: null;
+  likes: null;
+  views: null;
+  favorites: null;
+  shares: null;
+  comments: null;
+  downloads: null;
+  created_at: Date;
+  photographer: Photographer;
 }
 
 export interface Photographer {
-    photographer_id: number;
-    name:            string;
-    email:           string;
-    phone:           string;
-    active:          boolean;
-    created_at:      Date;
+  photographer_id: number;
+  name: string;
+  email: null;
+  phone: null;
+  active: boolean;
+  created_at: Date;
 }
 
 export interface Info {
-    count:       number;
-    currentPage: number;
-    pages:       number;
-    limit:       number;
-    next:        string;
-    prev:        string;
-    hasNext:     boolean;
-    hasPrev:     boolean;
-    startItem:   number;
-    endItem:     number;
+  count: number;
+  currentPage: number;
+  pages: number;
+  limit: number;
+  next: null;
+  prev: string;
+  hasNext: boolean;
+  hasPrev: boolean;
+  startItem: number;
+  endItem: number;
 }

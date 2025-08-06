@@ -15,23 +15,36 @@
 
   "data": [
     {
-      "vehicle_id": 25,
+      "vehicle_id": 968,
       "vehicle_type_id": 1,
-      "model_id": 4,
-      "company_id": 15,
+      "model_id": 39,
+      "company_id": 18,
       "transport_category_id": 1,
-      "company_serial_id": 25,
-      "plate": "ttv 734",
+      "company_serial_id": 33,
+
+      "company_service_id": null,
+      "plate": "nin 611",
 
       "year_manufactured": null,
+      "notes": "",
+      "created_at": "2025-07-25T02:19:56.306Z",
 
-      "notes": null,
-      "created_at": "2025-07-24T14:06:17.842Z",
+      "model": {
+        "model_id": 39,
+        "brand_id": 14,
+        "chassis_id": 2,
+        "bodywork_id": 16,
+        "model_name": "Marcopolo Paradiso 1200 G8 Scania K400",
+
+        "description": null,
+
+        "year_from": null
+      },
 
       "company": {
-        "company_id": 15,
+        "company_id": 18,
         "country_id": 1,
-        "company_name": "Copetran",
+        "company_name": "Expreso Brasilia S.A.",
 
         "servicio": null,
 
@@ -48,40 +61,72 @@
         "created_at": "2025-07-24T13:56:37.250Z"
       },
 
-      "model": {
-        "model_id": 4,
-        "brand_id": 14,
-        "chassis_id": 2,
-        "bodywork_id": 2,
-        "model_name": "Marcopolo Paradiso 1200 G7 Scania K400",
+      "transportCategory": {
+        "transport_category_id": 1,
+        "name": "Transporte Interdepartamental",
+        "description": "Servicio de transporte público de pasajeros que conecta diferentes departamentos del país. Utilizan autobuses de mediano y largo alcance con mayor comodidad para viajes de varias horas. Las empresas requieren habilitación especial y operan desde terminales de transporte autorizados, cubriendo rutas como Bogotá-Medellín, Cali-Cartagena, entre otras.",
+        "slug": "transporte-interdepartamental",
+        "created_at": "2025-07-24T13:50:53.974Z"
+      },
 
-        "description": null,
+      "companySerial": {
+        "company_serial_id": 33,
+        "company_id": 18,
+        "company_serial_code": "10215",
 
-        "year_from": null,
+        "company": {
+          "company_id": 18,
+          "country_id": 1,
+          "company_name": "Expreso Brasilia S.A.",
 
-        "chassis": {
-          "chassis_id": 2,
-          "brand_id": 2,
-          "chassis_name": "K400 4x2",
+          "servicio": null,
 
-          "description": null
-        },
+          "routes": null,
 
-        "bodywork": {
-          "bodywork_id": 2,
-          "brand_id": 14,
-          "bodywork_name": "Paradiso 1200 G7",
+          "description": null,
 
-          "description": null
+          "company_logo": null,
+
+          "city": null,
+
+          "company_url": null,
+          "active": true,
+          "created_at": "2025-07-24T13:56:37.250Z"
+        }
+      },
+
+      "companyService": {
+        "company_service_id": 18,
+        "company_id": 10,
+        "company_service_name": "2G+",
+
+        "company": {
+          "company_id": 10,
+          "country_id": 1,
+          "company_name": "Expreso Bolivariano S.A.",
+
+          "servicio": null,
+
+          "routes": null,
+
+          "description": null,
+
+          "company_logo": null,
+
+          "city": null,
+
+          "company_url": null,
+          "active": true,
+          "created_at": "2025-07-24T13:56:37.250Z"
         }
       },
 
       "vehiclePhotos": [
         {
-          "vehicle_photo_id": 25,
-          "vehicle_id": 25,
-          "image_url": "https://res.cloudinary.com/dkj6yzrrk/image/upload/v1738536822/autobusesdecolombia/ay5zhr1frtr4e38k9sn6.webp",
-          "photographer_id": 3,
+          "vehicle_photo_id": 968,
+          "vehicle_id": 968,
+          "image_url": "https://res.cloudinary.com/dkj6yzrrk/image/upload/v1754454430/autobusesdecolombia/image_xzsvpr.webp",
+          "photographer_id": 5,
           "country_id": 1,
           "location": "Medellín",
 
@@ -106,11 +151,11 @@
           "comments": null,
 
           "downloads": null,
-          "created_at": "2025-07-24T14:08:07.251Z",
+          "created_at": "2025-08-06T04:29:20.756Z",
 
           "photographer": {
-            "photographer_id": 3,
-            "name": "daniel gómez arango",
+            "photographer_id": 5,
+            "name": "Esteban Zapata",
 
             "email": null,
 
