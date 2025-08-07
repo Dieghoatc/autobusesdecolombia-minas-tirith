@@ -4,13 +4,13 @@ import { useRef } from "react";
 
 import { Modal, ModalChildren } from "@/components/modal";
 import { ChevronLeft, ChevronRight } from "lucide-react";
-import { useCarousel, useGetVehicleCategoryById, useModal } from "@/lib/hooks";
+import { useCarousel, useModal, useGetVehicle } from "@/lib/hooks";
 
 import styles from "./LastPhotos.module.css";
 import { Skeleton } from "@/components/ui/skeleton";
 
 export function LastPhotos() {
-  const { vehicles, loading } = useGetVehicleCategoryById({ id: 1, page: 1, limit: 10 });
+  const { vehicles, loading } = useGetVehicle({ page: 1, limit: 10 });
   const { isModalOpen, openModal, closeModal } = useModal();
   const sliderRef = useRef<HTMLDivElement>(null);
   const { showLeftArrow, showRightArrow, scroll } = useCarousel(sliderRef);

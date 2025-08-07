@@ -86,7 +86,7 @@ export function GalleryList({ vehicle }: GalleryListProps) {
               ? vehicle.vehiclePhotos[0].photographer.name
               : ""}
           </p>
-        </div> */}
+        </div>  */}
       </div>
       <Modal isOpen={isModalOpen} onClose={closeModal}>
         <ModalChildren vehicle={vehicle} />
