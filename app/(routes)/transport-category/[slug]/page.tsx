@@ -12,6 +12,8 @@ import { SkeletonGallery } from "../components/SkeletonGallery";
 import { useTransportCategories } from "@/lib/hooks";
 import { splitString } from "@/lib/helpers";
 
+
+
 import { ChevronDownIcon, ChevronUpIcon } from "lucide-react";
 import styles from "./CategoryGallery.module.css";
 

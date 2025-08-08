@@ -46,8 +46,8 @@ body {
     --color-white: #fff;
     --color-black: #000;
 
-    --h1-size: 48px;
-    --h1-size-mobile: 24px;
+    --h1-size-mobile: 18px;
+    --h1-size: 32px;
     --h2-size: 24px;
     --h2-size-mobile: 20px;
     --h3-size: 18px;
