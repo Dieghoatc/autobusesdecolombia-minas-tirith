@@ -88,7 +88,7 @@ import trejos from "@/assets/companies/trejos.png";
 import unitransco from "@/assets/companies/unitransco.png";
 import velotax from "@/assets/companies/velotax.png";
 
-const companies = [
+export const companies = [
   {
     id: 1,
     name: "PTV Public Transport Victoria",
@@ -114,9 +114,9 @@ const companies = [
   { id: 19, name: "Cootransuroccidente", icon: cootransuroccidente },
   { id: 20, name: "Unidad disponible", icon: null },
   { id: 21, name: "Autoboy S.A.", icon: autoboy },
-  { id: 22, name: "Berlinas del Fonce S.A.", icon: { berlinas } },
+  { id: 22, name: "Berlinas del Fonce S.A.", icon: berlinas },
   { id: 23, name: "Trans Bolivar S.A.", icon: null },
-  { id: 24, name: "Coomotor", icon: { coomotor } },
+  { id: 24, name: "Coomotor", icon: coomotor },
   { id: 25, name: "Cootranshuila", icon: cootranshuila },
   { id: 26, name: "Expreso Gaitana", icon: null },
   { id: 27, name: "Tax Belalcázar", icon: null },
@@ -250,7 +250,7 @@ const companies = [
   { id: 151, name: "Flota Rionegro S.A.", icon: null },
   { id: 152, name: "Turismo Élite", icon: null },
   { id: 153, name: "Trans Confort", icon: null },
-  { id: 154, name: "Berlitur", icon: { berlitur } },
+  { id: 154, name: "Berlitur", icon: berlitur },
   { id: 155, name: "Sideral", icon: null },
   { id: 156, name: "Surandina de Transportes S.A.", icon: null },
   { id: 157, name: "Flota Rionegro S.A", icon: null },
@@ -306,7 +306,7 @@ const companies = [
   { id: 199, name: "Este es mi Bus S.A.S.", icon: null },
   { id: 200, name: "Costaline", icon: costaline },
   { id: 201, name: "Autollanos", icon: null },
-  { id: 202, name: "Rápido el carmen", icon: { rapidoElCarmen } },
+  { id: 202, name: "Rápido el carmen", icon: rapidoElCarmen },
   { id: 203, name: "Via Terrestre", icon: null },
   { id: 204, name: "Viatena", icon: null },
   { id: 205, name: "Trans Lion", icon: null },

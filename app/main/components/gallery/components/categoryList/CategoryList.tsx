@@ -15,8 +15,11 @@ interface CategoryListProps {
 }
 
 export function CategoryList({ transportCategory }: CategoryListProps) {
-
-  const { vehicles, loading } = useGetVehicleCategoryById({ id: transportCategory.transport_category_id, page: 1, limit: 10 });
+  const { vehicles, loading } = useGetVehicleCategoryById({
+    id: transportCategory.transport_category_id,
+    page: 1,
+    limit: 10,
+  });
 
   const { isModalOpen, openModal, closeModal } = useModal();
   const sliderRef = useRef<HTMLDivElement>(null);
@@ -28,7 +31,9 @@ export function CategoryList({ transportCategory }: CategoryListProps) {
     <div className={styles.container}>
       <div className={styles.header}>
         <h3>{transportCategory.name}</h3>
-        <Link href={`/transport-category/${transportCategory.transport_category_id}`}>
+        <Link
+          href={`/transport-category/${transportCategory.transport_category_id}`}
+        >
           <Ellipsis />
         </Link>
       </div>
@@ -44,11 +49,15 @@ export function CategoryList({ transportCategory }: CategoryListProps) {
               key={vehicle.vehicle_id}
               className={styles.slide}
               onClick={() => openModal(vehicle)}
-            >{vehicle.vehiclePhotos[0] ? (
-              <img src={vehicle.vehiclePhotos[0].image_url} alt={""} />
-            ) : (
-              <Skeleton className="h-[125px] w-[250px] rounded-xl bg-slate-900" />
-            )}
+            >
+              {vehicle.vehiclePhotos[0] ? (
+                <div className={styles.image_container}>
+                  <img src={vehicle.vehiclePhotos[0].image_url} alt={""} />
+                  <div className={styles.overlay}></div>
+                </div>
+              ) : (
+                <Skeleton className="h-[125px] w-[250px] rounded-xl bg-slate-900" />
+              )}
             </figure>
           ))}
         </div>
