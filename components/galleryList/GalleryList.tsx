@@ -55,7 +55,7 @@ export function GalleryList({ vehicle }: GalleryListProps) {
             />
           </picture>
         </figure>
-        <div className={styles.content}>
+        {/* <div className={styles.content}>
           <h1>{vehicle.vehicle_id}</h1>
           <h2 className={styles.title}>
             {vehicle.model ? vehicle.model.model_name : ""}
@@ -88,7 +88,7 @@ export function GalleryList({ vehicle }: GalleryListProps) {
               ? vehicle.vehiclePhotos[0].photographer.name
               : ""}
           </p>
-        </div>
+        </div> */}
       </div>
       <Modal isOpen={isModalOpen} onClose={closeModal}>
         <ModalChildren vehicle={vehicle} />

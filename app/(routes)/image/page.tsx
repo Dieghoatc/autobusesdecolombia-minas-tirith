@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { useGetVehicleById } from "@/lib/hooks";
 import styles from "./ImagePage.module.css";
 
 import image from "./lp4kvzoama608ocfxssn.webp";
@@ -13,6 +14,10 @@ import { Camera, Car, Eye, EyeOff, MapPin } from "lucide-react";
 
 export default function ImagePage() {
   const [isShow, setIsShow] = useState(true);
+
+  const { vehicle, loading } = useGetVehicleById({ id: 1 });
+  console.log(vehicle);
+  console.log(loading);
 
   const handleClick = () => {
     setIsShow(!isShow);

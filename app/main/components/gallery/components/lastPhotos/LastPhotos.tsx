@@ -35,7 +35,10 @@ export function LastPhotos() {
             >
               {vehicle.vehiclePhotos[0] ? (
                 <picture>
-                  <source type="image/webp" srcSet={vehicle.vehiclePhotos[0].image_url} />
+                  <source
+                    type="image/webp"
+                    srcSet={vehicle.vehiclePhotos[0].image_url}
+                  />
                   <img src={vehicle.vehiclePhotos[0].image_url} alt="" />
                 </picture>
               ) : (
