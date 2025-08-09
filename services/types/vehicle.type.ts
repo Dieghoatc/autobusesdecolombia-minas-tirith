@@ -10,10 +10,10 @@ export interface Vehicle {
   company_id: number;
   transport_category_id: number;
   company_serial_id: number;
-  company_service_id: null;
+  company_service_id: number;
   plate: string;
   year_manufactured: null;
-  notes: string;
+  notes: null;
   created_at: Date;
   model: Model;
   company: Company;
@@ -29,7 +29,7 @@ export interface Company {
   company_name: string;
   servicio: null;
   routes: null;
-  description: null;
+  description: null | string;
   company_logo: null;
   city: null;
   company_url: null;
@@ -59,6 +59,34 @@ export interface Model {
   model_name: string;
   description: null;
   year_from: null;
+  brand: Brand;
+  chassis: Chassis;
+  bodywork: Bodywork;
+}
+
+export interface Bodywork {
+  bodywork_id: number;
+  brand_id: number;
+  bodywork_name: string;
+  description: string;
+  brand: Brand;
+}
+
+export interface Brand {
+  brand_id: number;
+  name: string;
+  logo: null;
+  url: null;
+  description: null;
+  created_at: Date;
+}
+
+export interface Chassis {
+  chassis_id: number;
+  brand_id: number;
+  chassis_name: string;
+  description: null;
+  brand: Brand;
 }
 
 export interface TransportCategory {

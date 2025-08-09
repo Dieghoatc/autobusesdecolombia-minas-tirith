@@ -34,13 +34,16 @@ export function LastPhotos() {
               onClick={() => openModal(vehicle)}
             >
               {vehicle.vehiclePhotos[0] ? (
-                <picture>
-                  <source
-                    type="image/webp"
-                    srcSet={vehicle.vehiclePhotos[0].image_url}
-                  />
-                  <img src={vehicle.vehiclePhotos[0].image_url} alt="" />
-                </picture>
+                <div className={styles.image_container}>
+                  <picture>
+                    <source
+                      type="image/webp"
+                      srcSet={vehicle.vehiclePhotos[0].image_url}
+                    />
+                    <img src={vehicle.vehiclePhotos[0].image_url} alt="" />
+                  </picture>
+                  <div className={styles.overlay}></div>
+                </div>
               ) : (
                 <Skeleton className="h-[125px] w-[250px] rounded-xl bg-slate-900" />
               )}

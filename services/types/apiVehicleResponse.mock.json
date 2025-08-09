@@ -15,36 +15,87 @@
 
   "data": [
     {
-      "vehicle_id": 968,
-      "vehicle_type_id": 1,
-      "model_id": 39,
-      "company_id": 18,
-      "transport_category_id": 1,
-      "company_serial_id": 33,
-
-      "company_service_id": null,
-      "plate": "nin 611",
+      "vehicle_id": 1,
+      "vehicle_type_id": 17,
+      "model_id": 1,
+      "company_id": 1,
+      "transport_category_id": 3,
+      "company_serial_id": 1,
+      "company_service_id": 1,
+      "plate": "7692 ao",
 
       "year_manufactured": null,
-      "notes": "",
-      "created_at": "2025-07-25T02:19:56.306Z",
+
+      "notes": null,
+      "created_at": "2025-07-24T09:06:17.842Z",
 
       "model": {
-        "model_id": 39,
-        "brand_id": 14,
-        "chassis_id": 2,
-        "bodywork_id": 16,
-        "model_name": "Marcopolo Paradiso 1200 G8 Scania K400",
+        "model_id": 1,
+        "brand_id": 1,
+        "chassis_id": 166,
+        "bodywork_id": 127,
+        "model_name": "Volvo B7RLE Volgren CR228L",
 
         "description": null,
 
-        "year_from": null
+        "year_from": null,
+
+        "brand": {
+          "brand_id": 1,
+          "name": "Volvo",
+
+          "logo": null,
+
+          "url": null,
+
+          "description": null,
+          "created_at": "2025-07-24T08:52:34.805Z"
+        },
+
+        "chassis": {
+          "chassis_id": 166,
+          "brand_id": 1,
+          "chassis_name": "Volvo B7RLE Euro V/EEV",
+
+          "description": null,
+
+          "brand": {
+            "brand_id": 1,
+            "name": "Volvo",
+
+            "logo": null,
+
+            "url": null,
+
+            "description": null,
+            "created_at": "2025-07-24T08:52:34.805Z"
+          }
+        },
+
+        "bodywork": {
+          "bodywork_id": 127,
+          "brand_id": 1,
+          "bodywork_name": "Volgren CR228L 'Futurebus'",
+          "description": "69 pasajeros (44 de pie, 25 sentados). Aire acondicionado Cooltek CA329N",
+
+          "brand": {
+            "brand_id": 1,
+            "name": "Volvo",
+
+            "logo": null,
+
+            "url": null,
+
+            "description": null,
+            "created_at": "2025-07-24T08:52:34.805Z"
+          }
+        }
       },
 
       "company": {
-        "company_id": 18,
-        "country_id": 1,
-        "company_name": "Expreso Brasilia S.A.",
+        "company_id": 1,
+        "country_id": 7,
+        "company_name": "PTV Public Transport Victoria",
 
         "servicio": null,
 
@@ -58,32 +109,31 @@
 
         "company_url": null,
         "active": true,
-        "created_at": "2025-07-24T13:56:37.250Z"
+        "created_at": "2025-07-24T08:56:37.250Z"
       },
 
       "transportCategory": {
-        "transport_category_id": 1,
-        "name": "Transporte Interdepartamental",
-        "description": "Servicio de transporte público de pasajeros que conecta diferentes departamentos del país. Utilizan autobuses de mediano y largo alcance con mayor comodidad para viajes de varias horas. Las empresas requieren habilitación especial y operan desde terminales de transporte autorizados, cubriendo rutas como Bogotá-Medellín, Cali-Cartagena, entre otras.",
-        "slug": "transporte-interdepartamental",
-        "created_at": "2025-07-24T13:50:53.974Z"
+        "transport_category_id": 3,
+        "name": "Transporte Internacional",
+        "description": "Comprende autobuses habilitados para rutas transfronterizas que transportan pasajeros entre Colombia y países vecinos como Venezuela, Ecuador, Panamá, Brasil y Perú. Como tambien buses de empresas extranjeras que ingresan al territorio nacional. Tambien incluye autobuses de empresas de otros paises del mundo.",
+        "slug": "transporte-internacional",
+        "created_at": "2025-07-24T08:50:53.974Z"
       },
 
       "companySerial": {
-        "company_serial_id": 33,
-        "company_id": 18,
-        "company_serial_code": "10215",
+        "company_serial_id": 1,
+        "company_id": 4,
+        "company_serial_code": "8390",
 
         "company": {
-          "company_id": 18,
+          "company_id": 4,
           "country_id": 1,
-          "company_name": "Expreso Brasilia S.A.",
+          "company_name": "Velotax",
 
           "servicio": null,
 
           "routes": null,
-
-          "description": null,
+          "description": "Cooperativa de Transportes Velotax LTDA",
 
           "company_logo": null,
 
@@ -91,19 +141,19 @@
 
           "company_url": null,
           "active": true,
-          "created_at": "2025-07-24T13:56:37.250Z"
+          "created_at": "2025-07-24T08:56:37.250Z"
         }
       },
 
       "companyService": {
-        "company_service_id": 18,
-        "company_id": 10,
-        "company_service_name": "2G+",
+        "company_service_id": 1,
+        "company_id": 1,
+        "company_service_name": "Doncaster SC To City (King / Lonsdale St)",
 
         "company": {
-          "company_id": 10,
-          "country_id": 1,
-          "company_name": "Expreso Bolivariano S.A.",
+          "company_id": 1,
+          "country_id": 7,
+          "company_name": "PTV Public Transport Victoria",
 
           "servicio": null,
 
@@ -117,18 +167,18 @@
 
           "company_url": null,
           "active": true,
-          "created_at": "2025-07-24T13:56:37.250Z"
+          "created_at": "2025-07-24T08:56:37.250Z"
         }
       },
 
       "vehiclePhotos": [
         {
-          "vehicle_photo_id": 968,
-          "vehicle_id": 968,
-          "image_url": "https://res.cloudinary.com/dkj6yzrrk/image/upload/v1754454430/autobusesdecolombia/image_xzsvpr.webp",
-          "photographer_id": 5,
-          "country_id": 1,
-          "location": "Medellín",
+          "vehicle_photo_id": 1,
+          "vehicle_id": 1,
+          "image_url": "https://res.cloudinary.com/dkj6yzrrk/image/upload/v1736662846/autobusesdecolombia/tbohalck1y0kzbmk0nku.webp",
+          "photographer_id": 1,
+          "country_id": 7,
+          "location": "Melbourne",
 
           "department": null,
 
@@ -151,17 +201,17 @@
           "comments": null,
 
           "downloads": null,
-          "created_at": "2025-08-06T04:29:20.756Z",
+          "created_at": "2025-07-24T09:08:07.251Z",
 
           "photographer": {
-            "photographer_id": 5,
-            "name": "Esteban Zapata",
+            "photographer_id": 1,
+            "name": "Dieghoatc",
 
             "email": null,
 
             "phone": null,
             "active": true,
-            "created_at": "2025-07-24T13:58:51.918Z"
+            "created_at": "2025-07-24T08:58:51.918Z"
           }
         }
       ]
