@@ -39,7 +39,7 @@ export default function ImagePage() {
               </h1>
             </div>
             <div className={styles.controlview} onClick={handleClick}>
-              {isShow ? <EyeOff /> : <Eye />}
+              {isShow ? <Eye /> : <EyeOff />}
             </div>
           </div>
 
