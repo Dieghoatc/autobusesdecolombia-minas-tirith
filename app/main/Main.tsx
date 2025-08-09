@@ -1,7 +1,7 @@
 "use client";
 
 import { Gallery } from "./components/gallery/Gallery";
-import { Header } from "./components/header";
+import { Magazine } from "./components/magazine";
 import styles from "./Main.module.css";
 
 import Link from "next/link";
@@ -15,7 +15,7 @@ export default function Main() {
           <p>Del 1 al 10 de Agosto</p>
         </Link>
       </div>
-      <Header />
+      <Magazine />
       <Gallery />
     </div>
   );

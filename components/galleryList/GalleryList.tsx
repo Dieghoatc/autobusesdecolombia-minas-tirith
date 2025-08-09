@@ -27,6 +27,7 @@ export function GalleryList({ vehicle }: GalleryListProps) {
       </section>
     );
   }
+  console.log(vehicle);
 
   return (
     <section className={styles.container}>
@@ -67,17 +68,18 @@ export function GalleryList({ vehicle }: GalleryListProps) {
               : ""}
           </p>
           <p>
-            {vehicle.companySerial
+            {vehicle.companySerial && vehicle.companySerial.company
               ? vehicle.companySerial.company.company_name
               : ""}
           </p>
           <p>
-            {vehicle.companyService
+            {vehicle.companyService &&
+            vehicle.companyService.company_service_name
               ? vehicle.companyService.company_service_name
               : ""}
           </p>
           <p>
-            {vehicle.companyService
+            {vehicle.companyService && vehicle.companyService.company
               ? vehicle.companyService.company.company_name
               : ""}
           </p>
@@ -86,7 +88,7 @@ export function GalleryList({ vehicle }: GalleryListProps) {
               ? vehicle.vehiclePhotos[0].photographer.name
               : ""}
           </p>
-        </div>  */}
+        </div> */}
       </div>
       <Modal isOpen={isModalOpen} onClose={closeModal}>
         <ModalChildren vehicle={vehicle} />

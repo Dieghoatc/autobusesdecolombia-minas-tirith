@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { APIVehicleResponse } from "@/services/types/vehicle.type";
-import { vehicleQueryById } from "@/services/api/vehicleById.query";
+import { vehicleCategoryQueryById } from "@/services/api/vehicleCategoryById";
 
 interface UseVehicleCategoryByIdProps {
   id: number;
@@ -27,7 +27,7 @@ export function useGetVehicleCategoryById({
       setError("");
 
       try {
-        const result = await vehicleQueryById(id, page, limit);
+        const result = await vehicleCategoryQueryById(id, page, limit);
         setVehicles(result || ({} as APIVehicleResponse));
       } catch (error) {
         setError(`Error to fetch data: ${error}`);
