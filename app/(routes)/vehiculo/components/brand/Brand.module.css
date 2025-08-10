@@ -1,3 +1,9 @@
 .container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container img {
   width: 100px;
 }

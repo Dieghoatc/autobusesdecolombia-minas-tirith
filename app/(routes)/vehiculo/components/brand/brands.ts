@@ -9,6 +9,7 @@ import Marcopolo from "@/assets/brands/marcopolo.png";
 import Scania from "@/assets/brands/scania.png";
 import Volkswagen from "@/assets/brands/volkswagen.png";
 import Renault from "@/assets/brands/renault.png";
+import MercedesBenz from "@/assets/brands/mercedes_benz.png";
 
 export const brands = [
   {
@@ -65,5 +66,10 @@ export const brands = [
     id: 11,
     name: "Renault",
     logo: Renault,
+  },
+  {
+    id: 12,
+    name: "Mercedes Benz",
+    logo: MercedesBenz,
   },
 ];
