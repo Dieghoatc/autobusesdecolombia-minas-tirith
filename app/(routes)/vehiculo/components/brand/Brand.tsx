@@ -10,7 +10,6 @@ interface BrandProps {
 }
 
 export function Brand({ name }: BrandProps) {
-  console.log(name);
   const findBrand = useMemo(
     () => brands.find((brand) => brand.name === name),
     [name]

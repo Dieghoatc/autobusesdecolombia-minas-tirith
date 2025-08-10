@@ -88,6 +88,8 @@ import trejos from "@/assets/companies/trejos.png";
 import unitransco from "@/assets/companies/unitransco.png";
 import velotax from "@/assets/companies/velotax.png";
 import la_rolita from "@/assets/companies/la_rolita.png";
+import transportes_expreso_cundinamarca from "@/assets/companies/transportes_expreso_cundinamarca.png";
+import de_occidente from "@/assets/companies/de_occidente.png";
 
 export const companies = [
   {
@@ -131,7 +133,7 @@ export const companies = [
   { id: 35, name: "Empresa Arauca", icon: empresa_arauca },
   { id: 36, name: "Cotrans", icon: cotrans },
   { id: 37, name: "Coflonorte LTDA", icon: coflonorte },
-  { id: 38, name: "Trans Peralonso", icon: concorde },
+  { id: 38, name: "Trans Peralonso", icon: null },
   { id: 39, name: "Cootrans Laboyana", icon: null },
   { id: 40, name: "Cootrans Tequendama", icon: null },
   {
@@ -246,7 +248,7 @@ export const companies = [
   { id: 146, name: "Transporte Especial López Molina", icon: null },
   { id: 147, name: "Cootransbol LTDA", icon: null },
   { id: 148, name: "Flota Alianza", icon: flotaAlianza },
-  { id: 149, name: "De Occidente", icon: null },
+  { id: 149, name: "De Occidente", icon: de_occidente },
   { id: 150, name: "Expreso Paz del Río", icon: null },
   { id: 151, name: "Flota Rionegro S.A.", icon: null },
   { id: 152, name: "Turismo Élite", icon: null },
@@ -294,14 +296,18 @@ export const companies = [
   { id: 186, name: "Unitrasco", icon: null },
   { id: 187, name: "Auto Pullman Sotracor S.A.", icon: null },
   { id: 188, name: "Cotrans Ricaurte", icon: null },
-  { id: 189, name: "Expreso Cundinamarca", icon: null },
+  {
+    id: 189,
+    name: "Transportes Expreso Cundinamarca",
+    icon: transportes_expreso_cundinamarca,
+  },
   { id: 190, name: "Cootransgirardot", icon: null },
   { id: 191, name: "Autolegal", icon: null },
   { id: 192, name: "Transmilenio", icon: null },
   { id: 193, name: "Villa de San Carlos", icon: null },
   { id: 194, name: "Cotranar", icon: null },
   { id: 195, name: "Excolcar", icon: null },
-  { id: 196, name: "Concorde", icon: null },
+  { id: 196, name: "Concorde", icon: concorde },
   { id: 197, name: "Cootransunidos", icon: cootransunidos },
   { id: 198, name: "Etib S.A.S", icon: null },
   { id: 199, name: "Este es mi Bus S.A.S.", icon: null },
