@@ -21,20 +21,26 @@ export function VehicleDetail({
       <div className={styles.brand}>
         <Brand name={brand} />
       </div>
-      <div className={styles.plate}>
-        <h2>
-          Placa: <span>{plate.toLocaleUpperCase()}</span>
-        </h2>
-      </div>
-      <div className={styles.serial}>
-        <h2>
-          Serial: <span>{serial.toLocaleUpperCase()}</span>
-        </h2>
-      </div>
-      <div className={styles.service}>
-        <h2>Servicio</h2>
-        <span>{service}</span>
-      </div>
+      {plate && (
+        <div className={styles.plate}>
+          <h2>
+            Placa: <span>{plate.toLocaleUpperCase()}</span>
+          </h2>
+        </div>
+      )}
+      {serial && (
+        <div className={styles.serial}>
+          <h2>
+            Serial: <span>{serial.toLocaleUpperCase()}</span>
+          </h2>
+        </div>
+      )}
+      {service && (
+        <div className={styles.service}>
+          <h2>Servicio</h2>
+          <span>{service}</span>
+        </div>
+      )}
     </div>
   );
 }

@@ -12,6 +12,7 @@
     font-size: var(--h1-size);
     text-shadow: 0 0 10px #000;
     align-self: start;
+    padding: 0;
   }
 }
 
