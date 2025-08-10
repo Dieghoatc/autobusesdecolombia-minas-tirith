@@ -5,18 +5,18 @@ import { useGetVehicleById } from "@/lib/hooks";
 import { useParams } from "next/navigation";
 
 import { CompanyLogo } from "../components/companies";
-import { VehicleBrandName } from "../components/vehicleBrand";
+import { VehicleModelName } from "../components/vehicleModel";
 import { Brand } from "../components/brand";
 
 import styles from "./ImagePage.module.css";
 import BodyworkLogo from "@/assets/vehicle/bodywork.png";
 import ChassisLogo from "@/assets/vehicle/chassis.png";
 import { Camera, Car, Eye, EyeOff, MapPin } from "lucide-react";
+import { VehicleDetail } from "../components/vehicleDetail/VehicleDetail";
 
 export default function ImagePage() {
   const [isShow, setIsShow] = useState(true);
   const { id } = useParams<{ id: string }>();
-  console.log(id);
 
   const { vehicle, loading } = useGetVehicleById({ id: Number(id) });
 
@@ -27,37 +27,44 @@ export default function ImagePage() {
   if (loading) return null;
   const vehicleImage = vehicle.vehiclePhotos[0].image_url;
 
+  const plate = vehicle.plate;
   let companyLogo = "";
   let vehicleModel = "";
   let brand = "";
   let serial = "";
-  let chassis = "";
+  let chassisBrand = "";
   let chassisName = "";
-  let bodywork = "";
+  let bodyworkBrand = "";
   let bodyworkName = "";
+  let service = "";
 
-  if (!vehicle.company === null) {
+  if (vehicle.company_id) {
     companyLogo = vehicle.company.company_name;
   }
 
-  if (!vehicle.model === null) {
+  if (vehicle.company_service_id) {
+    service = vehicle.companyService.company_service_name;
+  }
+
+  if (vehicle.model_id) {
     vehicleModel = vehicle.model.model_name;
     brand = vehicle.model.brand.name;
 
-    if (!vehicle.model.chassis === null) {
-      chassis = vehicle.model.chassis.brand.name;
+    if (vehicle.model.chassis_id) {
+      chassisBrand = vehicle.model.chassis.brand.name;
       chassisName = vehicle.model.chassis.chassis_name;
     }
-
-    if (!vehicle.model.bodywork === null) {
+    if (vehicle.model.bodywork_id) {
+      bodyworkBrand = vehicle.model.bodywork.brand.name;
       bodyworkName = vehicle.model.bodywork.bodywork_name;
-      bodywork = vehicle.model.bodywork.brand.name;
     }
-  }
-  const plate = vehicle.plate;
 
-  if (!vehicle.companySerial === null) {
-    serial = vehicle.companySerial.company_serial_code;
+    if (vehicle.company_serial_id) {
+      serial = vehicle.companySerial.company_serial_code;
+    }
+    if (vehicle.company_service_id) {
+      service = vehicle.companyService.company_service_name;
+    }
   }
 
   const photograper = vehicle?.vehiclePhotos[0].photographer.name;
@@ -75,7 +82,7 @@ export default function ImagePage() {
         <div className={styles.content}>
           <div className={styles.header}>
             <CompanyLogo isShow={isShow} name={companyLogo} />
-            <VehicleBrandName title={vehicleModel} isShow={isShow} />
+            <VehicleModelName title={vehicleModel} isShow={isShow} />
             <div className={styles.controlview} onClick={handleClick}>
               {isShow ? <Eye /> : <EyeOff />}
             </div>
@@ -91,26 +98,21 @@ export default function ImagePage() {
                     </div>
                     <Brand name={brand} />
                   </div>
-                  <div className={styles.description}>
-                    <div className={styles.model}>
-                      <h2>Placa</h2>
-                      <p>{plate}</p>
-                    </div>
-                    <div>
-                      <h2>Serial</h2>
-                      <p>{serial}</p>
-                    </div>
-                  </div>
+                  <VehicleDetail
+                    plate={plate}
+                    serial={serial}
+                    service={service}
+                  />
                 </div>
               </div>
-              {bodywork && (
+              {vehicle.model_id && vehicle.model.chassis_id && (
                 <div className={styles.block}>
                   <div className={styles.item_container}>
                     <div className={styles.assets}>
                       <div className={styles.logo}>
                         <img src={ChassisLogo.src} alt="chassis" />
                       </div>
-                      <Brand name={chassis} />
+                      <Brand name={chassisBrand} />
                     </div>
                     <div className={styles.description}>
                       <div>
@@ -121,14 +123,14 @@ export default function ImagePage() {
                   </div>
                 </div>
               )}
-              {chassis && (
+              {vehicle.model_id && vehicle.model.bodywork_id && (
                 <div className={styles.block}>
                   <div className={styles.item_container}>
                     <div className={styles.assets}>
                       <div className={styles.logo}>
                         <img src={BodyworkLogo.src} alt="bodywork" />
                       </div>
-                      <Brand name={bodywork} />
+                      <Brand name={bodyworkBrand} />
                     </div>
                     <div className={styles.description}>
                       <div>

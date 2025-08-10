@@ -87,6 +87,7 @@ import transsander from "@/assets/companies/transsander.png";
 import trejos from "@/assets/companies/trejos.png";
 import unitransco from "@/assets/companies/unitransco.png";
 import velotax from "@/assets/companies/velotax.png";
+import laRolita from "@/assets/companies/la_rolita.png";
 
 export const companies = [
   {
@@ -409,6 +410,7 @@ export const companies = [
   { id: 302, name: "Arimena", icon: arimena },
   { id: 303, name: "AutoFaca", icon: autofaca },
   { id: 304, name: "Libertadores", icon: libertadores },
+  { id: 305, name: "La Rolita", icon: laRolita },
 ];
 
 export default companies;
