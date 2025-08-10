@@ -10,19 +10,17 @@ interface PhotograperProps {
 export function Photograper({ author, location }: PhotograperProps) {
   return (
     <div className={styles.container}>
-      <div>
+      <div className={styles.logo}>
         <LogoCard logo="camera" />
       </div>
-      <div className={styles.description}>
-        <div>
-          <h2>
-            Fotografo/a: <span>{author}</span>
-          </h2>
-          <div className={styles.photolocation}>
-            <MapPin />
-            <span>{location}</span>
-          </div>
-        </div>
+      <div className={styles.author}>
+        <h2>
+          Fotografo/a: <span>{author}</span>
+        </h2>
+      </div>
+      <div className={styles.photolocation}>
+        <MapPin />
+        <span>{location}</span>
       </div>
     </div>
   );

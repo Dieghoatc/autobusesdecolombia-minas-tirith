@@ -15,8 +15,10 @@ export function VehiclePart({ type, name, brand }: VehiclePartProps) {
 
   return (
     <div className={styles.container}>
-      <div className={styles.logos}>
+      <div className={styles.logo}>
         <LogoCard logo={type} />
+      </div>
+      <div className={styles.brand}>
         <Brand name={brand} />
       </div>
       <div className={styles.description}>
