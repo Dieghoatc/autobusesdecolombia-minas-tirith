@@ -1,0 +1,26 @@
+.container {
+  width: 100%;
+}
+
+.logos {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.description {
+  margin-top: 8px;
+
+  h2 {
+    font-size: 13px;
+    font-weight: 600;
+    color: #dddad0;
+    text-shadow: 0 0 10px #000;
+  }
+  span {
+    font-size: 16px;
+    font-weight: 600;
+    color: #eeeeee;
+    text-shadow: 0 0 10px #000;
+  }
+}
