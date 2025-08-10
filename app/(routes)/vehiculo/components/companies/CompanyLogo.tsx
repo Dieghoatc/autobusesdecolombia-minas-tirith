@@ -5,11 +5,10 @@ import styles from "./CompanyLogo.module.css";
 import companies from "./companies";
 
 interface CompanyLogoProps {
-  isShow: boolean;
   name: string;
 }
 
-export function CompanyLogo({ isShow, name }: CompanyLogoProps) {
+export function CompanyLogo({ name }: CompanyLogoProps) {
   const findLogo = useMemo(
     () => companies.find((company) => company.name === name),
     [name]
@@ -20,11 +19,7 @@ export function CompanyLogo({ isShow, name }: CompanyLogoProps) {
 
   return (
     <div className={styles.container}>
-      <img
-        src={findLogo.icon.src}
-        alt="company"
-        className={isShow ? "" : styles.logoHidden}
-      />
+      <img src={findLogo.icon.src} alt="company" />
     </div>
   );
 }

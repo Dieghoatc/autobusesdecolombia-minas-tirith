@@ -4,14 +4,14 @@
   text-shadow: 0 0 2px #fff;
   grid-column: 1/5;
   grid-row: 2;
-  align-self: start;
-  margin-bottom: 16px;
-  margin-left: 16px;
+  align-self: center;
+  padding: 16px;
 
   @media (min-width: 768px) {
     color: #fff;
     font-size: var(--h1-size);
     text-shadow: 0 0 10px #000;
+    align-self: start;
   }
 }
 

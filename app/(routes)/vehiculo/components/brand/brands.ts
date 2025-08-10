@@ -7,6 +7,8 @@ import Busscar from "@/assets/brands/busscar.png";
 import Superpolo from "@/assets/brands/marcopolo_superpolo.png";
 import Marcopolo from "@/assets/brands/marcopolo.png";
 import Scania from "@/assets/brands/scania.png";
+import Volkswagen from "@/assets/brands/volkswagen.png";
+import Renault from "@/assets/brands/renault.png";
 
 export const brands = [
   {
@@ -53,5 +55,15 @@ export const brands = [
     id: 9,
     name: "Scania",
     logo: Scania,
+  },
+  {
+    id: 10,
+    name: "Volkswagen",
+    logo: Volkswagen,
+  },
+  {
+    id: 11,
+    name: "Renault",
+    logo: Renault,
   },
 ];

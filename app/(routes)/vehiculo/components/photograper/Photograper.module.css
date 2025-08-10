@@ -1,0 +1,35 @@
+.container {
+  width: 100%;
+  padding: 8px 0;
+  display: felx;
+  justify-content: space-between;
+  align-items: center;
+
+  h2 {
+    font-size: 13px;
+    font-weight: 600;
+    color: #dddad0;
+    text-shadow: 0 0 10px #000;
+  }
+  span {
+    font-size: 16px;
+    font-weight: 600;
+    color: #eeeeee;
+    text-shadow: 0 0 10px #000;
+  }
+}
+
+.photolocation {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  p {
+    font-size: 12px;
+  }
+}
+
+.photolocation svg {
+  width: 15px;
+  height: 15px;
+}
