@@ -5,7 +5,7 @@ interface VehicleBrandProps {
   isShow: boolean;
 }
 
-export function VehicleBrandName({ title, isShow }: VehicleBrandProps) {
+export function VehicleModelName({ title, isShow }: VehicleBrandProps) {
   return (
     <div
       className={styles.container + " " + (isShow ? "" : styles.brandHidden)}
