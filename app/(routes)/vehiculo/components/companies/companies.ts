@@ -10,7 +10,7 @@ import rapidoElCarmen from "@/assets/companies/rapido_el_carmen.png";
 import catatumboTraindls from "@/assets/companies/catatumbo_traindls.png";
 import coflonorte from "@/assets/companies/coflonorte.png";
 import cointrasur from "@/assets/companies/cointrasur.png";
-import concorde from "@/assets/companies/concorde.png";
+import cootransbol from "@/assets/companies/concorde_white.png";
 import continentalbus from "@/assets/companies/continentalbus.png";
 import coomotor from "@/assets/companies/coomotor.png";
 import coonorte from "@/assets/companies/coonorte.png";
@@ -183,7 +183,7 @@ export const companies = [
   { id: 81, name: "Transportes Arimena", icon: transportes_arimena },
   { id: 82, name: "Expreso Trejos", icon: trejos },
   { id: 83, name: "Turismo Elite LTDA", icon: null },
-  { id: 84, name: "Cootransbol", icon: null },
+  { id: 84, name: "Cootransbol LTDA", icon: cootransbol },
   { id: 85, name: "Cootransmayo", icon: cootransmayo },
   { id: 86, name: "Transipiales", icon: transipiales },
   { id: 87, name: "Cootragua", icon: cootragua },
@@ -307,7 +307,7 @@ export const companies = [
   { id: 193, name: "Villa de San Carlos", icon: null },
   { id: 194, name: "Cotranar", icon: null },
   { id: 195, name: "Excolcar", icon: null },
-  { id: 196, name: "Concorde", icon: concorde },
+  { id: 196, name: "Libertadores", icon: libertadores },
   { id: 197, name: "Cootransunidos", icon: cootransunidos },
   { id: 198, name: "Etib S.A.S", icon: null },
   { id: 199, name: "Este es mi Bus S.A.S.", icon: null },
@@ -415,7 +415,6 @@ export const companies = [
   { id: 301, name: "Arauca Brasilia", icon: araucaBrasilia },
   { id: 302, name: "Arimena", icon: arimena },
   { id: 303, name: "AutoFaca", icon: autofaca },
-  { id: 304, name: "Libertadores", icon: libertadores },
 ];
 
 export default companies;
