@@ -15,8 +15,9 @@ export function Photograper({ author, location }: PhotograperProps) {
       </div>
       <div className={styles.description}>
         <div>
-          <h2>Fotografo/a</h2>
-          <span>{author}</span>
+          <h2>
+            Fotografo/a: <span>{author}</span>
+          </h2>
           <div className={styles.photolocation}>
             <MapPin />
             <span>{location}</span>
