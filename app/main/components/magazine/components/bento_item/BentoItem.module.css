@@ -3,7 +3,7 @@
   height: 280px;
   border-radius: 10px;
   overflow: hidden;
-  background-color: var(--card-background);
+  background: var(--background-card);
   display: grid;
   grid-template-columns: repeat(1, 1fr);
   grid-template-rows: repeat(3, 1fr);

@@ -1,10 +1,10 @@
 
-.post-container {
+.container {
   background-color: var(--color-white);
   padding: var(--padding-container-mobile) 0;
 }
 
-.post-article {
+.article {
   max-width: 768px; 
   margin: 0 auto;
   line-height: 1.6;

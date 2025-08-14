@@ -1,8 +1,6 @@
-.container {
-}
-
 .header {
   display: flex;
+  justify-content: space-between;
   align-items: center;
   gap: 16px;
   margin-bottom: 24px;
@@ -16,7 +14,7 @@
 
 .detailItem {
   padding: 16px;
-  background: rgba(255, 255, 255, 0.05);
+  background: var(--background-card);
   border-radius: 8px;
   transition: all 0.3s ease;
 }
