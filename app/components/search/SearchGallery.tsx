@@ -1,15 +1,15 @@
-import { Input } from "@/components/ui/input";
+import { Input } from "@/app/components/ui/input";
 import Image from "next/image";
 
-import SearchIcon from "@/assets/icons/icon_search.png"
+import SearchIcon from "@/assets/icons/icon_search.png";
 import "./searchGallery.css";
 import { useState, ChangeEvent } from "react";
 
 interface SearchGalleryProps {
-    search: (search: string) => void;
+  search: (search: string) => void;
 }
 
-export default function SearchGallery({search}: SearchGalleryProps) {
+export default function SearchGallery({ search }: SearchGalleryProps) {
   const [showInput, setShowInput] = useState(false);
 
   function handleChange(event: ChangeEvent<HTMLInputElement>) {

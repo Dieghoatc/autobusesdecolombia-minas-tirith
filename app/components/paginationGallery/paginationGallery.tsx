@@ -6,7 +6,7 @@ import {
   PaginationLink,
   PaginationNext,
   PaginationPrevious,
-} from "@/components/ui/pagination";
+} from "@/app/components/ui/pagination";
 
 import { Info } from "@/services/types/vehicle.type";
 
@@ -16,7 +16,6 @@ interface PaginationProps {
 }
 
 export function PaginationGallery({ pagination, goToPage }: PaginationProps) {
-
   return (
     <Pagination className="text-white">
       <PaginationContent>
@@ -28,21 +27,28 @@ export function PaginationGallery({ pagination, goToPage }: PaginationProps) {
               />
             </PaginationItem>
             <PaginationItem>
-              <PaginationLink onClick={() => goToPage(pagination.currentPage - 1)}>
+              <PaginationLink
+                onClick={() => goToPage(pagination.currentPage - 1)}
+              >
                 {pagination.currentPage - 1}
               </PaginationLink>
             </PaginationItem>
           </>
         )}
         <PaginationItem>
-          <PaginationLink onClick={() => goToPage(pagination.currentPage)} isActive>
+          <PaginationLink
+            onClick={() => goToPage(pagination.currentPage)}
+            isActive
+          >
             {pagination.currentPage}
           </PaginationLink>
         </PaginationItem>
         {pagination.hasNext && (
           <>
             <PaginationItem>
-              <PaginationLink onClick={() => goToPage(pagination.currentPage + 1)}>
+              <PaginationLink
+                onClick={() => goToPage(pagination.currentPage + 1)}
+              >
                 {pagination.currentPage + 1}
               </PaginationLink>
             </PaginationItem>

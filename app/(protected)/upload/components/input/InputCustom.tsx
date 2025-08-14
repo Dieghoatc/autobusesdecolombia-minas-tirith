@@ -1,5 +1,5 @@
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
+import { Input } from "@/app/components/ui/input";
+import { Label } from "@/app/components/ui/label";
 
 interface InputProps {
   value: (value: string) => void;
@@ -8,7 +8,12 @@ interface InputProps {
   defaultValue?: string;
 }
 
-export default function InputCustom({ value, labelText, placeholder, defaultValue }: InputProps) {
+export default function InputCustom({
+  value,
+  labelText,
+  placeholder,
+  defaultValue,
+}: InputProps) {
   return (
     <div>
       <Label htmlFor="input-text">{labelText}</Label>

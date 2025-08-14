@@ -2,7 +2,7 @@
 import { useState, useRef } from "react";
 
 import "./page.css";
-import { Button } from "@/components/ui/button";
+import { Button } from "@/app/components/ui/button";
 
 import { dataURLToBlob, deleteLastSpace } from "@/lib/helpers";
 import CategorySelect from "./components/categoryselect/CategorySelect";

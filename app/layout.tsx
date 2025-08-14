@@ -2,12 +2,16 @@ import type { Metadata } from "next";
 
 import "./globals.css";
 import { Analytics } from "@vercel/analytics/react";
-import { Toaster } from "@/components/ui/toaster";
+import { Toaster } from "@/app/components/ui/toaster";
 import abcBus from "@/assets/autobusesdecolombia_bus.png";
-import { Header } from "@/components/header/Header";
-import { Footer } from "@/components/footer/Footer";
+import { Header } from "@/app/components/header/Header";
+import { Footer } from "@/app/components/footer/Footer";
 
 export const metadata: Metadata = {
+  metadataBase: new URL(
+    process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000"
+  ),
+
   title: "Autobuses de Colombia - ¡Mucho más para ver!",
   description:
     "Descubre la mayor comunidad de aficionados a los Autobuses de Colombia. Portal de fotografia, noticias, historias y eventos sobre el apasionante mundo del transporte público. Únete a nuestra comunidad y comparte tu pasión por los autobuses y el transporte en Colombia.",

@@ -2,7 +2,7 @@ import Link from "next/link";
 
 import { useGetPosts } from "@/lib/hooks/useGetPosts";
 
-import { ABCLoader } from "@/components/abcLoader";
+import { ABCLoader } from "@/app/components/abc-loader";
 import { Carousel } from "./components/carousel";
 import { BentoItem } from "./components/bento_item";
 

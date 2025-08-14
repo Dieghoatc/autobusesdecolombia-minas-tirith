@@ -1,6 +1,5 @@
-"use client";
-
 import { useMemo } from "react";
+import Image from "next/image";
 import styles from "./CompanyLogo.module.css";
 import companies from "./companies";
 
@@ -14,13 +13,18 @@ export function CompanyLogo({ name }: CompanyLogoProps) {
     [name]
   );
 
-  console.log(findLogo);
   if (!findLogo) return null;
   if (!findLogo.icon || findLogo.icon === null) return null;
 
   return (
     <div className={styles.container}>
-      <img src={findLogo.icon.src} alt="company" />
+      <Image
+        src={findLogo.icon.src}
+        alt={`${name} logo`}
+        width={100}
+        height={100}
+        style={{ width: "auto", height: "auto" }}
+      />
     </div>
   );
 }

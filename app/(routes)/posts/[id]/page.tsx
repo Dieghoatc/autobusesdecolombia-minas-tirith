@@ -6,7 +6,7 @@ import { useFindPost } from "./hooks/useFindPost";
 import styles from "./Post.module.css";
 
 import { RenderBlocks } from "./componentes/RenderBlocks";
-import { ABCLoader } from "@/components/abcLoader/ABCLoader";
+import { ABCLoader } from "@/app/components/abc-loader/ABCLoader";
 
 export default function PostToID() {
   let id_post = "1";

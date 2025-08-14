@@ -8,6 +8,16 @@
   animation: appear-disappear 3s ease-in-out infinite;
 }
 
+.logo {
+  position: relative;
+  width: 100px;
+  height: 100px;
+}
+
+.image {
+  object-fit: contain;
+}
+
 .container h1 {
   font-size: 24px;
   color: white;

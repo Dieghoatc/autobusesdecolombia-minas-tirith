@@ -7,7 +7,7 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 import { useCarousel, useGetVehicle } from "@/lib/hooks";
 
 import styles from "./LastPhotos.module.css";
-import { Skeleton } from "@/components/ui/skeleton";
+import { Skeleton } from "@/app/components/ui/skeleton";
 
 export function LastPhotos() {
   const { vehicles, loading } = useGetVehicle({ page: 1, limit: 10 });
@@ -29,20 +29,20 @@ export function LastPhotos() {
           {vehicles.data.map((vehicle) => (
             <figure key={vehicle.vehicle_id} className={styles.slide}>
               <Link href={`/vehiculo/${vehicle.vehicle_id}`}>
-                  {vehicle.vehiclePhotos[0] ? (
-                    <div className={styles.image_container}>
-                      <picture>
-                        <source
-                          type="image/webp"
-                          srcSet={vehicle.vehiclePhotos[0].image_url}
-                        />
-                        <img src={vehicle.vehiclePhotos[0].image_url} alt="" />
-                      </picture>
-                      <div className={styles.overlay}></div>
-                    </div>
-                  ) : (
-                    <Skeleton className="h-[125px] w-[250px] rounded-xl bg-slate-900" />
-                  )}
+                {vehicle.vehiclePhotos[0] ? (
+                  <div className={styles.image_container}>
+                    <picture>
+                      <source
+                        type="image/webp"
+                        srcSet={vehicle.vehiclePhotos[0].image_url}
+                      />
+                      <img src={vehicle.vehiclePhotos[0].image_url} alt="" />
+                    </picture>
+                    <div className={styles.overlay}></div>
+                  </div>
+                ) : (
+                  <Skeleton className="h-[125px] w-[250px] rounded-xl bg-slate-900" />
+                )}
               </Link>
             </figure>
           ))}
