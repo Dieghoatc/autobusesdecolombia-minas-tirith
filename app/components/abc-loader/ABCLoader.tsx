@@ -1,6 +1,5 @@
-import abcLogo from "@/assets/singlelogo.png";
+import abc_logo from "@/assets/singlelogo.png";
 import Image from "next/image";
-
 import styles from "./ABCLoader.module.css";
 
 export function ABCLoader() {
@@ -8,10 +7,12 @@ export function ABCLoader() {
     <div className={styles.container}>
       <div className={styles.logo}>
         <Image
-          src={abcLogo.src}
+          src={abc_logo.src}
           alt="autobuses de colombia logo"
-          width={100}
-          height={100}
+          fill
+          priority
+          sizes="100px"
+          className={styles.image}
         />
       </div>
       <div>

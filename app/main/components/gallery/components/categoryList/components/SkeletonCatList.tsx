@@ -1,5 +1,5 @@
 import styles from "./SkeletonCatList.module.css";
-import { Skeleton } from "@/components/ui/skeleton";
+import { Skeleton } from "@/app/components/ui/skeleton";
 
 export function SkeletonCatList() {
   return (

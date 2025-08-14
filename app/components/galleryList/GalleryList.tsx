@@ -1,7 +1,7 @@
 import { Vehicle } from "@/services/types/vehicle.type";
 
 import styles from "./GalleryList.module.css";
-import { Skeleton } from "@/components/ui/skeleton";
+import { Skeleton } from "@/app/components/ui/skeleton";
 import Link from "next/link";
 
 interface GalleryListProps {

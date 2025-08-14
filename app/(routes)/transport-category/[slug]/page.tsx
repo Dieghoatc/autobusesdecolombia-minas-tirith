@@ -5,14 +5,12 @@ import { useParams, useSearchParams, useRouter } from "next/navigation";
 
 import { useGetVehicleCategoryById } from "@/lib/hooks";
 
-import { GalleryList } from "@/components/galleryList";
-import { PaginationGallery } from "@/components/paginationGallery/paginationGallery";
+import { GalleryList } from "@/app/components/galleryList";
+import { PaginationGallery } from "@/app/components/paginationGallery/paginationGallery";
 
 import { SkeletonGallery } from "../components/SkeletonGallery";
 import { useTransportCategories } from "@/lib/hooks";
 import { splitString } from "@/lib/helpers";
-
-
 
 import { ChevronDownIcon, ChevronUpIcon } from "lucide-react";
 import styles from "./CategoryGallery.module.css";

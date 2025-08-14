@@ -7,7 +7,7 @@ import { TransportCategory } from "@/services/types/transportCategories.type";
 
 import { Ellipsis, ChevronLeft, ChevronRight } from "lucide-react";
 import styles from "./CategoryList.module.css";
-import { Skeleton } from "@/components/ui/skeleton";
+import { Skeleton } from "@/app/components/ui/skeleton";
 
 interface CategoryListProps {
   transportCategory: TransportCategory;
@@ -45,23 +45,20 @@ export function CategoryList({ transportCategory }: CategoryListProps) {
           {vehicles.data.map((vehicle) => (
             <figure key={vehicle.vehicle_id} className={styles.slide}>
               <Link href={`/vehiculo/${vehicle.vehicle_id}`}>
-                  {vehicle.vehiclePhotos[0] ? (
-                    <div className={styles.image_container}>
-                      <img src={vehicle.vehiclePhotos[0].image_url} alt={""} />
-                      <div className={styles.overlay}></div>
-                    </div>
-                  ) : (
-                    <Skeleton className="h-[125px] w-[250px] rounded-xl bg-slate-900" />
-                  )}
+                {vehicle.vehiclePhotos[0] ? (
+                  <div className={styles.image_container}>
+                    <img src={vehicle.vehiclePhotos[0].image_url} alt={""} />
+                    <div className={styles.overlay}></div>
+                  </div>
+                ) : (
+                  <Skeleton className="h-[125px] w-[250px] rounded-xl bg-slate-900" />
+                )}
               </Link>
             </figure>
           ))}
         </div>
         {showRightArrow && (
-          <div
-            className={styles.arrow_right}
-            onClick={() => scroll("right")}
-          >
+          <div className={styles.arrow_right} onClick={() => scroll("right")}>
             <ChevronRight />
           </div>
         )}

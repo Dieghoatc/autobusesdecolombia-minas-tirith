@@ -1,11 +1,10 @@
-import { Checkbox } from "@/components/ui/checkbox";
+import { Checkbox } from "@/app/components/ui/checkbox";
 
 interface CheckboxCustomProps {
   setValue: (value: number) => void;
 }
 
-export function CheckboxCustom({setValue}: CheckboxCustomProps) {
-
+export function CheckboxCustom({ setValue }: CheckboxCustomProps) {
   return (
     <div>
       <Checkbox

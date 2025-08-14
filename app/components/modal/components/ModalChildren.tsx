@@ -3,7 +3,7 @@ import { Vehicle } from "@/services/types/vehicle.type";
 import { useState } from "react";
 import { useIsMobile } from "@/lib/hooks/useIsMobile";
 import { RotateCw } from "lucide-react";
-import { Skeleton } from "@/components/ui/skeleton";
+import { Skeleton } from "@/app/components/ui/skeleton";
 
 interface ModalChildrenProps {
   vehicle: Vehicle;
@@ -32,12 +32,12 @@ export function ModalChildren({ vehicle }: ModalChildrenProps) {
             decoding="async"
             role="presentation"
             title=""
-            alt=""  
+            alt=""
           />
         ) : (
           <Skeleton className="h-[125px] w-[250px] rounded-xl bg-slate-900" />
         )}
-      </div>  
+      </div>
 
       <div className={styles.car_button}>
         {/* <Link

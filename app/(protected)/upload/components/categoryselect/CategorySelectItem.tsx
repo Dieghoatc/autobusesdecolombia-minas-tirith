@@ -1,4 +1,4 @@
-import { SelectItem } from "@/components/ui/select";
+import { SelectItem } from "@/app/components/ui/select";
 
 interface CategorySelectItemProps {
   item: string;

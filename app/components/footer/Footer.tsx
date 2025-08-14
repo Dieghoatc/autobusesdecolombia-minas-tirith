@@ -1,9 +1,9 @@
 import "./footer.css";
-import facebook from "../../assets/facebook.png";
-import instagram from "../../assets/instagram.png";
-import x from "../../assets/x.png";
-import tiktok from "../../assets/tiktok.png";
-import discord from "../../assets/discord.png";
+import facebook from "@/assets/facebook.png";
+import instagram from "@/assets/instagram.png";
+import x from "@/assets/x.png";
+import tiktok from "@/assets/tiktok.png";
+import discord from "@/assets/discord.png";
 
 export function Footer() {
   return (

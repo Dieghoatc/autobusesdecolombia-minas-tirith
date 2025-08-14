@@ -12,7 +12,7 @@ import styles from "./ImagePage.module.css";
 import { VehicleDetail } from "../components/vehicleDetail/VehicleDetail";
 import { VehiclePart } from "../components/vehiclePart/VehiclePart";
 import { Photographer } from "../components/photographer";
-import { ABCLoader } from "@/components/abcLoader";
+import { ABCLoader } from "@/app/components/abc-loader";
 import { Building2 } from "lucide-react";
 
 export default function ImagePage() {

@@ -4,7 +4,7 @@ import * as React from "react";
 import { Check, ChevronsUpDown } from "lucide-react";
 
 import { cn } from "@/lib/utils";
-import { Button } from "@/components/ui/button";
+import { Button } from "@/app/components/ui/button";
 import {
   Command,
   CommandEmpty,
@@ -12,23 +12,22 @@ import {
   CommandInput,
   CommandItem,
   CommandList,
-} from "@/components/ui/command";
+} from "@/app/components/ui/command";
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
-} from "@/components/ui/popover";
+} from "@/app/components/ui/popover";
 
 import { municipalities } from "./municipality.db";
 
 interface MunicipalityProps {
-    value: string
-    setValue: (item: string) => void;
+  value: string;
+  setValue: (item: string) => void;
 }
 
 export function Municipality({ value, setValue }: MunicipalityProps) {
   const [open, setOpen] = React.useState(false);
-
 
   return (
     <div>
