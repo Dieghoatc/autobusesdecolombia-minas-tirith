@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useGetPosts } from "../../../lib/hooks/useGetPosts";
-import styles from './Posts.module.css'
+import styles from './PostsList.module.css'
 
 export default function Posts() {
   const { posts, loading, error } = useGetPosts();
