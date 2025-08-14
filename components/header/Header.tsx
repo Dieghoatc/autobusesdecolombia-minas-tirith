@@ -30,59 +30,57 @@ export function Header() {
   }, [open]);
 
   return (
-    <div className={styles.container}>
-      <div className={styles.container_menu}>
-        <div className={styles.menu_mobile}>
-          <AnimatePresence mode="wait">
-            {open ? (
-              <motion.div
-                key="close"
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.9 }}
-                transition={{ duration: 0.3 }}
-                onClick={() => setOpen(false)}
-              >
-                <X className={styles.xmenu} />
-              </motion.div>
-            ) : (
-              <motion.div
-                key="menu"
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.9 }}
-                transition={{ duration: 0.3 }}
-                onClick={() => setOpen(true)}
-              >
-                <Menu className={styles.listMenu} />
-              </motion.div>
-            )}
-          </AnimatePresence>
-          <div className={styles.logo}>
-            <Image
-              src={logo}
-              alt="Logo de Autobuses de Colombia"
-              title="Logo de Autobuses de Colombia"
-              width={100}
-              height={100}
-            />
-          </div>
-          <div className={styles.homepage}>
-            <Link href="/">
-              <HomeIcon />
-            </Link>
-          </div>
+    <nav className={styles.container}>
+      <div className={styles.menu_mobile}>
+        <AnimatePresence mode="wait">
+          {open ? (
+            <motion.div
+              key="close"
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.9 }}
+              transition={{ duration: 0.3 }}
+              onClick={() => setOpen(false)}
+            >
+              <X className={styles.xmenu} />
+            </motion.div>
+          ) : (
+            <motion.div
+              key="menu"
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.9 }}
+              transition={{ duration: 0.3 }}
+              onClick={() => setOpen(true)}
+            >
+              <Menu className={styles.listMenu} />
+            </motion.div>
+          )}
+        </AnimatePresence>
+        <div className={styles.logo_mobile}>
+          <Image
+            src={logo}
+            alt="Logo de Autobuses de Colombia"
+            title="Logo de Autobuses de Colombia"
+          />
         </div>
-        <div className={styles.logo_large}>
+        <div className={styles.homepage}>
+          <Link href="/" title="Home">
+            <HomeIcon />
+          </Link>
+        </div>
+      </div>
+      <div className={styles.menu_desktop}>
+        <div className={styles.logo_desktop}>
           <Image
             src={logoLarge}
             alt="Logo de Autobuses de Colombia"
             title="Logo de Autobuses de Colombia"
             width={180}
-            height={100}
+            height={170}
           />
         </div>
-        <div className={styles.menu_desktop}>
+        <div className={styles.links}>
           <ul>
             <li>
               <Link href="/">Inicio</Link>
@@ -100,6 +98,6 @@ export function Header() {
         </div>
       </div>
       <Overlay open={open} setOpen={setOpen} />
-    </div>
+    </nav>
   );
 }
