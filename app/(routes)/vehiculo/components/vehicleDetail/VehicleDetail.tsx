@@ -17,33 +17,36 @@ export function VehicleDetail({
 }: VehicleDetailProps) {
   return (
     <div className={styles.container}>
-      <div className={styles.logo}>
+      <div className={styles.header}>
         <LogoCard logo="car" />
-      </div>
-      <div className={styles.brand}>
         <Brand name={brand} />
       </div>
-      {plate && (
-        <div className={styles.plate}>
-          <h2>
-            Placa: <span>{plate.toLocaleUpperCase()}</span>
-          </h2>
-        </div>
-      )}
-      {serial && (
-        <div className={styles.serial}>
-          <h2>
-            Serial: <span>{serial.toLocaleUpperCase()}</span>
-          </h2>
-        </div>
-      )}
-      {service && (
-        <div className={styles.service}>
-          <h2>
-            Servicio: <span>{service}</span>
-          </h2>
-        </div>
-      )}
+
+      <div className={styles.detailsGrid}>
+        {plate && (
+          <div className={styles.detailItem}>
+            <h2 className={styles.label}>
+              Placa:{" "}
+              <span className={styles.value}>{plate.toLocaleUpperCase()}</span>
+            </h2>
+          </div>
+        )}
+        {serial && (
+          <div className={styles.detailItem}>
+            <h2 className={styles.label}>
+              Serial:{" "}
+              <span className={styles.value}>{serial.toLocaleUpperCase()}</span>
+            </h2>
+          </div>
+        )}
+        {service && (
+          <div className={styles.detailItem}>
+            <h2 className={styles.label}>
+              Servicio: <span className={styles.value}>{service}</span>
+            </h2>
+          </div>
+        )}
+      </div>
     </div>
   );
 }

@@ -1,7 +1,5 @@
 import Main from "./main/Main";
 
-import "./home.css";
-
 import Clarity from "@microsoft/clarity";
 
 const CLARITY_ID = process.env.NEXT_PUBLIC_CLARITY_ID;

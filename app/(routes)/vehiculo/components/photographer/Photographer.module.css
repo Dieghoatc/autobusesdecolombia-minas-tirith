@@ -1,0 +1,48 @@
+.header {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.author {
+  font-size: 14px;
+  color: #9ca3af;
+  margin: 0;
+}
+
+.author span {
+  display: block;
+  color: #ffffff;
+  font-size: 18px;
+  font-weight: 600;
+  margin-top: 4px;
+}
+
+.location {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #9ca3af;
+  font-size: 14px;
+}
+
+.location svg {
+  flex-shrink: 0;
+  color: #9ca3af;
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 16px;
+  }
+
+  .author span {
+    font-size: 16px;
+  }
+}

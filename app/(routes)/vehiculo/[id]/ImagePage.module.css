@@ -1,13 +1,7 @@
-.wrapper {
-  background-color: #e5e5f7;
-  background-image: linear-gradient(#0f0f0f 1px, transparent 1px),
-    linear-gradient(to right, #0f0f0f 1px, #000 1px);
-  background-size: 70px 70px;
-  padding: 16px 0;
-}
 .container {
   margin: 0 auto;
   position: relative;
+  margin-bottom: 8px;
 
   @media (min-width: 1280px) {
     max-width: 1024px;
@@ -17,21 +11,30 @@
   }
 }
 
-.vehicleImage {
-  weight: 100%;
+.image {
+  width: 100%;
   border-radius: 10px;
   overflow: hidden;
   position: relative;
   margin: 8px 0;
+  background: #000;
 
   @media (min-width: 768px) {
     border-radius: 16px;
+    height: 468px;
+  }
+
+  @media (min-width: 1366px) {
+    height: 768px;
   }
 }
 
-.vehicleImage img {
+.image img {
   width: 100%;
+  height: 100%;
+  object-fit: contain;
 }
+
 .overlay {
   position: absolute;
   width: 100%;
@@ -43,50 +46,77 @@
 .content {
   display: flex;
   flex-direction: column;
-
-  @media (min-width: 768px) {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-template-rows: repeat(5, 1fr);
-    padding: 8px;
-  }
+  padding: 0 8px;
 }
 
 .header {
+  width: 100%;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  gap: 8px;
+  align-items: start;
   justify-content: center;
+  margin-bottom: 8px;
+}
 
-  @media (min-width: 768px) {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    grid-template-rows: 1fr 1fr;
-    grid-row: 1;
-    margin-left: 16px;
+.title {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  align-items: center;
+
+  @media (min-width: 426px) {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
   }
 }
 
-.controlview {
-  display: none;
+.body {
+  width: 100%;
+  display: flex;
+  gap: 8px;
+  justify-content: space-between;
+  align-items: center;
+}
 
-  @media (min-width: 768px) {
-    display: block;
-    grid-column: 5;
-    grid-row: 1;
-    justify-self: end;
-    align-self: start;
-    padding: 16px;
-    background-color: rgba(0, 0, 0, 0.2);
-    padding: 8px;
-    margin: 8px;
-    border-radius: 50%;
-    cursor: pointer;
+.company {
+  display: flex;
+  gap: 8px;
+
+  @media (min-width: 426px) {
+    gap: 16px;
+  }
+}
+
+.icon {
+  width: 40px;
+  height: 40px;
+  padding: 4px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #1c1c26;
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+
+  h2 {
+    font-size: 16px;
+    text-shadow: 0 0 1px #fff;
+    font-weight: 600;
+    line-height: 24px;
+  }
+
+  span {
+    font-size: 12px;
+    font-weight: normal;
+    color: #b0b0ba;
   }
 }
 
@@ -95,41 +125,27 @@
   flex-direction: column;
   gap: 8px;
 
-  @media (min-width: 768px) {
-    grid-row: 5;
-    align-self: center;
-    flex-direction: row;
-    margin: 8px;
-  }
 }
 
 .block {
-  border: solid 1px #212121;
   border-radius: 16px;
   width: 100%;
   padding: 16px;
-  background-color: #15151e;
-  background-image: repeating-linear-gradient(
-      45deg,
-      rgba(255, 0, 100, 0.1) 0,
-      rgba(255, 0, 100, 0.1) 1px,
-      transparent 1px,
-      transparent 20px
-    ),
-    repeating-linear-gradient(
-      -45deg,
-      rgba(255, 0, 100, 0.1) 0,
-      rgba(255, 0, 100, 0.1) 1px,
-      transparent 1px,
-      transparent 20px
-    );
+  animation: animationShadow 8s ease-in-out infinite;
+  will-change: transform;
+}
 
-  @media (min-width: 768px) {
-    background-color: rgba(0, 0, 0, 0.6);
-    box-shadow: 0 0 1px #fff;
-    display: flex;
-    justify-content: center;
-
-    border: none;
+@keyframes animationShadow {
+  0% {
+    box-shadow: inset 1px 0 0 0 rgba(0, 191, 255, 0.2);
+  }
+  33% {
+    box-shadow: inset 0 1px 0 0 rgba(0, 191, 255, 0.2);
+  }
+  66% {
+    box-shadow: inset 0 0 1px 0 rgba(0, 191, 255, 0.2);
+  }
+  100% {
+    box-shadow: inset 0 0 0 1px rgba(0, 191, 255, 0.2);
   }
 }

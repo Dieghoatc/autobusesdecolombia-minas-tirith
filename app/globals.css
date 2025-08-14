@@ -9,14 +9,20 @@
 
 *::-webkit-scrollbar-thumb {
   border-radius: 5px;
-  background-color: #454545;
+  background-color: var(--background);
 }
 
 body {
-  font-family: Segoe UI, Segoe UI Midlevel, sans-serif;
+  font-family: Segoe UI, Segoe UI Midlevel, sans-serif;  
   background-color: var(--background);
+  background-image: url("../assets/background/background.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-attachment: fixed;
   color: var(--color-white);
-
+  background-color: rgba(0, 0, 0, 0.8);
+  background-blend-mode: multiply;
 }
 
 @layer base {
@@ -28,6 +34,8 @@ body {
     --text-primary:#E0E0E6;
     --text-secundary:#B0B0BA;
     --text-off: #88889A;
+
+    --font-size-h1: 20px;
   }
   .dark {
     --background: #15151e;

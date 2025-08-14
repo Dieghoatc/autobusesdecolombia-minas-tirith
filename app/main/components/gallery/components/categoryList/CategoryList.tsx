@@ -2,8 +2,7 @@
 
 import { useRef } from "react";
 import Link from "next/link";
-import { Modal, ModalChildren } from "@/components/modal";
-import { useModal, useCarousel, useGetVehicleCategoryById } from "@/lib/hooks";
+import { useCarousel, useGetVehicleCategoryById } from "@/lib/hooks";
 import { TransportCategory } from "@/services/types/transportCategories.type";
 
 import { Ellipsis, ChevronLeft, ChevronRight } from "lucide-react";
@@ -21,7 +20,6 @@ export function CategoryList({ transportCategory }: CategoryListProps) {
     limit: 10,
   });
 
-  const { isModalOpen, openModal, closeModal } = useModal();
   const sliderRef = useRef<HTMLDivElement>(null);
   const { showLeftArrow, showRightArrow, scroll } = useCarousel(sliderRef);
 
@@ -39,40 +37,37 @@ export function CategoryList({ transportCategory }: CategoryListProps) {
       </div>
       <div className={styles.arrows_controls}>
         {showLeftArrow && (
-          <button className={styles.arrow_left} onClick={() => scroll("left")}>
+          <div className={styles.arrow_left} onClick={() => scroll("left")}>
             <ChevronLeft />
-          </button>
+          </div>
         )}
         <div className={styles.carousel} ref={sliderRef}>
           {vehicles.data.map((vehicle) => (
-            <figure
-              key={vehicle.vehicle_id}
-              className={styles.slide}
-              onClick={() => openModal(vehicle)}
-            >
-              {vehicle.vehiclePhotos[0] ? (
-                <div className={styles.image_container}>
-                  <img src={vehicle.vehiclePhotos[0].image_url} alt={""} />
-                  <div className={styles.overlay}></div>
+            <figure key={vehicle.vehicle_id}>
+              <Link href={`/vehiculo/${vehicle.vehicle_id}`}>
+                <div className={styles.slide}>
+                  {vehicle.vehiclePhotos[0] ? (
+                    <div className={styles.image_container}>
+                      <img src={vehicle.vehiclePhotos[0].image_url} alt={""} />
+                      <div className={styles.overlay}></div>
+                    </div>
+                  ) : (
+                    <Skeleton className="h-[125px] w-[250px] rounded-xl bg-slate-900" />
+                  )}
                 </div>
-              ) : (
-                <Skeleton className="h-[125px] w-[250px] rounded-xl bg-slate-900" />
-              )}
+              </Link>
             </figure>
           ))}
         </div>
         {showRightArrow && (
-          <button
+          <div
             className={styles.arrow_right}
             onClick={() => scroll("right")}
           >
             <ChevronRight />
-          </button>
+          </div>
         )}
       </div>
-      <Modal onClose={closeModal} isOpen={isModalOpen.isOpen}>
-        <ModalChildren vehicle={isModalOpen.vehicle} />
-      </Modal>
     </div>
   );
 }
