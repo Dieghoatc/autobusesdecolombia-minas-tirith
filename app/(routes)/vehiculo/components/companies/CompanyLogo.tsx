@@ -9,7 +9,6 @@ interface CompanyLogoProps {
 }
 
 export function CompanyLogo({ name }: CompanyLogoProps) {
-  console.log(name);
   const findLogo = useMemo(
     () => companies.find((company) => company.name === name),
     [name]

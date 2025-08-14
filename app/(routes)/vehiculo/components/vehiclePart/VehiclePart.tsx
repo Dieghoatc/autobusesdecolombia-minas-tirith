@@ -11,21 +11,22 @@ interface VehiclePartProps {
 }
 
 export function VehiclePart({ type, name, brand }: VehiclePartProps) {
-  const title = type === "chassis" ? "Chassis" : "Carroceria";
+  const title = type === "chassis" ? "Chassis" : "Carrocería";
 
   return (
-    <div className={styles.container}>
-      <div className={styles.logo}>
+    <div>
+      <div className={styles.header}>
         <LogoCard logo={type} />
-      </div>
-      <div className={styles.brand}>
         <Brand name={brand} />
       </div>
-      <div className={styles.description}>
-        <h2>{title}</h2>
-        <span>
-          {brand} {name}
-        </span>
+
+      <div className={styles.content}>
+        <div className={styles.detailItem}>
+          <h2 className={styles.label}>{title}</h2>
+          <span className={styles.value}>
+            {brand} {name}
+          </span>
+        </div>
       </div>
     </div>
   );

@@ -76,8 +76,6 @@ export function Header() {
             src={logoLarge}
             alt="Logo de Autobuses de Colombia"
             title="Logo de Autobuses de Colombia"
-            width={180}
-            height={170}
           />
         </div>
         <div className={styles.links}>
