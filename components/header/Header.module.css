@@ -1,7 +1,7 @@
 .container {
   position: sticky;
   top: 0;
-  z-index: 400;
+  z-index: 20;
   width: 100dvw;
   height: 60px;
   backdrop-filter: blur(10px);
