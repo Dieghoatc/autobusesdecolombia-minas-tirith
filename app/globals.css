@@ -28,14 +28,17 @@ body {
 @layer base {
   :root {
     --background: #15151e;
+    --background-card: rgba(255, 255, 255, 0.05);
     --color-white: #fff;
     --color-black: #000;
-    --card-background: #1C1C26;
     --text-primary:#E0E0E6;
     --text-secundary:#B0B0BA;
     --text-off: #88889A;
-
     --font-size-h1: 20px;
+    --padding-container-mobile: 16px;
+    --padding-container-desktop: 24px;
+    --margin-container-mobile: 16px;
+    --margin-container-desktop: 24px;
   }
   .dark {
     --background: #15151e;

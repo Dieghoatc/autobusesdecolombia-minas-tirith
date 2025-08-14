@@ -1,15 +1,15 @@
 import Volvo from "@/assets/brands/volvo.png";
-import Chevrolet from "@/assets/brands/chevrolet.png";
-import Dodge from "@/assets/brands/dodge.png";
-import HinoColombia from "@/assets/brands/hino_colombia.png";
+import Chevrolet from "@/assets/brands/chevrolet.svg";
+import Dodge from "@/assets/brands/dodge.svg";
+import Hino from "@/assets/brands/hino.svg";
 import JGB from "@/assets/brands/jgb.png";
 import Busscar from "@/assets/brands/busscar.png";
 import Superpolo from "@/assets/brands/marcopolo_superpolo.png";
 import Marcopolo from "@/assets/brands/marcopolo.png";
-import Scania from "@/assets/brands/scania.png";
-import Volkswagen from "@/assets/brands/volkswagen.png";
-import Renault from "@/assets/brands/renault.png";
-import MercedesBenz from "@/assets/brands/mercedes_benz.png";
+import Scania from "@/assets/brands/scania.svg";
+import Volkswagen from "@/assets/brands/volkswagen.svg";
+import Renault from "@/assets/brands/renault.svg";
+import MercedesBenz from "@/assets/brands/mercedes.svg";
 
 export const brands = [
   {
@@ -29,8 +29,8 @@ export const brands = [
   },
   {
     id: 4,
-    name: "Hino Colombia",
-    logo: HinoColombia,
+    name: "Hino",
+    logo: Hino,
   },
   {
     id: 5,

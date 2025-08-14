@@ -1,8 +1,8 @@
 "use client";
 
-import styles from "./posts.module.css";
-import { useGetPosts } from "../../../lib/hooks/useGetPosts";
 import Link from "next/link";
+import { useGetPosts } from "../../../lib/hooks/useGetPosts";
+import styles from './PostsList.module.css'
 
 export default function Posts() {
   const { posts, loading, error } = useGetPosts();
@@ -24,7 +24,6 @@ export default function Posts() {
     <div className={styles.page}>
       <div className={styles.container}>
         <h1 className={styles.title}>Noticias</h1>
-
         <div className={styles.grid}>
           {posts.map((post) => (
             <div key={post.post_id}>

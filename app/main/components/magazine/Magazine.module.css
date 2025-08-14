@@ -44,10 +44,8 @@
   }
 }
 
-
-
 .bento > article { 
-  display: block;               /* por defecto, visibles */
+  display: block;              
 }
 
 .bento > article:nth-of-type(n + 6) {
@@ -56,28 +54,28 @@
 
 @media (min-width: 426px) {
   .bento > article:nth-of-type(-n+7) { 
-    display: block;             /* re-muestra 1..7 */
+    display: block;             
   }
   .bento > article:nth-of-type(n+8) {
-    display: none;              /* oculta 8..∞ */
+    display: none;              
   }
 }
 
 @media (min-width: 1025px) {
   .bento > article:nth-of-type(-n+8) { 
-    display: block;             /* re-muestra 1..7 */
+    display: block;             
   }
   .bento > article:nth-of-type(n+9) {
-    display: none;              /* oculta 8..∞ */
+    display: none;              
   }
 }
 
 @media (min-width: 1500px) {
   .bento > article:nth-of-type(-n+10) { 
-    display: block;             /* re-muestra 1..7 */
+    display: block;             
   }
   .bento > article:nth-of-type(n+11) {
-    display: none;              /* oculta 8..∞ */
+    display: none;              
   }
 }
 

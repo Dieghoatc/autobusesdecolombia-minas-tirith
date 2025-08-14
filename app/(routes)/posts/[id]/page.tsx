@@ -3,7 +3,7 @@
 import { useParams } from "next/navigation";
 import { useFindPost } from "./hooks/useFindPost";
 
-import "./post.css";
+import styles from "./Post.module.css";
 
 import { RenderBlocks } from "./componentes/RenderBlocks";
 import { ABCLoader } from "@/components/abcLoader/ABCLoader";
@@ -26,8 +26,8 @@ export default function PostToID() {
   }
 
   return (
-    <main className="post-container">
-      <article className="post-article">
+    <main className={styles.container}>
+      <article className={styles.article}>
         <RenderBlocks blocks={post.content} />
       </article>
     </main>
