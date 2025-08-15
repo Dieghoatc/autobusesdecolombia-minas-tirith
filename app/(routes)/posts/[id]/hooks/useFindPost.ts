@@ -3,13 +3,13 @@ import { useEffect, useState } from "react";
 import { postByIdQuery } from "@/services/api/postById.query";
 import { ApiPostsResponse } from "@/services/types/post.type";
 
-export function useFindPost(id: string) {
+export function useFindPost(id: number) {
   const [post, setPost] = useState<ApiPostsResponse>({} as ApiPostsResponse);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
 
   useEffect(() => {
-    async function fetchOnePost(id: string) {
+    async function fetchOnePost(id: number) {
       setLoading(true);
       setError("");
       try {
@@ -22,8 +22,7 @@ export function useFindPost(id: string) {
       }
     }
 
-    fetchOnePost(id)
-    
+    fetchOnePost(id);
   }, [id]);
 
   return { post, loading, error };
