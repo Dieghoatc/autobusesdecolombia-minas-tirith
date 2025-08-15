@@ -9,11 +9,11 @@ import { RenderBlocks } from "./componentes/RenderBlocks";
 import { ABCLoader } from "@/app/components/abc-loader/ABCLoader";
 
 export default function PostToID() {
-  let id_post = "1";
+  let id_post = 1;
   const params = useParams();
 
   if (params.id) {
-    id_post = params.id.toString().split("_")[0];
+    id_post = Number(params.id.toString().split("_")[0]);
   }
 
   const { post, loading } = useFindPost(id_post);
