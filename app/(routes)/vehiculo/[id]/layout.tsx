@@ -2,12 +2,18 @@ import { vehicleQueryById } from "@/services/api/vehicleById.query";
 import { Metadata } from "next";
 
 interface Props {
-  params: { id: string };
+  params: Promise<{ id: string }>;
+}
+
+interface LayoutProps {
+  children: React.ReactNode;
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   try {
-    const vehicle = await vehicleQueryById(Number(params.id));
+    const resolvedParams = await params;
+    const vehicleId = Number(resolvedParams.id);
+    const vehicle = await vehicleQueryById(vehicleId);
 
     if (!vehicle) {
       return {
@@ -58,10 +64,6 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   }
 }
 
-export default function VehicleLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function VehicleLayout({ children }: LayoutProps) {
   return <section>{children}</section>;
 }
