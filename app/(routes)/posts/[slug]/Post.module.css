@@ -1,0 +1,9 @@
+.container {
+  background-color: var(--color-white);
+}
+
+.article {
+  max-width: 768px;
+  margin: 0 auto;
+  line-height: 1.6;
+}

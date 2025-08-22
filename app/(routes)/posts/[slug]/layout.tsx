@@ -2,7 +2,7 @@ import { postByIdQuery } from "@/services/api/postById.query";
 import { Metadata } from "next";
 
 interface Props {
-  params: Promise<{ id: string }>;
+  params: Promise<{ slug: string }>;
 }
 
 interface LayoutProps {
@@ -12,7 +12,7 @@ interface LayoutProps {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   try {
     const resolvedParams = await params;
-    const postId = Number(resolvedParams.id);
+    const postId = Number(resolvedParams.slug.toString().split("_")[0]);
     const post = await postByIdQuery(postId);
 
     if (!post) {
@@ -26,7 +26,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     const postTitle = post.title || "";
     const postResume = post.resume || "";
 
-    const title = `${postTitle} | Autobuses de Colombia`;
+    const title = `${postTitle}`;
     const description = `${postResume}`;
 
     return {
@@ -45,12 +45,6 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
               },
             ]
           : [],
-      },
-      twitter: {
-        card: "summary_large_image",
-        title,
-        description,
-        images: postImage ? [postImage] : [],
       },
     };
   } catch (error) {

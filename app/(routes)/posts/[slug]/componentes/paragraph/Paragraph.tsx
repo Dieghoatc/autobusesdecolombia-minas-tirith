@@ -1,4 +1,4 @@
-import "./paragraph.css";
+import styles from "./Paragraph.module.css";
 
 interface ParagraphProps {
   text: string;
@@ -7,6 +7,6 @@ interface ParagraphProps {
 
 export function Paragraph({ level, text }: ParagraphProps) {
   return (
-    <p className={`post-content-${level ? "principal-" : ""}p`}> {text}</p>
+    <p className={`${styles[`${level ? "primary" : "secondary"}`]} `}>{text}</p>
   );
 }

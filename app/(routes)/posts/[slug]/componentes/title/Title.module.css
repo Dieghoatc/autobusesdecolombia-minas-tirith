@@ -1,0 +1,37 @@
+.container {
+  color: #111827;
+  margin: 16px;
+}
+
+.h1 {
+  font-size: 32px;
+  font-weight: 700;
+  line-height: 32px;
+
+  @media (min-width: 768px) {
+    font-size: 40px;
+    line-height: 36px;
+  }
+}
+
+.h2 {
+  font-size: 28px;
+  font-weight: 700;
+  line-height: 28px;
+
+  @media (min-width: 768px) {
+    font-size: 36px;
+    line-height: 32px;
+  }
+}
+
+.h3 {
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 24px;
+
+  @media (min-width: 768px) {
+    font-size: 32px;
+    line-height: 28px;
+  }
+}

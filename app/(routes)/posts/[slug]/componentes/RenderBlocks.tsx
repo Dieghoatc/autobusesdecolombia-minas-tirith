@@ -22,7 +22,7 @@ export function RenderBlocks({ blocks }: RenderBlocksProps) {
           case "header":
             return (
               <section key={i}>
-                <Header items={block.children} />
+                <Header />
               </section>
             );
 

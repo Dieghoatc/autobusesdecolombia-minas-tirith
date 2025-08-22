@@ -2,23 +2,13 @@
 
 import Link from "next/link";
 import { useGetPosts } from "../../../lib/hooks/useGetPosts";
-import styles from './PostsList.module.css'
+import styles from "./PostsList.module.css";
+import { ABCLoader } from "@/app/components/abc-loader";
 
 export default function Posts() {
-  const { posts, loading, error } = useGetPosts();
+  const { posts, loading } = useGetPosts();
 
-  if (loading)
-    return (
-      <div className="flex justify-center items-center min-h-screen">
-        Cargando...
-      </div>
-    );
-  if (error)
-    return (
-      <div className="flex justify-center items-center min-h-screen text-red-500">
-        Error: {error}
-      </div>
-    );
+  if (loading) return <ABCLoader />;
 
   return (
     <div className={styles.page}>
