@@ -1,11 +1,17 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 
 import "./globals.css";
 import { Analytics } from "@vercel/analytics/react";
 import { Toaster } from "@/app/components/ui/toaster";
-import abcBus from "@/assets/autobusesdecolombia_bus.png";
 import { Header } from "@/app/components/header/Header";
 import { Footer } from "@/app/components/footer/Footer";
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 1,
+  themeColor: "#000000",
+};
 
 export const metadata: Metadata = {
   metadataBase: new URL(
@@ -21,28 +27,37 @@ export const metadata: Metadata = {
     "autobuses de colombia, autobuses en colombia, buses de colombia, autobús colombia, bus colombia, autobuses colombia, buses colombianos, bus de colombia, autobuses colombianos, autobuses, buses, buses en colombia, buses de colombia, bus en colombia",
   authors: [{ name: "Autobuses de Colombia" }],
   publisher: "Autobuses de Colombia",
-  viewport: {
-    width: "device-width",
-    initialScale: 1,
-  },
   icons: {
     icon: "/favicon.ico",
-    apple: "/apple-icon.png",
   },
   verification: {
-    google: "your-google-site-verification",
+    google: "",
   },
-  robots: "index, follow",
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
   other: {
     "google-adsense-account": "ca-pub-1070802324735715",
   },
+  alternates: {
+    canonical: "https://autobusesdecolombia.com",
+  },
+  category: "transportation",
   openGraph: {
     type: "website",
     locale: "es_ES",
     url: "https://autobusesdecolombia.com",
     images: [
       {
-        url: abcBus.src,
+        url: "/autobusesdecolombia_bus.png",
         width: 1200,
         height: 630,
         alt: "Autobuses de Colombia",
@@ -54,7 +69,7 @@ export const metadata: Metadata = {
     title: "Autobuses de Colombia - ¡Mucho más para ver!",
     description:
       "Descubre la mayor comunidad de aficionados a los Autobuses de Colombia.",
-    images: [abcBus.src],
+    images: ["/autobusesdecolombia_bus.png"],
   },
 };
 
@@ -65,17 +80,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="es">
-      <head>
-        <meta charSet="utf-8" />
-        <meta name="theme-color" content="#000000" />
-        <link rel="manifest" href="/manifest.json" />
-      </head>
       <body>
-        <div id="root">
-          <Header />
-          <main>{children}</main>
-          <Footer />
-        </div>
+        <Header />
+        <main>{children}</main>
+        <Footer />
         <Toaster />
         <Analytics />
       </body>

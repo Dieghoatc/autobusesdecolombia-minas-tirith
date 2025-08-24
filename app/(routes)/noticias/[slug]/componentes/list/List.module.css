@@ -1,0 +1,13 @@
+.container {
+  margin: 16px;
+  padding: 0;
+
+  @media (min-width: 768px) {
+    margin: 16px 0;
+  }
+}
+
+.container ul {
+  list-style: disc;
+  padding-left: 16px;
+}

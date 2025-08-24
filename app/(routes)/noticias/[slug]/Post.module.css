@@ -1,0 +1,10 @@
+.container {
+  background-color: var(--color-white);
+  padding: 16px 0;
+}
+
+.article {
+  max-width: 768px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
