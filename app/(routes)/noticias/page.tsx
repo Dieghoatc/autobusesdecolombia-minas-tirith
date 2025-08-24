@@ -17,7 +17,7 @@ export default function Posts() {
         <div className={styles.grid}>
           {posts.map((post) => (
             <div key={post.post_id}>
-              <Link href={`/posts/${post.post_id}`}>
+              <Link href={`/noticias/${post.post_id}`}>
                 <div className={styles.postCard}>
                   {post.image_url && (
                     <img

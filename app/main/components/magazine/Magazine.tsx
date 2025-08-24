@@ -35,7 +35,7 @@ export function Magazine() {
         </article>
         {posts.slice(3, posts.length).map((news) => (
           <article key={news.post_id}>
-            <Link href={`/posts/${news.post_id}_${news.slug}`}>
+            <Link href={`/noticias/${news.post_id}_${news.slug}`}>
               <BentoItem
                 image_url={news.image_url}
                 title={news.title}
