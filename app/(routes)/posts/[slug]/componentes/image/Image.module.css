@@ -1,14 +1,30 @@
 .container {
 }
 
+.image {
+  margin: 0 auto;
+}
+
+.info {
+  @media (min-width: 768px) {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
 .author {
   font-size: 0.875rem;
   color: #6b7280;
   margin-top: 0.5rem;
   margin-left: 16px;
   display: flex;
-  align-items: center;
   gap: 4px;
+  align-items: center;
+
+  @media (min-width: 768px) {
+    margin: 0;
+    grid-column: 1/2;
+  }
 }
 
 .author svg {
@@ -18,10 +34,14 @@
   margin-right: 4px;
 }
 
-.overlay {
+.resume {
   border-left: 1px solid #272727;
   padding: 0 8px;
   color: #272727;
   margin-top: 0.5rem;
   margin-left: 16px;
+
+  @media (min-width: 768px) {
+    grid-column: 2/4;
+  }
 }

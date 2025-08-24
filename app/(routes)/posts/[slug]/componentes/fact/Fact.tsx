@@ -1,4 +1,4 @@
-import "./fact.css";
+import styles from "./Fact.module.css";
 
 interface FactProps {
   title: string;
@@ -7,11 +7,9 @@ interface FactProps {
 
 export function Fact({ title, text }: FactProps) {
   return (
-    <div className="post-content-fact">
-      <h4 className="scroll-m-20 text-xl font-semibold tracking-tight">
-        {title}
-      </h4>
-      <p className="post-content-fact-p">{text}</p>
+    <div className={styles.container}>
+      <h4 className="">{title}</h4>
+      <p className="">{text}</p>
     </div>
   );
 }

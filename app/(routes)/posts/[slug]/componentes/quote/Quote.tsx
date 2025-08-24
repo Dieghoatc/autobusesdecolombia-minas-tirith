@@ -1,4 +1,4 @@
-import "./quote.css";
+import styles from "./Quote.module.css";
 
 interface QuoteProps {
   text: string;
@@ -7,11 +7,9 @@ interface QuoteProps {
 
 export function Quote({ text, author }: QuoteProps) {
   return (
-    <div className="post-content-quote">
-      <blockquote>
-        {text}
-      </blockquote>
-      <p>— {author}</p>
+    <div className={styles.container}>
+      <blockquote className={styles.quote}>{text}</blockquote>
+      <p className={styles.author}>— {author}</p>
     </div>
   );
 }

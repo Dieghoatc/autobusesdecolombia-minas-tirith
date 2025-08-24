@@ -5,6 +5,10 @@
   margin: 1.5rem 0;
   font-size: 1.125rem;
   margin: 16px;
+
+  @media (min-width: 768px) {
+    margin: 16px 0;
+  }
 }
 
 .secondary {
@@ -14,4 +18,8 @@
   margin: 1rem 0;
   font-size: 1rem;
   margin: 16px;
+
+  @media (min-width: 768px) {
+    margin: 16px 0;
+  }
 }

@@ -1,6 +1,10 @@
 .container {
   color: #111827;
   margin: 16px;
+
+  @media (min-width: 768px) {
+    margin: 16px 0;
+  }
 }
 
 .h1 {
@@ -9,8 +13,8 @@
   line-height: 32px;
 
   @media (min-width: 768px) {
-    font-size: 40px;
-    line-height: 36px;
+    font-size: 48px;
+    line-height: 48px;
   }
 }
 

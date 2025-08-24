@@ -10,17 +10,17 @@ interface ImageProps {
 
 export function Image({ src, alt, overlay, photograper }: ImageProps) {
   return (
-    <section>
-      <div className={styles.container}>
-        <figure>
-          <img src={src} alt={alt} />
-        </figure>
+    <section className={styles.container}>
+      <figure className={styles.image}>
+        <img src={src} alt={alt} />
+      </figure>
+      <div className={styles.info}>
+        <div className={styles.author}>
+          <Camera />
+          <figcaption>{photograper}</figcaption>
+        </div>
+        {overlay && <div className={styles.resume}>{overlay}</div>}
       </div>
-      <div className={styles.author}>
-        <Camera />
-        <figcaption>{photograper}</figcaption>
-      </div>
-      {overlay && <div className={styles.overlay}>{overlay}</div>}
     </section>
   );
 }

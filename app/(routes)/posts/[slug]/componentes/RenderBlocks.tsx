@@ -57,7 +57,7 @@ export function RenderBlocks({ blocks }: RenderBlocksProps) {
             return <Quote key={i} text={block.text} author={block.author} />;
 
           case "list":
-            return <List key={i} style={block.style} items={block.items} />;
+            return <List key={i} items={block.items} />;
 
           case "fact":
             return (

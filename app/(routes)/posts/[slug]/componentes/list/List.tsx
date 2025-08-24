@@ -1,16 +1,17 @@
-import "./list.css";
+import styles from "./List.module.css";
 
 interface ListProps {
-  style: "unordered" | "ordered";
   items: string[];
 }
 
-export function List({ style, items }: ListProps) {
+export function List({ items }: ListProps) {
   return (
-    <ul className={`post-content-list post-content-list-style-${style}`}>
-      {items.map((item, index) => {
-        return <li key={index}>{item}</li>
-      })}
-    </ul>
+    <div className={styles.container}>
+      <ul>
+        {items.map((item, index) => {
+          return <li key={index}>{item}</li>;
+        })}
+      </ul>
+    </div>
   );
 }
