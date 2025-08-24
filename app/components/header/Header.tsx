@@ -84,7 +84,7 @@ export function Header() {
               <Link href="/">Inicio</Link>
             </li>
             <li>
-              <Link href="/posts">Noticias</Link>
+              <Link href="/noticias">Noticias</Link>
             </li>
             <li>
               <Link href="#gallery">Galerias</Link>
