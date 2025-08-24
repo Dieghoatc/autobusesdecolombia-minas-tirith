@@ -36,8 +36,9 @@
   height: 504px;
 
   @media (min-width: 426px) {
-    height: 304px;
+    height: auto;
     grid-column: 1/4;
+    grid-row: 1/3;
   }
 
   @media (min-width: 769px) {

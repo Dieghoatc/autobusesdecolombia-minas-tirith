@@ -5,10 +5,12 @@
   background: var(--background-card);
   display: grid;
   grid-template-columns: repeat(3, 1fr);
+  position: relative;
+  height: 110px;
 
   @media (min-width: 425px) {
     display: block;
-    height: 304px;
+    height: 270px;
   }
 }
 
@@ -46,8 +48,18 @@
   display: flex;
   align-items: center;
   gap: 4px;
-  color: var(--text-secundary);
-  margin-bottom: 8px;
+  padding: 4px;
+  background: linear-gradient(to right, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0));
+  position: absolute;
+  top: 80px;
+  left: 0;
+  z-index: 1;
+
+  @media (min-width: 425px) {
+    border-radius: 10px;
+    top: 8px;
+    left: 8px;
+  }
 }
 
 .content_header svg {
