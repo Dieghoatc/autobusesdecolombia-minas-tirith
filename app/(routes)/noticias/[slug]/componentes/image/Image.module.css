@@ -1,7 +1,8 @@
-.container {
+.image {
+  width: 100%;
 }
 
-.image {
+.image img {
   margin: 0 auto;
 }
 
