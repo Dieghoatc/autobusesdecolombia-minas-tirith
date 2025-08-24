@@ -10,7 +10,7 @@ interface ImageProps {
 
 export function Image({ src, alt, overlay, photograper }: ImageProps) {
   return (
-    <section className={styles.container}>
+    <section>
       <figure className={styles.image}>
         <img src={src} alt={alt} />
       </figure>
