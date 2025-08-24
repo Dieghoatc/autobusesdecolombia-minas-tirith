@@ -173,7 +173,7 @@ export function Carousel({ posts }: CarouselProps) {
                       </div>
                     </div>
                   </div>
-                  <Link href={`/posts/${news.post_id}_${news.slug}`}>
+                  <Link href={`/noticias/${news.post_id}_${news.slug}`}>
                     <h3 className="text-3xl font-bold mb-3 leading-tight">
                       {news.title}
                     </h3>
