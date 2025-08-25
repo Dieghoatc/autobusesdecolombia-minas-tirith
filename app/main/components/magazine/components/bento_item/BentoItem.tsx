@@ -18,7 +18,7 @@ export function BentoItem({
 }: BentoItemProps) {
   return (
     <div className={styles.container}>
-      <div className={styles.content_header}>
+      <div className={styles.category}>
         {icon === "newspaper" ? <Newspaper /> : <Map />}
         <span>{category}</span>
       </div>
