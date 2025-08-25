@@ -28,7 +28,7 @@ export function BentoItem({
       <div className={styles.content}>
         <div className={styles.content_body}>
           <h2>{title}</h2>
-          {resume && <p>{resume}</p>}
+          {resume && <span>{resume}</span>}
         </div>
       </div>
     </div>
