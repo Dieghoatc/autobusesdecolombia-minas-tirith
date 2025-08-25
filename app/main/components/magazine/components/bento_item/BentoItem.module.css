@@ -1,14 +1,12 @@
 .container {
-  width: 100%;
   border-radius: 10px;
   overflow: hidden;
   background: var(--background-card);
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   position: relative;
-  height: 110px;
 
-  @media (min-width: 425px) {
+  @media (min-width: 426px) {
     display: block;
     height: 270px;
   }
@@ -17,8 +15,10 @@
 .image {
   grid-column: 1;
   clip-path: polygon(0% 0%, 75% 0%, 100% 50%, 75% 100%, 0% 100%);
+  width: 100%;
+  height: 120px;
 
-  @media (min-width: 425px) {
+  @media (min-width: 426px) {
     clip-path: none;
     grid-area: 1/1/2/1;
     width: 100%;
@@ -84,7 +84,7 @@
   }
 }
 
-.content_body p {
+.content_body span {
   font-size: 14px;
   font-weight: normal;
   line-height: 18px;
