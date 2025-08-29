@@ -2,7 +2,7 @@ import { vehicleQueryById } from "@/services/api/vehicleById.query";
 import { Metadata } from "next";
 
 interface Props {
-  params: Promise<{ id: string }>;
+  params: Promise<{ id: string; slug: string }>;
 }
 
 interface LayoutProps {
@@ -13,6 +13,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   try {
     const resolvedParams = await params;
     const vehicleId = Number(resolvedParams.id);
+    const slug = resolvedParams.slug;
     const vehicle = await vehicleQueryById(vehicleId);
 
     if (!vehicle) {
@@ -33,15 +34,19 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     return {
       title,
       description,
+      metadataBase: new URL(
+        `https://autobusesdecolombia.com/vehiculo/${vehicleId}/${slug}`
+      ),
       openGraph: {
         title,
         description,
         images: vehicleImage
           ? [
               {
-                url: vehicleImage,
+                type: "image/webp",
                 width: 1200,
                 height: 630,
+                url: vehicleImage,
                 alt: `${vehicleModel} de ${companyName}`,
               },
             ]
@@ -51,7 +56,17 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
         card: "summary_large_image",
         title,
         description,
-        images: vehicleImage ? [vehicleImage] : [],
+        images: vehicleImage
+          ? [
+              {
+                type: "image/webp",
+                width: 1200,
+                height: 630,
+                url: vehicleImage,
+                alt: `${vehicleModel} de ${companyName}`,
+              },
+            ]
+          : [],
       },
     };
   } catch (error) {

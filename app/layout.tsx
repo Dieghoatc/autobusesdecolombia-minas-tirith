@@ -14,13 +14,8 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
-  metadataBase: new URL(
-    process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000"
-  ),
-  title: {
-    default: "Autobuses de Colombia - ¡Mucho más para ver!",
-    template: "%s | Autobuses de Colombia",
-  },
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL!),
+  title: "Autobuses de Colombia - ¡Mucho más para ver!",
   description:
     "Descubre la mayor comunidad de aficionados a los Autobuses de Colombia. Portal de fotografia, noticias, historias y eventos sobre el apasionante mundo del transporte público. Únete a nuestra comunidad y comparte tu pasión por los autobuses y el transporte en Colombia.",
   keywords:
@@ -30,47 +25,10 @@ export const metadata: Metadata = {
   icons: {
     icon: "/favicon.ico",
   },
-  verification: {
-    google: "",
-  },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      "max-video-preview": -1,
-      "max-image-preview": "large",
-      "max-snippet": -1,
-    },
-  },
   other: {
     "google-adsense-account": "ca-pub-1070802324735715",
   },
-  alternates: {
-    canonical: "https://autobusesdecolombia.com",
-  },
-  category: "transportation",
-  openGraph: {
-    type: "website",
-    locale: "es_ES",
-    url: "https://autobusesdecolombia.com",
-    images: [
-      {
-        url: "/autobusesdecolombia_bus.png",
-        width: 1200,
-        height: 630,
-        alt: "Autobuses de Colombia",
-      },
-    ],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Autobuses de Colombia - ¡Mucho más para ver!",
-    description:
-      "Descubre la mayor comunidad de aficionados a los Autobuses de Colombia.",
-    images: ["/autobusesdecolombia_bus.png"],
-  },
+  category: "Transporte en Colombia",
 };
 
 export default function RootLayout({

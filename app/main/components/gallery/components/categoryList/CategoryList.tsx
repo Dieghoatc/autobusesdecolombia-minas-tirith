@@ -44,7 +44,13 @@ export function CategoryList({ transportCategory }: CategoryListProps) {
         <div className={styles.carousel} ref={sliderRef}>
           {vehicles.data.map((vehicle) => (
             <figure key={vehicle.vehicle_id} className={styles.slide}>
-              <Link href={`/vehiculo/${vehicle.vehicle_id}`}>
+              <Link
+                href={`/vehiculo/${
+                  vehicle.vehicle_id
+                }/${vehicle.model.model_name
+                  .toLocaleLowerCase()
+                  .replace(/\s+/g, "-")}`}
+              >
                 {vehicle.vehiclePhotos[0] ? (
                   <div className={styles.image_container}>
                     <img src={vehicle.vehiclePhotos[0].image_url} alt={""} />

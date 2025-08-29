@@ -4,14 +4,14 @@ import { useGetVehicleById } from "@/lib/hooks";
 import { useParams } from "next/navigation";
 import Image from "next/image";
 
-import { CompanyLogo } from "../components/companies";
-import { VehicleModelName } from "../components/vehicleModel";
+import { CompanyLogo } from "./components/companies";
+import { VehicleModelName } from "./components/vehicleModel";
 
 import styles from "./ImagePage.module.css";
 
-import { VehicleDetail } from "../components/vehicleDetail/VehicleDetail";
-import { VehiclePart } from "../components/vehiclePart/VehiclePart";
-import { Photographer } from "../components/photographer";
+import { VehicleDetail } from "./components/vehicleDetail/VehicleDetail";
+import { VehiclePart } from "./components/vehiclePart/VehiclePart";
+import { Photographer } from "./components/photographer";
 import { ABCLoader } from "@/app/components/abc-loader";
 import { Building2 } from "lucide-react";
 
