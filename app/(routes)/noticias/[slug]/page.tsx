@@ -15,10 +15,7 @@ export default function PostToID() {
   if (params.slug) {
     id_post = Number(params.slug.toString().split("_")[0]);
   }
-
-  console.log("Params", params);
-  console.log("Post ID:", id_post);
-
+  
   const { post, loading } = useFindPost(id_post);
 
   if (!post) {
