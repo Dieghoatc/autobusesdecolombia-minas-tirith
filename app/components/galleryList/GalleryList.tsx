@@ -23,7 +23,9 @@ export function GalleryList({ vehicle }: GalleryListProps) {
 
   return (
     <section className={styles.container}>
-      <Link href={`/vehiculo/${vehicle.vehicle_id}`}>
+      <Link
+        href={`/vehiculo/${vehicle.vehicle_id}/${vehicle.model.model_name}`}
+      >
         <div className={styles.imageContainer}>
           <figure>
             <picture>
