@@ -1,0 +1,65 @@
+.container {
+  background-color: #0d1117; 
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  padding: 20px;
+  text-align: center;
+  color: #fff;
+}
+
+.icons {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  margin-bottom: 20px;
+  list-style: none;
+  padding: 0;
+  margin-left: 0;
+}
+
+.icons img {
+  width: 30px;
+  height: 30px;
+  transition: transform 0.15s ease, opacity 0.2s ease;
+}
+
+.icons a:hover img {
+  transform: translateY(-2px) scale(1.05);
+  opacity: 0.95;
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.info h2 {
+  font-size: 14px;
+  font-weight: 500;
+  color: #e5e5e5;
+  margin: 0;
+}
+
+.info span {
+  color: #aaaaaa;
+  font-size: 12px;
+}
+
+.dieghoatc span {
+  color: #d1b000;
+  text-decoration: none;
+}
+
+.dieghoatc span:hover {
+  text-decoration: underline;
+}
+
+@media (min-width: 768px) {
+  .container {
+    padding: 28px 24px;
+  }
+  .icons img {
+    width: 32px;
+    height: 32px;
+  }
+}

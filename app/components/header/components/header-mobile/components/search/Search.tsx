@@ -1,14 +1,8 @@
 import { useRouter } from "next/navigation";
 
-import { ArrowLeft, Search as SearchIcon } from "lucide-react";
 import { motion } from "motion/react";
+import { ArrowLeft, Search as SearchIcon } from "lucide-react";
 import styles from "./Search.module.css";
-
-async function getSearch(search: string) {
-  const res = await fetch(`http://localhost:3001/search/${search}`);
-  const data = await res.json();
-  return data;
-}
 
 interface SearchProps {
   searchClose: (value: boolean) => void;
@@ -17,12 +11,10 @@ interface SearchProps {
 export function Search({ searchClose }: SearchProps) {
   const router = useRouter();
 
-  function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
-    event.preventDefault();
-    const formData = new FormData(event.currentTarget);
-    const search = formData.get("search");
-    getSearch(search as string);
-    router.push(`/search`);
+  async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+    event.preventDefault();    
+    const data = event.currentTarget.search.value;
+    router.push(`/search?busqueda=${data}`);
     searchClose(false);
   }
 

@@ -1,0 +1,97 @@
+{
+  "info": {
+    "count": 343,
+    "currentPage": 1,
+    "pages": 69,
+    "limit": 5,
+    "next": "/search?crafter?page=2&limit=5",
+
+    "prev": null,
+    "hasNext": true,
+    "hasPrev": false,
+    "startItem": 1,
+    "endItem": 5
+  },
+
+  "data": [
+    {
+      "model_id": 29,
+      "brand_id": 9,
+
+      "chassis_id": null,
+
+      "bodywork_id": null,
+      "model_name": "Wolkswagen Crafter 50",
+      "description": "",
+
+      "year_from": null,
+
+      "chassis": null,
+
+      "bodywork": null,
+
+      "vehicles": [
+        {
+          "vehicle_id": 41,
+          "vehicle_type_id": 6,
+          "model_id": 29,
+          "company_id": 16,
+          "transport_category_id": 2,
+          "company_serial_id": 41,
+          "company_service_id": 14,
+          "plate": "wln 588",
+
+          "year_manufactured": null,
+
+          "notes": null,
+          "created_at": "2025-07-24T14:06:17.842Z",
+
+          "vehiclePhotos": [
+            {
+              "vehicle_photo_id": 41,
+              "vehicle_id": 41,
+              "image_url": "https://res.cloudinary.com/dkj6yzrrk/image/upload/v1739240426/autobusesdecolombia/ecec9zgvt7qbgpjgxd5h.webp",
+              "photographer_id": 7,
+              "country_id": 1,
+              "location": "popayán",
+
+              "department": null,
+
+              "description": null,
+
+              "notes": null,
+
+              "tags": null,
+
+              "status": null,
+
+              "likes": null,
+
+              "views": null,
+
+              "favorites": null,
+
+              "shares": null,
+
+              "comments": null,
+
+              "downloads": null,
+              "created_at": "2025-07-24T14:08:07.251Z",
+
+              "photographer": {
+                "photographer_id": 7,
+                "name": "Jair Campo",
+
+                "email": null,
+
+                "phone": null,
+                "active": true,
+                "created_at": "2025-07-24T13:58:51.918Z"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
