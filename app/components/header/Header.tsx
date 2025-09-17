@@ -1,75 +1,14 @@
-"use client";
-
-import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-
-import { HomeIcon, Menu, X } from "lucide-react";
-import { motion, AnimatePresence } from "motion/react";
-
-import { Overlay } from "./components/overlay";
+import { HeaderMobile } from "./components/header-mobile";
 
 import styles from "./Header.module.css";
-
-import logo from "@/assets/singlelogo.png";
-import logoLarge from "@/assets/logox2.png";
+import logoLarge from "@/assets/logo-mobile.svg";
 
 export function Header() {
-  const [open, setOpen] = useState(false);
-
-  useEffect(() => {
-    if (open) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "";
-    }
-
-    return () => {
-      document.body.style.overflow = "";
-    };
-  }, [open]);
-
   return (
-    <nav className={styles.container}>
-      <div className={styles.menu_mobile}>
-        <AnimatePresence mode="wait">
-          {open ? (
-            <motion.div
-              key="close"
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.9 }}
-              transition={{ duration: 0.3 }}
-              onClick={() => setOpen(false)}
-            >
-              <X className={styles.xmenu} />
-            </motion.div>
-          ) : (
-            <motion.div
-              key="menu"
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.9 }}
-              transition={{ duration: 0.3 }}
-              onClick={() => setOpen(true)}
-            >
-              <Menu className={styles.listMenu} />
-            </motion.div>
-          )}
-        </AnimatePresence>
-        <div className={styles.logo_mobile}>
-          <Image
-            src={logo}
-            alt="Logo de Autobuses de Colombia"
-            title="Logo de Autobuses de Colombia"
-          />
-        </div>
-        <div className={styles.homepage}>
-          <Link href="/" title="Home">
-            <HomeIcon />
-          </Link>
-        </div>
-      </div>
+    <section> 
+      <HeaderMobile />
       <div className={styles.menu_desktop}>
         <div className={styles.logo_desktop}>
           <Image
@@ -95,7 +34,6 @@ export function Header() {
           </ul>
         </div>
       </div>
-      <Overlay open={open} setOpen={setOpen} />
-    </nav>
+    </section>
   );
 }

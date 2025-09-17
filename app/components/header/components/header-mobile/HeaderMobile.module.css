@@ -7,24 +7,27 @@
   background: rgba(0, 0, 0, 0.8);
   box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.2);
   padding: 0 16px;
-}
-
-.menu_desktop {
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  justify-content: space-between;
 
-  @media (max-width: 768px) {
+  @media (min-width: 768px) {
     display: none;
   }
 }
 
-.logo_desktop {
-  width: 150px;
+.menu_left {
+  display: flex;
+  align-items: center;
+  gap: 4px;
 }
 
-.links ul {
+.menu_right {
   display: flex;
-  gap: 16px;
   align-items: center;
+  gap: 16px;
+}
+
+.logo img {
+  width: 50px;
 }
