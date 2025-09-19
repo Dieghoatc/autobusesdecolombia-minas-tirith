@@ -1,4 +1,4 @@
-export interface SearchResponseMock {
+export interface SearchResponse {
     info: Info;
     data: Model[];
 }

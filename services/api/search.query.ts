@@ -1,4 +1,4 @@
-import { Model } from "../types/model.type";
+import { SearchResponse } from "../types/search.type";
 
 const URL = process.env.NEXT_PUBLIC_ABC_API;
 
@@ -14,6 +14,6 @@ async function fetchData<T>(search: string): Promise<T> {
     }
 }
 
-export async function searchQuery(search: string): Promise<Model[]> {
-    return fetchData<Model[]>(search);
+export async function searchQuery(search: string): Promise<SearchResponse> {
+    return fetchData<SearchResponse>(search);
 }
