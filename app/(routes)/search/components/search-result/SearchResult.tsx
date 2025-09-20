@@ -1,21 +1,44 @@
-import { use } from "react";
+"use client";
+
+import { useEffect } from "react";
+
 import Image from "next/image";
 import Link from "next/link";
-
-import type { SearchResponse } from "@/services/types/search.type";
-
+import type { Model } from "@/services/types/search.type";
 import { NeuropolTitle } from "@/app/components/neuropol-title";
 import { Camera } from "lucide-react";
+
+import { useIntersectionObserver } from "@uidotdev/usehooks";
+import { Loader } from "@/app/components/loader";
+
 import styles from "./SearchResult.module.css";
 
-export function SearchResults({
-  searchPromise,
-}: {
-  searchPromise: Promise<SearchResponse>;
-}) {
-  const results = use(searchPromise);
+interface SearchResultProps {
+  results: Model[];
+  setCurrentPage: React.Dispatch<React.SetStateAction<number>>; // ✅
+  hasNext: boolean;
+}
 
-  if (results.data.length === 0) {
+export function SearchResults({
+  results,
+  setCurrentPage,
+  hasNext,
+}: SearchResultProps) {
+  const [ref, entry] = useIntersectionObserver({
+    threshold: 0,
+    root: null,
+    rootMargin: "0px",
+  });
+
+  const isVisible = !!entry?.isIntersecting;
+
+  useEffect(() => {
+    if (isVisible) {
+      setCurrentPage((prev) => prev + 1);
+    }
+  }, [isVisible, setCurrentPage]);
+
+  if (results.length === 0) {
     return (
       <div className={styles.noResults}>
         <p>No se encontraron resultados</p>
@@ -27,14 +50,14 @@ export function SearchResults({
     <section className={styles.container}>
       <NeuropolTitle>Modelos:</NeuropolTitle>
       <article className={styles.models_container}>
-        {results.data.map((model) => (
+        {results.map((model) => (
           <div key={model.model_id} className={styles.card}>
-            <div key={model.model_id} className={styles.cardItem}>
+            <div className={styles.card_item}>
               <Link href={``}>
                 <div className={styles.image}>
                   <Image
                     src={model.vehicles[0].vehiclePhotos[0].image_url}
-                    alt={model.vehicles[0].plate}
+                    alt={model.model_name}
                     fill
                     className={styles.img}
                     sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
@@ -42,9 +65,9 @@ export function SearchResults({
                   />
                 </div>
                 <div className={styles.caption}>
-                  <p className={styles.captionTitle}>{model.model_name}</p>
-                  <p className={styles.captionMeta}>
-                    <Camera size={15} />{" "}
+                  <p className={styles.caption_title}>{model.model_name}</p>
+                  <p className={styles.caption_meta}>
+                    <Camera size={15} />
                     {model.vehicles[0].vehiclePhotos[0].photographer.name}
                   </p>
                 </div>
@@ -53,6 +76,7 @@ export function SearchResults({
           </div>
         ))}
       </article>
+      {hasNext && <div ref={ref} className={styles.loader}><Loader /></div>}
     </section>
   );
 }
