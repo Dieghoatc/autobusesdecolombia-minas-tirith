@@ -11,6 +11,14 @@
   border-radius: 5px;
 }
 
+@font-face {
+  font-family: 'Neuropol';
+  src: url('/assets/fonts/neuropol.woff');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap; /* Muestra texto con fuente fallback mientras carga */
+}
+
 body {
   font-family: Segoe UI, Segoe UI Midlevel, sans-serif;  
   background-color: var(--background);  

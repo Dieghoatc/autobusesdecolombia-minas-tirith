@@ -6,14 +6,16 @@ import { useSearchParams } from "next/navigation";
 
 import { searchQuery } from "@/services/api/search.query";
 
-import { SearchLoading } from "./components/search-loading";
 import { SearchResults } from "./components/search-result";
+import { ABCLoader } from "@/app/components/abc-loader";
 
 import styles from "./Search.module.css";
 
 export default function SearchPage() {
   const searchParams = useSearchParams();
   const rawQuery = searchParams.get("busqueda");
+  const page = searchParams.get("page") || "1";
+  const limit = searchParams.get("limit") || "10";
 
   const deferredQuery = useDeferredValue(rawQuery);
 
@@ -28,7 +30,7 @@ export default function SearchPage() {
     );
   }
 
-  const searchPromise = searchQuery(deferredQuery);
+  const searchPromise = searchQuery(deferredQuery, Number(page), Number(limit));
 
   return (
     <div>
@@ -38,7 +40,7 @@ export default function SearchPage() {
       <main className={styles.searchContent}>
         <Suspense
           key={deferredQuery}
-          fallback={<SearchLoading query={deferredQuery} />}
+          fallback={ <ABCLoader />}
         >
           <SearchResults searchPromise={searchPromise} />
         </Suspense>
