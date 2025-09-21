@@ -1,0 +1,121 @@
+{
+	"model": {
+		"model_id": 39,
+		"brand_id": 14,
+		"chassis_id": 2,
+		"bodywork_id": 16,
+		"model_name": "Marcopolo Paradiso 1200 G8 Scania K400",
+		"description": null,
+		"year_from": null,
+		"brand": {
+			"brand_id": 14,
+			"name": "Marcopolo Superpolo",
+			"logo": null,
+			"url": null,
+			"description": null,
+			"created_at": "2025-07-24T08:52:34.805Z"
+		},
+		"chassis": {
+			"chassis_id": 2,
+			"brand_id": 2,
+			"chassis_name": "K400 4x2",
+			"description": null
+		},
+		"bodywork": {
+			"bodywork_id": 16,
+			"brand_id": 14,
+			"bodywork_name": "Paradiso 1200 G8",
+			"description": null
+		},
+		"vehicles": [
+			{
+				"vehicle_id": 989,
+				"vehicle_type_id": 1,
+				"model_id": 39,
+				"company_id": 302,
+				"transport_category_id": 6,
+				"company_serial_id": 547,
+				"company_service_id": null,
+				"plate": "NQL 633",
+				"year_manufactured": null,
+				"notes": null,
+				"created_at": "2025-08-29T20:07:49.735Z",
+				"transportCategory": {
+					"transport_category_id": 6,
+					"name": "Transporte Especial",
+					"description": "Vehículos adaptados para necesidades específicas como transporte de empleados de empresas privadas, equipos deportivos profesionales, artistas y sus equipos, o eventos corporativos. Incluye buses VIP con configuraciones personalizadas según los requerimientos del cliente.",
+					"slug": "transporte-especial",
+					"created_at": "2025-07-24T08:50:53.974Z"
+				},
+				"vehicle_type": {
+					"vehicle_type_id": 1,
+					"name": "Bus tradicional",
+					"description": "Bus convencional de un piso",
+					"created_at": "2025-07-24T09:03:16.943Z"
+				},
+				"company": {
+					"company_id": 302,
+					"country_id": 1,
+					"company_name": "Translaval",
+					"servicio": null,
+					"routes": null,
+					"description": null,
+					"company_logo": null,
+					"city": null,
+					"company_url": null,
+					"active": true,
+					"created_at": "2025-08-11T22:57:28.400Z"
+				},
+				"companySerial": {
+					"company_serial_id": 547,
+					"company_id": 302,
+					"company_serial_code": "428"
+				},
+				"companyService": null,
+				"vehiclePhotos": [
+					{
+						"vehicle_photo_id": 989,
+						"vehicle_id": 989,
+						"image_url": "https://res.cloudinary.com/dkj6yzrrk/image/upload/v1756516046/autobusesdecolombia/image_10_ltxpgh.webp",
+						"photographer_id": 5,
+						"country_id": 1,
+						"location": "Medellín",
+						"department": null,
+						"description": null,
+						"notes": null,
+						"tags": null,
+						"status": null,
+						"likes": null,
+						"views": null,
+						"favorites": null,
+						"shares": null,
+						"comments": null,
+						"downloads": null,
+						"created_at": "2025-08-29T20:07:52.125Z",
+						"photographer": {
+							"photographer_id": 5,
+							"name": "Esteban Zapata",
+							"email": null,
+							"phone": null,
+							"active": true,
+							"created_at": "2025-07-24T08:58:51.918Z"
+						}
+					}
+				]
+			}
+		],
+		"totalItems": 11
+	},
+	"pagination": {
+		"count": 11,
+		"currentPage": 2,
+		"pages": 2,
+		"limit": 10,
+		"next": null,
+		"prev": "/vehicle-model/39?page=1&limit=10",
+		"hasNext": false,
+		"hasPrev": true,
+		"startItem": 11,
+		"endItem": 11
+	}
+}

@@ -1,5 +1,5 @@
 import styles from "./Author.module.css";
-import avatar from "@/assets/logo_header.png";
+import avatar from "@/assets/abc_logo_single.svg";
 
 interface AuthorProps {
   author: string;

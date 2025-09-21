@@ -1,68 +1,59 @@
 "use client";
 
-import { useState, useEffect, useCallback, useRef } from "react";
-import { useGetVehicle } from "@/lib/hooks";
-import { Vehicle } from "@/services/types/vehicle.type";
+import { Suspense, useDeferredValue } from "react";
+import { useSearchParams } from "next/navigation";
 
-export default function Search() {
-  const [page, setPage] = useState(1);
-  const { vehicles, loading } = useGetVehicle({ page });
-  const [items, setItems] = useState<Vehicle[]>([]);
-  const isFirstRender = useRef(true);
+import { useSearch } from "@/lib/hooks/useSearch";
+import { SearchResults } from "./components/search-result";
+import { ABCLoader } from "@/app/components/abc-loader";
 
-  useEffect(() => {
-    // Skip effect on first render
-    if (isFirstRender.current) {
-      isFirstRender.current = false;
-      return;
-    }
+import styles from "./Search.module.css";
 
-    // Only update items when we have valid data and not loading
-    if (!vehicles?.data || loading) return;
+// Este componente se encarga de la lógica de búsqueda
+function SearchContent() {
+  const searchParams = useSearchParams();
+  const rawQuery = searchParams.get("busqueda");
 
-    setItems((prevItems) => {
-      // For first page, replace items
-      if (page === 1) return vehicles.data;
+  const deferredQuery = useDeferredValue(rawQuery || "");
 
-      // For subsequent pages, append new items
-      // Filter out duplicates based on vehicle_id
-      const newItems = vehicles.data.filter(
-        (newItem) =>
-          !prevItems.some(
-            (existingItem) => existingItem.vehicle_id === newItem.vehicle_id
-          )
-      );
+  const { results, setCurrentPage, hasNext } = useSearch({
+    query: deferredQuery,
+  });
 
-      return [...prevItems, ...newItems];
-    });
-  }, [vehicles?.data, loading, page]);
-
-  const loadMore = useCallback(() => {
-    if (loading || !vehicles?.info?.hasNext) return;
-    setPage((prev) => prev + 1);
-  }, [loading, vehicles?.info?.hasNext]);
-
-  if (loading && page === 1) {
-    return <div>Cargando...</div>;
+  if (!deferredQuery) {
+    return (
+      <div className={styles.search_page_container}>
+        <div className={styles.search_page_head}>
+          <h1>Búsqueda</h1>
+          <p>Introduce un término de búsqueda para comenzar</p>
+        </div>
+      </div>
+    );
   }
 
   return (
-    <div className="grid grid-cols-2 gap-2">
-      <div onClick={loadMore}>Cargar</div>
-      {items.map((vehicle) => (
-        <div key={vehicle.vehicle_id} className="relative">
-          <img
-            src={vehicle.vehiclePhotos[0].image_url}
-            alt={vehicle.model.model_name}
-            width={200}
-            height={100}
-            className="object-cover w-full h-full"
-          />
-          <span className="absolute bottom-0 left-0 bg-black bg-opacity-50 text-white p-1 text-3xl">
-            {vehicle.model.model_name}
-          </span>
-        </div>
-      ))}
+    <div>
+      <header className={styles.search_result_header}>
+        <h1>
+          Resultados de:{" "}
+          <strong className={styles.search_query}>{deferredQuery}</strong>
+        </h1>
+      </header>
+      <main className={styles.searchContent}>
+        <SearchResults
+          results={results}
+          setCurrentPage={setCurrentPage}
+          hasNext={hasNext}
+        />
+      </main>
     </div>
+  );
+}
+
+export default function SearchPage() {
+  return (
+    <Suspense fallback={<ABCLoader />}>
+      <SearchContent />
+    </Suspense>
   );
 }

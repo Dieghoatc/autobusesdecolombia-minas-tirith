@@ -1,0 +1,30 @@
+.container {
+    position: relative;
+}
+
+.title {
+  font-family: "Neuropol", sans-serif;
+  font-weight: 400;
+  font-size: 20px;
+  margin-bottom: 1rem;
+  text-shadow: 0 0 10px rgba(0, 0, 0, 0.9);
+
+  @media (min-width: 1024px) {
+    font-size: 32px;
+  }
+}
+
+.underline {
+    width: 120px;
+    position: absolute;
+    top: 16px;
+    left: 0;
+    z-index: -1;
+    transform: rotate(12deg);
+
+    @media (min-width: 1024px) {
+        width: 180px;
+        top: 22px;
+        left: 0;
+    }
+}

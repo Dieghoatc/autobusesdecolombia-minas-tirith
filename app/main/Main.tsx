@@ -7,7 +7,7 @@ export default function Main() {
   return (
     <div>
       <Magazine />
-      <Gallery /> 
+      <Gallery />
     </div>
   );
 }

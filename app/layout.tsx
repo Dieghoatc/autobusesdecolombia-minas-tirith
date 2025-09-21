@@ -31,6 +31,7 @@ export const metadata: Metadata = {
   category: "Transporte en Colombia",
 };
 
+
 export default function RootLayout({
   children,
 }: Readonly<{
