@@ -12,6 +12,7 @@ import { useIntersectionObserver } from "@uidotdev/usehooks";
 import { Loader } from "@/app/components/loader";
 
 import styles from "./SearchResult.module.css";
+import { ABCLoader } from "@/app/components/abc-loader";
 
 interface SearchResultProps {
   results: Model[];
@@ -39,21 +40,21 @@ export function SearchResults({
   }, [isVisible, setCurrentPage]);
 
   if (results.length === 0) {
-    return (
-      <div className={styles.noResults}>
-        <p>No se encontraron resultados</p>
-      </div>
-    );
+    return <ABCLoader />
+  }
+
+  function generateUrl(value: string){
+    return value.replace(/\s/g, "-").toLowerCase();
   }
 
   return (
     <section className={styles.container}>
       <NeuropolTitle>Modelos:</NeuropolTitle>
       <article className={styles.models_container}>
-        {results.map((model) => (
-          <div key={model.model_id} className={styles.card}>
+        {results.map((model, _index) => (
+          <div key={_index} className={styles.card}>
             <div className={styles.card_item}>
-              <Link href={``}>
+              <Link href={`/modelo/${model.model_id}/${generateUrl(model.model_name)}`}>
                 <div className={styles.image}>
                   <Image
                     src={model.vehicles[0].vehiclePhotos[0].image_url}

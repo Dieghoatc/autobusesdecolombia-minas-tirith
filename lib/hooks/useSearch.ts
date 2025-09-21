@@ -21,7 +21,7 @@ export function useSearch({ query  }: UseSearchProps) {
       setHasNext(result.info.hasNext)
     }
 
-    fetchResults(query, currentPage, 10);
+    fetchResults(query, currentPage, 9);
   }, [query, currentPage]);
 
   return {

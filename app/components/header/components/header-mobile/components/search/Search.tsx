@@ -12,14 +12,10 @@ export function Search({ searchClose }: SearchProps) {
   const router = useRouter();
 
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
-    event.preventDefault();    
+    event.preventDefault();
     const data = event.currentTarget.search.value;
     router.push(`/search?busqueda=${data}`);
     searchClose(false);
-  }
-
-  function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
-    console.log(event.target.value);
   }
 
   return (
@@ -33,7 +29,7 @@ export function Search({ searchClose }: SearchProps) {
         transition={{ duration: 0.3 }}
         onSubmit={handleSubmit}
       >
-        <input type="text" onChange={(e) => handleChange(e)} name="search" />
+        <input type="text" name="search" />
         <button type="submit">
           <SearchIcon />
         </button>

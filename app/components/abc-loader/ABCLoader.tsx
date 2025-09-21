@@ -1,4 +1,4 @@
-import abc_logo from "@/assets/singlelogo.png";
+import abc_logo from "@/assets/abc_logo_single.svg";
 import Image from "next/image";
 import styles from "./ABCLoader.module.css";
 

@@ -31,8 +31,6 @@ export default function SearchPage() {
     );
   }
 
-  
-
   return (
     <div>
       <header className={styles.search_result_header}>

@@ -8,7 +8,7 @@ import { HomeIcon, Menu, X, Search as SearchIcon } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
 
 import styles from "./HeaderMobile.module.css";
-import logo from "@/assets/logo-mobile.png";
+import logo from "@/assets/abc_logo_single.svg";
 import { Search } from "./components/search";
 
 export function HeaderMobile() {
