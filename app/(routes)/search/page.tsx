@@ -32,22 +32,22 @@ export default function SearchPage() {
   }
 
   return (
-    <div>
-      <header className={styles.search_result_header}>
-        <h1>
-          Resultados de:{" "}
-          <strong className={styles.search_query}>{deferredQuery}</strong>
-        </h1>
-      </header>
-      <main className={styles.searchContent}>
-        <Suspense key={deferredQuery} fallback={<ABCLoader />}>
+    <Suspense key={deferredQuery} fallback={<ABCLoader />}>
+      <div>
+        <header className={styles.search_result_header}>
+          <h1>
+            Resultados de:{" "}
+            <strong className={styles.search_query}>{deferredQuery}</strong>
+          </h1>
+        </header>
+        <main className={styles.searchContent}>
           <SearchResults
             results={results}
             setCurrentPage={setCurrentPage}
             hasNext={hasNext}
           />
-        </Suspense>
-      </main>
-    </div>
+        </main>
+      </div>
+    </Suspense>
   );
 }
