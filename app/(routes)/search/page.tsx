@@ -1,16 +1,16 @@
 "use client";
 
-import { useDeferredValue, Suspense } from "react";
+import { Suspense, useDeferredValue } from "react";
 import { useSearchParams } from "next/navigation";
 
 import { useSearch } from "@/lib/hooks/useSearch";
-
 import { SearchResults } from "./components/search-result";
 import { ABCLoader } from "@/app/components/abc-loader";
 
 import styles from "./Search.module.css";
 
-export default function SearchPage() {
+// Este componente se encarga de la lógica de búsqueda
+function SearchContent() {
   const searchParams = useSearchParams();
   const rawQuery = searchParams.get("busqueda");
 
@@ -32,22 +32,28 @@ export default function SearchPage() {
   }
 
   return (
-    <Suspense key={deferredQuery} fallback={<ABCLoader />}>
-      <div>
-        <header className={styles.search_result_header}>
-          <h1>
-            Resultados de:{" "}
-            <strong className={styles.search_query}>{deferredQuery}</strong>
-          </h1>
-        </header>
-        <main className={styles.searchContent}>
-          <SearchResults
-            results={results}
-            setCurrentPage={setCurrentPage}
-            hasNext={hasNext}
-          />
-        </main>
-      </div>
+    <div>
+      <header className={styles.search_result_header}>
+        <h1>
+          Resultados de:{" "}
+          <strong className={styles.search_query}>{deferredQuery}</strong>
+        </h1>
+      </header>
+      <main className={styles.searchContent}>
+        <SearchResults
+          results={results}
+          setCurrentPage={setCurrentPage}
+          hasNext={hasNext}
+        />
+      </main>
+    </div>
+  );
+}
+
+export default function SearchPage() {
+  return (
+    <Suspense fallback={<ABCLoader />}>
+      <SearchContent />
     </Suspense>
   );
 }
