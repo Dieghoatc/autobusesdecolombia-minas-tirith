@@ -40,10 +40,10 @@ export function SearchResults({
   }, [isVisible, setCurrentPage]);
 
   if (results.length === 0) {
-    return <ABCLoader />
+    return <ABCLoader />;
   }
 
-  function generateUrl(value: string){
+  function generateUrl(value: string) {
     return value.replace(/\s/g, "-").toLowerCase();
   }
 
@@ -51,33 +51,43 @@ export function SearchResults({
     <section className={styles.container}>
       <NeuropolTitle>Modelos:</NeuropolTitle>
       <article className={styles.models_container}>
-        {results.map((model, _index) => (
-          <div key={_index} className={styles.card}>
-            <div className={styles.card_item}>
-              <Link href={`/modelo/${model.model_id}/${generateUrl(model.model_name)}`}>
-                <div className={styles.image}>
-                  <Image
-                    src={model.vehicles[0].vehiclePhotos[0].image_url}
-                    alt={model.model_name}
-                    fill
-                    className={styles.img}
-                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                    priority={false}
-                  />
-                </div>
-                <div className={styles.caption}>
-                  <p className={styles.caption_title}>{model.model_name}</p>
-                  <p className={styles.caption_meta}>
-                    <Camera size={15} />
-                    {model.vehicles[0].vehiclePhotos[0].photographer.name}
-                  </p>
-                </div>
-              </Link>
+        {results.map((model, _index) =>
+          model.vehicles[0] ? (
+            <div key={_index} className={styles.card}>
+              <div className={styles.card_item}>
+                <Link
+                  href={`/modelo/${model.model_id}/${generateUrl(
+                    model.model_name
+                  )}`}
+                >
+                  <div className={styles.image}>
+                    <Image
+                      src={model.vehicles[0].vehiclePhotos[0].image_url}
+                      alt={model.model_name}
+                      fill
+                      className={styles.img}
+                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                      priority={false}
+                    />
+                  </div>
+                  <div className={styles.caption}>
+                    <p className={styles.caption_title}>{model.model_name}</p>
+                    <p className={styles.caption_meta}>
+                      <Camera size={15} />
+                      {model.vehicles[0].vehiclePhotos[0].photographer.name}
+                    </p>
+                  </div>
+                </Link>
+              </div>
             </div>
-          </div>
-        ))}
+          ) : null
+        )}
       </article>
-      {hasNext && <div ref={ref} className={styles.loader}><Loader /></div>}
+      {hasNext && (
+        <div ref={ref} className={styles.loader}>
+          <Loader />
+        </div>
+      )}
     </section>
   );
 }
