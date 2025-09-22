@@ -1,10 +1,12 @@
 import type { Metadata, Viewport } from "next";
 
-import "./globals.css";
-import { Analytics } from "@vercel/analytics/react";
+import { Analytics } from "@vercel/analytics/react";  
+
 import { Toaster } from "@/app/components/ui/toaster";
 import { Header } from "@/app/components/header/Header";
 import { Footer } from "@/app/components/footer/Footer";
+import "./globals.css";
+import { AdSence } from "./components/adsense/AdSence";
 
 export const viewport: Viewport = {
   width: "device-width",
@@ -31,7 +33,6 @@ export const metadata: Metadata = {
   category: "Transporte en Colombia",
 };
 
-
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -39,6 +40,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="es">
+      <head>
+        <AdSence pId="ca-pub-1070802324735715" />
+      </head>
       <body>
         <Header />
         <main>{children}</main>
