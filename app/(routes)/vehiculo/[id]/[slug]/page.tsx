@@ -4,7 +4,6 @@ import { useGetVehicleById } from "@/lib/hooks";
 import { useParams } from "next/navigation";
 import Image from "next/image";
 
-import { CompanyLogo } from "./components/companies";
 import { VehicleModelName } from "./components/vehicleModel";
 
 import styles from "./ImagePage.module.css";
@@ -92,8 +91,7 @@ export default function ImagePage() {
                   <h2>{companyName}</h2>
                   <span>{photograper}</span>
                 </div>
-              </div>
-              <CompanyLogo name={companyName} />
+              </div>            
             </div>
           </div>
           <div className={styles.blocks}>

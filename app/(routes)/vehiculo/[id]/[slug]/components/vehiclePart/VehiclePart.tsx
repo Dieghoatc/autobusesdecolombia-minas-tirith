@@ -1,6 +1,5 @@
 "use client";
 
-import { Brand } from "../brand";
 import styles from "./VehiclePart.module.css";
 import { LogoCard } from "../logoCard";
 
@@ -17,7 +16,6 @@ export function VehiclePart({ type, name, brand }: VehiclePartProps) {
     <div>
       <div className={styles.header}>
         <LogoCard logo={type} />
-        <Brand name={brand} />
       </div>
 
       <div className={styles.content}>
