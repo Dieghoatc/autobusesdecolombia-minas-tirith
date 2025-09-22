@@ -1,12 +1,12 @@
 import type { Metadata, Viewport } from "next";
 
-import { Analytics } from "@vercel/analytics/react";  
+import { Analytics } from "@vercel/analytics/react";
+import { AdSence, AdHorizontal } from "./components/adsense";
 
 import { Toaster } from "@/app/components/ui/toaster";
 import { Header } from "@/app/components/header/Header";
 import { Footer } from "@/app/components/footer/Footer";
 import "./globals.css";
-import { AdSence } from "./components/adsense/AdSence";
 
 export const viewport: Viewport = {
   width: "device-width",
@@ -45,6 +45,7 @@ export default function RootLayout({
       </head>
       <body>
         <Header />
+        <AdHorizontal />
         <main>{children}</main>
         <Footer />
         <Toaster />
