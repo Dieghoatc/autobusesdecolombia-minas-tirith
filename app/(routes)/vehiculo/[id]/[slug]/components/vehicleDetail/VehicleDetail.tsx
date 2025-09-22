@@ -1,5 +1,4 @@
 import styles from "./VehicleDetail.module.css";
-import { Brand } from "../brand";
 import { LogoCard } from "../logoCard";
 
 interface VehicleDetailProps {
@@ -13,13 +12,11 @@ export function VehicleDetail({
   plate,
   serial,
   service,
-  brand,
 }: VehicleDetailProps) {
   return (
     <div className={styles.container}>
       <div className={styles.header}>
         <LogoCard logo="car" />
-        <Brand name={brand} />
       </div>
 
       <div className={styles.detailsGrid}>
