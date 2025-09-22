@@ -1,7 +1,7 @@
 import type { Metadata, Viewport } from "next";
 
 import { Analytics } from "@vercel/analytics/react";
-import { AdSence, AdHorizontal } from "./components/adsense";
+import { AdSence } from "./components/adsense";
 
 import { Toaster } from "@/app/components/ui/toaster";
 import { Header } from "@/app/components/header/Header";
@@ -45,7 +45,7 @@ export default function RootLayout({
       </head>
       <body>
         <Header />
-        <AdHorizontal />
+        {/* <AdHorizontal /> */}
         <main>{children}</main>
         <Footer />
         <Toaster />
