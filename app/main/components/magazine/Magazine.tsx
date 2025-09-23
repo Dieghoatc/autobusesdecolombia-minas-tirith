@@ -1,19 +1,35 @@
+import { useMemo } from "react";
 import Link from "next/link";
 
 import { useGetPosts } from "@/lib/hooks/useGetPosts";
 
-import { ABCLoader } from "@/app/components/abc-loader";
 import { Carousel } from "./components/carousel";
 import { BentoItem } from "./components/bento_item";
 
 import styles from "./Magazine.module.css";
 import FeriaFlores from "@/assets/destinations/feria_flores.webp";
+import { MagazineSkeleton, MagazineSkeletonItem } from "./magazine-skeleton";
 
 export function Magazine() {
   const { posts, loading } = useGetPosts();
 
+  const skeletonItems = useMemo(() => Array.from({ length: 7 }), []);
+
   if (loading) {
-    return <ABCLoader />;
+    return (
+      <div className={styles.container}>
+        <section className={styles.bento}>
+          <article className={styles.bento_principal}>
+            <MagazineSkeleton />
+          </article>
+          {skeletonItems.map((_, index) => (
+            <article key={index}>
+              <MagazineSkeletonItem />
+            </article>
+          ))}
+        </section>
+      </div>
+    );
   }
 
   return (
@@ -26,8 +42,7 @@ export function Magazine() {
           <Link href={`/destinos/medellin`}>
             <BentoItem
               image_url={FeriaFlores.src}
-              title="Viaja a Medellín"
-              resume="Descubre la ciudad de la eterna primavera con los servicios de transporte terrestre."
+              title="Viaja a Medellín: Descubre la ciudad de la eterna primavera"
               category="Destinos"
               icon="map"
             />

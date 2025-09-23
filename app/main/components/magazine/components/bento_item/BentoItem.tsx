@@ -4,7 +4,6 @@ import { Newspaper, Map } from "lucide-react";
 interface BentoItemProps {
   image_url: string;
   title: string;
-  resume?: string;
   category: string;
   icon: "newspaper" | "map";
 }
@@ -12,7 +11,6 @@ interface BentoItemProps {
 export function BentoItem({
   image_url,
   title,
-  resume,
   category,
   icon,
 }: BentoItemProps) {
@@ -28,7 +26,6 @@ export function BentoItem({
       <div className={styles.content}>
         <div className={styles.content_body}>
           <h2>{title}</h2>
-          {resume && <span>{resume}</span>}
         </div>
       </div>
     </div>
