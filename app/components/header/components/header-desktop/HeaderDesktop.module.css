@@ -1,11 +1,11 @@
 .container {
   display: none;
 
-  @media (min-width: 768px) {
+  @media (min-width: 481px) {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     align-items: center;
-    padding: 0 16px;
+    justify-content: center;
   }
 }
 
