@@ -40,10 +40,8 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="es">
-      <head>
-        <AdSence pId="ca-pub-1070802324735715" />
-      </head>
       <body>
+        <AdSence pId="ca-pub-1070802324735715" />
         <Header />
         {/* <AdHorizontal /> */}
         <main>{children}</main>

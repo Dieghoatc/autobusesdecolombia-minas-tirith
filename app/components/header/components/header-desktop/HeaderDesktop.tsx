@@ -20,7 +20,7 @@ export function HeaderDesktop() {
     router.push(`/search?busqueda=${data}`)
   }
   return (
-    <header className={styles.container}>
+    <nav className={styles.container}>
       <div className={styles.menu_left}>
         <div>
           <ListCheckIcon />
@@ -49,6 +49,6 @@ export function HeaderDesktop() {
           <HomeIcon />
         </Link>
       </div>
-    </header>
+    </nav>
   );
 }
