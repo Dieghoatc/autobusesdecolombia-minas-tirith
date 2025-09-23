@@ -12,8 +12,7 @@
   }
 }
 
-.banner {
-  position: relative;  
+.banner { 
   display: none;
 
   @media (min-width: 1025px) {
@@ -24,6 +23,5 @@
 .banner img {
   position: sticky;
   top: 100px;
-  left: 0;
   width: 100%;
 }
