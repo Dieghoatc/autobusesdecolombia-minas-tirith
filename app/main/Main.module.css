@@ -1,0 +1,29 @@
+.container {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+}
+
+.content {
+  padding: 4px;
+  grid-column: span 12;
+
+  @media (min-width: 1025px) {
+    grid-column: span 10;
+  }
+}
+
+.banner {
+  position: relative;  
+  display: none;
+
+  @media (min-width: 1025px) {
+    grid-column: span 1;
+    display: block;
+  }
+}
+.banner img {
+  position: sticky;
+  top: 100px;
+  left: 0;
+  width: 100%;
+}
