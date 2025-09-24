@@ -75,7 +75,6 @@ const transportCompanies: TransportCompany[] = [
     duration: "8 horas",
     services: ["WiFi", "Aire acondicionado", "Baño"],
   },
-  // Agrega más empresas aquí
 ];
 
 export default function MedellinPage() {
@@ -214,7 +213,8 @@ export default function MedellinPage() {
             </div>
           </div>
         </section>
-        {/* Companies Section */}
+
+        
         <section className="max-w-6xl mx-auto py-16 px-4">
           <h2 className="text-3xl font-bold mb-8">Empresas de Transporte</h2>
           <div className="space-y-6">
@@ -223,36 +223,10 @@ export default function MedellinPage() {
                 key={company.id}
                 className="bg-neutral-50 rounded-lg shadow-md p-6 flex gap-6 items-center"
               >
-                <div className="w-24 h-24 relative flex-shrink-0">
-                  <Image
-                    src={company.logo}
-                    alt={company.name}
-                    fill
-                    className="object-contain"
-                  />
-                </div>
                 <div className="flex-grow">
                   <h3 className="text-xl font-semibold mb-2 text-black">
                     {company.name}
                   </h3>
-                  {/* <p className="text-gray-600 mb-2">{company.schedule}</p>
-                  <div className="flex gap-4">
-                    <span className="text-green-600 font-medium">
-                      {company.price}
-                    </span>
-                    <span className="text-gray-500">•</span>
-                    <span className="text-gray-600">{company.duration}</span> 
-                  </div>*/}
-                  {/* <div className="mt-2 flex gap-2">
-                    {company.services.map((service, index) => (
-                      <span
-                        key={index}
-                        className="bg-gray-100 text-gray-600 text-sm px-3 py-1 rounded-full"
-                      >
-                        {service}
-                      </span>
-                    ))}
-                  </div> */}
                 </div>
               </div>
             ))}
