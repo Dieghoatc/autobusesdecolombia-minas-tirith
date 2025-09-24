@@ -73,6 +73,7 @@ export default function Modelo() {
                         priority={false}
                       />
                     </div>
+                    <div className={styles.overlay}></div>
                   </Link>
                 </div>
               ))}
