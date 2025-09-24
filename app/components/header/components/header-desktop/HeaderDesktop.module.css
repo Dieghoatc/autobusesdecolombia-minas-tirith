@@ -15,6 +15,10 @@
   gap: 16px;
 }
 
+.logo {
+  cursor: pointer;
+}
+
 .menu_right {
   display: flex;
   justify-self: end;

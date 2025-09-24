@@ -17,7 +17,7 @@ export function HeaderDesktop() {
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
     const data = event.currentTarget.search.value;
-    router.push(`/search?busqueda=${data}`)
+    router.push(`/search?busqueda=${data}`);
   }
   return (
     <nav className={styles.container}>
@@ -25,8 +25,10 @@ export function HeaderDesktop() {
         <div>
           <ListCheckIcon />
         </div>
-        <div>
-          <Image src={ABCLogo.src} alt="Logo" width={150} height={50} />
+        <div className={styles.logo}>
+          <Link href="/" title="Home">
+            <Image src={ABCLogo.src} alt="Logo" width={150} height={50} />
+          </Link>
         </div>
       </div>
       <div className={styles.search}>

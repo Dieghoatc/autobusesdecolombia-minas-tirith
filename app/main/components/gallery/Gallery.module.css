@@ -1,0 +1,25 @@
+.container {
+    width: 100%;
+    margin: 8px 0;
+}
+
+.gallery {
+    max-width: 100%;
+    display: grid;
+    grid-template-columns: 1fr;
+    align-content: center;  
+    justify-content: center;
+    gap: 16px;
+
+    @media (min-width: 768px) {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    @media (min-width: 1440px) {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+.vehicle_image {
+    width: 100%;
+}
