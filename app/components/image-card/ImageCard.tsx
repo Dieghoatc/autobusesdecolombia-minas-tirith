@@ -27,6 +27,7 @@ export function ImageCard({
           height={100}
         />
       </div>
+      <div className={styles.overlay}></div>
       <div className={styles.content}>
         <h3>{title}</h3>
         <div className={styles.details}>
