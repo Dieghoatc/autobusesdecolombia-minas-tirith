@@ -10,6 +10,7 @@ import { Camera } from "lucide-react";
 
 import { useIntersectionObserver } from "@uidotdev/usehooks";
 import { Loader } from "@/app/components/loader";
+import { formatURL } from "@/lib/helpers/formatURL";
 
 import styles from "./SearchResult.module.css";
 import { ABCLoader } from "@/app/components/abc-loader";
@@ -43,9 +44,7 @@ export function SearchResults({
     return <ABCLoader />;
   }
 
-  function generateUrl(value: string) {
-    return value.replace(/\s/g, "-").toLowerCase();
-  }
+
 
   return (
     <section className={styles.container}>
@@ -56,7 +55,7 @@ export function SearchResults({
             <div key={_index} className={styles.card}>
               <div className={styles.card_item}>
                 <Link
-                  href={`/modelo/${model.model_id}/${generateUrl(
+                  href={`/modelo/${model.model_id}/${formatURL(
                     model.model_name
                   )}`}
                 >

@@ -26,7 +26,7 @@ export function LastPhotos() {
           </div>
         )}
         <div className={styles.carousel} ref={sliderRef}>
-          {vehicles.data.map((vehicle) => (
+          {vehicles.map((vehicle) => (
             <figure key={vehicle.vehicle_id} className={styles.slide}>
               <Link
                 href={`/vehiculo/${
