@@ -69,6 +69,7 @@ export function SearchResults({
                       priority={false}
                     />
                   </div>
+                  <div className={styles.overlay}></div>
                   <div className={styles.caption}>
                     <p className={styles.caption_title}>{model.model_name}</p>
                     <p className={styles.caption_meta}>
