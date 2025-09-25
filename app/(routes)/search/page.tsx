@@ -14,6 +14,7 @@ function SearchContent() {
   const searchParams = useSearchParams();
   const rawQuery = searchParams.get("busqueda");
 
+  console.log(">>>>", rawQuery)
   const deferredQuery = useDeferredValue(rawQuery || "");
 
   const { results, setCurrentPage, hasNext } = useSearch({
