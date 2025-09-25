@@ -9,12 +9,10 @@ import { ABCLoader } from "@/app/components/abc-loader";
 
 import styles from "./Search.module.css";
 
-// Este componente se encarga de la lógica de búsqueda
 function SearchContent() {
   const searchParams = useSearchParams();
   const rawQuery = searchParams.get("busqueda");
 
-  console.log(">>>>", rawQuery)
   const deferredQuery = useDeferredValue(rawQuery || "");
 
   const { results, setCurrentPage, hasNext } = useSearch({
