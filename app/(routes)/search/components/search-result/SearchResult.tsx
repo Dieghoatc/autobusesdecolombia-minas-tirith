@@ -16,7 +16,7 @@ import styles from "./SearchResult.module.css";
 import { ABCLoader } from "@/app/components/abc-loader";
 
 interface SearchResultProps {
-  results: Model[] | null; // null = aún cargando
+  results: Model[] | null;
   setCurrentPage: React.Dispatch<React.SetStateAction<number>>;
   hasNext: boolean;
 }
@@ -40,12 +40,10 @@ export function SearchResults({
     }
   }, [isVisible, hasNext, setCurrentPage]);
 
-  // Caso: cargando
   if (!results) {
     return <ABCLoader />;
   }
 
-  // Caso: sin resultados
   if (results.length === 0) {
     return (
       <section className={styles.container}>
@@ -61,7 +59,6 @@ export function SearchResults({
       <article className={styles.models_container}>
         {results.map((model) => {
           const photo = model.vehicles?.[0]?.vehiclePhotos?.[0];
-
           return model.vehicles?.[0] ? (
             <div key={model.model_id} className={styles.card}>
               <div className={styles.card_item}>
