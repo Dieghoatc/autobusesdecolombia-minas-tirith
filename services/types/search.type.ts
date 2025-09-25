@@ -6,14 +6,28 @@ export interface SearchResponse {
 export interface Model {
     model_id:    number;
     brand_id:    number;
-    chassis_id:  null;
-    bodywork_id: null;
+    chassis_id:  number;
+    bodywork_id: number;
     model_name:  string;
-    description: string;
+    description: null;
     year_from:   null;
-    chassis:     null;
-    bodywork:    null;
+    chassis:     Chassis;
+    bodywork:    Bodywork;
     vehicles:    Vehicle[];
+}
+
+export interface Bodywork {
+    bodywork_id:   number;
+    brand_id:      number;
+    bodywork_name: string;
+    description:   null;
+}
+
+export interface Chassis {
+    chassis_id:   number;
+    brand_id:     number;
+    chassis_name: string;
+    description:  null;
 }
 
 export interface Vehicle {
@@ -67,7 +81,7 @@ export interface Info {
     currentPage: number;
     pages:       number;
     limit:       number;
-    next:        string;
+    next:        null;
     prev:        null;
     hasNext:     boolean;
     hasPrev:     boolean;

@@ -1,51 +1,71 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { VehicleModelResponse } from "@/services/types/vehicle-model-response";
+import type { Model } from "@/services/types/vehicle-model-response";
 import { vehicleModelQuery } from "@/services/api/vehicle-model.query";
 
-interface UseSearchProps {
+interface Pagination {
+  currentPage: number;
+  hasNext: boolean;
+}
+
+interface VehicleModelResponse {
+  model: Model;
+  pagination: Pagination;
+}
+
+interface UseVehicleModelProps {
   id: number;
 }
 
-export function useVehicleModel({ id }: UseSearchProps) {
-  const [results, setResults] = useState<VehicleModelResponse>(
-    {} as VehicleModelResponse
-  );
+export function useVehicleModel({ id }: UseVehicleModelProps) {
+  const [results, setResults] = useState<VehicleModelResponse | null>(null);
   const [loading, setLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [hasNext, setHasNext] = useState(true);
 
   useEffect(() => {
-    async function fetchResults(id: number, page: number, limit: number) {
+    setResults(null);
+    setCurrentPage(1);
+    setHasNext(true);
+    setLoading(true);
+  }, [id]);
+
+  useEffect(() => {
+    if (!id || currentPage < 1) return; // evitar llamadas inválidas
+
+    let cancel = false; // protección contra race conditions
+
+    async function fetchResults() {
       try {
-        const result = await vehicleModelQuery(id, page, limit);
-        setResults((prev: VehicleModelResponse | null) => {
-          if (!prev) return result; // primer request
-        
+        const result = await vehicleModelQuery(id, currentPage, 9);
+
+        if (cancel) return; // evitar actualizar estado si cambió id
+
+        setResults((prev) => {
+          if (!prev) return result;
           return {
-            ...prev,
+            ...result,
             model: {
-              ...prev.model,
               ...result.model,
-              vehicles: [
-                ...(prev.model?.vehicles ?? []),
-                ...(result.model?.vehicles ?? []),
-              ],
+              vehicles: [...prev.model.vehicles, ...result.model.vehicles],
             },
-            pagination: result.pagination,
           };
         });
-        setCurrentPage(result.pagination.currentPage);
+
         setHasNext(result.pagination.hasNext);
       } catch (error) {
-        console.log(error);
+        console.error(error);
       } finally {
-        setLoading(false);
+        if (!cancel) setLoading(false);
       }
     }
 
-    fetchResults(id, currentPage, 9);
+    fetchResults();
+
+    return () => {
+      cancel = true; // cleanup evita duplicados en cambios rápidos de id/page
+    };
   }, [id, currentPage]);
 
   return {

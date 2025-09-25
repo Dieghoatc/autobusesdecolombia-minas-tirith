@@ -8,20 +8,39 @@ interface UseSearchProps {
   query: string;
 }
 
-export function useSearch({ query  }: UseSearchProps) {
+export function useSearch({ query }: UseSearchProps) {
   const [results, setResults] = useState<Model[]>([]);
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [hasNext, setHasNext] = useState(true);
-  
+
   useEffect(() => {
-    async function fetchResults(query: string, page: number, limit: number) {
-      const result = await searchQuery(query, page, limit);
-      setResults(prev => [...prev, ...result.data]);
-      setCurrentPage(result.info.currentPage);
-      setHasNext(result.info.hasNext)
+    setResults([]);
+    setCurrentPage(1);
+    setHasNext(true);
+  }, [query]);
+
+  useEffect(() => {
+    async function fetchResults() {
+      if (!query) return;
+
+      const params = new URLSearchParams({
+        q: query,
+        page: currentPage.toString(),
+        limit: "9",
+      });
+
+      const result = await searchQuery(params);
+
+      if (currentPage === 1) {
+        setResults(result.data);
+      } else {
+        setResults((prev) => [...prev, ...result.data]);
+      }
+
+      setHasNext(result.info.hasNext);
     }
 
-    fetchResults(query, currentPage, 9);
+    fetchResults();
   }, [query, currentPage]);
 
   return {

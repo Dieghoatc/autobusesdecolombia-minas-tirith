@@ -13,67 +13,74 @@ import { ABCLoader } from "@/app/components/abc-loader";
 import { Loader } from "@/app/components/loader";
 
 import styles from "./Modelo.module.css";
+import { formatURL } from "@/lib/helpers/formatURL";
 
 export default function Modelo() {
   const params = useParams();
-  const id = params.id || "1";
+  const id = Number(Array.isArray(params.id) ? params.id[0] : params.id) || 1;
 
   const { results, loading, setCurrentPage, hasNext } = useVehicleModel({
-    id: Number(id),
+    id,
   });
 
   const [ref, entry] = useIntersectionObserver({
-      threshold: 0,
-      root: null,
-      rootMargin: "0px",
-    });
+    threshold: 0,
+    root: null,
+    rootMargin: "0px",
+  });
 
   const isVisible = !!entry?.isIntersecting;
-  
-    useEffect(() => {
-      if (isVisible) {
-        setCurrentPage((prev) => prev + 1);
-      }
-    }, [isVisible, setCurrentPage]);
+
+  useEffect(() => {
+    if (isVisible && hasNext) {
+      setCurrentPage((prev) => prev + 1);
+    }
+  }, [isVisible, hasNext, setCurrentPage]);
 
   if (loading) {
-    return <ABCLoader />
+    return <ABCLoader />;
   }
 
-  const modelName = results.model.model_name;
-  
-  function generateUrl(value: string){
-    return value.replace(/\s/g, "-").toLowerCase();
-  }
+  console.log(">>>>>>>",results);
+
+  const modelName = results?.model?.model_name ?? "Modelo desconocido";
 
   return (
     <section className={styles.container}>
-      <div className="">
+      <div>
         <NeuropolTitle>{modelName}</NeuropolTitle>
         <div className={styles.vehicles}>
-          {results.model.vehicles.map((vehicle) => (
+          {results?.model?.vehicles?.map((vehicle) => (
             <div key={vehicle.vehicle_id} className={styles.card}>
-              {vehicle.vehiclePhotos.map((photo) => (
+              {vehicle.vehiclePhotos?.map((photo) => (
                 <div key={photo.vehicle_photo_id} className={styles.card_item}>
-                  <Link href={`/vehiculo/${vehicle.vehicle_id}/${generateUrl(modelName)}${vehicle.companySerial?.company_serial_code ? `-${generateUrl(vehicle.companySerial?.company_serial_code)}` : ""}`}>
+                  <Link
+                    href={`/vehiculo/${vehicle.vehicle_id}/${formatURL(
+                      modelName
+                    )}${
+                      vehicle.companySerial?.company_serial_code
+                        ? `-${formatURL(
+                            vehicle.companySerial.company_serial_code
+                          )}`
+                        : ""
+                    }`}
+                  >
                     <div className={styles.image}>
                       <Image
                         src={photo.image_url}
                         alt={
-                          modelName +
-                            " " +
-                            vehicle.company.company_name +
-                            " " +
-                            vehicle.companySerial?.company_serial_code ||
-                          photo.vehicle_photo_id.toString()
+                          `${modelName} ${
+                            vehicle.company?.company_name ?? ""
+                          } ${
+                            vehicle.companySerial?.company_serial_code ?? ""
+                          }`.trim() || `Foto ${photo.vehicle_photo_id}`
                         }
                         fill
                         className={styles.img}
                         sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                        priority={false}
                       />
+                      <div className={styles.overlay}></div>
                     </div>
-                    <div className={styles.overlay}></div>
                   </Link>
                 </div>
               ))}
@@ -81,7 +88,11 @@ export default function Modelo() {
           ))}
         </div>
       </div>
-      {hasNext && <div ref={ref} className={styles.loader}><Loader /></div>}
+      {hasNext && (
+        <div ref={ref} className={styles.loader}>
+          <Loader />
+        </div>
+      )}
     </section>
   );
 }
