@@ -41,8 +41,8 @@ export default function RootLayout({
     <html lang="es">
       <body>
         <AdSence pId="ca-pub-1070802324735715" />
-        <AdHorizontal />
         <Header />
+        <AdHorizontal />
         <main>{children}</main>
         <Footer />
         <Toaster />
