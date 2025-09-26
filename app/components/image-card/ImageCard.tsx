@@ -30,8 +30,8 @@ export function ImageCard({
     <div className={styles.container}>
       <div className={styles.image}>
         <Image src={image_url} alt={title} width={100} height={100} />
+        <div className={styles.overlay}></div>
       </div>
-      <div className={styles.overlay}></div>
       <div className={styles.content}>
         <h3>{title}</h3>
         <div className={styles.details}>
