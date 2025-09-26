@@ -41,8 +41,6 @@ export default function Modelo() {
     return <ABCLoader />;
   }
 
-  console.log(">>>>>>>",results);
-
   const modelName = results?.model?.model_name ?? "Modelo desconocido";
 
   return (

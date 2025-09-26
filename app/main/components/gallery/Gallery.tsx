@@ -61,7 +61,7 @@ export function Gallery() {
                   image_url={photo.image_url}
                   title={vehicle.model.model_name}
                   company={vehicle.company?.company_name ?? ""}
-                  author={photo.photographer.name}
+                  author={photo.photographer}
                 />
               </Link>
             </div>
