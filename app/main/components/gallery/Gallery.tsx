@@ -9,6 +9,7 @@ import { formatURL } from "@/lib/helpers/formatURL";
 
 import styles from "./Gallery.module.css";
 import Link from "next/link";
+import { GallerySkeleton } from "./components/gallery-skeleton";
 
 export function Gallery() {
   const size = useWindowSize();
@@ -35,7 +36,7 @@ export function Gallery() {
     }
   }, [isVisible, hasNext, setCurrentPage]);
 
-  if (loading && vehicles.length === 0) return <p>Loading...</p>;
+  if (loading && vehicles.length === 0) return <GallerySkeleton />
 
   return (
     <section className={styles.container}>
@@ -69,7 +70,7 @@ export function Gallery() {
         )}
       </article>
       {hasNext && (
-        <div ref={ref}>
+        <div ref={ref} className={styles.loader}>
           <Loader />
         </div>
       )}
