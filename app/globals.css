@@ -34,6 +34,7 @@ body {
 @layer base {
   :root {
     --background: #000;
+    --background-skeleton: #2d2d2d;
     --background-card: rgba(255, 255, 255, 0.05);
     --color-white: #fff;
     --color-black: #000;
