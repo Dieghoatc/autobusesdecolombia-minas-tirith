@@ -15,7 +15,7 @@ export function Gallery() {
   const size = useWindowSize();
   const width = size?.width ?? 0;
 
-  const [limit] = useState(() => (width < 1912 ? 6 : 8));
+  const [limit] = useState(() => (width < 1440 ? 6 : 8));
 
   const { vehicles, loading, setCurrentPage, hasNext } = useGetVehicle({
     page: 1,

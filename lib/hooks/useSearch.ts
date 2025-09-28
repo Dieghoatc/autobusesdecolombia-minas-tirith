@@ -12,6 +12,7 @@ export function useSearch({ query }: UseSearchProps) {
   const [results, setResults] = useState<Model[]>([]);
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [hasNext, setHasNext] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     setResults([]);
@@ -21,23 +22,27 @@ export function useSearch({ query }: UseSearchProps) {
 
   useEffect(() => {
     async function fetchResults() {
-      if (!query) return;
+      try {
+        if (!query) return;
 
-      const params = new URLSearchParams({
-        q: query,
-        page: currentPage.toString(),
-        limit: "9",
-      });
+        const params = new URLSearchParams({
+          q: query,
+          page: currentPage.toString(),
+          limit: "9",
+        });
 
-      const result = await searchQuery(params);
+        const result = await searchQuery(params);
 
-      if (currentPage === 1) {
-        setResults(result.data);
-      } else {
-        setResults((prev) => [...prev, ...result.data]);
+        if (currentPage === 1) {
+          setResults(result.data);
+        } else {
+          setResults((prev) => [...prev, ...result.data]);
+        }
+
+        setHasNext(result.info.hasNext);
+      } catch {
+        setError(`Error al buscar ${query}`);
       }
-
-      setHasNext(result.info.hasNext);
     }
 
     fetchResults();
@@ -45,6 +50,7 @@ export function useSearch({ query }: UseSearchProps) {
 
   return {
     results,
+    error,
     setCurrentPage,
     hasNext,
   };
