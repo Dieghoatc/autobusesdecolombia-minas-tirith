@@ -15,7 +15,7 @@ function SearchContent() {
 
   const deferredQuery = useDeferredValue(rawQuery || "");
 
-  const { results, setCurrentPage, hasNext } = useSearch({
+  const { results, error, setCurrentPage, hasNext } = useSearch({
     query: deferredQuery,
   });
 
@@ -25,6 +25,17 @@ function SearchContent() {
         <div className={styles.search_page_head}>
           <h1>Búsqueda</h1>
           <p>Introduce un término de búsqueda para comenzar</p>
+        </div>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className={styles.search_page_container}>
+        <div className={styles.search_page_head}>
+          <h1>Búsqueda</h1>
+          <p>No se encontraron resultados.</p>
         </div>
       </div>
     );
