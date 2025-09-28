@@ -36,7 +36,7 @@ export function Gallery() {
     }
   }, [isVisible, hasNext, setCurrentPage]);
 
-  if (loading) return <GallerySkeleton />
+  if (loading && vehicles.length === 0) return <GallerySkeleton />
 
   return (
     <section className={styles.container}>
@@ -70,7 +70,7 @@ export function Gallery() {
         )}
       </article>
       {hasNext && (
-        <div ref={ref}>
+        <div ref={ref} className={styles.loader}>
           <Loader />
         </div>
       )}
