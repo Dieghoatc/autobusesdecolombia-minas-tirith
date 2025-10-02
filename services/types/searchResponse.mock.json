@@ -1,82 +1,105 @@
 {
-	"info": {
-		"count": 5,
-		"currentPage": 1,
-		"pages": 1,
-		"limit": 9,
-		"next": null,
-		"prev": null,
-		"hasNext": false,
-		"hasPrev": false,
-		"startItem": 1,
-		"endItem": 5
-	},
-	"data": [
-		{
-			"model_id": 28,
-			"brand_id": 5,
-			"chassis_id": 12,
-			"bodywork_id": 15,
-			"model_name": "Busscar Busstar 360 Chevrolet Izusu LV 150",
-			"description": null,
-			"year_from": null,
-			"chassis": {
-				"chassis_id": 12,
-				"brand_id": 3,
-				"chassis_name": "Isuzu LV 150",
-				"description": null
-			},
-			"bodywork": {
-				"bodywork_id": 15,
-				"brand_id": 5,
-				"bodywork_name": "Busstar 360",
-				"description": null
-			},
-			"vehicles": [
-				{
-					"vehicle_id": 38,
-					"vehicle_type_id": 1,
-					"model_id": 28,
-					"company_id": 10,
-					"transport_category_id": 1,
-					"company_serial_id": 38,
-					"company_service_id": 19,
-					"plate": "wfv 324",
-					"year_manufactured": null,
-					"notes": null,
-					"created_at": "2025-07-24T09:06:17.842Z",
-					"vehiclePhotos": [
-						{
-							"vehicle_photo_id": 38,
-							"vehicle_id": 38,
-							"image_url": "https://res.cloudinary.com/dkj6yzrrk/image/upload/v1755647998/autobusesdecolombia/tpi47ukmqocyaf6keheq.webp",
-							"photographer_id": 11,
-							"country_id": 1,
-							"location": "n/a",
-							"department": null,
-							"description": null,
-							"notes": null,
-							"tags": null,
-							"status": null,
-							"likes": null,
-							"views": null,
-							"favorites": null,
-							"shares": null,
-							"comments": null,
-							"downloads": null,
-							"created_at": "2025-07-24T09:08:07.251Z",
-							"photographer": {
-								"photographer_id": 11,
-								"name": "Jenny Marcela Narváez Nossa",
-								"email": null,
-								"phone": null,
-								"active": true,
-								"created_at": "2025-07-24T08:58:51.918Z"
-							}
-						}
-					]
-				}
-			]
-		}
+  "info": {
+    "count": 23,
+    "currentPage": 1,
+    "pages": 3,
+    "limit": 9,
+    "next": "/search?q=busscar&page=2&limit=9",
+    "prev": null,
+    "hasNext": true,
+    "hasPrev": false,
+    "startItem": 1,
+    "endItem": 9
+  },
+  "data": [
+    {
+      "model_id": 31,
+      "brand_id": 5,
+      "chassis_id": 18,
+      "bodywork_id": 17,
+      "model_name": "Busscar Urbanuss Pluss S5 BRT Yutong ZK6125BEVG27 ",
+      "description": null,
+      "year_from": null,
+      "chassis": {
+        "chassis_id": 18,
+        "brand_id": 10,
+        "chassis_name": "ZK6125BEVG27 ",
+        "description": null
+      },
+      "bodywork": {
+        "bodywork_id": 17,
+        "brand_id": 5,
+        "bodywork_name": "Urbanus Pluss S5 BRT",
+        "description": null
+      },
+      "vehicles": [
+        {
+          "vehicle_id": 44,
+          "vehicle_type_id": 17,
+          "model_id": 31,
+          "company_id": 30,
+          "transport_category_id": 6,
+          "company_serial_id": 32,
+          "company_service_id": 20,
+          "plate": "01",
+          "year_manufactured": null,
+          "notes": null,
+          "created_at": "2025-07-24T09:06:17.842Z",
+          "company": {
+            "company_id": 30,
+            "country_id": 1,
+            "company_name": "Dolphin Express S.A.",
+            "servicio": null,
+            "routes": null,
+            "description": "Viajes y Turismo",
+            "company_logo": null,
+            "city": null,
+            "company_url": null,
+            "active": true,
+            "created_at": "2025-07-24T08:56:37.250Z"
+          },
+          "companySerial": {
+            "company_serial_id": 32,
+            "company_id": 30,
+            "company_serial_code": "01"
+          },
+          "companyService": {
+            "company_service_id": 20,
+            "company_id": null,
+            "company_service_name": "Aeropuerto"
+          },
+          "vehiclePhotos": [
+            {
+              "vehicle_photo_id": 44,
+              "vehicle_id": 44,
+              "image_url": "https://res.cloudinary.com/dkj6yzrrk/image/upload/v1742872380/autobusesdecolombia/vbljvhe8ypri4gmk1ftc.webp",
+              "photographer_id": 14,
+              "country_id": 1,
+              "location": "bogotá dc",
+              "department": null,
+              "description": null,
+              "notes": null,
+              "tags": null,
+              "status": null,
+              "likes": null,
+              "views": null,
+              "favorites": null,
+              "shares": null,
+              "comments": null,
+              "downloads": null,
+              "created_at": "2025-07-24T09:08:07.251Z",
+              "photographer": {
+                "photographer_id": 14,
+                "name": "Dolphin Express",
+                "email": null,
+                "phone": null,
+                "active": true,
+                "created_at": "2025-07-24T08:58:51.918Z"
+              }
+            }
+          ]
+        }
+      ]
+    }
   ]
 }

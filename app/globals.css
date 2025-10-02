@@ -27,7 +27,6 @@ body {
   background-position: center;
   background-attachment: fixed;
   color: var(--color-white);
-  background-color: var(--background);
   background-blend-mode: multiply;
 }
 

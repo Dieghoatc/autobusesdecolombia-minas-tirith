@@ -9,8 +9,8 @@ export interface Model {
     chassis_id:  number;
     bodywork_id: number;
     model_name:  string;
-    description: null;
-    year_from:   null;
+    description: string;
+    year_from:   string;
     chassis:     Chassis;
     bodywork:    Bodywork;
     vehicles:    Vehicle[];
@@ -20,14 +20,14 @@ export interface Bodywork {
     bodywork_id:   number;
     brand_id:      number;
     bodywork_name: string;
-    description:   null;
+    description:   string;
 }
 
 export interface Chassis {
     chassis_id:   number;
     brand_id:     number;
     chassis_name: string;
-    description:  null;
+    description:  string;
 }
 
 export interface Vehicle {
@@ -39,10 +39,39 @@ export interface Vehicle {
     company_serial_id:     number;
     company_service_id:    number;
     plate:                 string;
-    year_manufactured:     null;
-    notes:                 null;
+    year_manufactured:     string;
+    notes:                 string;
     created_at:            Date;
+    company:               Company;
+    companySerial:         CompanySerial;
+    companyService:        CompanyService;
     vehiclePhotos:         VehiclePhoto[];
+}
+
+export interface Company {
+    company_id:   number;
+    country_id:   number;
+    company_name: string;
+    servicio:     string;
+    routes:       string;
+    description:  string;
+    company_logo: string;
+    city:         string;
+    company_url:  string;
+    active:       boolean;
+    created_at:   Date;
+}
+
+export interface CompanySerial {
+    company_serial_id:   number;
+    company_id:          number;
+    company_serial_code: string;
+}
+
+export interface CompanyService {
+    company_service_id:   number;
+    company_id:           string;
+    company_service_name: string;
 }
 
 export interface VehiclePhoto {
@@ -52,17 +81,17 @@ export interface VehiclePhoto {
     photographer_id:  number;
     country_id:       number;
     location:         string;
-    department:       null;
-    description:      null;
-    notes:            null;
-    tags:             null;
-    status:           null;
-    likes:            null;
-    views:            null;
-    favorites:        null;
-    shares:           null;
-    comments:         null;
-    downloads:        null;
+    department:       string;
+    description:      string;
+    notes:            string;
+    tags:             string;
+    status:           string;
+    likes:            string;
+    views:            string;
+    favorites:        string;
+    shares:           string;
+    comments:         string;
+    downloads:        string;
     created_at:       Date;
     photographer:     Photographer;
 }
@@ -70,8 +99,8 @@ export interface VehiclePhoto {
 export interface Photographer {
     photographer_id: number;
     name:            string;
-    email:           null;
-    phone:           null;
+    email:           string;
+    phone:           string;
     active:          boolean;
     created_at:      Date;
 }
@@ -81,8 +110,8 @@ export interface Info {
     currentPage: number;
     pages:       number;
     limit:       number;
-    next:        null;
-    prev:        null;
+    next:        string;
+    prev:        string;
     hasNext:     boolean;
     hasPrev:     boolean;
     startItem:   number;
