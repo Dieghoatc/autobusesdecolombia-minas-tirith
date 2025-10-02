@@ -26,6 +26,9 @@ export function SearchResults({
   setCurrentPage,
   hasNext,
 }: SearchResultProps) {
+
+ 
+
   const [ref, entry] = useIntersectionObserver({
     threshold: 0,
     root: null,
@@ -52,7 +55,7 @@ export function SearchResults({
       </section>
     );
   }
-
+  console.log(">>>>",results);
   return (
     <section className={styles.container}>
       <NeuropolTitle>Modelos:</NeuropolTitle>

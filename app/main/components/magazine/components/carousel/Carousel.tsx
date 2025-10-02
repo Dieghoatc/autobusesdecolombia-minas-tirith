@@ -75,7 +75,6 @@ export function Carousel({ posts }: CarouselProps) {
     const currentPositionX = getPositionX(event);
     const diffX = currentPositionX - startPos.x;
 
-    // Prevenir scroll vertical en móvil cuando se hace swipe horizontal
     if (Math.abs(diffX) > 10) {
       event.preventDefault();
     }
@@ -101,12 +100,10 @@ export function Carousel({ posts }: CarouselProps) {
       prevSlide();
     }
 
-    // Reset translate
     setCurrentTranslate(-currentSlide * 100);
     setPrevTranslate(-currentSlide * 100);
   };
 
-  // Actualizar translate cuando cambia currentSlide
   useEffect(() => {
     if (!isDragging) {
       setCurrentTranslate(-currentSlide * 100);
@@ -155,7 +152,6 @@ export function Carousel({ posts }: CarouselProps) {
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
 
-              {/* Content Overlay */}
               <div className="absolute bottom-0 left-0 right-0 p-8 text-white">
                 <div className="max-w-4xl">
                   <div className="flex items-center gap-4 mb-4">
@@ -187,7 +183,6 @@ export function Carousel({ posts }: CarouselProps) {
           </div>
         ))}
 
-        {/* Navigation Arrows */}
         <button
           onClick={prevSlide}
           className="hidden md:block absolute left-4 top-1/2 transform -translate-y-1/2 bg-white/20 hover:bg-white/30 hover:backdrop-blur-sm rounded-full p-2 transition-all duration-300 text-white hover:scale-110"
