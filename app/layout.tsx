@@ -1,7 +1,7 @@
 import type { Metadata, Viewport } from "next";
 
 import { Analytics } from "@vercel/analytics/react";
-import { AdHorizontal, AdSence } from "./components/adsense";
+import { AdHorizontal } from "./components/adsense";
 
 import { Toaster } from "@/app/components/ui/toaster";
 import { Header } from "@/app/components/header/Header";
@@ -38,8 +38,14 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="es">
+      <head>
+        <script
+          async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1070802324735715"
+          crossOrigin="anonymous"
+        ></script>
+      </head>
       <body>
-        <AdSence pId="ca-pub-1070802324735715" />
         <Header />
         <AdHorizontal />
         <main>{children}</main>
