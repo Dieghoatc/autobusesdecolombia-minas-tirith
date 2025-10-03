@@ -17,7 +17,7 @@ export default function Main() {
       </div>
       <div className={styles.content}>
         <Magazine />
-        <Gallery />
+        <Gallery /> 
       </div>
       <div className={styles.banner}>
           <Image src={Banner2.src} alt="bienal bogota 2025" width={1920} height={1080} />

@@ -16,18 +16,13 @@
   src: url('/assets/fonts/neuropol.woff');
   font-weight: normal;
   font-style: normal;
-  font-display: swap; /* Muestra texto con fuente fallback mientras carga */
+  font-display: swap;
 }
 
 body {
   font-family: Segoe UI, Segoe UI Midlevel, sans-serif;  
   background-color: var(--background);  
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
-  background-attachment: fixed;
   color: var(--color-white);
-  background-blend-mode: multiply;
 }
 
 @layer base {
