@@ -9,7 +9,7 @@ import { Skeleton } from "@/app/components/ui/skeleton";
 export function Magazine() {
   const { posts, loading } = useGetPosts();
 
-  const skeletonItems = useMemo(() => Array.from({ length: 7 }), []);
+  const skeletonItems = useMemo(() => Array.from({ length: 11 }), []);
 
   if (loading) {
     return (
