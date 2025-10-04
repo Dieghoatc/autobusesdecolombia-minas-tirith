@@ -1,11 +1,8 @@
 import type { Metadata, Viewport } from "next";
 
+import { Header } from "./components/header";
 import { Analytics } from "@vercel/analytics/react";
-import { AdHorizontal } from "./components/adsense";
 
-import { Toaster } from "@/app/components/ui/toaster";
-import { Header } from "@/app/components/header/Header";
-import { Footer } from "@/app/components/footer/Footer";
 import "./globals.css";
 
 export const viewport: Viewport = {
@@ -47,10 +44,7 @@ export default function RootLayout({
       </head>
       <body>
         <Header />
-        <AdHorizontal />
         <main>{children}</main>
-        <Footer />
-        <Toaster />
         <Analytics />
       </body>
     </html>

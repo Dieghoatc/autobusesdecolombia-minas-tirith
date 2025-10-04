@@ -1,3 +1,4 @@
+
 import Main from "./main/Main";
 
 import Clarity from "@microsoft/clarity";
@@ -11,7 +12,7 @@ export default function Home() {
   }
   Clarity.init(CLARITY_ID);
   return (
-    <div className="main">
+    <div>
       <Main />
     </div>
   );

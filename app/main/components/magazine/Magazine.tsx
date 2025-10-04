@@ -3,12 +3,8 @@ import Link from "next/link";
 
 import { useGetPosts } from "@/lib/hooks/useGetPosts";
 
-import { Carousel } from "./components/carousel";
-import { BentoItem } from "./components/bento_item";
-
 import styles from "./Magazine.module.css";
-import FeriaFlores from "@/assets/destinations/feria_flores.webp";
-import { MagazineSkeleton, MagazineSkeletonItem } from "./magazine-skeleton";
+import { Skeleton } from "@/app/components/ui/skeleton";
 
 export function Magazine() {
   const { posts, loading } = useGetPosts();
@@ -17,50 +13,55 @@ export function Magazine() {
 
   if (loading) {
     return (
-      <div className={styles.container}>
-        <section className={styles.bento}>
-          <article className={styles.bento_principal}>
-            <MagazineSkeleton />
+      <section className={styles.bento}>
+        <article className={styles.bento_primary}>
+          <Skeleton className="w-full h-full bg-slate-900" />
+        </article>
+        {skeletonItems.map((_, index) => (
+          <article key={index} className={styles.bento_item}>
+            <Skeleton className="w-full h-full bg-slate-900" />
           </article>
-          {skeletonItems.map((_, index) => (
-            <article key={index}>
-              <MagazineSkeletonItem />
-            </article>
-          ))}
-        </section>
-      </div>
+        ))}
+      </section>
     );
   }
 
   return (
-    <div className={styles.container}>
-      <section className={styles.bento}>
-        <article className={styles.bento_principal}>
-          <Carousel posts={posts} />
-        </article>
-        <article>
-          <Link href={`/destinos/medellin`}>
-            <BentoItem
-              image_url={FeriaFlores.src}
-              title="Viaja a Medellín: Descubre la ciudad de la eterna primavera"
-              category="Destinos"
-              icon="map"
+    <section className={styles.bento}>
+      <article className={styles.bento_primary}>
+        <Link href={`/noticias/${posts[0].post_id}_${posts[0].slug}`}>
+          <picture className={styles.image_primary}>
+            <img
+              src={posts[0].image_url}
+              alt={posts[0].title}
             />
+          </picture>
+          <div className={styles.header}>
+            <h2>
+              {posts[0].title}
+            </h2>
+          </div>
+        </Link>
+      </article>
+      {posts.slice(1, 13).map((post) => (
+        <article key={post.post_id} className={styles.bento_item} >
+          <Link href={`/noticias/${post.post_id}_${post.slug}`}>
+            <picture className={styles.image_item}>
+              <img
+                src={post.image_url}
+                alt={post.title}
+
+              />
+              <div className={styles.overlay}></div>
+            </picture>
+            <div className={styles.header_item}>
+              <h2>
+                {post.title}
+              </h2>
+            </div>
           </Link>
         </article>
-        {posts.slice(3, posts.length).map((news) => (
-          <article key={news.post_id}>
-            <Link href={`/noticias/${news.post_id}_${news.slug}`}>
-              <BentoItem
-                image_url={news.image_url}
-                title={news.title}
-                category={news.category}
-                icon="newspaper"
-              />
-            </Link>
-          </article>
-        ))}
-      </section>
-    </div>
+      ))}
+    </section>
   );
 }

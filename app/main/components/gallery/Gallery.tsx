@@ -7,7 +7,6 @@ import { useGetVehicle } from "@/lib/hooks";
 import { useWindowSize, useIntersectionObserver } from "@uidotdev/usehooks";
 import { formatURL } from "@/lib/helpers/formatURL";
 
-import styles from "./Gallery.module.css";
 import Link from "next/link";
 import { GallerySkeleton } from "./components/gallery-skeleton";
 
@@ -39,11 +38,12 @@ export function Gallery() {
   if (loading && vehicles.length === 0) return <GallerySkeleton />
 
   return (
-    <section className={styles.container}>
-      <article className={styles.gallery}>
+    <section className="w-full mt-4">
+      <h3 className="text-2xl font-bold m-2">Galeria</h3>
+      <article className="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
         {vehicles.map((vehicle) =>
           vehicle.vehiclePhotos.map((photo) => (
-            <div key={photo.vehicle_photo_id} className={styles.vehicle_image}>
+            <div key={photo.vehicle_photo_id}>
               <Link
                 href={`/vehiculo/${vehicle.vehicle_id}/${formatURL(
                   vehicle.model.model_name
@@ -70,7 +70,7 @@ export function Gallery() {
         )}
       </article>
       {hasNext && (
-        <div ref={ref} className={styles.loader}>
+        <div ref={ref} className="flex justify-center align-center">
           <Loader />
         </div>
       )}
