@@ -6,7 +6,6 @@ import { Header } from "./components/header";
 import { Analytics } from "@vercel/analytics/react";
 
 import "./globals.css";
-import { Footer } from "./components/footer/Footer";
 
 export const viewport: Viewport = {
   width: "device-width",
@@ -50,7 +49,6 @@ export default function RootLayout({
       <body>
         <Header />
         <main>{children}</main>
-        <Footer /> 
         <Analytics />
       </body>
     </html>
