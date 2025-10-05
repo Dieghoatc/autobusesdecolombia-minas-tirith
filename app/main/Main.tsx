@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { Gallery } from "./components/gallery/Gallery";
 import { Magazine } from "./components/magazine";
+import { AdHorizontal } from "@/app/components/adsense";
 
 import Banner1 from "@/assets/destinations/BOG25.svg"
 
@@ -17,6 +18,7 @@ export default function Main() {
       </div>
       <div className={styles.content}>
         <Magazine />
+        <AdHorizontal />
         <Gallery /> 
       </div>
       <div className={styles.banner}>
