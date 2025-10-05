@@ -1,9 +1,12 @@
 import type { Metadata, Viewport } from "next";
 
+import Script from "next/script";
+
 import { Header } from "./components/header";
 import { Analytics } from "@vercel/analytics/react";
 
 import "./globals.css";
+import { Footer } from "./components/footer/Footer";
 
 export const viewport: Viewport = {
   width: "device-width",
@@ -35,16 +38,19 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="es">
-      <head>
-        <script
+       <head>
+        <Script
+          id="adsense-script"
           async
-          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1070802324735715"
+          strategy="afterInteractive"
           crossOrigin="anonymous"
-        ></script>
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1070802324735715"
+        />
       </head>
       <body>
         <Header />
         <main>{children}</main>
+        <Footer /> 
         <Analytics />
       </body>
     </html>
