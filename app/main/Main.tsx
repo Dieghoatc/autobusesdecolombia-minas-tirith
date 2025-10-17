@@ -1,28 +1,23 @@
 "use client";
 
-import Image from "next/image";
 import { Gallery } from "./components/gallery/Gallery";
 import { Magazine } from "./components/magazine";
-import { AdHorizontal } from "@/app/components/adsense";
 
-import Banner1 from "@/assets/destinations/BOG25.svg"
-
-import Banner2 from "@/assets/destinations/BOG25-2.svg"
-import styles from "./Main.module.css";
+import { useShowSidebarMenu } from "@/lib/store/useShowSidebarMenu";
 
 export default function Main() {
+
+  const { open } = useShowSidebarMenu();
+
   return (
-    <div className={styles.container}>
-      <div className={styles.banner}>
-          <Image src={Banner1.src} alt="bienal bogota 2025" width={1920} height={1080} />
-      </div>
-      <div className={styles.content}>
+    <div className="grid grid-cols-5">
+
+      {open && <div className="col-span-1">
+
+      </div>}
+      <div className={open ? "col-span-4" : "col-span-5"}>
         <Magazine />
-        <AdHorizontal />
-        <Gallery /> 
-      </div>
-      <div className={styles.banner}>
-          <Image src={Banner2.src} alt="bienal bogota 2025" width={1920} height={1080} />
+        <Gallery />
       </div>
     </div>
   );

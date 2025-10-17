@@ -1,5 +1,7 @@
 "use client";
 
+import { useShowSidebarMenu } from "@/lib/store/useShowSidebarMenu";
+
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
@@ -7,12 +9,15 @@ import Link from "next/link";
 import { motion } from "motion/react";
 import { SearchIcon, HomeIcon } from "lucide-react";
 
-import { ListCheckIcon } from "lucide-react";
+import { Menu } from "lucide-react";
 import ABCLogo from "@/assets/abc_logo.svg";
 import styles from "./HeaderDesktop.module.css";
 
+
 export function HeaderDesktop() {
   const router = useRouter();
+
+  const { open, setOpen } = useShowSidebarMenu();
 
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -22,8 +27,8 @@ export function HeaderDesktop() {
   return (
     <nav className={styles.container}>
       <div className={styles.menu_left}>
-        <div>
-          <ListCheckIcon />
+        <div className="cursor-pointer rounded-full hover:bg-gray-800 p-2">
+          <Menu onClick={() => setOpen(!open)} />
         </div>
         <div className={styles.logo}>
           <Link href="/" title="Home">
