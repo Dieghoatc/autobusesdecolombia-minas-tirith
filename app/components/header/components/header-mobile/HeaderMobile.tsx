@@ -7,22 +7,21 @@ import Link from "next/link";
 import { HomeIcon, Menu, X, Search as SearchIcon } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
 
-import styles from "./HeaderMobile.module.css";
 import logo from "@/assets/abc_logo_single.svg";
-import { Search } from "./components/search";
+import { Search } from "../search";
 
 export function HeaderMobile() {
   const [openMenu, setOpenMenu] = useState(false);
   const [openSearch, setOpenSearch] = useState(false);
 
   return (
-    <nav className={styles.container}>
+    <nav className="flex items-center justify-between">
       <AnimatePresence mode="wait">
         {openSearch ? (
-          <Search searchClose={setOpenSearch} />
+          <Search searchClose={setOpenSearch} view="mobile" />
         ) : (
           <>
-            <div className={styles.menu_left}>
+            <div className="flex items-center">
               {openMenu ? (
                 <motion.div
                   key="close"
@@ -32,7 +31,7 @@ export function HeaderMobile() {
                   transition={{ duration: 0.3 }}
                   onClick={() => setOpenMenu(false)}
                 >
-                  <X className={styles.xmenu} />
+                  <X />
                 </motion.div>
               ) : (
                 <motion.div
@@ -43,10 +42,10 @@ export function HeaderMobile() {
                   transition={{ duration: 0.3 }}
                   onClick={() => setOpenMenu(true)}
                 >
-                  <Menu className={styles.listMenu} />
+                  <Menu />
                 </motion.div>
               )}
-              <div className={styles.logo}>
+              <div className="flex items-center w-1/2">
                 <Link href="/" title="Home">
                   <Image
                     src={logo}
@@ -56,7 +55,7 @@ export function HeaderMobile() {
                 </Link>
               </div>
             </div>
-            <div className={styles.menu_right}>
+            <div className="flex items-center gap-4">
               <motion.div
                 key="search"
                 initial={{ opacity: 0 }}
@@ -67,7 +66,7 @@ export function HeaderMobile() {
               >
                 <SearchIcon />
               </motion.div>
-              <div className={styles.homepage}>
+              <div className="flex items-center">
                 <Link href="/" title="Home">
                   <HomeIcon />
                 </Link>

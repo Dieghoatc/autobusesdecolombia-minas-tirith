@@ -11,10 +11,7 @@ export default function Main() {
 
   return (
     <div className="grid grid-cols-5">
-
-      {open && <div className="col-span-1">
-
-      </div>}
+      {open && <div className="col-span-1"></div>}
       <div className={open ? "col-span-4" : "col-span-5"}>
         <Magazine />
         <Gallery />
