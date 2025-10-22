@@ -2,13 +2,15 @@ import { useRouter } from "next/navigation";
 
 import { motion } from "motion/react";
 import { ArrowLeft, Search as SearchIcon } from "lucide-react";
+
 import styles from "./Search.module.css";
 
 interface SearchProps {
   searchClose: (value: boolean) => void;
+  view: "mobile" | "desktop";
 }
 
-export function Search({ searchClose }: SearchProps) {
+export function Search({ searchClose, view   }: SearchProps) {
   const router = useRouter();
 
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
@@ -20,7 +22,9 @@ export function Search({ searchClose }: SearchProps) {
 
   return (
     <div className={styles.container}>
-      <ArrowLeft onClick={() => searchClose(false)} />
+      {view === "mobile" && (
+        <ArrowLeft onClick={() => searchClose(false)} />
+      )}
       <motion.form
         key="close"
         initial={{ opacity: 0 }}

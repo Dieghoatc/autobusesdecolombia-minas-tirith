@@ -1,0 +1,13 @@
+import { create } from "zustand";
+
+interface ShowSidebarMenuStore {
+  open: boolean;
+  setOpen: (open: boolean) => void;
+}
+
+export const useShowSidebarMenu = create<ShowSidebarMenuStore>((set) => ({
+  open: true,
+  setOpen: (open: boolean) => set({ open }),
+}));
+
+export default useShowSidebarMenu
