@@ -10,13 +10,13 @@ export default function Main() {
   const { open } = useShowSidebarMenu();
 
   return (
-    <div className="grid grid-cols-5 overflow-hidden">
+    <div className="grid grid-cols-12 overflow-hidden">
       {open && (
-        <div className="sticky top-0 col-span-1 h-[100vh] overflow-y-auto">
+        <div className="sticky top-0 col-span-2 h-[100vh] overflow-y-auto">
           <Sidebar />
         </div>
       )}
-      <div className={`${open ? "col-span-4" : "col-span-5"} h-[100vh] overflow-y-auto`}>
+      <div className={`${open ? "col-span-10" : "col-span-12"} h-[100vh] overflow-y-auto`}>
         <Magazine />
         <Gallery />
       </div>

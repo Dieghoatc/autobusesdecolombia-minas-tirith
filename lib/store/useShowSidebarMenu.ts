@@ -6,7 +6,7 @@ interface ShowSidebarMenuStore {
 }
 
 export const useShowSidebarMenu = create<ShowSidebarMenuStore>((set) => ({
-  open: false,
+  open: true,
   setOpen: (open: boolean) => set({ open }),
 }));
 

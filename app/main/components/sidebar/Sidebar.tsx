@@ -1,3 +1,6 @@
+
+import Link from "next/link";
+
 export function Sidebar() {
     return (
         <aside className="flex flex-col p-3 pr-2 h-full">
@@ -6,6 +9,7 @@ export function Sidebar() {
                     <li className="text-gray-800">Inicio</li>
                     <li className="text-gray-800">Rutas</li>
                     <li className="text-gray-800">Terminales</li>
+                    <li className="hover:text-gray-100 text-gray-400"><Link href="/noticias">Noticias</Link></li>
                 </ul>
             </div>
             <div className="flex-1 border-t border-gray-400 p-3">
@@ -32,10 +36,10 @@ export function Sidebar() {
                         <li className="text-gray-800">Twitter</li>
                     </ul>
                     <ul className="border-t border-gray-400 flex flex-col items-center text-sm text-gray-400 font-bold pt-3 gap-1">
-                        <li className="text-gray-400">Contacto</li>
+                        <li className="hover:text-gray-100 text-gray-400" ><Link href="/contacto">Contacto</Link></li>
                         <li className="text-gray-400">Copyright</li>
-                        <li className="text-gray-400">Política de Privacidad</li>
-                        <li className="text-gray-400">Terminos y Condiciones</li>
+                        <li className="hover:text-gray-100 text-gray-400"><Link href="/politica-de-privacidad">Política de Privacidad</Link></li>
+                        <li className="hover:text-gray-100 text-gray-400"><Link href="/terminos-y-condiciones">Terminos y Condiciones</Link></li>
                     </ul>
                 </nav>
             </div>
