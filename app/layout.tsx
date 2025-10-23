@@ -23,7 +23,25 @@ export const metadata: Metadata = {
   publisher: "Autobuses de Colombia",
   icons: {
     icon: "/favicon.ico",
+    shortcut: "/favicon.ico",
+    apple: "/apple-touch-icon.png",
   },
+  openGraph: {
+    title: "Autobuses de Colombia - ¡Mucho más para ver!",
+    description:
+      "Descubre la mayor comunidad de aficionados a los Autobuses de Colombia. Portal de fotografia, noticias, historias y eventos sobre el apasionante mundo del transporte público. Únete a nuestra comunidad y comparte tu pasión por los autobuses y el transporte en Colombia.",
+    url: "https://autobusesdecolombia.com",
+    siteName: "Autobuses de Colombia",
+    images: [
+      {
+        url: "https://tusitio.com/og-image.jpg",
+        height: 630,
+        alt: "Texto alternativo descriptivo",
+      },
+    ],
+    locale: "es_CO",
+    type: "website",
+  },  
   other: {
     "google-adsense-account": "ca-pub-1070802324735715",
   },
