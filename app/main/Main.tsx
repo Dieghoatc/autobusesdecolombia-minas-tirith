@@ -6,6 +6,7 @@ import { Sidebar } from "./components/sidebar";
 
 import { useShowSidebarMenu } from "@/lib/store/useShowSidebarMenu";
 import { useIsMobile } from "@/lib/hooks/useIsMobile";
+import { AdHorizontal } from '../components/adsense/AdHorizontal';
 
 export default function Main() {
   const { open } = useShowSidebarMenu();
@@ -40,6 +41,7 @@ export default function Main() {
         `}
       >
         <Magazine />
+        <AdHorizontal />
         <Gallery />
       </main>
     </div>
