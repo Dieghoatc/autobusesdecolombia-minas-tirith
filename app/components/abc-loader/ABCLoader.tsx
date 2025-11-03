@@ -1,4 +1,4 @@
-import abc_logo from "@/assets/abc_logo_single.svg";
+import abclogo from "@/public/assets/logos/abc_logo_single.svg";
 import Image from "next/image";
 import styles from "./ABCLoader.module.css";
 
@@ -7,7 +7,7 @@ export function ABCLoader() {
     <div className={styles.container}>
       <div className={styles.logo}>
         <Image
-          src={abc_logo.src}
+          src={abclogo.src}
           alt="autobuses de colombia logo"
           fill
           priority

@@ -1,5 +1,5 @@
 import styles from "./Author.module.css";
-import avatar from "@/assets/abc_logo_single.svg";
+import avatar from "@/public/assets/logos/abc_logo_single.svg";
 
 interface AuthorProps {
   author: string;
@@ -13,7 +13,6 @@ export function Author({ author }: AuthorProps) {
       </div>
       <div className={styles.info}>
         <span className={styles.name}>{author}</span>
-        <span>22.08.2025</span>
       </div>
     </div>
   );
