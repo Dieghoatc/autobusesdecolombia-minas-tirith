@@ -4,7 +4,7 @@ import { User } from "lucide-react";
 
 import styles from "./ImageCard.module.css";
 
-import bpc from "@/assets/logos-authors/bpc.png";
+import bpc from "@/public/assets/comunity/bpc.png";
 import { Photographer } from "@/services/types/vehicle.type";
 
 const userLogos = [{ id: 4, logo: bpc }];

@@ -1,0 +1,23 @@
+'use client'
+
+import Link from "next/link"
+
+import { ArrowLeftToLine } from 'lucide-react'
+import abcLogo from '@/public/assets/logos/abclogo.svg'
+import { MenuList } from "./components/MenuList"
+
+export function SidebarDesktop({ setOpen }: { setOpen: (open: boolean) => void }) {
+    return (
+        <aside className="w-full h-dvh bg-gray-950 p-4">
+            <header className="flex items-center justify-between h-16">
+                <div className="cursor-pointer">
+                    <Link href="/" title="Home">
+                        <img className='h-14' src={abcLogo.src} alt="Logo Autobuses de Colombia" />
+                    </Link>
+                </div>
+                <ArrowLeftToLine onClick={() => setOpen(false)} />
+            </header>
+            <MenuList />
+        </aside>
+    )
+}

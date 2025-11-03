@@ -1,19 +1,32 @@
+'use client'
 
-import Main from "./main/Main";
+import { Main } from "./sections/main"
+import { SidebarMobile, SidebarDesktop, SidebarDesktopIcons } from "./sections/sidebar"
+import { useShowSidebarMenu } from "@/lib/store/useShowSidebarMenu";
+import { useIsMobile } from "@/lib/hooks/useIsMobile";
 
-import Clarity from "@microsoft/clarity";
 
-const CLARITY_ID = process.env.NEXT_PUBLIC_CLARITY_ID;
+export default function HomePage() {
+    const { open, setOpen } = useShowSidebarMenu();
+    const isMobile = useIsMobile();
 
-export default function Home() {
-  if (!CLARITY_ID) {
-    console.error("Clarity ID is not defined in environment variables.");
-    return <div>Error: Clarity ID is not set.</div>;
-  }
-  Clarity.init(CLARITY_ID);
-  return (
-    <div>
-      <Main />
-    </div>
-  );
+    return (
+        <section className="relative">
+            {isMobile && open && <SidebarMobile />}
+            <div className="flex">
+                {!isMobile && (
+                    <div>
+                        {open ? <aside className="w-64">
+                            <SidebarDesktop setOpen={setOpen} />
+                        </aside> : <aside className="w-14">
+                            <SidebarDesktopIcons setOpen={setOpen} />
+                        </aside>}
+                    </div>
+                )}
+                <main className="flex-1">
+                    <Main />
+                </main>
+            </div>
+        </section>
+    )
 }

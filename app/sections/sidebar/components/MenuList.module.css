@@ -1,0 +1,10 @@
+.list_item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.list_item svg {
+    width: 1rem;
+    height: 1rem;
+}
