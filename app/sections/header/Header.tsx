@@ -1,7 +1,7 @@
 "use client";
 
-import { HeaderMobile } from "./components/header-mobile";
-import { HeaderDesktop } from "./components/header-desktop";
+import { HeaderMobile } from "./HeaderMobile";
+import { HeaderDesktop } from "./HeaderDesktop";
 import { useIsMobile } from "@/lib/hooks/useIsMobile";
 
 import styles from "./Header.module.css";

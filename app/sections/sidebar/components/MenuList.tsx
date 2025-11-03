@@ -1,27 +1,10 @@
-'use client'
-
-import { X, House, Newspaper, Bus,Factory, Route, Layers, MapPinCheck, Images, User, Users, Rss, Mail,File, FileMinus } from 'lucide-react'
-import abclogo from "@/public/assets/logos/abclogo.svg"
+import { Bus, Factory, File, FileMinus, House, Images, Layers, Mail, MapPinCheck, Newspaper, Route, Rss, User, Users } from 'lucide-react'
 import Link from "next/link"
-import Image from "next/image"
+import styles from "./MenuList.module.css"
 
-import styles from "./Sidebar.module.css"
-import { useShowSidebarMenu } from "@/lib/store/useShowSidebarMenu";
-
-export function Sidebar() {
-
-    const { setOpen } = useShowSidebarMenu();
-
+export function MenuList() {
     return (
-        <aside className="absolute z-50 top-0 left-0 w-full h-dvh bg-gray-950 p-4">
-            <div className="flex justify-between items-center">
-                <div>
-                    <Image className="h-10" src={abclogo.src} alt="" />
-                </div>
-                <div>
-                    <X onClick={() => setOpen(false)} />
-                </div>
-            </div>
+        <>
             <section>
                 <ul className="border-b border-gray-700 flex flex-col gap-2 py-5 text-white text-sm font-semibold ">
                     <li><Link href="/"><div className={styles.list_item}><House /><span>Inicio</span></div></Link></li>
@@ -49,9 +32,9 @@ export function Sidebar() {
                     <li><Link href="/terminos-condiciones"><div className={styles.list_item}><FileMinus /><span>Terminos y Condiciones</span></div></Link></li>
                 </ul>
             </section>
-            <footer className="mt-20 flex justify-center items-center font-semibold text-gray-400">
-                <span>@ Autobuses de Colombia 2025</span>
+            <footer className="mt-20 font-semibold text-gray-400 text-xs text-center">
+                <span>Copyright © Autobuses de Colombia 2025</span>
             </footer>
-        </aside>
+        </>
     )
 }

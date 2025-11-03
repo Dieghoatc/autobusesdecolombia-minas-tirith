@@ -1,8 +1,7 @@
 "use client";
 
-import { Gallery } from "./components/gallery/Gallery";
-import { Magazine } from "./components/magazine";
-import { Sidebar } from "./components/sidebar";
+import { Gallery } from "../sections/gallery/Gallery";
+import { Magazine } from "../sections/magazine";
 
 import { useShowSidebarMenu } from "@/lib/store/useShowSidebarMenu";
 import { useIsMobile } from "@/lib/hooks/useIsMobile";
@@ -15,7 +14,7 @@ export function Main() {
     <div className="grid grid-cols-12 relative h-screen overflow-hidden">
       {!isMobile && open && (
         <aside className="col-span-2 sticky top-0 h-screen overflow-y-auto z-10 bg-black">
-          <Sidebar />
+     
         </aside>
       )}
       {isMobile && open && (
@@ -24,7 +23,6 @@ export function Main() {
             className="absolute top-0 left-0 w-4/5 h-full bg-black shadow-lg overflow-y-auto"
             onClick={(e) => e.stopPropagation()}
           >
-            <Sidebar />
           </aside>
         </div>
       )}

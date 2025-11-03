@@ -6,9 +6,9 @@ import Link from "next/link";
 
 import useShowSidebarMenu from "@/lib/store/useShowSidebarMenu";
 import { motion, AnimatePresence } from "motion/react";
-import { Search } from "../search";
+import { Search } from "./components/search";
 
-import { HomeIcon, Menu, Search as SearchIcon } from "lucide-react";
+import { Menu, Search as SearchIcon } from "lucide-react";
 import logo from "@/public/assets/logos/abc_logo_single.svg";
 
 export function HeaderMobile() {
@@ -45,11 +45,6 @@ export function HeaderMobile() {
               >
                 <SearchIcon />
               </motion.div>
-              <div className="flex items-center">
-                <Link href="/" title="Home">
-                  <HomeIcon />
-                </Link>
-              </div>
             </div>
           </>
         )}
