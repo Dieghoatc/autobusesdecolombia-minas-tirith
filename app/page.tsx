@@ -1,19 +1,20 @@
+'use client'
 
-import Main from "./main/Main";
+import HomePage from "./pages/home/home"
+import { Sidebar } from "./sections/sidebar"
+import { useShowSidebarMenu } from "@/lib/store/useShowSidebarMenu";
 
-import Clarity from "@microsoft/clarity";
-
-const CLARITY_ID = process.env.NEXT_PUBLIC_CLARITY_ID;
 
 export default function Home() {
-  if (!CLARITY_ID) {
-    console.error("Clarity ID is not defined in environment variables.");
-    return <div>Error: Clarity ID is not set.</div>;
-  }
-  Clarity.init(CLARITY_ID);
-  return (
-    <div>
-      <Main />
-    </div>
-  );
+
+    const { open } = useShowSidebarMenu();
+
+    return (
+        <section className="relative">
+            {open && <Sidebar />}
+            <main className="">
+                <HomePage />
+            </main>
+        </section>
+    )
 }

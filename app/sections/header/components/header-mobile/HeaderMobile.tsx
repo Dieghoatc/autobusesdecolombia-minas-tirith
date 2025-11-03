@@ -4,15 +4,16 @@ import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 
-import { HomeIcon, Menu, X, Search as SearchIcon } from "lucide-react";
+import useShowSidebarMenu from "@/lib/store/useShowSidebarMenu";
 import { motion, AnimatePresence } from "motion/react";
-
-import logo from "@/assets/abc_logo_single.svg";
 import { Search } from "../search";
 
+import { HomeIcon, Menu, Search as SearchIcon } from "lucide-react";
+import logo from "@/public/assets/logos/abc_logo_single.svg";
+
 export function HeaderMobile() {
-  const [openMenu, setOpenMenu] = useState(false);
   const [openSearch, setOpenSearch] = useState(false);
+  const {setOpen} = useShowSidebarMenu();
 
   return (
     <nav className="flex items-center justify-between">
@@ -22,29 +23,7 @@ export function HeaderMobile() {
         ) : (
           <>
             <div className="flex items-center">
-              {openMenu ? (
-                <motion.div
-                  key="close"
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0, scale: 0.9 }}
-                  transition={{ duration: 0.3 }}
-                  onClick={() => setOpenMenu(false)}
-                >
-                  <X />
-                </motion.div>
-              ) : (
-                <motion.div
-                  key="menu"
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0, scale: 0.9 }}
-                  transition={{ duration: 0.3 }}
-                  onClick={() => setOpenMenu(true)}
-                >
-                  <Menu />
-                </motion.div>
-              )}
+              <Menu onClick={() => setOpen(true)} />
               <div className="flex items-center w-1/2">
                 <Link href="/" title="Home">
                   <Image
