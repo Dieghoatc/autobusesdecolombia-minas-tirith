@@ -31,7 +31,7 @@ export function usePhotosCategoryById({ category_id, page, limit }: UseCategoryB
     }
 
     fetchPhotoCategoryById(category_id, page, limit);
-  }, [category_id, page]);
+  }, [category_id, page, limit]);
 
   return {
     photos,

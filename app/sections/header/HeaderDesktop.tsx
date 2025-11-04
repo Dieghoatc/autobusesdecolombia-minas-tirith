@@ -9,12 +9,12 @@ import { Search } from "./components/search";
 
 
 export function HeaderDesktop() {
-  const { open} = useShowSidebarMenu();
+  const { openDesktop } = useShowSidebarMenu();
 
   return (
     <nav className="h-14 grid grid-cols-3 items-center">
       <div className="flex items-center">
-        {!open && <div className="cursor-pointer">
+        {!openDesktop && <div className="cursor-pointer">
           <Link href="/" title="Home">
             <Image src={abcLogo.src} alt="Logo" width={150} height={50} />
           </Link>
