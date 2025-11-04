@@ -14,15 +14,11 @@ export default function HomePage() {
         <section className="relative">
             {isMobile && open && <SidebarMobile />}
             <div className="flex">
-                {!isMobile && (
-                    <div>
-                        {open ? <aside className="w-64">
-                            <SidebarDesktop setOpen={setOpen} />
-                        </aside> : <aside className="w-14">
-                            <SidebarDesktopIcons setOpen={setOpen} />
-                        </aside>}
-                    </div>
-                )}
+                <div className="hidden md:block">
+                    {open ? <SidebarDesktop setOpen={setOpen} /> :
+                        <SidebarDesktopIcons setOpen={setOpen} />
+                    }
+                </div>
                 <main className="flex-1">
                     <Main />
                 </main>
