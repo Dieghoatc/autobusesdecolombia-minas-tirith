@@ -13,7 +13,7 @@ export function SidebarMobile() {
     const { setOpen } = useShowSidebarMenu();
 
     return (
-        <aside className="absolute z-50 top-0 left-0 w-full h-dvh bg-gray-950 p-4">
+        <aside className="fixed z-50 top-0 left-0 w-full h-dvh bg-gray-950 p-4">
             <div className="flex justify-between items-center">
                 <div className="cursor-pointer">
                     <Link href="/" title="Home">

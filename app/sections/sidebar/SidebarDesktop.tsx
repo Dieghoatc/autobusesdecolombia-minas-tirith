@@ -5,10 +5,12 @@ import Link from "next/link"
 import { ArrowLeftToLine } from 'lucide-react'
 import abcLogo from '@/public/assets/logos/abclogo.svg'
 import { MenuList } from "./components/MenuList"
+import { useShowSidebarMenu } from "@/lib/store/useShowSidebarMenu";
 
-export function SidebarDesktop({ setOpen }: { setOpen: (open: boolean) => void }) {
+export function SidebarDesktop() {
+    const { setOpen } = useShowSidebarMenu();
     return (
-        <aside className="w-full h-dvh bg-gray-950 p-4">
+        <aside className="fixed bg-gray-950 w-64 h-dvh p-4">
             <header className="flex items-center justify-between h-16">
                 <div className="cursor-pointer">
                     <Link href="/" title="Home">
