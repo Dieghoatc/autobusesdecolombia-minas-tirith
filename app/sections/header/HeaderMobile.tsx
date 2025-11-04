@@ -13,7 +13,7 @@ import logo from "@/public/assets/logos/abc_logo_single.svg";
 
 export function HeaderMobile() {
   const [openSearch, setOpenSearch] = useState(false);
-  const {setOpen} = useShowSidebarMenu();
+  const {setOpenMobile} = useShowSidebarMenu();
 
   return (
     <nav className="flex items-center justify-between">
@@ -23,7 +23,7 @@ export function HeaderMobile() {
         ) : (
           <>
             <div className="flex items-center">
-              <Menu onClick={() => setOpen(true)} />
+              <Menu onClick={() => setOpenMobile(true)} />
               <div className="flex items-center w-1/2">
                 <Link href="/" title="Home">
                   <Image
