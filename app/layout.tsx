@@ -2,6 +2,9 @@ import type { Metadata, Viewport } from "next";
 
 import Script from "next/script";
 
+import { SidebarMobile, SidebarDesktop } from "./sections/sidebar";
+import { Header } from "./sections/header";
+
 import { Analytics } from "@vercel/analytics/react";
 
 import "./globals.css";
@@ -40,7 +43,7 @@ export const metadata: Metadata = {
     ],
     locale: "es_CO",
     type: "website",
-  },  
+  },
   other: {
     "google-adsense-account": "ca-pub-1070802324735715",
   },
@@ -54,7 +57,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="es">
-       <head>
+      <head>
         <Script
           id="adsense-script"
           async
@@ -64,7 +67,24 @@ export default function RootLayout({
         />
       </head>
       <body>
-        <main>{children}</main>
+        <div className="flex">
+          <div>
+            <section className="hidden md:block">
+              <SidebarDesktop />
+            </section>
+            <section className="block md:hidden">
+              <SidebarMobile />
+            </section>
+          </div>
+          <div className="flex-1">
+            <div className="flex flex-col">
+              <Header />
+            </div>
+            <div>
+              <main>{children}</main>
+            </div>
+          </div>
+        </div>
         <Analytics />
       </body>
     </html>

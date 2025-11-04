@@ -26,7 +26,7 @@ export function useGetPhotos(page: number, limit: number) {
       }
     }
     fetchPhotos(page, limit);
-  }, [page]);
+  }, [page, limit]);
 
   return { photos, loading, error };
 }
