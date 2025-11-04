@@ -7,7 +7,7 @@ import { useIsMobile } from "@/lib/hooks/useIsMobile";
 
 
 export default function HomePage() {
-    const { open, setOpen } = useShowSidebarMenu();
+    const { open } = useShowSidebarMenu();
     const isMobile = useIsMobile();
 
     return (
@@ -15,8 +15,8 @@ export default function HomePage() {
             {isMobile && open && <SidebarMobile />}
             <div className="flex">
                 <div className="hidden md:block">
-                    {open ? <SidebarDesktop setOpen={setOpen} /> :
-                        <SidebarDesktopIcons setOpen={setOpen} />
+                    {open ? <div className="w-64"><SidebarDesktop /></div> :
+                        <div className="w-14"><SidebarDesktopIcons /></div>
                     }
                 </div>
                 <main className="flex-1">
