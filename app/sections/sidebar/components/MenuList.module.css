@@ -1,10 +1,4 @@
-.list_item {
-    display: flex;
-    align-items: center;
-    gap: 2rem;
-}
-
-.list_item svg {
+.logo svg {
     width: 1rem;
     height: 1rem;
     

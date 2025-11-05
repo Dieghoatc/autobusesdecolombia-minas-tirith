@@ -18,6 +18,7 @@ export default function ContactPage() {
             <strong>patrocinios</strong> y{" "}
             <strong>oportunidades de negocio.</strong>
           </blockquote>
+          <p>Si tienes alguna sugerencia o comentario, no dudes en contactarnos. <span className="text-white font-semibold">autobusesdecolombiaoficial@gmail.com</span> o por el formulario de contacto.</p>
           <p>Autobuses de Colombia ¡Mucho más para ver!</p>
         </div>
         <div className="contact-form">
