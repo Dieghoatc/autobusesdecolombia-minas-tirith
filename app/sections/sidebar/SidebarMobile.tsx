@@ -13,7 +13,7 @@ export function SidebarMobile() {
     const { openMobile, setOpenMobile } = useShowSidebarMenu();
 
     return (
-        <div className="">
+        <div>
             {openMobile && (
                 <aside className="fixed w-full h-screen overflow-y-auto p-4 z-50 bg-gray-950">
                     <div className="flex justify-between items-center">
