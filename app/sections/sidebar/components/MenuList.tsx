@@ -21,7 +21,7 @@ export function MenuList() {
                 <h2 className="mt-2 font-bold">Nosotros</h2>
                 <ul className="border-b border-gray-700 flex flex-col gap-2 py-4 text-white text-sm font-semibold">
                     <li><Link href="/galerias"><div className={`${styles.logo} flex gap-2`}><Images /><span>Galerias</span></div></Link></li>
-                    <li><Link href="/quienes-somos"><div className={`${styles.logo} flex gap-2`}><User /><span>Quienes Somos</span></div></Link></li>
+                    <li><Link href="/nosotros"><div className={`${styles.logo} flex gap-2`}><User /><span>Nosotros</span></div></Link></li>
                     <li><Link href="/comunidad"><div className={`${styles.logo} flex gap-2`}><Users /><span>Comunidad</span></div></Link></li>
                     <li><Link href="/blog"><div className={`${styles.logo} flex gap-2`}><Rss /><span>Blog</span></div></Link></li>
                 </ul>
