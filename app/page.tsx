@@ -1,14 +1,10 @@
-'use client'
-
-import { Magazine } from "./sections/magazine"
 import { Gallery } from "./sections/gallery"
-
+import { Hero } from "./sections/hero/Hero"
 
 export default function HomePage() {
-
     return (
         <>
-            <Magazine />
+            <Hero />
             <Gallery />
         </>
     )

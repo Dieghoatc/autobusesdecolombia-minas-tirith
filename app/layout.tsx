@@ -80,8 +80,8 @@ export default function RootLayout({
             <div className="flex flex-col">
               <Header />
             </div>
-            <div>
-              <main>{children}</main>
+            <div className="max-w-7xl mx-auto w-full">
+              <main className="px-4 md:px-6">{children}</main>
             </div>
           </div>
         </div>
