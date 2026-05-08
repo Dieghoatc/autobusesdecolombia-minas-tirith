@@ -3,7 +3,7 @@ import type { NextRequest } from "next/server";
 
 const envMiddleware = process.env.NEXT_PUBLIC_MIDDLEWARE || "";
 
-export function middleware(request: NextRequest) {
+export function proxy(request: NextRequest) {
   //console.log("✅ Middleware ejecutado en:", request.nextUrl.pathname);
   const token = request.cookies.get("access_token")?.value;
   //console.log("🚀 Token:", token);
@@ -24,5 +24,3 @@ export function middleware(request: NextRequest) {
 export const config = {
   matcher: ["/upload", "/upload/:path*"],
 };
-
-export const runtime = "nodejs";
