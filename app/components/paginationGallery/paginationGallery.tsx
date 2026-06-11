@@ -23,11 +23,11 @@ export function PaginationGallery({ pagination, basePath = "?" }: PaginationProp
         {pagination.hasPrev && (
           <>
             <PaginationItem>
-              <PaginationPrevious href={getHref(pagination.currentPage - 1)} />
+              <PaginationPrevious href={getHref(pagination.currentPage - 1)} scroll={false} />
             </PaginationItem>
             {pagination.currentPage > 2 && (
               <PaginationItem>
-                <PaginationLink href={getHref(1)}>1</PaginationLink>
+                <PaginationLink href={getHref(1)} scroll={false}>1</PaginationLink>
               </PaginationItem>
             )}
             {pagination.currentPage > 3 && (
@@ -36,21 +36,21 @@ export function PaginationGallery({ pagination, basePath = "?" }: PaginationProp
               </PaginationItem>
             )}
             <PaginationItem>
-              <PaginationLink href={getHref(pagination.currentPage - 1)}>
+              <PaginationLink href={getHref(pagination.currentPage - 1)} scroll={false}>
                 {pagination.currentPage - 1}
               </PaginationLink>
             </PaginationItem>
           </>
         )}
         <PaginationItem>
-          <PaginationLink href={getHref(pagination.currentPage)} isActive>
+          <PaginationLink href={getHref(pagination.currentPage)} isActive scroll={false}>
             {pagination.currentPage}
           </PaginationLink>
         </PaginationItem>
         {pagination.hasNext && (
           <>
             <PaginationItem>
-              <PaginationLink href={getHref(pagination.currentPage + 1)}>
+              <PaginationLink href={getHref(pagination.currentPage + 1)} scroll={false}>
                 {pagination.currentPage + 1}
               </PaginationLink>
             </PaginationItem>
@@ -61,13 +61,13 @@ export function PaginationGallery({ pagination, basePath = "?" }: PaginationProp
             )}
             {pagination.currentPage < pagination.pages - 1 && (
               <PaginationItem>
-                <PaginationLink href={getHref(pagination.pages)}>
+                <PaginationLink href={getHref(pagination.pages)} scroll={false}>
                   {pagination.pages}
                 </PaginationLink>
               </PaginationItem>
             )}
             <PaginationItem>
-              <PaginationNext href={getHref(pagination.currentPage + 1)} />
+              <PaginationNext href={getHref(pagination.currentPage + 1)} scroll={false} />
             </PaginationItem>
           </>
         )}
