@@ -7,60 +7,67 @@ import {
   PaginationNext,
   PaginationPrevious,
 } from "@/app/components/ui/pagination";
-
 import { Info } from "@/services/types/vehicle.type";
 
 interface PaginationProps {
   pagination: Info;
-  goToPage: (page: number) => void;
+  basePath?: string;
 }
 
-export function PaginationGallery({ pagination, goToPage }: PaginationProps) {
+export function PaginationGallery({ pagination, basePath = "?" }: PaginationProps) {
+  const getHref = (page: number) => `${basePath}${basePath.includes('?') ? '&' : '?'}page=${page}`;
+
   return (
     <Pagination className="text-white">
       <PaginationContent>
         {pagination.hasPrev && (
           <>
             <PaginationItem>
-              <PaginationPrevious
-                onClick={() => goToPage(pagination.currentPage - 1)}
-              />
+              <PaginationPrevious href={getHref(pagination.currentPage - 1)} />
             </PaginationItem>
+            {pagination.currentPage > 2 && (
+              <PaginationItem>
+                <PaginationLink href={getHref(1)}>1</PaginationLink>
+              </PaginationItem>
+            )}
+            {pagination.currentPage > 3 && (
+              <PaginationItem>
+                <PaginationEllipsis />
+              </PaginationItem>
+            )}
             <PaginationItem>
-              <PaginationLink
-                onClick={() => goToPage(pagination.currentPage - 1)}
-              >
+              <PaginationLink href={getHref(pagination.currentPage - 1)}>
                 {pagination.currentPage - 1}
               </PaginationLink>
             </PaginationItem>
           </>
         )}
         <PaginationItem>
-          <PaginationLink
-            onClick={() => goToPage(pagination.currentPage)}
-            isActive
-          >
+          <PaginationLink href={getHref(pagination.currentPage)} isActive>
             {pagination.currentPage}
           </PaginationLink>
         </PaginationItem>
         {pagination.hasNext && (
           <>
             <PaginationItem>
-              <PaginationLink
-                onClick={() => goToPage(pagination.currentPage + 1)}
-              >
+              <PaginationLink href={getHref(pagination.currentPage + 1)}>
                 {pagination.currentPage + 1}
               </PaginationLink>
             </PaginationItem>
-            <PaginationItem>
-              <div onClick={() => goToPage(pagination.pages)}>
+            {pagination.currentPage < pagination.pages - 2 && (
+              <PaginationItem>
                 <PaginationEllipsis />
-              </div>
-            </PaginationItem>
+              </PaginationItem>
+            )}
+            {pagination.currentPage < pagination.pages - 1 && (
+              <PaginationItem>
+                <PaginationLink href={getHref(pagination.pages)}>
+                  {pagination.pages}
+                </PaginationLink>
+              </PaginationItem>
+            )}
             <PaginationItem>
-              <PaginationNext
-                onClick={() => goToPage(pagination.currentPage + 1)}
-              />
+              <PaginationNext href={getHref(pagination.currentPage + 1)} />
             </PaginationItem>
           </>
         )}
