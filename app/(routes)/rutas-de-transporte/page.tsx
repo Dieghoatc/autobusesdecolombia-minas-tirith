@@ -1,5 +1,11 @@
+import type { Metadata } from "next";
 import Image from "next/image"
 import buildingImage from "@/public/assets/images/building.jpg"
+
+export const metadata: Metadata = {
+  title: "Rutas de Transporte Terrestre | Autobuses de Colombia",
+  description: "Consulta las principales rutas de transporte terrestre intermunicipal en Colombia. Información sobre horarios, distancias y empresas operadoras.",
+};
 
 export default function TransportRoutes() {
     return (

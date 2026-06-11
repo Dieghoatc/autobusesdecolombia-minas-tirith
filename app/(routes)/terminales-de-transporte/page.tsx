@@ -1,5 +1,11 @@
+import type { Metadata } from "next";
 import Image from "next/image"
 import buildingImage from "@/public/assets/images/building.jpg"
+
+export const metadata: Metadata = {
+  title: "Terminales de Transporte en Colombia | Autobuses de Colombia",
+  description: "Encuentra información sobre las terminales de transporte terrestre de Colombia. Direcciones, teléfonos, horarios de atención y empresas asociadas.",
+};
 
 export default function TransportTerminals() {
     return (

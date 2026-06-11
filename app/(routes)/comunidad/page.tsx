@@ -1,5 +1,11 @@
+import type { Metadata } from "next";
 import Image from "next/image"
 import buildingImage from "@/public/assets/images/building.jpg"
+
+export const metadata: Metadata = {
+  title: "Comunidad | Autobuses de Colombia",
+  description: "Únete a la mayor comunidad de apasionados por los autobuses y el transporte en Colombia. Comparte tus fotos, historias y conocimiento.",
+};
 
 export default function Comunity() {
     return (
