@@ -1,6 +1,12 @@
 
+import type { Metadata } from "next";
 import { FormContact } from "./components/FormContact";
 import "./contact.css";
+
+export const metadata: Metadata = {
+  title: "Contáctanos | Autobuses de Colombia",
+  description: "Ponte en contacto con Autobuses de Colombia para explorar alianzas, patrocinios, oportunidades de negocio o enviarnos sugerencias.",
+};
 
 export default function ContactPage() { 
 
@@ -8,7 +14,7 @@ export default function ContactPage() {
     <div className="contact">
       <div className="contact-content">
         <div className="contact-content__text">
-          <h2>Contáctanos</h2>
+          <h1>Contáctanos</h1>
           <blockquote>
             En Autobuses de Colombia, nuestra visión es ser el portal líder en
             contenido sobre transporte en el país para el 2025. Nuestra misión

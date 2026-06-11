@@ -37,9 +37,10 @@ const MENU_SECTIONS: MenuSection[] = [
       { href: "/", label: "Inicio", icon: House },
       { href: "/noticias", label: "Noticias", icon: Newspaper },
       { href: "/empresas-de-transporte", label: "Empresas de Transporte", icon: Bus },
-      { href: "/empresas-fabricantes", label: "Empresas Fabricantes", icon: Factory },
+      // { href: "/empresas-fabricantes", label: "Empresas Fabricantes", icon: Factory }, // Temporarily disabled for AdSense approval (Under Construction)
     ]
   },
+  /* Temporarily disabled for AdSense approval (Under Construction)
   {
     title: "Transporte",
     items: [
@@ -48,12 +49,13 @@ const MENU_SECTIONS: MenuSection[] = [
       { href: "/destinos", label: "Destinos", icon: MapPinCheck },
     ]
   },
+  */
   {
     title: "Nosotros",
     items: [
-      { href: "/galerias", label: "Galerias", icon: Images },
+      { href: "/galeria", label: "Galería", icon: Images }, // Fixed broken URL from /galerias to /galeria
       { href: "/nosotros", label: "Nosotros", icon: User },
-      { href: "/comunidad", label: "Comunidad", icon: Users },
+      // { href: "/comunidad", label: "Comunidad", icon: Users }, // Temporarily disabled for AdSense approval (Under Construction)
       { href: "/blog", label: "Blog", icon: Rss },
     ]
   },
@@ -62,7 +64,7 @@ const MENU_SECTIONS: MenuSection[] = [
     items: [
       { href: "/contacto", label: "Contacto", icon: Mail },
       { href: "/politica-de-privacidad", label: "Política de Privacidad", icon: File },
-      { href: "/terminos-condiciones", label: "Terminos y Condiciones", icon: FileMinus },
+      { href: "/terminos-y-condiciones", label: "Términos y Condiciones", icon: FileMinus }, // Fixed broken URL from /terminos-condiciones to /terminos-y-condiciones
     ]
   }
 ];

@@ -1,3 +1,10 @@
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Política de Privacidad | Autobuses de Colombia",
+  description: "Consulta la política de privacidad de Autobuses de Colombia. Conoce cómo protegemos y tratamos tus datos personales en nuestra plataforma.",
+};
+
 export default function PrivacyPolicy() {
   return (
     <div className="min-h-screen bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
