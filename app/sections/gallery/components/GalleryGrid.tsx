@@ -76,7 +76,7 @@ export function GalleryGrid({ vehicles }: GalleryGridProps) {
         {selected && (
           <div className="w-full min-h-screen bg-zinc-950/98 flex flex-col shadow-2xl animate-in fade-in duration-200">
             <div className="flex-1 overflow-y-auto no-scrollbar flex flex-col">
-              <div 
+              <div
                 className="relative w-full h-[85vh] bg-black flex items-center justify-center p-4 border-b border-zinc-900 select-none"
                 onContextMenu={(e) => e.preventDefault()}
               >
@@ -85,7 +85,6 @@ export function GalleryGrid({ vehicles }: GalleryGridProps) {
                   alt={`${selected.vehicle.model.brand?.name || ""} ${selected.vehicle.model.model_name}`.trim()}
                   className="max-w-full max-h-full object-contain shadow-2xl pointer-events-none"
                 />
-                {/* Transparent overlay protecting the image from dragging and right-clicking */}
                 <div className="absolute inset-0 z-10 bg-transparent cursor-default" />
               </div>
 
@@ -140,7 +139,6 @@ export function GalleryGrid({ vehicles }: GalleryGridProps) {
                   </div>
                 </div>
 
-                {/* Specs Grid */}
                 <div className="grid grid-cols-2 md:grid-cols-3 gap-4 text-sm mt-4">
                   {selected.vehicle.plate && (
                     <div className="flex flex-col gap-1.5 p-4 rounded-xl bg-white/[0.02] border border-white/[0.04]">
@@ -212,7 +210,6 @@ export function GalleryGrid({ vehicles }: GalleryGridProps) {
                   )}
                 </div>
 
-                {/* Navigation & Action Buttons */}
                 <div className="pt-8 border-t border-zinc-900 flex flex-col-reverse sm:flex-row justify-end gap-3 mt-6">
                   <button
                     onClick={closeModal}
@@ -220,14 +217,13 @@ export function GalleryGrid({ vehicles }: GalleryGridProps) {
                   >
                     Cerrar Vista
                   </button>
-                  {/* <Link
+                  <Link
                     href={getDetailLink(selected.vehicle)}
-                    onClick={closeModal}
                     className="flex items-center justify-center gap-2 text-sm font-bold text-black bg-white hover:bg-zinc-200 px-6 py-3 rounded-xl transition-all duration-200 shadow-md shadow-black/25"
                   >
                     <span>Ver página completa de detalles</span>
                     <ArrowRight className="w-4 h-4" />
-                  </Link> */}
+                  </Link>
                 </div>
               </div>
             </div>
