@@ -76,12 +76,17 @@ export function GalleryGrid({ vehicles }: GalleryGridProps) {
         {selected && (
           <div className="w-full min-h-screen bg-zinc-950/98 flex flex-col shadow-2xl animate-in fade-in duration-200">
             <div className="flex-1 overflow-y-auto no-scrollbar flex flex-col">
-              <div className="relative w-full h-[85vh] bg-black flex items-center justify-center p-4 border-b border-zinc-900">
+              <div 
+                className="relative w-full h-[85vh] bg-black flex items-center justify-center p-4 border-b border-zinc-900 select-none"
+                onContextMenu={(e) => e.preventDefault()}
+              >
                 <img
                   src={selected.photo.image_url}
                   alt={`${selected.vehicle.model.brand?.name || ""} ${selected.vehicle.model.model_name}`.trim()}
-                  className="max-w-full max-h-full object-contain shadow-2xl"
+                  className="max-w-full max-h-full object-contain shadow-2xl pointer-events-none"
                 />
+                {/* Transparent overlay protecting the image from dragging and right-clicking */}
+                <div className="absolute inset-0 z-10 bg-transparent cursor-default" />
               </div>
 
               <div className="max-w-7xl mx-auto w-full px-4 md:px-8 py-8 space-y-8 flex-1 flex flex-col justify-between">
