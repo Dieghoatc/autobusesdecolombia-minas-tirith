@@ -1,8 +1,6 @@
-import { ImageCard } from "@/app/components/image-card";
 import { vehicleQuery } from "@/services/api/vehicle.query";
-import { formatURL } from "@/lib/helpers/formatURL";
 import { PaginationGallery } from "@/app/components/paginationGallery/paginationGallery";
-import Link from "next/link";
+import { GalleryGrid } from "./components/GalleryGrid";
 
 interface GalleryProps {
   page?: number;
@@ -31,35 +29,9 @@ export async function Gallery({ page = 1, limit = 12 }: GalleryProps) {
           {data.info.count} fotos
         </span>
       </div>
-      <article className="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
-        {data.data.map((vehicle) =>
-          vehicle.vehiclePhotos.map((photo) => (
-            <div key={photo.vehicle_photo_id}>
-              <Link
-                href={`/vehiculo/${vehicle.vehicle_id}/${formatURL(
-                  vehicle.model.model_name
-                )}${
-                  vehicle.company?.company_name
-                    ? "-" + formatURL(vehicle.company?.company_name)
-                    : ""
-                }${
-                  vehicle.companySerial?.company_serial_code
-                    ? "-" +
-                      formatURL(vehicle.companySerial?.company_serial_code)
-                    : ""
-                }`}
-              >
-                <ImageCard
-                  image_url={photo.image_url}
-                  title={vehicle.model.model_name}
-                  company={vehicle.company?.company_name ?? ""}
-                  author={photo.photographer}
-                />
-              </Link>
-            </div>
-          ))
-        )}
-      </article>
+      
+      <GalleryGrid vehicles={data.data} />
+      
       <div className="mt-8 mb-4">
         <PaginationGallery pagination={data.info} />
       </div>
