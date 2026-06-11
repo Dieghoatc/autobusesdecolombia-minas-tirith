@@ -32,10 +32,8 @@ export function ImageCard({
         sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
       />
 
-      {/* Gradient Overlay that appears on hover */}
       <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-black/80 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
 
-      {/* Top right actions (visible on hover) */}
       <div className="absolute top-3 right-3 flex gap-2 opacity-0 transform translate-y-[-10px] transition-all duration-300 group-hover:opacity-100 group-hover:translate-y-0">
         <button
           className="flex h-9 w-9 items-center justify-center rounded-full bg-white/20 backdrop-blur-md hover:bg-white text-white hover:text-black transition-colors"
@@ -45,7 +43,6 @@ export function ImageCard({
         </button>
       </div>
 
-      {/* Bottom info (visible on hover) */}
       <div className="absolute bottom-0 left-0 w-full p-4 flex items-center gap-3 opacity-0 transform translate-y-[10px] transition-all duration-300 group-hover:opacity-100 group-hover:translate-y-0">
         <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center overflow-hidden rounded-full border-2 border-white/20 bg-gray-800">
           {userLogo ? (
