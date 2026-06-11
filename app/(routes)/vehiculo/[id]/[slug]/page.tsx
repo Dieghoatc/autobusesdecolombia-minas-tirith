@@ -77,9 +77,15 @@ export default async function ImagePage({ params }: ImagePageProps) {
   return (
     <section>
       <article className={styles.container}>
-        <div className={styles.image}>
-          <Image src={vehicleImage} alt={vehicleModel || "Vehículo"} width={1000} height={1000} />
-          <div className={styles.overlay}></div>
+        <div className={`${styles.image} select-none`} onContextMenu={(e) => e.preventDefault()}>
+          <Image 
+            src={vehicleImage} 
+            alt={vehicleModel || "Vehículo"} 
+            width={1000} 
+            height={1000} 
+            className="pointer-events-none select-none"
+          />
+          <div className={`${styles.overlay} z-10 cursor-default`}></div>
         </div>
         <div className={styles.content}>
           <div className={styles.header}>
