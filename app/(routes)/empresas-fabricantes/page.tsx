@@ -1,5 +1,11 @@
+import type { Metadata } from "next";
 import Image from "next/image"
 import buildingImage from "@/public/assets/images/building.jpg"
+
+export const metadata: Metadata = {
+  title: "Empresas Fabricantes de Autobuses | Autobuses de Colombia",
+  description: "Explora información sobre fabricantes y carroceras de autobuses con presencia en Colombia. Conoce su historia y portafolio de modelos.",
+};
 
 export default function Factories() {
     return (

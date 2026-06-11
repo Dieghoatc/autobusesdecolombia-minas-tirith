@@ -1,3 +1,10 @@
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Términos y Condiciones | Autobuses de Colombia",
+  description: "Consulta los términos y condiciones de uso de Autobuses de Colombia, nuestro portal informativo sobre transporte terrestre en el país.",
+};
+
 export default function TermsAndConditions() {
   return (
     <div className="min-h-screen bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
