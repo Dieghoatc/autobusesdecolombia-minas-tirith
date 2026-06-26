@@ -2,7 +2,7 @@
 
 import { useEffect } from "react";
 
-import Image from "next/image";
+import { CldImage } from "next-cloudinary";
 import Link from "next/link";
 import type { Model } from "@/services/types/search.type";
 import { NeuropolTitle } from "@/app/components/neuropol-title";
@@ -72,7 +72,7 @@ export function SearchResults({
                 >
                   <div className={styles.image}>
                     {photo ? (
-                      <Image
+                      <CldImage
                         src={photo.image_url}
                         alt={model.model_name}
                         fill
