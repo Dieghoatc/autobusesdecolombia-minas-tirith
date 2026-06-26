@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import { CldImage } from "next-cloudinary";
 import { ImageCard } from "@/app/components/image-card";
 import { Modal } from "@/app/components/modal";
 import { formatURL } from "@/lib/helpers/formatURL";
@@ -52,7 +53,7 @@ export function GalleryGrid({ vehicles }: GalleryGridProps) {
     <>
       <article
         key={vehicles[0]?.vehicle_id || "empty"}
-        className="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 animate-in fade-in duration-500"
+        className="w-full grid grid-cols-1 md:grid-cols-4 xl:grid-cols-5 gap-6 animate-in fade-in duration-500"
       >
         {vehicles.map((vehicle) =>
           vehicle.vehiclePhotos.map((photo) => (
@@ -80,10 +81,13 @@ export function GalleryGrid({ vehicles }: GalleryGridProps) {
                 className="relative w-full h-[85vh] bg-black flex items-center justify-center p-4 border-b border-zinc-900 select-none"
                 onContextMenu={(e) => e.preventDefault()}
               >
-                <img
+                <CldImage
                   src={selected.photo.image_url}
                   alt={`${selected.vehicle.model.brand?.name || ""} ${selected.vehicle.model.model_name}`.trim()}
-                  className="max-w-full max-h-full object-contain shadow-2xl pointer-events-none"
+                  fill
+                  className="object-contain shadow-2xl pointer-events-none"
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                  crop="fit"
                 />
                 <div className="absolute inset-0 z-10 bg-transparent cursor-default" />
               </div>
