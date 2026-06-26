@@ -15,7 +15,7 @@ export default async function HomePage({ searchParams }: HomePageProps) {
     <>
       <Hero />
       <Suspense fallback={<GallerySkeleton />}>
-        <Gallery page={page} limit={12} />
+        <Gallery page={page} limit={15} />
       </Suspense>
     </>
   );
