@@ -1,3 +1,6 @@
+"use client";
+
+import { CldImage } from "next-cloudinary";
 import styles from "./ModalChildren.module.css";
 import { Vehicle } from "@/services/types/vehicle.type";
 import { useState } from "react";
@@ -26,13 +29,12 @@ export function ModalChildren({ vehicle }: ModalChildrenProps) {
         className={`${styles.image} ${isRotated ? styles.rotated_image : ""}`}
       >
         {vehiclePhotos[0] ? (
-          <img
+          <CldImage
             src={vehiclePhotos[0].image_url}
-            loading="lazy"
-            decoding="async"
-            role="presentation"
-            title=""
             alt=""
+            fill
+            sizes="(max-width: 768px) 100vw, 50vw"
+            className="object-cover"
           />
         ) : (
           <Skeleton className="h-[125px] w-[250px] rounded-xl bg-slate-900" />
