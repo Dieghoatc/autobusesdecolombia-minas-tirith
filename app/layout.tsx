@@ -81,7 +81,7 @@ export default function RootLayout({
             <div className="flex flex-col">
               <Header />
             </div>
-            <div className="max-w-7xl mx-auto w-full">
+            <div className="w-full mx-auto">
               <main className="px-4 md:px-6">
                 <Breadcrumbs />
                 {children}

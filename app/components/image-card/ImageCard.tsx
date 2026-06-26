@@ -1,5 +1,6 @@
 "use client";
 
+import { CldImage } from "next-cloudinary";
 import Image from "next/image";
 import { User, Heart } from "lucide-react";
 import bpc from "@/public/assets/comunity/bpc.png";
@@ -24,7 +25,7 @@ export function ImageCard({
 
   return (
     <div className="group relative w-full overflow-hidden rounded-xl bg-gray-900 shadow-md transition-all hover:shadow-xl aspect-[4/3] cursor-pointer">
-      <Image
+      <CldImage
         src={image_url}
         alt={title}
         fill
