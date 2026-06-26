@@ -1,3 +1,6 @@
+"use client";
+
+import { CldImage } from "next-cloudinary";
 import { Vehicle } from "@/services/types/vehicle.type";
 
 import styles from "./GalleryList.module.css";
@@ -28,27 +31,13 @@ export function GalleryList({ vehicle }: GalleryListProps) {
       >
         <div className={styles.imageContainer}>
           <figure>
-            <picture>
-              <source
-                type="image/webp"
-                srcSet={vehicle.vehiclePhotos[0].image_url}
-                media="(min-width: 1200px)"
-              />
-              <source
-                type="image/webp"
-                srcSet={vehicle.vehiclePhotos[0].image_url}
-                media="(min-width: 768px)"
-              />
-              <img
-                src={vehicle.vehiclePhotos[0].image_url}
-                role="presentation"
-                loading="lazy"
-                title=""
-                alt=""
-                decoding="async"
-                className={styles.image}
-              />
-            </picture>
+            <CldImage
+              src={vehicle.vehiclePhotos[0].image_url}
+              alt=""
+              fill
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+              className={styles.image}
+            />
           </figure>
           <div className={styles.overlay}></div>
         </div>

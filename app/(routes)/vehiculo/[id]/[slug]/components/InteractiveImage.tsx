@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import Image from "next/image";
+import { CldImage } from "next-cloudinary";
 import { X, ZoomIn } from "lucide-react";
 
 interface InteractiveImageProps {
@@ -39,7 +39,7 @@ export function InteractiveImage({ src, alt }: InteractiveImageProps) {
         className="relative w-full aspect-[4/3] sm:aspect-[16/10] bg-zinc-950 border border-zinc-900 rounded-2xl overflow-hidden shadow-2xl flex items-center justify-center select-none group cursor-zoom-in"
         onContextMenu={(e) => e.preventDefault()}
       >
-        <Image 
+        <CldImage 
           src={src} 
           alt={alt} 
           fill
@@ -78,10 +78,12 @@ export function InteractiveImage({ src, alt }: InteractiveImageProps) {
 
           {/* Full Screen Image Viewport Wrapper */}
           <div className="relative w-full h-full max-w-7xl max-h-[90vh] flex items-center justify-center">
-            <img 
+            <CldImage 
               src={src} 
               alt={alt} 
-              className="max-w-full max-h-full object-contain pointer-events-none select-none shadow-2xl rounded-lg border border-zinc-900" 
+              fill
+              className="object-contain pointer-events-none select-none shadow-2xl rounded-lg border border-zinc-900" 
+              sizes="90vw"
             />
             {/* Absolute overlay protecting the full-screen image */}
             <div className="absolute inset-0 z-[105] bg-transparent" />

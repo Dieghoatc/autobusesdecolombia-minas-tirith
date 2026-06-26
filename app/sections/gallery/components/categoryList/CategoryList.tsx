@@ -1,6 +1,7 @@
 "use client";
 
 import { useRef } from "react";
+import { CldImage } from "next-cloudinary";
 import Link from "next/link";
 import { useCarousel, useGetVehicleCategoryById } from "@/lib/hooks";
 import { TransportCategory } from "@/services/types/transportCategories.type";
@@ -53,7 +54,7 @@ export function CategoryList({ transportCategory }: CategoryListProps) {
               >
                 {vehicle.vehiclePhotos[0] ? (
                   <div className={styles.image_container}>
-                    <img src={vehicle.vehiclePhotos[0].image_url} alt={""} />
+                    <CldImage src={vehicle.vehiclePhotos[0].image_url} alt="" fill sizes="250px" className="object-cover" />
                     <div className={styles.overlay}></div>
                   </div>
                 ) : (
