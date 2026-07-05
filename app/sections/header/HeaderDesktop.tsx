@@ -3,6 +3,7 @@
 import { useShowSidebarMenu } from "@/lib/store/useShowSidebarMenu";
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import abcLogo from "@/assets/abc_logo.svg";
 import { User, Upload } from "lucide-react";
 
@@ -10,6 +11,8 @@ import { Search } from "./components/search";
 
 export function HeaderDesktop() {
   const { openDesktop } = useShowSidebarMenu();
+  const pathname = usePathname();
+  const isHome = pathname === "/";
 
   return (
     <nav className="max-w-7xl mx-auto w-full h-14 grid grid-cols-3 items-center px-4 md:px-6">
@@ -22,7 +25,8 @@ export function HeaderDesktop() {
           </div>
         )}
       </div>
-      <Search view="desktop" searchClose={() => console.log()} />
+      {/* El buscador del header se oculta en la home: ya está el buscador del hero */}
+      {isHome ? <div /> : <Search view="desktop" searchClose={() => console.log()} />}
       <div className="flex items-center justify-end gap-4">
         <Link 
           href="/upload" 

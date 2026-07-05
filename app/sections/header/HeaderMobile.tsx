@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 import useShowSidebarMenu from "@/lib/store/useShowSidebarMenu";
 import { motion, AnimatePresence } from "motion/react";
@@ -14,11 +15,13 @@ import logo from "@/public/assets/logos/abc_logo_single.svg";
 export function HeaderMobile() {
   const [openSearch, setOpenSearch] = useState(false);
   const {setOpenMobile} = useShowSidebarMenu();
+  const pathname = usePathname();
+  const isHome = pathname === "/";
 
   return (
     <nav className="flex items-center justify-between">
       <AnimatePresence mode="wait">
-        {openSearch ? (
+        {openSearch && !isHome ? (
           <Search searchClose={setOpenSearch} view="mobile" />
         ) : (
           <>
@@ -34,18 +37,21 @@ export function HeaderMobile() {
                 </Link>
               </div>
             </div>
-            <div className="flex items-center gap-4">
-              <motion.div
-                key="search"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                transition={{ duration: 0.3 }}
-                onClick={() => setOpenSearch(true)}
-              >
-                <SearchIcon />
-              </motion.div>
-            </div>
+            {/* El icono de búsqueda del header se oculta en la home: ya está el buscador del hero */}
+            {!isHome && (
+              <div className="flex items-center gap-4">
+                <motion.div
+                  key="search"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.3 }}
+                  onClick={() => setOpenSearch(true)}
+                >
+                  <SearchIcon />
+                </motion.div>
+              </div>
+            )}
           </>
         )}
       </AnimatePresence>

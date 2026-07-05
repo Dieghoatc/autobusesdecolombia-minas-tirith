@@ -15,8 +15,13 @@ export function Search({ searchClose, view   }: SearchProps) {
 
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    const data = event.currentTarget.search.value;
-    router.push(`/search?busqueda=${data}`);
+    const form = event.currentTarget;
+    const data = form.search.value.trim();
+
+    if (!data) return;
+
+    router.push(`/search?busqueda=${encodeURIComponent(data)}`);
+    form.reset();
     searchClose(false);
   }
 
