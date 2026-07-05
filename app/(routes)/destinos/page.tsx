@@ -5,6 +5,7 @@ import buildingImage from "@/public/assets/images/building.jpg"
 export const metadata: Metadata = {
   title: "Destinos de Viaje en Colombia | Autobuses de Colombia",
   description: "Explora los principales destinos turísticos y de viaje en Colombia. Encuentra información sobre rutas de autobuses, terminales y empresas de transporte para planear tu viaje.",
+  robots: { index: false, follow: true },
 };
 
 export default function Destinations() {

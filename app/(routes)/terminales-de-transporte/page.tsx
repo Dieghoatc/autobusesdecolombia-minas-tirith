@@ -5,6 +5,7 @@ import buildingImage from "@/public/assets/images/building.jpg"
 export const metadata: Metadata = {
   title: "Terminales de Transporte en Colombia | Autobuses de Colombia",
   description: "Encuentra información sobre las terminales de transporte terrestre de Colombia. Direcciones, teléfonos, horarios de atención y empresas asociadas.",
+  robots: { index: false, follow: true },
 };
 
 export default function TransportTerminals() {

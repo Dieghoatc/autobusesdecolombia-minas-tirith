@@ -44,41 +44,15 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       changeFrequency: 'monthly',
       priority: 0.5,
     },
-    {
-      url: `${baseUrl}/empresas-fabricantes`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 0.5,
-    },
-    {
-      url: `${baseUrl}/destinos`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 0.5,
-    },
+    // empresas-fabricantes, destinos, rutas-de-transporte, terminales-de-transporte
+    // y comunidad se excluyen del sitemap: son páginas "en construcción" sin
+    // contenido propio todavía (marcadas noindex). Volver a agregarlas cuando
+    // tengan contenido real.
     {
       url: `${baseUrl}/destinos/medellin`,
       lastModified: new Date(),
       changeFrequency: 'weekly',
       priority: 0.6,
-    },
-    {
-      url: `${baseUrl}/rutas-de-transporte`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 0.5,
-    },
-    {
-      url: `${baseUrl}/terminales-de-transporte`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 0.5,
-    },
-    {
-      url: `${baseUrl}/comunidad`,
-      lastModified: new Date(),
-      changeFrequency: 'weekly',
-      priority: 0.5,
     },
     {
       url: `${baseUrl}/politica-de-privacidad`,
