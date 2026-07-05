@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Model } from "@/services/types/search.type";
 import { searchQuery } from "@/services/api/search.query";
 
@@ -13,44 +13,60 @@ export function useSearch({ query }: UseSearchProps) {
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [hasNext, setHasNext] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [isLoading, setIsLoading] = useState(false);
 
+  // Reset pagination/results whenever the search term changes.
   useEffect(() => {
     setResults([]);
     setCurrentPage(1);
     setHasNext(true);
+    setError(null);
   }, [query]);
 
   useEffect(() => {
-    async function fetchResults() {
-      try {
-        if (!query) return;
+    if (!query) return;
 
+    const controller = new AbortController();
+
+    async function fetchResults() {
+      setIsLoading(true);
+      setError(null);
+
+      try {
         const params = new URLSearchParams({
           q: query,
           page: currentPage.toString(),
           limit: "9",
         });
 
-        const result = await searchQuery(params);
+        const result = await searchQuery(params, controller.signal);
+        const data = result?.data ?? [];
+        const info = result?.info;
 
-        if (currentPage === 1) {
-          setResults(result.data);
-        } else {
-          setResults((prev) => [...prev, ...result.data]);
+        setResults((prev) => (currentPage === 1 ? data : [...prev, ...data]));
+        setHasNext(!!info?.hasNext);
+      } catch (err) {
+        // Ignore aborted requests caused by a newer query/page superseding this one.
+        if (err instanceof DOMException && err.name === "AbortError") return;
+
+        setError(`Error al buscar "${query}". Intenta de nuevo.`);
+        setHasNext(false);
+      } finally {
+        if (!controller.signal.aborted) {
+          setIsLoading(false);
         }
-
-        setHasNext(result.info.hasNext);
-      } catch {
-        setError(`Error al buscar ${query}`);
       }
     }
 
     fetchResults();
+
+    return () => controller.abort();
   }, [query, currentPage]);
 
   return {
     results,
     error,
+    isLoading,
     setCurrentPage,
     hasNext,
   };
