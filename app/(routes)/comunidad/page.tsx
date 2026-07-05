@@ -5,6 +5,7 @@ import buildingImage from "@/public/assets/images/building.jpg"
 export const metadata: Metadata = {
   title: "Comunidad | Autobuses de Colombia",
   description: "Únete a la mayor comunidad de apasionados por los autobuses y el transporte en Colombia. Comparte tus fotos, historias y conocimiento.",
+  robots: { index: false, follow: true },
 };
 
 export default function Comunity() {
