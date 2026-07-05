@@ -19,15 +19,15 @@ interface SearchResultProps {
   results: Model[] | null;
   setCurrentPage: React.Dispatch<React.SetStateAction<number>>;
   hasNext: boolean;
+  isLoading?: boolean;
 }
 
 export function SearchResults({
   results,
   setCurrentPage,
   hasNext,
+  isLoading = false,
 }: SearchResultProps) {
-
- 
 
   const [ref, entry] = useIntersectionObserver({
     threshold: 0,
@@ -38,16 +38,20 @@ export function SearchResults({
   const isVisible = !!entry?.isIntersecting;
 
   useEffect(() => {
-    if (isVisible && hasNext) {
+    if (isVisible && hasNext && !isLoading) {
       setCurrentPage((prev) => prev + 1);
     }
-  }, [isVisible, hasNext, setCurrentPage]);
+  }, [isVisible, hasNext, isLoading, setCurrentPage]);
 
-  if (!results) {
+  const safeResults = results ?? [];
+
+  // Only show the initial full-page loader before we have any data yet.
+  if (isLoading && safeResults.length === 0) {
     return <ABCLoader />;
   }
 
-  if (results.length === 0) {
+  // Avoid flashing "no results" while the first request is still in flight.
+  if (!isLoading && safeResults.length === 0) {
     return (
       <section className={styles.container}>
         <NeuropolTitle>Modelos:</NeuropolTitle>
@@ -55,12 +59,12 @@ export function SearchResults({
       </section>
     );
   }
-  console.log(">>>>",results);
+
   return (
     <section className={styles.container}>
       <NeuropolTitle>Modelos:</NeuropolTitle>
       <article className={styles.models_container}>
-        {results.map((model) => {
+        {safeResults.map((model) => {
           const photo = model.vehicles?.[0]?.vehiclePhotos?.[0];
           return model.vehicles?.[0] ? (
             <div key={model.model_id} className={styles.card}>

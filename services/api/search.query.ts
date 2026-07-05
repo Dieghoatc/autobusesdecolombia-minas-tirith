@@ -2,18 +2,25 @@ import { SearchResponse } from "../types/search.type";
 
 const URL = process.env.NEXT_PUBLIC_ABC_API;
 
-async function fetchData<T>(params: URLSearchParams): Promise<T> {
-    try {
-        return fetch(`${URL}/search?${params}`, {
-            cache: "force-cache"
-        })
-        .then((res) => res.json());
-    } catch (error) {
-        console.error(`Failed to fetch data: ${error}`);
-        return {} as T;
+async function fetchData<T>(
+    params: URLSearchParams,
+    signal?: AbortSignal
+): Promise<T> {
+    const res = await fetch(`${URL}/search?${params}`, {
+        cache: "no-store",
+        signal,
+    });
+
+    if (!res.ok) {
+        throw new Error(`Search request failed with status ${res.status}`);
     }
+
+    return res.json() as Promise<T>;
 }
 
-export async function searchQuery(params: URLSearchParams): Promise<SearchResponse> {
-    return fetchData<SearchResponse>(params);
+export async function searchQuery(
+    params: URLSearchParams,
+    signal?: AbortSignal
+): Promise<SearchResponse> {
+    return fetchData<SearchResponse>(params, signal);
 }
