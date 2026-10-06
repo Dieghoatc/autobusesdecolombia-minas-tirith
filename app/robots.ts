@@ -6,6 +6,7 @@ export default function robots(): MetadataRoute.Robots {
       {
         userAgent: '*',
         allow: '/',
+        disallow: ['/dashboard', '/api/'],
       },
     ],
     sitemap: 'https://autobusesdecolombia.com/sitemap.xml',
