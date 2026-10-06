@@ -20,7 +20,8 @@ import { markPhoto } from "../_lib/api";
 import { useObjectUrl } from "../_lib/useObjectUrl";
 
 const ACCEPTED_TYPES = ["image/jpeg", "image/png", "image/webp", "image/avif"];
-const MAX_BYTES = 10 * 1024 * 1024;
+// Must match the API limit on /photo/mark and /vehicle
+const MAX_BYTES = 5 * 1024 * 1024;
 
 interface MarkPhotoStepProps {
   photographerOptions: ComboBoxOption[];
@@ -67,7 +68,7 @@ export function MarkPhotoStep({
       return;
     }
     if (selected && selected.size > MAX_BYTES) {
-      setStatus({ type: "error", message: "El archivo debe ser menor a 10MB" });
+      setStatus({ type: "error", message: "El archivo debe ser menor a 5MB" });
       setFile(null);
       return;
     }
