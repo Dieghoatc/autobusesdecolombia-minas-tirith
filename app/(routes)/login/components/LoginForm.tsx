@@ -1,7 +1,7 @@
 "use client";
 
-import { useActionState } from "react";
-import { Loader2, LogIn } from "lucide-react";
+import { useActionState, useState } from "react";
+import { Eye, EyeOff, Loader2, LogIn } from "lucide-react";
 
 import { Button } from "@/app/components/ui/button";
 import { Input } from "@/app/components/ui/input";
@@ -24,6 +24,7 @@ export function LoginForm({ next, initialError }: LoginFormProps) {
     login,
     { error: initialError }
   );
+  const [showPassword, setShowPassword] = useState(false);
 
   return (
     <form action={formAction} className="space-y-5" noValidate>
@@ -53,16 +54,28 @@ export function LoginForm({ next, initialError }: LoginFormProps) {
         <Label htmlFor="password" className={fieldLabel}>
           Contraseña
         </Label>
-        <Input
-          id="password"
-          name="password"
-          type="password"
-          autoComplete="current-password"
-          placeholder="••••••••"
-          aria-invalid={!!state.fieldErrors?.password}
-          className={fieldInput}
-          required
-        />
+        <div className="relative">
+          <Input
+            id="password"
+            name="password"
+            type={showPassword ? "text" : "password"}
+            autoComplete="current-password"
+            placeholder="••••••••"
+            aria-invalid={!!state.fieldErrors?.password}
+            className={`pr-10 ${fieldInput}`}
+            required
+          />
+          <button
+            type="button"
+            onClick={() => setShowPassword((visible) => !visible)}
+            aria-label={showPassword ? "Ocultar contraseña" : "Mostrar contraseña"}
+            aria-pressed={showPassword}
+            aria-controls="password"
+            className="absolute inset-y-0 right-0 flex w-10 items-center justify-center rounded-r-xl text-zinc-500 transition-colors hover:text-zinc-200 focus-visible:outline-none focus-visible:text-amber-400"
+          >
+            {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
+          </button>
+        </div>
         {state.fieldErrors?.password && (
           <p className={fieldError}>{state.fieldErrors.password}</p>
         )}
