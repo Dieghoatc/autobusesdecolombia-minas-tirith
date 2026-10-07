@@ -26,12 +26,7 @@ export async function Gallery({ limit = 24 }: GalleryProps) {
   }
 
   return (
-    <section className="w-full mt-4 mb-12">
-      <div className="flex items-center justify-between mb-4 px-2">
-        <h2 className="text-2xl font-bold">Galería</h2>
-        <span className="text-sm text-muted-foreground">{data.info.count} fotos</span>
-      </div>
-
+    <section aria-label="Galería" className="w-full mt-4 mb-12">
       <div className="relative max-h-[120vh] overflow-hidden">
         <GalleryGrid vehicles={data.data} />
 

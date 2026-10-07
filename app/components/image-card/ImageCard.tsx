@@ -1,13 +1,9 @@
 "use client";
 
-import Image from "next/image";
-import { Maximize2, User } from "lucide-react";
+import { Maximize2 } from "lucide-react";
 
 import { CloudImage } from "@/app/components/cloud-image";
-import bpc from "@/public/assets/comunity/bpc.png";
 import { Photographer } from "@/services/types/vehicle.type";
-
-const userLogos = [{ id: 4, logo: bpc }];
 
 interface ImageCardProps {
   image_url: string;
@@ -30,8 +26,6 @@ export function ImageCard({
   sizes = "(max-width: 767px) 100vw, 30vw",
   onOpen,
 }: ImageCardProps) {
-  const userLogo = userLogos.find((logo) => logo.id === author.photographer_id);
-
   return (
     <button
       type="button"
@@ -73,15 +67,8 @@ export function ImageCard({
         </span>
       </span>
 
-      <span className="absolute inset-x-0 bottom-0 flex items-center gap-2 bg-gradient-to-t from-black/70 to-transparent p-3 pt-8 opacity-0 transition-opacity duration-300 group-hover:opacity-100 group-focus-visible:opacity-100">
-        <span className="flex h-6 w-6 flex-shrink-0 items-center justify-center overflow-hidden rounded-full border border-white/20 bg-zinc-800">
-          {userLogo ? (
-            <Image src={userLogo.logo} alt="" width={24} height={24} className="h-full w-full object-cover" />
-          ) : (
-            <User aria-hidden className="h-3.5 w-3.5 text-white/70" />
-          )}
-        </span>
-        <span className="truncate text-xs text-white/85">{author.name}</span>
+      <span className="absolute inset-x-0 bottom-0 truncate bg-gradient-to-t from-black/70 to-transparent p-3 pt-8 text-xs text-white/85 opacity-0 transition-opacity duration-300 group-hover:opacity-100 group-focus-visible:opacity-100">
+        {author.name}
       </span>
     </button>
   );

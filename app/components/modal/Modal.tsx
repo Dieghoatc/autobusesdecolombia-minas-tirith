@@ -30,10 +30,15 @@ export function Modal({ children, onClose, isOpen }: ModalProps) {
     document.body.style.overflow = "hidden";
 
     const handlePopState = () => onCloseRef.current();
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") onCloseRef.current();
+    };
     window.addEventListener("popstate", handlePopState);
+    window.addEventListener("keydown", handleKeyDown);
 
     return () => {
       window.removeEventListener("popstate", handlePopState);
+      window.removeEventListener("keydown", handleKeyDown);
       document.body.style.overflow = previousOverflow;
       // Closed from the UI: drop the entry we pushed
       if (window.history.state?.modal) {

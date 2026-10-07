@@ -1,8 +1,8 @@
-import arimena from "@/assets/companies/transportes-arimena.png";
+import arimena from "@/assets/companies/transportes_arimena.png";
 import autoboy from "@/assets/companies/autoboy.png";
 import empresa_arauca from "@/assets/companies/empresa_arauca.png";
 import autofaca from "@/assets/companies/autofaca.png";
-import berlinas from "@/assets/companies/berlinas_del_fonce.png";
+import berlinas from "@/assets/companies/berlinas.png";
 import berlitur from "@/assets/companies/berlitur.png";
 import catatumbo_traindls from "@/assets/companies/catatumbo_traindls.png";
 import cointrasur from "@/assets/companies/cointrasur.png";
@@ -36,12 +36,7 @@ import cotrasangil from "@/assets/companies/cotrasangil.png";
 import expreso_almirante_padilla from "@/assets/companies/exalpa.png";
 import expreso_bolivariano from "@/assets/companies/expreso_bolivariano.png";
 import expreso_brasilia from "@/assets/companies/expreso_brasilia.png";
-import transportes_expreso_cundimanarca from "@/assets/companies/transportes_expreso_cundimanarca.png";
-import expreso_del_sol from "@/assets/companies/expreso_del_sol.png";
-import expreso_gaitana from "@/assets/companies/expreso_gaitana.png";
-import expreso_gaviota from "@/assets/companies/expreso_gaviota.png";
-import expreso_gomez_villa from "@/assets/companies/expreso_gomez_villa.png";
-import expreso_palmira from "@/assets/companies/expreso_palmira.png";
+import transportes_expreso_cundimanarca from "@/assets/companies/transportes_expreso_cundinamarca.png";
 import expreso_paz_del_rio from "@/assets/companies/expreso_paz_del_rio.png";
 import flota_aguila from "@/assets/companies/flota_aguila.png";
 import flota_alianza from "@/assets/companies/flota_alianza.png";
@@ -49,7 +44,7 @@ import flota_la_macarena from "@/assets/companies/flota_la_macarena.png";
 import flota_magdalena from "@/assets/companies/flota_magdalena.png";
 import flota_occidental from "@/assets/companies/flota_occidental.png";
 import flota_ospina from "@/assets/companies/flota_ospina.png";
-import transportes_reina from "@/assets/companies/transportes_reina.png";
+import transportes_reina from "@/assets/companies/transporte_reina.png";
 import libertadores from "@/assets/companies/libertadores.png";
 import lineas_del_valle from "@/assets/companies/lineas_del_valle.png";
 import lineas_pereiranas from "@/assets/companies/lineas_pereiranas.png";
@@ -71,7 +66,7 @@ import tax_meta from "@/assets/companies/tax_meta.png";
 import taxis_verdes from "@/assets/companies/taxis_verdes.png";
 import torcoroma from "@/assets/companies/torcoroma.png";
 import transportes_armenia from "@/assets/companies/transportes_armenia.png";
-import transcalima from "@/assets/companies/transcalima.png";
+import transcalima from "@/assets/companies/trans_calima.png";
 import transegovia from "@/assets/companies/transegovia.png";
 import transipiales from "@/assets/companies/transipiales.png";
 import transportes_autollanos from "@/assets/companies/transportes_autollanos.png";
@@ -82,7 +77,7 @@ import transportes_luz from "@/assets/companies/transportes_luz.png";
 import marsol_tansportes from "@/assets/companies/marsol_transportes.png";
 import transportes_morichal from "@/assets/companies/transportes_morichal.png";
 import transportes_tamesis from "@/assets/companies/transportes_tamesis.png";
-import transportes_tisquesusa from "@/assets/companies/transportes_tisquesusa.png";
+import transportes_tisquesusa from "@/assets/companies/tisquesusa.png";
 import transpurificacion from "@/assets/companies/transpurificacion.png";
 import transsander from "@/assets/companies/transsander.png";
 import trejos from "@/assets/companies/trejos.png";
@@ -130,11 +125,11 @@ export const companies = {
   expreso_bolivariano: { name: "Expreso Bolivariano", logo: expreso_bolivariano },
   expreso_brasilia: { name: "Expreso Brasilia", logo: expreso_brasilia },
   expreso_cundinamarca: {name: "Expreso Cundinamarca",logo: transportes_expreso_cundimanarca},
-  expreso_del_sol: { name: "Expreso Del Sol", logo: expreso_del_sol },
-  expreso_gaitana: { name: "Expreso Gaitana", logo: expreso_gaitana },
-  expreso_gaviota: { name: "Expreso Gaviota", logo: expreso_gaviota },
-  expreso_gomez_villa: {name: "Expreso Gomez Villa",logo: expreso_gomez_villa},
-  expreso_palmira: { name: "Expreso Palmira", logo: expreso_palmira },
+  expreso_del_sol: { name: "Expreso Del Sol", logo: "" }, // logo file missing in assets/companies
+  expreso_gaitana: { name: "Expreso Gaitana", logo: "" }, // logo file missing in assets/companies
+  expreso_gaviota: { name: "Expreso Gaviota", logo: "" }, // logo file missing in assets/companies
+  expreso_gomez_villa: {name: "Expreso Gomez Villa",logo: "" }, // logo file missing in assets/companies
+  expreso_palmira: { name: "Expreso Palmira", logo: "" }, // logo file missing in assets/companies
   expreso_paz_del_rio: {name: "Expreso Paz Del Rio", logo: expreso_paz_del_rio},
   flota_aguila: { name: "Flota Aguila", logo: flota_aguila },
   flota_alianza: { name: "Flota Alianza", logo: flota_alianza },
