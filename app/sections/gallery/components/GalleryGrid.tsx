@@ -2,8 +2,9 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { CldImage } from "next-cloudinary";
+import { CloudImage } from "@/app/components/cloud-image";
 import { ImageCard } from "@/app/components/image-card";
+import { MASONRY_COLUMNS, TILE_SIZES, tileRatio } from "./masonry";
 import { Modal } from "@/app/components/modal";
 import { formatURL } from "@/lib/helpers/formatURL";
 import { Vehicle, VehiclePhoto } from "@/services/types/vehicle.type";
@@ -31,6 +32,10 @@ export function GalleryGrid({ vehicles }: GalleryGridProps) {
     setSelected({ vehicle, photo });
   };
 
+  const tiles = vehicles.flatMap((vehicle) =>
+    vehicle.vehiclePhotos.map((photo) => ({ vehicle, photo })),
+  );
+
   const closeModal = () => {
     setSelected(null);
   };
@@ -53,24 +58,21 @@ export function GalleryGrid({ vehicles }: GalleryGridProps) {
     <>
       <article
         key={vehicles[0]?.vehicle_id || "empty"}
-        className="w-full grid grid-cols-1 md:grid-cols-4 xl:grid-cols-5 gap-6 animate-in fade-in duration-500"
+        className={`w-full ${MASONRY_COLUMNS} animate-in fade-in duration-500`}
       >
-        {vehicles.map((vehicle) =>
-          vehicle.vehiclePhotos.map((photo) => (
-            <div
-              key={photo.vehicle_photo_id}
-              onClick={() => openPreview(vehicle, photo)}
-              className="focus:outline-none"
-            >
-              <ImageCard
-                image_url={photo.image_url}
-                title={vehicle.model.model_name}
-                company={vehicle.company?.company_name ?? ""}
-                author={photo.photographer}
-              />
-            </div>
-          )),
-        )}
+        {tiles.map(({ vehicle, photo }, index) => (
+          <div key={photo.vehicle_photo_id} className="mb-2 break-inside-avoid">
+            <ImageCard
+              image_url={photo.image_url}
+              title={vehicle.model.model_name}
+              company={vehicle.company?.company_name ?? ""}
+              author={photo.photographer}
+              aspectRatio={tileRatio(index)}
+              sizes={TILE_SIZES}
+              onOpen={() => openPreview(vehicle, photo)}
+            />
+          </div>
+        ))}
       </article>
 
       <Modal isOpen={!!selected} onClose={closeModal}>
@@ -81,13 +83,16 @@ export function GalleryGrid({ vehicles }: GalleryGridProps) {
                 className="relative w-full h-[85vh] bg-black flex items-center justify-center p-4 border-b border-zinc-900 select-none"
                 onContextMenu={(e) => e.preventDefault()}
               >
-                <CldImage
+                {/* Full-width viewer: request 100vw and load immediately — lazy
+                    loading inside the fixed, scrollable overlay delays it for seconds. */}
+                <CloudImage
                   src={selected.photo.image_url}
                   alt={`${selected.vehicle.model.brand?.name || ""} ${selected.vehicle.model.model_name}`.trim()}
                   fill
                   className="object-contain shadow-2xl pointer-events-none"
-                  sizes="(max-width: 768px) 100vw, 50vw"
-                  crop="fit"
+                  sizes="100vw"
+                  loading="eager"
+                  fetchPriority="high"
                 />
                 <div className="absolute inset-0 z-10 bg-transparent cursor-default" />
               </div>
@@ -221,8 +226,11 @@ export function GalleryGrid({ vehicles }: GalleryGridProps) {
                   >
                     Cerrar Vista
                   </button>
+                  {/* replace: swaps the modal's history entry, so one "back"
+                      returns to the gallery at the same scroll position */}
                   <Link
                     href={getDetailLink(selected.vehicle)}
+                    replace
                     className="flex items-center justify-center gap-2 text-sm font-bold text-black bg-white hover:bg-zinc-200 px-6 py-3 rounded-xl transition-all duration-200 shadow-md shadow-black/25"
                   >
                     <span>Ver página completa de detalles</span>
