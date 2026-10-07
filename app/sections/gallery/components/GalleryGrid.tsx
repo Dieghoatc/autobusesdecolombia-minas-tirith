@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { CldImage } from "next-cloudinary";
+import { CloudImage } from "@/app/components/cloud-image";
 import { ImageCard } from "@/app/components/image-card";
 import { Modal } from "@/app/components/modal";
 import { formatURL } from "@/lib/helpers/formatURL";
@@ -81,13 +81,16 @@ export function GalleryGrid({ vehicles }: GalleryGridProps) {
                 className="relative w-full h-[85vh] bg-black flex items-center justify-center p-4 border-b border-zinc-900 select-none"
                 onContextMenu={(e) => e.preventDefault()}
               >
-                <CldImage
+                {/* Full-width viewer: request 100vw and load immediately — lazy
+                    loading inside the fixed, scrollable overlay delays it for seconds. */}
+                <CloudImage
                   src={selected.photo.image_url}
                   alt={`${selected.vehicle.model.brand?.name || ""} ${selected.vehicle.model.model_name}`.trim()}
                   fill
                   className="object-contain shadow-2xl pointer-events-none"
-                  sizes="(max-width: 768px) 100vw, 50vw"
-                  crop="fit"
+                  sizes="100vw"
+                  loading="eager"
+                  fetchPriority="high"
                 />
                 <div className="absolute inset-0 z-10 bg-transparent cursor-default" />
               </div>
