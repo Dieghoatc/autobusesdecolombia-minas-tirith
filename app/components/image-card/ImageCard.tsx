@@ -1,25 +1,24 @@
 "use client";
 
 import Image from "next/image";
+import { Maximize2, User } from "lucide-react";
+
 import { CloudImage } from "@/app/components/cloud-image";
-import { User, Heart } from "lucide-react";
 import bpc from "@/public/assets/comunity/bpc.png";
 import { Photographer } from "@/services/types/vehicle.type";
 
 const userLogos = [{ id: 4, logo: bpc }];
-
-// Gallery grid: 1 column on mobile, 4 from md, 5 from xl. Desktop slots are
-// requested ~1.5x wider than the card so 1x screens also get a sharp image
-// (the extra scale-105 on hover would otherwise upscale it).
-const GALLERY_CARD_SIZES = "(max-width: 767px) 100vw, (max-width: 1279px) 38vw, 30vw";
 
 interface ImageCardProps {
   image_url: string;
   title: string;
   company?: string;
   author: Photographer;
-  // Rendered width of the card in the parent layout, for the srcset choice
+  // Tile shape, e.g. "4:5". Cloudinary crops the photo to it.
+  aspectRatio?: string;
+  // Rendered width of the tile in the parent layout, for the srcset choice
   sizes?: string;
+  onOpen?: () => void;
 }
 
 export function ImageCard({
@@ -27,62 +26,63 @@ export function ImageCard({
   title,
   company,
   author,
-  sizes = GALLERY_CARD_SIZES,
+  aspectRatio = "4:3",
+  sizes = "(max-width: 767px) 100vw, 30vw",
+  onOpen,
 }: ImageCardProps) {
   const userLogo = userLogos.find((logo) => logo.id === author.photographer_id);
 
   return (
-    <div className="group relative w-full overflow-hidden rounded-xl bg-gray-900 shadow-md transition-all hover:shadow-xl aspect-[4/3] cursor-pointer">
-      {/* Crop to the card's 4:3 on Cloudinary. With object-cover alone, wide
-          photos are scaled to the card height and need far more pixels than
-          `sizes` (the card width) requests, so they came out blurry. */}
+    <button
+      type="button"
+      onClick={onOpen}
+      aria-label={`Ver ${title}${company ? ` de ${company}` : ""}`}
+      className="group relative block w-full overflow-hidden rounded-xl bg-zinc-900 text-left outline-none focus-visible:ring-2 focus-visible:ring-amber-500"
+      style={{ aspectRatio: aspectRatio.replace(":", " / ") }}
+    >
       <CloudImage
         src={image_url}
         alt={title}
         fill
         crop="fill"
-        aspectRatio="4:3"
+        aspectRatio={aspectRatio}
         gravity="auto"
-        className="object-cover transition-transform duration-500 ease-out group-hover:scale-105"
         sizes={sizes}
+        className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]"
       />
 
-      <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-black/80 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+      {/* Dim + reveal details on hover / keyboard focus */}
+      <span className="absolute inset-0 bg-black/0 transition-colors duration-300 group-hover:bg-black/45 group-focus-visible:bg-black/45" />
 
-      <div className="absolute top-3 right-3 flex gap-2 opacity-0 transform translate-y-[-10px] transition-all duration-300 group-hover:opacity-100 group-hover:translate-y-0">
-        <button
-          className="flex h-9 w-9 items-center justify-center rounded-full bg-white/20 backdrop-blur-md hover:bg-white text-white hover:text-black transition-colors"
-          onClick={(e) => e.preventDefault()}
-        >
-          <Heart className="h-4 w-4" />
-        </button>
-      </div>
+      {company && (
+        <span className="absolute left-3 top-3 max-w-[calc(100%-4rem)] truncate rounded-full bg-black/50 px-2.5 py-1 text-[11px] font-medium text-white/90 backdrop-blur-md opacity-0 transition-opacity duration-300 group-hover:opacity-100 group-focus-visible:opacity-100">
+          {company}
+        </span>
+      )}
+      <span className="absolute right-3 top-3 flex h-8 w-8 items-center justify-center rounded-full bg-black/50 text-white backdrop-blur-md opacity-0 transition-opacity duration-300 group-hover:opacity-100 group-focus-visible:opacity-100">
+        <Maximize2 aria-hidden className="h-3.5 w-3.5" />
+      </span>
 
-      <div className="absolute bottom-0 left-0 w-full p-4 flex items-center gap-3 opacity-0 transform translate-y-[10px] transition-all duration-300 group-hover:opacity-100 group-hover:translate-y-0">
-        <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center overflow-hidden rounded-full border-2 border-white/20 bg-gray-800">
+      <span className="absolute inset-x-4 top-1/2 flex -translate-y-1/2 scale-95 flex-col items-center gap-3 text-center opacity-0 transition duration-300 group-hover:scale-100 group-hover:opacity-100 group-focus-visible:scale-100 group-focus-visible:opacity-100">
+        <span className="line-clamp-2 text-lg md:text-xl font-extrabold uppercase leading-tight tracking-tight text-white drop-shadow-lg">
+          {title}
+        </span>
+        <span className="flex items-center gap-1.5 rounded-lg border border-amber-400/30 bg-amber-500/15 px-3 py-1.5 text-xs font-semibold text-amber-300 backdrop-blur-md">
+          <Maximize2 aria-hidden className="h-3.5 w-3.5" />
+          Ver fotografía
+        </span>
+      </span>
+
+      <span className="absolute inset-x-0 bottom-0 flex items-center gap-2 bg-gradient-to-t from-black/70 to-transparent p-3 pt-8 opacity-0 transition-opacity duration-300 group-hover:opacity-100 group-focus-visible:opacity-100">
+        <span className="flex h-6 w-6 flex-shrink-0 items-center justify-center overflow-hidden rounded-full border border-white/20 bg-zinc-800">
           {userLogo ? (
-            <Image
-              src={userLogo.logo}
-              alt={author.name}
-              width={40}
-              height={40}
-              className="h-full w-full object-cover"
-            />
+            <Image src={userLogo.logo} alt="" width={24} height={24} className="h-full w-full object-cover" />
           ) : (
-            <User className="text-white/70 h-5 w-5" />
+            <User aria-hidden className="h-3.5 w-3.5 text-white/70" />
           )}
-        </div>
-        <div className="flex flex-col truncate">
-          <span className="font-semibold text-white text-sm truncate">
-            {title}
-          </span>
-          <div className="flex items-center text-xs text-white/80 gap-1 truncate">
-            {company && <span className="truncate">{company}</span>}
-            {company && <span className="opacity-50">•</span>}
-            <span className="truncate">{author.name}</span>
-          </div>
-        </div>
-      </div>
-    </div>
+        </span>
+        <span className="truncate text-xs text-white/85">{author.name}</span>
+      </span>
+    </button>
   );
 }

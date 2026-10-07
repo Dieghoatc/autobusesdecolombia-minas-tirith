@@ -1,5 +1,5 @@
 import { Suspense } from "react";
-import { Gallery } from "@/app/sections/gallery";
+import { GalleryFeed } from "@/app/sections/gallery";
 import { GallerySkeleton } from "@/app/sections/gallery/components/gallery-skeleton";
 import type { Metadata } from "next";
 
@@ -8,14 +8,10 @@ export const metadata: Metadata = {
   description: "Explora nuestra extensa galería de fotografías de autobuses, busetas y sistemas de transporte en Colombia.",
 };
 
-interface GaleriaPageProps {
-  searchParams: Promise<{ page?: string }>;
-}
+// Latest photos: regenerate at most every 60s (same as /api/gallery)
+export const revalidate = 60;
 
-export default async function GaleriaPage({ searchParams }: GaleriaPageProps) {
-  const params = await searchParams;
-  const page = Number(params?.page) || 1;
-
+export default function GaleriaPage() {
   return (
     <div className="py-8">
       <div className="max-w-4xl mx-auto text-center space-y-3 mb-8">
@@ -28,7 +24,7 @@ export default async function GaleriaPage({ searchParams }: GaleriaPageProps) {
       </div>
 
       <Suspense fallback={<GallerySkeleton />}>
-        <Gallery page={page} limit={16} />
+        <GalleryFeed limit={20} />
       </Suspense>
     </div>
   );

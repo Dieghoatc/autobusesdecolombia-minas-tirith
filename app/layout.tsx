@@ -3,6 +3,7 @@ import type { Metadata, Viewport } from "next";
 import Script from "next/script";
 
 import { Header } from "./sections/header";
+import { DonationBanner } from "./components/donation/DonationBanner";
 import { Breadcrumbs } from "./components/breadcrumbs/Breadcrumbs";
 
 import { Analytics } from "@vercel/analytics/react";
@@ -72,6 +73,7 @@ export default function RootLayout({
           <Breadcrumbs />
           {children}
         </main>
+        <DonationBanner />
         <Analytics />
       </body>
     </html>

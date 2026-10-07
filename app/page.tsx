@@ -3,19 +3,15 @@ import { Gallery } from "./sections/gallery";
 import { Hero } from "./sections/hero/Hero";
 import { GallerySkeleton } from "./sections/gallery/components/gallery-skeleton";
 
-interface HomePageProps {
-  searchParams: Promise<{ page?: string }>;
-}
+// Latest photos: regenerate at most every 60s (same as /api/gallery)
+export const revalidate = 60;
 
-export default async function HomePage({ searchParams }: HomePageProps) {
-  const params = await searchParams;
-  const page = Number(params?.page) || 1;
-
+export default function HomePage() {
   return (
     <>
       <Hero />
       <Suspense fallback={<GallerySkeleton />}>
-        <Gallery page={page} limit={15} />
+        <Gallery limit={24} />
       </Suspense>
     </>
   );

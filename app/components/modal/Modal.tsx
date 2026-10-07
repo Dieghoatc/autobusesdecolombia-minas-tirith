@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { X } from "lucide-react";
 import styles from "./Modal.module.css";
 
@@ -11,33 +11,36 @@ interface ModalProps {
 }
 
 export function Modal({ children, onClose, isOpen }: ModalProps) {
-  
+  // Read through a ref so a new onClose identity (parent re-render, e.g. the
+  // infinite gallery loading a page) never re-runs the history effect below,
+  // which used to pop the entry and close the modal on its own.
+  const onCloseRef = useRef(onClose);
   useEffect(() => {
-    if (isOpen) {
-      window.history.pushState({ modal: true }, "");
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "auto";
-    }
+    onCloseRef.current = onClose;
+  }, [onClose]);
 
-    const handlePopState = (e: PopStateEvent) => {
-      if (isOpen) {
-        onClose();
-        e.preventDefault();
-      }
-    };
+  // While open: one extra history entry so the browser/phone back button
+  // closes the modal instead of leaving the page, and the page can't scroll.
+  useEffect(() => {
+    if (!isOpen) return;
 
+    // Keep the current entry's state (Next.js router data, gallery key)
+    window.history.pushState({ ...window.history.state, modal: true }, "");
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+
+    const handlePopState = () => onCloseRef.current();
     window.addEventListener("popstate", handlePopState);
 
     return () => {
-      document.body.style.overflow = "auto";
       window.removeEventListener("popstate", handlePopState);
-      // Opcional: limpiar el historial extra si es necesario
+      document.body.style.overflow = previousOverflow;
+      // Closed from the UI: drop the entry we pushed
       if (window.history.state?.modal) {
         window.history.back();
       }
     };
-  }, [isOpen, onClose]);
+  }, [isOpen]);
 
   const handleOverlayClick = (e: React.MouseEvent<HTMLDivElement>) => {
     if (e.target === e.currentTarget) {

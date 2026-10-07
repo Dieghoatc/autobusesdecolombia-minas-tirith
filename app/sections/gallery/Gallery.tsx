@@ -1,16 +1,20 @@
+import Link from "next/link";
+import { ArrowUpRight } from "lucide-react";
+
 import { vehicleQuery } from "@/services/api/vehicle.query";
-import { PaginationGallery } from "@/app/components/paginationGallery/paginationGallery";
+
 import { GalleryGrid } from "./components/GalleryGrid";
 
 interface GalleryProps {
-  page?: number;
   limit?: number;
 }
 
-export async function Gallery({ page = 1, limit = 12 }: GalleryProps) {
-  const data = await vehicleQuery(page, limit);
+// Home preview: latest photos, faded out at the bottom, with a link to the
+// full (infinite scroll) gallery.
+export async function Gallery({ limit = 24 }: GalleryProps) {
+  const data = await vehicleQuery(1, limit);
 
-  if (!data || !data.data || data.data.length === 0) {
+  if (!data?.data?.length) {
     return (
       <section className="w-full mt-4">
         <h2 className="text-2xl font-bold m-2">Galería</h2>
@@ -22,18 +26,25 @@ export async function Gallery({ page = 1, limit = 12 }: GalleryProps) {
   }
 
   return (
-    <section className="w-full mt-4">
+    <section className="w-full mt-4 mb-12">
       <div className="flex items-center justify-between mb-4 px-2">
         <h2 className="text-2xl font-bold">Galería</h2>
-        <span className="text-sm text-muted-foreground">
-          {data.info.count} fotos
-        </span>
+        <span className="text-sm text-muted-foreground">{data.info.count} fotos</span>
       </div>
-      
-      <GalleryGrid vehicles={data.data} />
-      
-      <div className="mt-8 mb-4">
-        <PaginationGallery pagination={data.info} />
+
+      <div className="relative max-h-[120vh] overflow-hidden">
+        <GalleryGrid vehicles={data.data} />
+
+        <div className="pointer-events-none absolute inset-x-0 bottom-0 h-72 bg-gradient-to-t from-black via-black/80 to-transparent" />
+        <div className="absolute inset-x-0 bottom-10 flex justify-center">
+          <Link
+            href="/galeria"
+            className="flex items-center gap-2 rounded-xl border border-amber-400/30 bg-amber-500/15 px-6 py-3 text-base font-semibold text-amber-300 backdrop-blur-md transition-colors hover:bg-amber-500/25"
+          >
+            Ver todas las imágenes
+            <ArrowUpRight aria-hidden className="h-5 w-5" />
+          </Link>
+        </div>
       </div>
     </section>
   );
