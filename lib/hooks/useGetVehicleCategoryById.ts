@@ -22,6 +22,10 @@ export function useGetVehicleCategoryById({
   const [error, setError] = useState("");
 
   useEffect(() => {
+    // Id not resolved yet (e.g. a text slug waiting for the categories list):
+    // stay in loading instead of requesting /vehicle/category/NaN (API 500)
+    if (!Number.isFinite(id)) return;
+
     async function fetchVehicle(id: number, page: number, limit?: number) {
       setLoading(true);
       setError("");

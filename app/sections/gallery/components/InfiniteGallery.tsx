@@ -19,6 +19,8 @@ const PRELOAD_MARGIN = "1500px 0px";
 interface InfiniteGalleryProps {
   initial: APIVehicleResponse;
   limit: number;
+  // Transport category id; omit for the whole gallery
+  category?: number;
 }
 
 function mergeVehicles(current: Vehicle[], incoming: Vehicle[]): Vehicle[] {
@@ -27,7 +29,7 @@ function mergeVehicles(current: Vehicle[], incoming: Vehicle[]): Vehicle[] {
   return [...current, ...incoming.filter((vehicle) => !seen.has(vehicle.vehicle_id))];
 }
 
-export function InfiniteGallery({ initial, limit }: InfiniteGalleryProps) {
+export function InfiniteGallery({ initial, limit, category }: InfiniteGalleryProps) {
   const [vehicles, setVehicles] = useState<Vehicle[]>(initial.data);
   const [nextPage, setNextPage] = useState(initial.info.currentPage + 1);
   const [hasNext, setHasNext] = useState(initial.info.hasNext);
@@ -109,7 +111,9 @@ export function InfiniteGallery({ initial, limit }: InfiniteGalleryProps) {
     setIsLoading(true);
     setError(false);
     try {
-      const response = await fetch(`/api/gallery?page=${page}&limit=${limit}`);
+      const query = new URLSearchParams({ page: String(page), limit: String(limit) });
+      if (category !== undefined) query.set("category", String(category));
+      const response = await fetch(`/api/gallery?${query}`);
       if (!response.ok) throw new Error(String(response.status));
       const body = (await response.json()) as APIVehicleResponse;
 
@@ -122,7 +126,7 @@ export function InfiniteGallery({ initial, limit }: InfiniteGalleryProps) {
       loadingRef.current = false;
       setIsLoading(false);
     }
-  }, [limit]);
+  }, [limit, category]);
 
   useEffect(() => {
     const sentinel = sentinelRef.current;

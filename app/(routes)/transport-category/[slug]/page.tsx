@@ -1,97 +1,96 @@
-"use client";
+import Link from "next/link";
+import { notFound } from "next/navigation";
 
-import { useState, useCallback } from "react";
-import { useParams, useSearchParams, useRouter } from "next/navigation";
+import { InfiniteGallery } from "@/app/sections/gallery/components/InfiniteGallery";
+import { transportCategoriesQuery } from "@/services/api/transportCategories.query";
+import { vehicleCategoryQueryById } from "@/services/api/vehicleCategoryById";
 
-import { useGetVehicleCategoryById } from "@/lib/hooks";
+import { CategoryDescription } from "./CategoryDescription";
+import { findCategory } from "./findCategory";
 
-import { GalleryList } from "@/app/components/galleryList";
-import { PaginationGallery } from "@/app/components/paginationGallery/paginationGallery";
+// Same refresh window as the gallery and /api/gallery
+export const revalidate = 60;
 
-import { SkeletonGallery } from "../components/SkeletonGallery";
-import { useTransportCategories } from "@/lib/hooks";
-import { splitString } from "@/lib/helpers";
+const PAGE_LIMIT = 20;
+const numberFormat = new Intl.NumberFormat("es-CO");
 
-import { ChevronDownIcon, ChevronUpIcon } from "lucide-react";
-import styles from "./CategoryGallery.module.css";
+interface CategoryPageProps {
+  params: Promise<{ slug: string }>;
+}
 
-export default function CategoryGallery() {
-  const [isExpanded, setIsExpanded] = useState(false);
-  const searchParams = useSearchParams();
-  const { slug } = useParams<{ slug: string }>();
-  const router = useRouter();
-  const { transportCategories, loading: loadingCategories } =
-    useTransportCategories();
+// Server-rendered first page (indexable), then infinite scroll through
+// /api/gallery?category=… with the same scroll restore as /galeria.
+export default async function CategoryPage({ params }: CategoryPageProps) {
+  const { slug } = await params;
+  const categories = await transportCategoriesQuery().catch((error) => {
+    console.error(error);
+    return null;
+  });
+  // API down: a friendly message, not a 404 (the category may well exist)
+  if (!categories) {
+    return <EmptyState message="No pudimos cargar esta categoría. Intenta de nuevo en unos minutos." />;
+  }
 
-  const page = parseInt(searchParams.get("page") || "1");
-  const limit = parseInt(searchParams.get("limit") || "20");
+  const category = findCategory(categories, slug);
+  if (!category) notFound();
 
-  const { vehicles, loading } = useGetVehicleCategoryById({
-    id: Number(slug),
-    page: page,
-    limit: limit,
+  const initial = await vehicleCategoryQueryById(
+    category.transport_category_id,
+    1,
+    PAGE_LIMIT
+  ).catch((error) => {
+    console.error(error);
+    return null;
   });
 
-  const goToPage = useCallback(
-    (newPage: number) => {
-      const params = new URLSearchParams(searchParams);
-      params.set("page", newPage.toString());
-      router.push(`?${params.toString()}`);
-    },
-    [searchParams, router]
-  );
-
-  if (loading || loadingCategories) return <SkeletonGallery />;
-
-  const category = transportCategories.find(
-    (category) => category.transport_category_id === Number(slug)
-  );
-
-  const categoryTitle = category?.name?.split(" ") ?? ["", ""];
-  const categoryDescription = category?.description || "";
-
-  const [p1, p2] = splitString(categoryDescription);
-  const fullDescripcion = p1 + " " + p2;
-  const shortDescripcion = p1;
+  const [firstWord, ...rest] = category.name.split(" ");
 
   return (
-    <div>
-      <section className={styles.container}>
-        <div className={styles.header}>
-          <h1 className={styles.title}>
-            {categoryTitle[0] + " "}
-            <span>{categoryTitle[1]}</span>
-          </h1>
-          <div>
-            <p className={styles.description}>
-              {isExpanded ? fullDescripcion : shortDescripcion}
-            </p>
-            <button
-              onClick={() => setIsExpanded(!isExpanded)}
-              className="mt-4 text-amber-500 hover:text-amber-400 flex items-center mx-auto transition-colors"
-            >
-              {isExpanded ? (
-                <>
-                  Leer menos <ChevronUpIcon className="ml-1 h-4 w-4" />
-                </>
-              ) : (
-                <>
-                  Leer más <ChevronDownIcon className="ml-1 h-4 w-4" />
-                </>
-              )}
-            </button>
-          </div>
-        </div>
+    <div className="py-8">
+      <header className="mx-auto mb-10 max-w-4xl space-y-4 text-center">
+        <p className="text-xs font-bold uppercase tracking-[0.2em] text-zinc-500">
+          Categoría
+        </p>
+        <h1 className="text-balance text-3xl font-extrabold tracking-tight text-white md:text-5xl">
+          {firstWord} <span className="text-amber-400">{rest.join(" ")}</span>
+        </h1>
+        {category.description && <CategoryDescription text={category.description} />}
+        {initial && initial.info.count > 0 && (
+          <p className="text-sm text-zinc-500">
+            {numberFormat.format(initial.info.count)} vehículos fotografiados
+          </p>
+        )}
+      </header>
 
-        <div className={styles.list}>
-          {vehicles.data.map((vehicle) => (
-            <GalleryList key={vehicle.vehicle_id} vehicle={vehicle} />
-          ))}
-        </div>
-        <div className={styles.pagination}>
-          <PaginationGallery pagination={vehicles.info} basePath={`?`} />
-        </div>
-      </section>
+      {initial?.data?.length ? (
+        <InfiniteGallery
+          initial={initial}
+          limit={PAGE_LIMIT}
+          category={category.transport_category_id}
+        />
+      ) : (
+        <EmptyState
+          message={
+            initial
+              ? "Todavía no hay fotos en esta categoría."
+              : "No pudimos cargar las fotos. Intenta de nuevo en unos minutos."
+          }
+        />
+      )}
     </div>
+  );
+}
+
+function EmptyState({ message }: { message: string }) {
+  return (
+    <section className="flex min-h-[40vh] flex-col items-center justify-center gap-4 text-center">
+      <p className="text-zinc-400">{message}</p>
+      <Link
+        href="/galeria"
+        className="rounded-xl bg-white px-5 py-2.5 text-sm font-bold text-black transition-colors hover:bg-zinc-200"
+      >
+        Explorar la galería
+      </Link>
+    </section>
   );
 }

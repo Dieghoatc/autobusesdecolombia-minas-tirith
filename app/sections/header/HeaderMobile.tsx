@@ -20,7 +20,6 @@ export function HeaderMobile() {
   const pathname = usePathname();
   const [menuOpen, setMenuOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
-  const showSearch = pathname !== "/";
 
   // Lock page scroll behind the full-screen menu
   useEffect(() => {
@@ -50,20 +49,18 @@ export function HeaderMobile() {
           />
         </Link>
         <div className="flex items-center gap-1">
-          {showSearch && (
-            <button
-              type="button"
-              onClick={() => {
-                setSearchOpen((open) => !open);
-                setMenuOpen(false);
-              }}
-              aria-label="Buscar"
-              aria-expanded={searchOpen}
-              className={iconButton}
-            >
-              <Search className="w-5 h-5" />
-            </button>
-          )}
+          <button
+            type="button"
+            onClick={() => {
+              setSearchOpen((open) => !open);
+              setMenuOpen(false);
+            }}
+            aria-label="Buscar"
+            aria-expanded={searchOpen}
+            className={iconButton}
+          >
+            <Search className="w-5 h-5" />
+          </button>
           <button
             type="button"
             onClick={() => {
@@ -84,7 +81,7 @@ export function HeaderMobile() {
         </div>
       </div>
 
-      {searchOpen && showSearch && (
+      {searchOpen && (
         <div className="px-4 pb-3">
           <HeaderSearch autoFocus onSearch={closeAll} />
         </div>
