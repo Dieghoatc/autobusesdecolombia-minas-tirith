@@ -44,6 +44,35 @@ const REQUIRED_FIELDS: CatalogField[] = [
   "company_id",
 ];
 
+// Many services are not linked to a company (company_id null) and some companies
+// have none, so never filter: list the selected company's services first, then
+// the general ones, then the rest.
+function serviceOptions(
+  services: UploadCatalogs["companyServices"],
+  companyId: string | null
+): ComboBoxOption[] {
+  const rank = (companyIdOfService: number | null) => {
+    if (companyId && String(companyIdOfService) === companyId) return 0;
+    return companyIdOfService === null ? 1 : 2;
+  };
+  const groups = companyId
+    ? ["De esta empresa", "Generales", "Otras empresas"]
+    : [];
+
+  return services
+    .map((service) => ({ service, rank: rank(service.company_id) }))
+    .sort(
+      (a, b) =>
+        a.rank - b.rank ||
+        a.service.company_service_name.localeCompare(b.service.company_service_name, "es")
+    )
+    .map(({ service, rank }) => ({
+      id: String(service.company_service_id),
+      label: service.company_service_name,
+      group: groups[rank],
+    }));
+}
+
 interface VehicleDetailsStepProps {
   catalogs: UploadCatalogs;
   markedPhoto: Blob | null;
@@ -85,16 +114,10 @@ export function VehicleDetailsStep({
         id: String(item.company_id),
         label: item.company_name,
       })),
-      company_service_id: catalogs.companyServices
-        .filter(
-          (item) =>
-            !newVehicle.company_id ||
-            String(item.company_id) === newVehicle.company_id
-        )
-        .map((item) => ({
-          id: String(item.company_service_id),
-          label: item.company_service_name,
-        })),
+      company_service_id: serviceOptions(
+        catalogs.companyServices,
+        newVehicle.company_id
+      ),
     }),
     [catalogs, newVehicle.company_id]
   );
@@ -128,12 +151,7 @@ export function VehicleDetailsStep({
   }, [vehicle, catalogs]);
 
   function setField(field: CatalogField, value: string | null) {
-    setNewVehicle((current) => ({
-      ...current,
-      [field]: value,
-      // A service belongs to a company: clear it when the company changes.
-      ...(field === "company_id" ? { company_service_id: null } : {}),
-    }));
+    setNewVehicle((current) => ({ ...current, [field]: value }));
   }
 
   async function handleSearch() {

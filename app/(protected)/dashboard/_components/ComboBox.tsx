@@ -22,6 +22,18 @@ import { fieldInput } from "@/lib/constants/formStyles";
 export interface ComboBoxOption {
   id: string;
   label: string;
+  // Options sharing a group are listed under that heading, in order of appearance.
+  group?: string;
+}
+
+function groupOptions(options: ComboBoxOption[]) {
+  const groups = new Map<string | undefined, ComboBoxOption[]>();
+  for (const option of options) {
+    const list = groups.get(option.group) ?? [];
+    list.push(option);
+    groups.set(option.group, list);
+  }
+  return Array.from(groups, ([heading, items]) => ({ heading, items }));
 }
 
 interface ComboBoxProps {
@@ -76,27 +88,33 @@ export function ComboBox({
             <CommandEmpty className="py-6 text-center text-sm text-zinc-500">
               Sin resultados
             </CommandEmpty>
-            <CommandGroup>
-              {options.map((option) => (
-                <CommandItem
-                  key={option.id}
-                  value={`${option.label} ${option.id}`}
-                  onSelect={() => {
-                    onChange(option.id === value ? null : option.id);
-                    setOpen(false);
-                  }}
-                  className="text-zinc-200 data-[selected=true]:bg-zinc-800 data-[selected=true]:text-white"
-                >
-                  {option.label}
-                  <Check
-                    className={cn(
-                      "ml-auto w-4 h-4",
-                      option.id === value ? "opacity-100" : "opacity-0"
-                    )}
-                  />
-                </CommandItem>
-              ))}
-            </CommandGroup>
+            {groupOptions(options).map(({ heading, items }) => (
+              <CommandGroup
+                key={heading ?? "default"}
+                heading={heading}
+                className="[&_[cmdk-group-heading]]:text-zinc-500 [&_[cmdk-group-heading]]:uppercase [&_[cmdk-group-heading]]:tracking-wider"
+              >
+                {items.map((option) => (
+                  <CommandItem
+                    key={option.id}
+                    value={`${option.label} ${option.id}`}
+                    onSelect={() => {
+                      onChange(option.id === value ? null : option.id);
+                      setOpen(false);
+                    }}
+                    className="text-zinc-200 data-[selected=true]:bg-zinc-800 data-[selected=true]:text-white"
+                  >
+                    {option.label}
+                    <Check
+                      className={cn(
+                        "ml-auto w-4 h-4",
+                        option.id === value ? "opacity-100" : "opacity-0"
+                      )}
+                    />
+                  </CommandItem>
+                ))}
+              </CommandGroup>
+            ))}
           </CommandList>
         </Command>
       </PopoverContent>
