@@ -23,7 +23,7 @@ export interface Company {
 
 export interface CompanyService {
   company_service_id: number;
-  company_id: number;
+  company_id: number | null;
   company_service_name: string;
 }
 
