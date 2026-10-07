@@ -2,8 +2,8 @@ import type { Metadata, Viewport } from "next";
 
 import Script from "next/script";
 
-import { SidebarMobile, SidebarDesktop } from "./sections/sidebar";
 import { Header } from "./sections/header";
+import { DonationBanner } from "./components/donation/DonationBanner";
 import { Breadcrumbs } from "./components/breadcrumbs/Breadcrumbs";
 
 import { Analytics } from "@vercel/analytics/react";
@@ -68,27 +68,12 @@ export default function RootLayout({
         />
       </head>
       <body>
-        <div className="flex">
-          <div>
-            <section className="hidden md:block">
-              <SidebarDesktop />
-            </section>
-            <section className="block md:hidden">
-              <SidebarMobile />
-            </section>
-          </div>
-          <div className="flex-1">
-            <div className="flex flex-col">
-              <Header />
-            </div>
-            <div className="w-full mx-auto">
-              <main className="px-4 md:px-6">
-                <Breadcrumbs />
-                {children}
-              </main>
-            </div>
-          </div>
-        </div>
+        <Header />
+        <main className="w-full px-4 md:px-6">
+          <Breadcrumbs />
+          {children}
+        </main>
+        <DonationBanner />
         <Analytics />
       </body>
     </html>
