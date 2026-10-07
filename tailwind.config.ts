@@ -55,6 +55,28 @@ export default {
   			lg: 'var(--radius)',
   			md: 'calc(var(--radius) - 2px)',
   			sm: 'calc(var(--radius) - 4px)'
+  		},
+  		keyframes: {
+  			// Logo strip: the list is rendered twice, so -50% loops seamlessly
+  			marquee: {
+  				from: { transform: 'translateX(0)' },
+  				to: { transform: 'translateX(-50%)' }
+  			},
+  			// Hero brush underline (paths use pathLength=1)
+  			draw: {
+  				from: { strokeDashoffset: '1' },
+  				to: { strokeDashoffset: '0' }
+  			},
+  			// Hero tab timer
+  			progress: {
+  				from: { transform: 'scaleX(0)' },
+  				to: { transform: 'scaleX(1)' }
+  			}
+  		},
+  		animation: {
+  			marquee: 'marquee 45s linear infinite',
+  			progress: 'progress 7s linear forwards',
+  			draw: 'draw 0.9s cubic-bezier(0.65, 0, 0.35, 1) forwards'
   		}
   	}
   },
