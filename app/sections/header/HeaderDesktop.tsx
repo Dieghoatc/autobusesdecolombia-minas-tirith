@@ -1,47 +1,39 @@
 "use client";
 
-import { useShowSidebarMenu } from "@/lib/store/useShowSidebarMenu";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import abcLogo from "@/assets/abc_logo.svg";
-import { User, Upload } from "lucide-react";
+import { User } from "lucide-react";
 
-import { Search } from "./components/search";
+import abcLogo from "@/assets/abc_logo.svg";
+
+import { DesktopNav } from "./components/DesktopNav";
+import { HeaderSearch } from "./components/HeaderSearch";
+import { LOGIN_HREF } from "./navigation";
 
 export function HeaderDesktop() {
-  const { openDesktop } = useShowSidebarMenu();
   const pathname = usePathname();
-  const isHome = pathname === "/";
+  // The home hero already has its own search
+  const showSearch = pathname !== "/";
 
   return (
-    <nav className="max-w-7xl mx-auto w-full h-14 grid grid-cols-3 items-center px-4 md:px-6">
-      <div className="flex items-center">
-        {!openDesktop && (
-          <div className="cursor-pointer">
-            <Link href="/" title="Home">
-              <Image src={abcLogo.src} alt="Logo" width={150} height={50} />
-            </Link>
-          </div>
-        )}
-      </div>
-      {/* El buscador del header se oculta en la home: ya está el buscador del hero */}
-      {isHome ? <div /> : <Search view="desktop" searchClose={() => console.log()} />}
-      <div className="flex items-center justify-end gap-4">
-        <Link 
-          href="/dashboard/upload" 
-          className="flex items-center gap-2 text-sm font-medium text-white bg-white/[0.04] border border-white/[0.08] hover:bg-white/[0.08] px-4 py-2 rounded-full transition-colors"
+    <div className="flex h-16 items-center gap-6 px-6">
+      <Link href="/" title="Inicio" className="flex-shrink-0">
+        <Image src={abcLogo} alt="Autobuses de Colombia" height={40} className="h-10 w-auto" priority />
+      </Link>
+
+      <DesktopNav />
+
+      <div className="flex flex-shrink-0 items-center gap-3">
+        {showSearch && <HeaderSearch className="w-44 lg:w-60 focus-within:lg:w-72 transition-[width] duration-300" />}
+        <Link
+          href={LOGIN_HREF}
+          className="flex h-9 items-center gap-2 rounded-full bg-white px-4 text-sm font-semibold text-black transition-colors hover:bg-zinc-200"
         >
-          <Upload className="w-4 h-4" />
-          Subir foto
-        </Link>
-        <Link 
-          href="/dashboard" 
-          className="flex items-center justify-center w-9 h-9 rounded-full bg-white/[0.04] border border-white/[0.08] hover:bg-white/[0.08] transition-colors text-white"
-        >
-          <User className="w-5 h-5" />
+          <User aria-hidden className="w-4 h-4" />
+          Ingresar
         </Link>
       </div>
-    </nav>
+    </div>
   );
 }
