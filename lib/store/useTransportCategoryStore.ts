@@ -3,16 +3,19 @@ import { persist } from 'zustand/middleware'
 import { TransportCategory } from "../../services/types/transportCategories.type"
 import { transportCategoriesQuery } from '@/services/api/transportCategories.query'
 
-const api = transportCategoriesQuery()
-
 interface TransportCategoryStore {
     transportCategories: TransportCategory[];
     loading: boolean;
     error: string;
+    // True once the list has been refreshed from the API in this page load
+    refreshed: boolean;
     setCategory: (data: TransportCategory[]) => void;
-    fetchCategories: () => void;
+    fetchCategories: () => Promise<void>;
     setLoading: (loading: boolean) => void;
 }
+
+// Shared by concurrent callers so the API is only requested once at a time
+let inFlight: Promise<void> | null = null;
 
 export const useTransportCategoryStore = create<TransportCategoryStore>()(
   persist(
@@ -20,19 +23,27 @@ export const useTransportCategoryStore = create<TransportCategoryStore>()(
       transportCategories: [],
       loading: false,
       error: "",
+      refreshed: false,
 
       setCategory: (data: TransportCategory[]) => {
         set({ transportCategories: data })
       },
 
-      fetchCategories: async () => {
+      fetchCategories: () => {
+        if (inFlight) return inFlight
         set({ loading: true, error: "" })
-        try {
-          const result = await api
-          set({ transportCategories: result, loading: false })
-        } catch (error) {
-          set({ error: `Error to fetch data: ${error}`, loading: false })
-        }
+        inFlight = transportCategoriesQuery()
+          .then((result) => {
+            set({ transportCategories: result, loading: false, refreshed: true })
+          })
+          .catch((error) => {
+            // Keep the saved list (if any) so the site still works offline
+            set({ error: `Error to fetch data: ${error}`, loading: false, refreshed: true })
+          })
+          .finally(() => {
+            inFlight = null
+          })
+        return inFlight
       },
 
       setLoading: (loading: boolean) => {
@@ -44,7 +55,16 @@ export const useTransportCategoryStore = create<TransportCategoryStore>()(
       partialize: (state) => ({
         // Solo persistimos las categorías, no el estado loading ni errores
         transportCategories: state.transportCategories
-      })
+      }),
+      // Older versions could save a non-list (e.g. {} after an API error), which
+      // broke the category pages until the browser data was cleared
+      merge: (persisted, current) => {
+        const saved = (persisted as Partial<TransportCategoryStore> | undefined)?.transportCategories
+        return {
+          ...current,
+          transportCategories: Array.isArray(saved) ? saved : [],
+        }
+      },
     }
   )
 )

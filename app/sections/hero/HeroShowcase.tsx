@@ -124,7 +124,7 @@ export function HeroShowcase({ scenes, totalPhotos }: HeroShowcaseProps) {
             <ArrowRight aria-hidden className="h-4 w-4" />
           </Link>
           <Link
-            href={`/transport-category/${scene.slug}`}
+            href={`/transport-category/${scene.categoryId}`}
             className={cn(
               "flex h-12 items-center gap-2 rounded-xl border border-white/15 bg-black/30 px-5 text-sm font-semibold backdrop-blur-md transition-colors hover:bg-black/50",
               scene.accent.text,
@@ -150,7 +150,7 @@ export function HeroShowcase({ scenes, totalPhotos }: HeroShowcaseProps) {
             return (
               <Link
                 key={card.id}
-                href={`/transport-category/${scene.slug}`}
+                href={`/transport-category/${scene.categoryId}`}
                 tabIndex={-1}
                 aria-hidden
                 className={cn(

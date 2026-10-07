@@ -1,16 +1,16 @@
 import { transportCategoriesQuery } from "@/services/api/transportCategories.query";
 import { Metadata } from "next";
 
+import { findCategory } from "./findCategory";
+
 interface Props {
   params: Promise<{ slug: string }>;
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   try {
-    const resolvedParams = await params;
-    const categoryId = Number(resolvedParams.slug);
-    const categories = await transportCategoriesQuery();
-    const category = categories.find((c) => c.transport_category_id === categoryId);
+    const { slug } = await params;
+    const category = findCategory(await transportCategoriesQuery(), slug);
 
     if (!category) {
       return {
