@@ -1,14 +1,5 @@
 import "server-only";
 
-export const ALLOWED_IMAGE_TYPES = [
-  "image/jpeg",
-  "image/png",
-  "image/webp",
-  "image/avif",
-];
-// Must match the API limit on /photo/mark and /vehicle
-export const MAX_IMAGE_BYTES = 5 * 1024 * 1024;
-
 export function jsonError(message: string, status: number): Response {
   return Response.json({ error: message }, { status });
 }
@@ -39,17 +30,4 @@ export async function passthrough(response: Response): Promise<Response> {
   const contentType = response.headers.get("content-type");
   if (contentType) headers.set("content-type", contentType);
   return new Response(response.body, { status: response.status, headers });
-}
-
-export function validateImage(value: FormDataEntryValue | null): string | null {
-  if (!(value instanceof File) || value.size === 0) {
-    return "Selecciona una fotografía";
-  }
-  if (!ALLOWED_IMAGE_TYPES.includes(value.type)) {
-    return "Solo se permiten archivos JPG, PNG, AVIF o WebP";
-  }
-  if (value.size > MAX_IMAGE_BYTES) {
-    return "El archivo debe ser menor a 5MB";
-  }
-  return null;
 }
