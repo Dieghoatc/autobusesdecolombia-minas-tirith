@@ -1,3 +1,6 @@
+"use client";
+
+import { CldImage } from "next-cloudinary";
 import { Camera } from "lucide-react";
 import styles from "./Image.module.css";
 
@@ -12,7 +15,7 @@ export function Image({ src, alt, overlay, photograper }: ImageProps) {
   return (
     <section>
       <figure className={styles.image}>
-        <img src={src} alt={alt} />
+        <CldImage src={src} alt={alt} fill sizes="(max-width: 768px) 100vw, 800px" className="object-cover" />
       </figure>
       <div className={styles.info}>
         <div className={styles.author}>

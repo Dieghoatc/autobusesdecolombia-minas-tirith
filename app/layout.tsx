@@ -4,6 +4,7 @@ import Script from "next/script";
 
 import { SidebarMobile, SidebarDesktop } from "./sections/sidebar";
 import { Header } from "./sections/header";
+import { Breadcrumbs } from "./components/breadcrumbs/Breadcrumbs";
 
 import { Analytics } from "@vercel/analytics/react";
 
@@ -80,8 +81,11 @@ export default function RootLayout({
             <div className="flex flex-col">
               <Header />
             </div>
-            <div className="max-w-7xl mx-auto w-full">
-              <main className="px-4 md:px-6">{children}</main>
+            <div className="w-full mx-auto">
+              <main className="px-4 md:px-6">
+                <Breadcrumbs />
+                {children}
+              </main>
             </div>
           </div>
         </div>

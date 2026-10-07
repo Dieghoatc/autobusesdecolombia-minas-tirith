@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
-import Image from "next/image";
+import { CldImage } from "next-cloudinary";
 import Link from "next/link";
 
 import { useParams } from "next/navigation";
@@ -64,7 +64,7 @@ export default function Modelo() {
                     }`}
                   >
                     <div className={styles.image}>
-                      <Image
+                      <CldImage
                         src={photo.image_url}
                         alt={
                           `${modelName} ${

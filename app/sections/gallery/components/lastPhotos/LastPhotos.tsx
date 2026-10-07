@@ -1,6 +1,7 @@
 "use client";
 
 import { useRef } from "react";
+import { CldImage } from "next-cloudinary";
 
 import Link from "next/link";
 import { ChevronLeft, ChevronRight } from "lucide-react";
@@ -37,13 +38,13 @@ export function LastPhotos() {
               >
                 {vehicle.vehiclePhotos[0] ? (
                   <div className={styles.image_container}>
-                    <picture>
-                      <source
-                        type="image/webp"
-                        srcSet={vehicle.vehiclePhotos[0].image_url}
-                      />
-                      <img src={vehicle.vehiclePhotos[0].image_url} alt="" />
-                    </picture>
+                    <CldImage
+                      src={vehicle.vehiclePhotos[0].image_url}
+                      alt=""
+                      fill
+                      sizes="250px"
+                      className="object-cover"
+                    />
                     <div className={styles.overlay}></div>
                   </div>
                 ) : (

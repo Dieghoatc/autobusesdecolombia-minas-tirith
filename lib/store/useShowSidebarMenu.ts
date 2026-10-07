@@ -8,7 +8,7 @@ interface ShowSidebarMenuStore {
 }
 
 export const useShowSidebarMenu = create<ShowSidebarMenuStore>((set) => ({
-  openDesktop: true,
+  openDesktop: false,
   openMobile: false,
   setOpenDesktop: (open: boolean) => set({ openDesktop: open }),
   setOpenMobile: (open: boolean) => set({ openMobile: open }),

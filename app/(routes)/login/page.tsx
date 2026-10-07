@@ -1,101 +1,38 @@
-"use client";
+import { redirect } from "next/navigation";
 
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
-import { z } from "zod";
+import { getCurrentUser, isAdmin } from "@/lib/auth/session";
+import { safeRedirectPath } from "@/lib/auth/constants";
+import { glassCard } from "@/lib/constants/formStyles";
 
-import { Button } from "@/app/components/ui/button";
-import {
-  Form,
-  FormControl,
-  FormDescription,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from "@/app/components/ui/form";
-import { Input } from "@/app/components/ui/input";
+import { LoginForm } from "./components/LoginForm";
 
-import { useRouter } from "next/navigation";
-import "./login.css";
+const ERROR_MESSAGES: Record<string, string> = {
+  forbidden: "Tu cuenta no tiene permisos de administrador",
+};
 
-const formSchema = z.object({
-  email: z.string().email(),
-  password: z.string(),
-});
+interface LoginPageProps {
+  searchParams: Promise<{ next?: string; error?: string }>;
+}
 
-const API_URL = process.env.NEXT_PUBLIC_ABC_API;
+export default async function LoginPage({ searchParams }: LoginPageProps) {
+  const { next, error } = await searchParams;
 
-export default function Login() {
-  const router = useRouter();
-
-  const form = useForm<z.infer<typeof formSchema>>({
-    resolver: zodResolver(formSchema),
-    defaultValues: {
-      email: "",
-      password: "",
-    },
-  });
-
-  async function onSubmit(values: z.infer<typeof formSchema>) {
-    const response = await fetch(`${API_URL}/users/login`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      redirect: "manual",
-      body: JSON.stringify(values),
-      credentials: "include",
-    });
-
-    if (response.ok && response.status === 200) {
-      setTimeout(() => {
-        form.reset();
-        router.push("/upload");
-      }, 100);
-    } else {
-      alert("Usuario o contraseña incorrectos");
-    }
-  }
+  const user = await getCurrentUser();
+  if (isAdmin(user)) redirect(safeRedirectPath(next));
 
   return (
-    <section className="login-container">
-      <div className="login-card">
-        <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-2">
-            <FormField
-              control={form.control}
-              name="email"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Usuario</FormLabel>
-                  <FormControl>
-                    <Input placeholder="correo@ejemplo.com" {...field} />
-                  </FormControl>
-                  <FormDescription>Ingresa tu correo</FormDescription>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-            <FormField
-              control={form.control}
-              name="password"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Contraseña</FormLabel>
-                  <FormControl>
-                    <Input placeholder="******" {...field} />
-                  </FormControl>
-                  <FormDescription>Ingresa tu contraseña</FormDescription>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-            <Button type="submit" disabled={form.formState.isSubmitting}>
-              {form.formState.isSubmitting ? "Ingresando..." : "Ingresar"}
-            </Button>
-          </form>
-        </Form>
+    <section className="w-full min-h-[80vh] flex items-center justify-center py-12">
+      <div className={`w-full max-w-sm p-6 md:p-8 ${glassCard}`}>
+        <h1 className="text-xl font-bold text-white mb-1 uppercase tracking-wider">
+          Iniciar sesión
+        </h1>
+        <p className="text-sm text-zinc-400 mb-6 pb-4 border-b border-zinc-800/60">
+          Acceso al panel de administración
+        </p>
+        <LoginForm
+          next={next}
+          initialError={error ? ERROR_MESSAGES[error] : undefined}
+        />
       </div>
     </section>
   );

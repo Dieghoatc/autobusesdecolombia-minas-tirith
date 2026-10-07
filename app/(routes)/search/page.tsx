@@ -15,7 +15,7 @@ function SearchContent() {
 
   const deferredQuery = useDeferredValue(rawQuery || "");
 
-  const { results, error, setCurrentPage, hasNext } = useSearch({
+  const { results, error, isLoading, setCurrentPage, hasNext } = useSearch({
     query: deferredQuery,
   });
 
@@ -54,6 +54,7 @@ function SearchContent() {
           results={results}
           setCurrentPage={setCurrentPage}
           hasNext={hasNext}
+          isLoading={isLoading}
         />
       </main>
     </div>

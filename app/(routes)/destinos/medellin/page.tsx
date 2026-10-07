@@ -1,6 +1,6 @@
 import React from "react";
 import Image from "next/image";
-import Head from "next/head";
+import type { Metadata } from "next";
 
 import ImageMedellin from "@/assets/destinations/downtown-medellin-colombia.avif";
 import ExpresoBrasilia from "@/assets/companies/expreso_brasilia.png";
@@ -77,20 +77,15 @@ const transportCompanies: TransportCompany[] = [
   },
 ];
 
+export const metadata: Metadata = {
+  title: "Turismo en Medellín | Qué ver, clima, historia y eventos",
+  description: "Descubre Medellín, la ciudad de la eterna primavera. Conoce su historia, clima, lugares turísticos, eventos y por qué es un destino imperdible en Colombia.",
+  keywords: "turismo en Medellín, qué hacer en Medellín, Medellín Colombia, lugares turísticos Medellín, clima Medellín, eventos Medellín",
+};
+
 export default function MedellinPage() {
   return (
     <>
-      <Head>
-        <title>Turismo en Medellín | Qué ver, clima, historia y eventos</title>
-        <meta
-          name="description"
-          content="Descubre Medellín, la ciudad de la eterna primavera. Conoce su historia, clima, lugares turísticos, eventos y por qué es un destino imperdible en Colombia."
-        />
-        <meta
-          name="keywords"
-          content="turismo en Medellín, qué hacer en Medellín, Medellín Colombia, lugares turísticos Medellín, clima Medellín, eventos Medellín"
-        />
-      </Head>
       <main className="min-h-screen bg-white text-gray-900">
         {/* Hero Section */}
         <section className="relative h-[60vh] flex items-center justify-center">
@@ -109,10 +104,10 @@ export default function MedellinPage() {
           </div>
         </section>
         <section className="py-12 px-6 max-w-4xl mx-auto bg-neutral-50">
-          <h1 className="text-3xl font-bold mb-6 text-center">
+          <h2 className="text-3xl font-bold mb-6 text-center">
             Turismo en Medellín: Qué ver y hacer en la ciudad de la eterna
             primavera
-          </h1>
+          </h2>
 
           <p className="mb-6 text-lg">
             <strong>Medellín</strong> es uno de los destinos más populares de

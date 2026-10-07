@@ -1,7 +1,1 @@
-.background {
-    
-}
-
-.image {
-    mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1) 80%, transparent);
-}
+/* AboutUs module CSS is no longer used. Styles have been migrated to pure Tailwind. */

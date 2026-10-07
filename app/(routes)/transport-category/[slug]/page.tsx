@@ -89,7 +89,7 @@ export default function CategoryGallery() {
           ))}
         </div>
         <div className={styles.pagination}>
-          <PaginationGallery pagination={vehicles.info} goToPage={goToPage} />
+          <PaginationGallery pagination={vehicles.info} basePath={`?`} />
         </div>
       </section>
     </div>
