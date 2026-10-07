@@ -22,7 +22,8 @@ const BREADCRUMB_MAP: Record<string, string> = {
   vehiculo: "Vehículos",
   modelo: "Modelos",
   "transport-category": "Categorías",
-  upload: "Subir Foto",
+  dashboard: "Panel",
+  upload: "Subir Fotografías",
   blog: "Blog",
 };
 

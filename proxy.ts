@@ -1,26 +1,23 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 
-const envMiddleware = process.env.NEXT_PUBLIC_MIDDLEWARE || "";
+import { LOGIN_PATH, SESSION_COOKIE } from "@/lib/auth/constants";
 
+// Optimistic check only: redirects visitors without a session cookie before
+// rendering. The real validation (token + admin role) happens in
+// app/(protected)/dashboard/layout.tsx and in each dashboard route handler.
 export function proxy(request: NextRequest) {
-  //console.log("✅ Middleware ejecutado en:", request.nextUrl.pathname);
-  const token = request.cookies.get("access_token")?.value;
-  //console.log("🚀 Token:", token);
-
-  if (envMiddleware === "false") return NextResponse.next();
-
-  if (
-    request.method === "GET" &&
-    !token &&
-    request.nextUrl.pathname.startsWith("/upload")
-  ) {
-    return NextResponse.redirect(new URL("/login", request.url));
+  if (request.cookies.has(SESSION_COOKIE)) {
+    return NextResponse.next();
   }
 
-  return NextResponse.next();
+  const { pathname, search } = request.nextUrl;
+  const loginUrl = new URL(LOGIN_PATH, request.url);
+  loginUrl.searchParams.set("next", `${pathname}${search}`);
+
+  return NextResponse.redirect(loginUrl);
 }
 
 export const config = {
-  matcher: ["/upload", "/upload/:path*"],
+  matcher: ["/dashboard/:path*"],
 };

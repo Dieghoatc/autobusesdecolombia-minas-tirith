@@ -29,14 +29,14 @@ export function HeaderDesktop() {
       {isHome ? <div /> : <Search view="desktop" searchClose={() => console.log()} />}
       <div className="flex items-center justify-end gap-4">
         <Link 
-          href="/upload" 
+          href="/dashboard/upload" 
           className="flex items-center gap-2 text-sm font-medium text-white bg-white/[0.04] border border-white/[0.08] hover:bg-white/[0.08] px-4 py-2 rounded-full transition-colors"
         >
           <Upload className="w-4 h-4" />
           Subir foto
         </Link>
         <Link 
-          href="/login" 
+          href="/dashboard" 
           className="flex items-center justify-center w-9 h-9 rounded-full bg-white/[0.04] border border-white/[0.08] hover:bg-white/[0.08] transition-colors text-white"
         >
           <User className="w-5 h-5" />
