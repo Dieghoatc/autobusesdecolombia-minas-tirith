@@ -19,7 +19,7 @@ interface UploadWorkspaceProps {
   catalogs: UploadCatalogs;
 }
 
-// Two-step flow: 1) watermark the photo, 2) link it to a vehicle and publish.
+// Two-step flow: 1) watermark or optimize the photo, 2) link it to a vehicle and publish.
 export function UploadWorkspace({ catalogs }: UploadWorkspaceProps) {
   const [photographerId, setPhotographerId] = useState<string | null>(null);
   const [cityId, setCityId] = useState<string | null>(null);
@@ -50,7 +50,7 @@ export function UploadWorkspace({ catalogs }: UploadWorkspaceProps) {
   return (
     <div className="grid grid-cols-1 xl:grid-cols-3 gap-6 items-start">
       <div className="xl:col-span-2 space-y-6">
-        <Step number={1} title="Marcar fotografía">
+        <Step number={1} title="Preparar fotografía">
           <MarkPhotoStep
             key={uploadCount}
             photographerOptions={photographerOptions}

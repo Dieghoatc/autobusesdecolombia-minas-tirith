@@ -201,7 +201,7 @@ export function VehicleDetailsStep({
     setStatus({ type: "info", message: "Subiendo imagen..." });
     try {
       const formData = new FormData();
-      // The watermark service returns AVIF; normalise the type for the API.
+      // Step 1 always produces AVIF; normalise the type for the API.
       formData.append("photo", new Blob([markedPhoto], { type: "image/avif" }), "image.avif");
       formData.append("photographer_id", photographerId);
       formData.append("location", location);
@@ -209,8 +209,9 @@ export function VehicleDetailsStep({
       if (vehicle) {
         formData.append("vehicle_id", String(vehicle.vehicle_id));
       } else {
-        formData.append("plate", plate.trim());
-        formData.append("company_serial", serial.trim());
+        // Empty values are not sent, so they are stored as NULL
+        if (plate.trim()) formData.append("plate", plate.trim());
+        if (serial.trim()) formData.append("company_serial", serial.trim());
         for (const [field, value] of Object.entries(newVehicle)) {
           if (value) formData.append(field, value);
         }
